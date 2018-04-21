@@ -148,7 +148,7 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     //多分ここは編集の必要なし
-    void setPlayerBehavior(int num) {
+    private void setPlayerBehavior(int num) {
         if(turnCount != tempTurnCount){
             startNewTurn();
             executeTempBattle(num);
@@ -159,11 +159,18 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     //tempを実際の値に代入、ターンを進める、後でspの処理を見直す
-    void onDecision(){
+    private void onDecision(){
         tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
-        breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], true);
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                playerInfo = realm.where(PlayerInfo.class).findFirst();
+                playerInfo.setMP(mp);
+                playerInfo.setHP(hp);
+            }
+        });
         sp = tempAllStatus[2];
         //spは毎ターン回復する仕様だがスキルによって最大値をいじれる仕様なので後で細かく実装するが
         //今の段階ではターン終了時にRealm内のsp最大値に戻すことにする
@@ -182,8 +189,9 @@ public class BattleActivity extends AppCompatActivity {
 
     //どちらかのhpが0以下になったらリザルト画面を表示する処理
     //ブレイクゲージのバーを変更する処理を後で追加する
-    void executeBattle(){
+    private void executeBattle(){
         battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
+        breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
         spBar.setProgress(0);
@@ -194,12 +202,12 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     //ここは後で調整する、ブレイクゲージの影響も含めた計算はここで行うか、新しいメソッドを作ってそこで行う、
-    //ブレイクゲージの処理では受け取った最終ステータスにブレイク値の分だけ変更を加える
+    //ブレイクゲージの処理では受け取った最終ステータスにブレイク値の分だけ変更を加える、ブレイクゲージが0未満になるとクラッシュするため対策する
     //ブレイクゲージは50%に近いほど変化が大きくなる為、sin等を用いて処理を書くが、一時的に5にしている
     //PlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存
     //セットしたスキルをスキル確認画面に表示するコードを書く
     //mpが0未満になる場合の処理も追加する
-    void executeTempBattle(int num){
+    private void executeTempBattle(int num){
         switch (num){
             case 0:
                 if(tempAllStatus[2] - (int)sp/3 >= 0) {
@@ -252,41 +260,41 @@ public class BattleActivity extends AppCompatActivity {
                 }
                 break;
             case 4:
-                if(playerSkill1.skill(tempAllStatus)[2] >= 0){
+                if(playerSkill1.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill1.skill(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
-                    battleText.setText("spが足りません");
+                    battleText.setText("spまたはmpが足りません");
                 }
                 break;
             case 5:
-                if(playerSkill2.skill(tempAllStatus)[2] >= 0){
+                if(playerSkill2.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill2.skill(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
-                    battleText.setText("spが足りません");
+                    battleText.setText("spまたはmpが足りません");
                 }
                 break;
             case 6:
-                if(playerSkill3.skill(tempAllStatus)[2] >= 0){
+                if(playerSkill3.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill3.skill(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
-                    battleText.setText("spが足りません");
+                    battleText.setText("spまたはmpが足りません");
                 }
                 break;
             case 7:
-                if(playerSkill4.skill(tempAllStatus)[2] >= 0){
+                if(playerSkill4.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill4.skill(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
-                    battleText.setText("spが足りません");
+                    battleText.setText("spまたはmpが足りません");
                 }
                 break;
         }
     }
 
-    void inputAllStatus(){
+    private void inputAllStatus(){
         maxHp = playerInfo.getFmaxHP();
         maxMp = playerInfo.getFmaxMP();
         tempAllStatus[0] = hp = playerInfo.getHP();
@@ -301,7 +309,6 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        //今回は適当に色を入れているが実際は適宜色を作成して代入、色の作成方法は知恵袋参照
         breakGage.setData(breakNum, "%", gradation, 10, breakNum, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
@@ -314,7 +321,7 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     //ここは編集の必要なし
-    void startNewTurn(){
+    private void startNewTurn(){
         tempAllStatus[0] = hp;
         tempAllStatus[1] = mp;
         tempAllStatus[2] = sp;

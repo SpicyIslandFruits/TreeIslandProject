@@ -85,13 +85,6 @@ public class EquipmentFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 weaponIdInstance = (WeaponId) parent.getItemAtPosition(position);
                 weaponId = weaponIdInstance.getWeaponId();
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        playerInfo = realm.where(PlayerInfo.class).findFirst();
-                        playerInfo.setWeaponId(weaponId);
-                    }
-                });
                 weapon = makeData.makeWeaponFromId(weaponId);
                 equipedWeapon.setText(weapon.getName());
                 weaponName.setText(weapon.getName());
@@ -99,6 +92,14 @@ public class EquipmentFragment extends Fragment {
                 weaponSkill1.setText(weapon.getSkill1Info());
                 weaponSkill2.setText(weapon.getSkill2Info());
                 weaponSkill3.setText(weapon.getSkill3Info());
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        playerInfo = realm.where(PlayerInfo.class).findFirst();
+                        playerInfo.setWeaponId(weaponId);
+                        playerInfo.setfATK(playerInfo.getmATK()+weapon.getAtk());
+                    }
+                });
             }
         });
 

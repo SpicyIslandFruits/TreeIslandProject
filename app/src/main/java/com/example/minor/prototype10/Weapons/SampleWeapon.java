@@ -11,7 +11,7 @@ package com.example.minor.prototype10.Weapons;
 public class SampleWeapon extends SuperWeapon {
     private static final int id = 0;
     private static final String name = "SampleWeapon";
-    private static final int atk = 1;
+    private static final int atk = 5;
     private static final String skill1Info = "2倍アタック、攻撃力の2倍の威力で攻撃";
     private static final String skill2Info = "3倍アタック、攻撃力の3倍の威力で攻撃";
     private static final String skill3Info = "4倍アタック、攻撃力の4倍の威力で攻撃";

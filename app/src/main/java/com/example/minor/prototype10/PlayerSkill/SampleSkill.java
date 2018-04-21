@@ -5,15 +5,17 @@ package com.example.minor.prototype10.PlayerSkill;
  */
 public class SampleSkill extends SuperSkill {
     private static final int id = 0;
-    private static final String name = "SampleWeapon";
-    private static final String skillInfo = "切り裂く、攻撃力の2倍の威力";
+    private static final String name = "SampleSkill";
+    private static final String skillInfo = "SampleSkill、攻撃力を2増やします";
+    private static final int mpConsumption = 7;
+    private static final int spConsumption = 3;
 
     @Override
     public int[] skill(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - playerAtk*2;
-        newPlayerSp = playerSp - 3;
-        newPlayerMp = playerMp - 3;
+        newPlayerAtk = playerAtk + 2;
+        newPlayerSp = playerSp - spConsumption;
+        newPlayerMp = playerMp - mpConsumption;
         commitTransaction();
         return newAllStatus;
     }
