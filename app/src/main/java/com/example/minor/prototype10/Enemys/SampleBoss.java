@@ -32,6 +32,7 @@ public class SampleBoss extends SuperEnemy {
     @Override
     protected void skill1(int[] tempAllStatus) {
         newPlayerHp = playerHp - enemyAtk;
+        newBreakNum = breakNum - 12;
     }
 
     @Override

@@ -38,14 +38,29 @@ public class BattleActivity extends AppCompatActivity {
     private ImageButton decisionButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk;
+    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum;
     private int turnCount = 0, tempTurnCount = 0;
+    private int[] gradation;
 
     //skillButtonをfindViewByIdしてonClickにsetPlayerBehaviorを入れる
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+        int[] colors = {
+                ContextCompat.getColor(this, R.color.color_0),
+                ContextCompat.getColor(this, R.color.color_10),
+                ContextCompat.getColor(this, R.color.color_20),
+                ContextCompat.getColor(this, R.color.color_30),
+                ContextCompat.getColor(this, R.color.color_40),
+                ContextCompat.getColor(this, R.color.color_50),
+                ContextCompat.getColor(this, R.color.color_60),
+                ContextCompat.getColor(this, R.color.color_70),
+                ContextCompat.getColor(this, R.color.color_80),
+                ContextCompat.getColor(this, R.color.color_90),
+                ContextCompat.getColor(this, R.color.color_100)
+        };
+        gradation = colors;
         makeData = new MakeData();
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
@@ -58,7 +73,7 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill4 = new SampleSkill();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
         enemy = new SampleBoss();
-        tempAllStatus = new int[11];
+        tempAllStatus = new int[12];
         hpBar = (ProgressBar) findViewById(R.id.hp_bar);
         mpBar = (ProgressBar) findViewById(R.id.mp_bar);
         spBar = (ProgressBar) findViewById(R.id.sp_bar);
@@ -146,6 +161,7 @@ public class BattleActivity extends AppCompatActivity {
     //tempを実際の値に代入、ターンを進める、後でspの処理を見直す
     void onDecision(){
         tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
+        breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], true);
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
         sp = tempAllStatus[2];
@@ -160,6 +176,7 @@ public class BattleActivity extends AppCompatActivity {
         enemyAtk = tempAllStatus[8];
         enemyDf = tempAllStatus[9];
         enemyLuk = tempAllStatus[10];
+        breakNum = tempAllStatus[11];
         turnCount++;
     }
 
@@ -178,22 +195,30 @@ public class BattleActivity extends AppCompatActivity {
 
     //ここは後で調整する、ブレイクゲージの影響も含めた計算はここで行うか、新しいメソッドを作ってそこで行う、
     //ブレイクゲージの処理では受け取った最終ステータスにブレイク値の分だけ変更を加える
+    //ブレイクゲージは50%に近いほど変化が大きくなる為、sin等を用いて処理を書くが、一時的に5にしている
     //PlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存
     //セットしたスキルをスキル確認画面に表示するコードを書く
     //mpが0未満になる場合の処理も追加する
     void executeTempBattle(int num){
         switch (num){
             case 0:
-                if(tempAllStatus[2] - 3 >= 0) {
+                if(tempAllStatus[2] - (int)sp/3 >= 0) {
                     tempAllStatus[6] = tempAllStatus[6] - tempAllStatus[3];
                     tempAllStatus[2] = tempAllStatus[2] - (int)sp/3;
+                    tempAllStatus[11] = tempAllStatus[11] + 5;
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
                     spBar.setProgress(sp-tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
                 }
                 break;
             case 1:
-                if(weapon.skill1(tempAllStatus)[2] >= 0){
+                if(weapon.skill1(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill1(tempAllStatus)[6]) {
+                    tempAllStatus = weapon.skill1(tempAllStatus);
+                    spBar.setProgress(sp - tempAllStatus[2]);
+                    tempAllStatus[11] = tempAllStatus[11] + 5;
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                }else if (weapon.skill1(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
@@ -201,7 +226,12 @@ public class BattleActivity extends AppCompatActivity {
                 }
                 break;
             case 2:
-                if(weapon.skill2(tempAllStatus)[2] >= 0){
+                if(weapon.skill2(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill2(tempAllStatus)[6]) {
+                    tempAllStatus = weapon.skill1(tempAllStatus);
+                    spBar.setProgress(sp - tempAllStatus[2]);
+                    tempAllStatus[11] = tempAllStatus[11] + 5;
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                }else if (weapon.skill2(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill2(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
@@ -209,7 +239,12 @@ public class BattleActivity extends AppCompatActivity {
                 }
                 break;
             case 3:
-                if(weapon.skill3(tempAllStatus)[2] >= 0){
+                if(weapon.skill3(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill3(tempAllStatus)[6]) {
+                    tempAllStatus = weapon.skill1(tempAllStatus);
+                    spBar.setProgress(sp - tempAllStatus[2]);
+                    tempAllStatus[11] = tempAllStatus[11] + 5;
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                }else if (weapon.skill3(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill3(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
@@ -265,8 +300,9 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[8] = enemyAtk = enemy.getAtk();
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
+        tempAllStatus[11] = breakNum = 50;
         //今回は適当に色を入れているが実際は適宜色を作成して代入、色の作成方法は知恵袋参照
-        breakGage.setData(50, "%", ContextCompat.getColor(this, R.color.colorAccent), 50, true);
+        breakGage.setData(breakNum, "%", gradation, 10, breakNum, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
         spBar.setMax(sp);
@@ -290,5 +326,6 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[8] = enemyAtk;
         tempAllStatus[9] = enemyDf;
         tempAllStatus[10] = enemyLuk;
+        tempAllStatus[11] = breakNum;
     }
 }

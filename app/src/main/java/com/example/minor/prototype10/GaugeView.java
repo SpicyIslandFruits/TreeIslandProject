@@ -290,15 +290,8 @@ public class GaugeView extends View {
     }
 
     private void startAnimation(int startDelay) {
-        if (animator == null) {
-            animator = ObjectAnimator.ofInt(this, "phase", 0, value).setDuration(Math.min(Math.max(value, 20), 200) * 10);
-            animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        } else if (animator.isRunning()) {
-            animator.end();
-            animator.cancel();
-            clearAnimation();
-        }
-
+        animator = ObjectAnimator.ofInt(this, "phase", 0, value).setDuration(Math.min(Math.max(value, 20), 200) * 10);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
         animator.setStartDelay(startDelay);
         animator.start();
     }
