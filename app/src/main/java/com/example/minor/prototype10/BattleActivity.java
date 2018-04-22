@@ -38,7 +38,7 @@ public class BattleActivity extends AppCompatActivity {
     private ImageButton decisionButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, maxSp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum;
+    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
 
@@ -311,7 +311,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        tempAllStatus[12] = maxSp = playerInfo.getfSP();
+        tempAllStatus[12] = playerInfo.getfSP();
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);

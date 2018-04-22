@@ -22,10 +22,10 @@ abstract public class SuperWeapon {
         newPlayerMaxSp = playerMaxSp = tempAllStatus[12];
     }
 
-    protected void commitTransaction(){
+    protected void commitTransaction(int spConsumption){
         newAllStatus[0] = newPlayerHp;
         newAllStatus[1] = newPlayerMp;
-        newAllStatus[2] = newPlayerSp;
+        newAllStatus[2] = newPlayerSp - spConsumption;
         newAllStatus[3] = newPlayerAtk;
         newAllStatus[4] = newPlayerDf;
         newAllStatus[5] = newPlayerLuk;

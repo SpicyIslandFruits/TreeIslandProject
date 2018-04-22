@@ -7,27 +7,27 @@ public class SampleWeapon2 extends SuperWeapon {
     private static final int atk = 10;
     private static final String skill1Info = "spを増やします";
     private static final String skill2Info = "一撃必殺";
-    private static final String skill3Info = "";
+    private static final String skill3Info = "ブレイクゲージを多く削る攻撃";
 
     public int[] skill1(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
         newPlayerMaxSp = playerMaxSp + 2;
-        newPlayerSp = playerSp -7;
-        commitTransaction();
+        commitTransaction(7);
         return newAllStatus;
     }
 
     public int[] skill2(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newPlayerSp = playerSp - 20;
         newEnemyHp = 0;
-        commitTransaction();
+        commitTransaction(20);
         return newAllStatus;
     }
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        commitTransaction();
+        newEnemyHp = enemyHp - playerAtk;
+        newBreakNum = breakNum + 45;
+        commitTransaction(5);
         return newAllStatus;
     }
 

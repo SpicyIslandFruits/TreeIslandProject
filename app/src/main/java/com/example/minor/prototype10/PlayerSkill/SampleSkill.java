@@ -14,9 +14,7 @@ public class SampleSkill extends SuperSkill {
     public int[] skill(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
         newPlayerAtk = playerAtk + 2;
-        newPlayerSp = playerSp - spConsumption;
-        newPlayerMp = playerMp - mpConsumption;
-        commitTransaction();
+        commitTransaction(spConsumption, mpConsumption);
         return newAllStatus;
     }
 
