@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
@@ -31,12 +33,15 @@ public class MainActivity extends AppCompatActivity{
     private ImageButton imageButton;
     private int position;
     private SuperOnClickMapButton onClickMapButton;
+    private ProgressBar mainHpBar, mainMpBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageButton = (ImageButton) findViewById(R.id.status_button);
+        mainHpBar = (ProgressBar) findViewById(R.id.main_hp_bar);
+        mainMpBar = (ProgressBar) findViewById(R.id.main_mp_bar);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +53,15 @@ public class MainActivity extends AppCompatActivity{
         makeData = new MakeData();
         createSaveData();
         gameStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainHpBar.setMax(playerInfo.getFmaxHP());
+        mainHpBar.setProgress(playerInfo.getHP());
+        mainMpBar.setMax(playerInfo.getFmaxMP());
+        mainMpBar.setProgress(playerInfo.getMP());
     }
 
     private void onClickStatus(View view){
@@ -63,6 +77,10 @@ public class MainActivity extends AppCompatActivity{
                 position = playerInfo.getPosition();
             }
         });
+        mainHpBar.setMax(playerInfo.getFmaxHP());
+        mainHpBar.setProgress(playerInfo.getHP());
+        mainMpBar.setMax(playerInfo.getFmaxMP());
+        mainMpBar.setProgress(playerInfo.getMP());
         onClickMapButton = makeData.makeMapFromPosition(position);
         onClickMapButton.setDefaultInstances(this);
         onClickMapButton.createMap();

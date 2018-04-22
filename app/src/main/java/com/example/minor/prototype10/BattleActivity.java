@@ -38,7 +38,7 @@ public class BattleActivity extends AppCompatActivity {
     private ImageButton decisionButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum;
+    private int maxHp, hp, maxMp, mp, maxSp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
 
@@ -73,7 +73,7 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill4 = new SampleSkill();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
         enemy = new SampleBoss();
-        tempAllStatus = new int[12];
+        tempAllStatus = new int[13];
         hpBar = (ProgressBar) findViewById(R.id.hp_bar);
         mpBar = (ProgressBar) findViewById(R.id.mp_bar);
         spBar = (ProgressBar) findViewById(R.id.sp_bar);
@@ -171,10 +171,7 @@ public class BattleActivity extends AppCompatActivity {
                 playerInfo.setHP(hp);
             }
         });
-        sp = tempAllStatus[2];
-        //spは毎ターン回復する仕様だがスキルによって最大値をいじれる仕様なので後で細かく実装するが
-        //今の段階ではターン終了時にRealm内のsp最大値に戻すことにする
-        sp = playerInfo.getfSP();
+        sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
         luk = tempAllStatus[5];
@@ -206,11 +203,12 @@ public class BattleActivity extends AppCompatActivity {
     //ブレイクゲージは50%に近いほど変化が大きくなる為、sin等を用いて処理を書くが、一時的に5にしている
     //PlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存
     //セットしたスキルをスキル確認画面に表示するコードを書く
+    //防御力を実装する際に大幅に変更します
     //mpが0未満になる場合の処理も追加する
     private void executeTempBattle(int num){
         switch (num){
             case 0:
-
+                //通常攻撃はsp最大値の1/3を消費します
                 if(tempAllStatus[2] - (int)sp/3 >= 0) {
                     tempAllStatus[6] = tempAllStatus[6] - tempAllStatus[3];
                     tempAllStatus[2] = tempAllStatus[2] - (int)sp/3;
@@ -229,9 +227,9 @@ public class BattleActivity extends AppCompatActivity {
                     breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                 }else if (weapon.skill1(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill1(tempAllStatus);
+                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
-
                     battleText.setText("spが足りません");
                 }
                 break;
@@ -311,6 +309,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
+        tempAllStatus[12] = maxSp = playerInfo.getfSP();
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
@@ -336,5 +335,6 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf;
         tempAllStatus[10] = enemyLuk;
         tempAllStatus[11] = breakNum;
+        tempAllStatus[12] = sp;
     }
 }
