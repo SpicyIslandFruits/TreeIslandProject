@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
         realm = Realm.getDefaultInstance();
+        //createSaveDataで初期ステータスを取得するために使います
         makeData = new MakeData();
         createSaveData();
         gameStart();

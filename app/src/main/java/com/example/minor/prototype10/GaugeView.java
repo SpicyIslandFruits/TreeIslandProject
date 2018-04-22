@@ -89,7 +89,6 @@ public class GaugeView extends View {
 
     public GaugeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         density = displayMetrics(getContext()).density;
 
         // 補正
@@ -258,26 +257,6 @@ public class GaugeView extends View {
 
                 canvas.drawLine(startX, startY, stopX, stopY, paint);
             }
-
-            // current point
-            paint.setColor(COLOR_CURRENT_POINT);
-            if (currentPointPath == null) {
-                currentPointPath = new Path();
-                float distance = (ringStrokeWidth - innerRingStrokeWidth) / 4f;
-                float pointCenterX = centerX + ((ringRadius + ringStrokeWidth - distance) * (float) Math.cos(Math.toRadians(current)));
-                float pointCenterY = centerY + ((ringRadius + ringStrokeWidth - distance) * (float) Math.sin(Math.toRadians(current)));
-                float pointTop1X = pointCenterX + (distance * (float) Math.cos(Math.toRadians(current + 60)));
-                float pointTop1Y = pointCenterY + (distance * (float) Math.sin(Math.toRadians(current + 60)));
-                float pointTop2X = pointCenterX + (distance * (float) Math.cos(Math.toRadians(current + 180)));
-                float pointTop2Y = pointCenterY + (distance * (float) Math.sin(Math.toRadians(current + 180)));
-                float pointTop3X = pointCenterX + (distance * (float) Math.cos(Math.toRadians(current + 300)));
-                float pointTop3Y = pointCenterY + (distance * (float) Math.sin(Math.toRadians(current + 300)));
-                currentPointPath.moveTo(pointTop1X, pointTop1Y);
-                currentPointPath.lineTo(pointTop2X, pointTop2Y);
-                currentPointPath.lineTo(pointTop3X, pointTop3Y);
-                currentPointPath.close();
-            }
-            canvas.drawPath(currentPointPath, paint);
         }
     }
 
@@ -296,14 +275,13 @@ public class GaugeView extends View {
         animator.start();
     }
 
-    public void setData(int value, String unit, @ColorInt int color, int current, boolean animate) {
+    public void setData(int value, String unit, @ColorInt int color, boolean animate) {
         this.value = value;
         text = String.valueOf(value);
         textSize = 0;
         unitSize = 0;
         this.unit = TextUtils.isEmpty(unit) ? "" : unit;
         this.color = color;
-        this.current = current - 90;
         this.animate = animate;
         this.limitBreak = value >= 100;
         mode = Mode.SINGLE_COLOR;
@@ -318,7 +296,7 @@ public class GaugeView extends View {
         }
     }
 
-    public void setData(int value, String unit, @ColorInt int[] colors, int colorStep, int current, boolean animate) {
+    public void setData(int value, String unit, @ColorInt int[] colors, int colorStep, boolean animate) {
         this.value = value;
         text = String.valueOf(value);
         textSize = 0;
@@ -326,7 +304,6 @@ public class GaugeView extends View {
         this.colors = colors;
         this.colorStep = colorStep;
         this.unit = TextUtils.isEmpty(unit) ? "" : unit;
-        this.current = current - 90;
         this.animate = animate;
         this.limitBreak = value >= 100;
         mode = Mode.GRADATION;

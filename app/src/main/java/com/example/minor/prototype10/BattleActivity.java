@@ -191,7 +191,7 @@ public class BattleActivity extends AppCompatActivity {
     //ブレイクゲージのバーを変更する処理を後で追加する
     private void executeBattle(){
         battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
-        breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], true);
+        breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
         spBar.setProgress(0);
@@ -210,11 +210,12 @@ public class BattleActivity extends AppCompatActivity {
     private void executeTempBattle(int num){
         switch (num){
             case 0:
+
                 if(tempAllStatus[2] - (int)sp/3 >= 0) {
                     tempAllStatus[6] = tempAllStatus[6] - tempAllStatus[3];
                     tempAllStatus[2] = tempAllStatus[2] - (int)sp/3;
                     tempAllStatus[11] = tempAllStatus[11] + 5;
-                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                     spBar.setProgress(sp-tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
@@ -225,20 +226,21 @@ public class BattleActivity extends AppCompatActivity {
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     tempAllStatus[11] = tempAllStatus[11] + 5;
-                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                 }else if (weapon.skill1(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
+
                     battleText.setText("spが足りません");
                 }
                 break;
             case 2:
                 if(weapon.skill2(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill2(tempAllStatus)[6]) {
-                    tempAllStatus = weapon.skill1(tempAllStatus);
+                    tempAllStatus = weapon.skill2(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     tempAllStatus[11] = tempAllStatus[11] + 5;
-                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                 }else if (weapon.skill2(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill2(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
@@ -248,10 +250,10 @@ public class BattleActivity extends AppCompatActivity {
                 break;
             case 3:
                 if(weapon.skill3(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill3(tempAllStatus)[6]) {
-                    tempAllStatus = weapon.skill1(tempAllStatus);
+                    tempAllStatus = weapon.skill3(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     tempAllStatus[11] = tempAllStatus[11] + 5;
-                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, tempAllStatus[11], false);
+                    breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                 }else if (weapon.skill3(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill3(tempAllStatus);
                     spBar.setProgress(sp - tempAllStatus[2]);
@@ -309,7 +311,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        breakGage.setData(breakNum, "%", gradation, 10, breakNum, true);
+        breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
         spBar.setMax(sp);

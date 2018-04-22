@@ -74,6 +74,7 @@ public class EquipmentFragment extends Fragment {
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         weaponId = playerInfo.getWeaponId();
         weapon = makeData.makeWeaponFromId(weaponId);
+        weaponName.setText(weapon.getName());
         equipedWeapon.setText(weapon.getName());
         weaponATK.setText("攻撃力:"+String.valueOf(weapon.getAtk()));
         weaponSkill1.setText(weapon.getSkill1Info());

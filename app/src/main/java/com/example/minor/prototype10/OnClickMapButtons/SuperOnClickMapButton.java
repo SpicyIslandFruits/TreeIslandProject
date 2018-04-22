@@ -33,6 +33,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     }
     protected void savePosition(){
         realm = Realm.getDefaultInstance();
+        
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {

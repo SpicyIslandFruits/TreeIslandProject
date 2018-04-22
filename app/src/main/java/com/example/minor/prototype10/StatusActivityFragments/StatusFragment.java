@@ -14,6 +14,12 @@ import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
 
+/**
+ * fmaxとmmaxが不足しています
+ * fmaxは最終的なステータスの最大値
+ * mmaxは装備なしの状態のステータスの最大値です
+ * maxはフィールドバフと装備がない状態の素のステータスの最大値です
+ */
 public class StatusFragment extends Fragment {
     private Realm realm;
     private PlayerInfo playerInfo;

@@ -4,9 +4,9 @@ public class SampleWeapon2 extends SuperWeapon {
     private static final int id = 1;
     private static final String name = "SampleWeapon2";
     private static final int atk = 10;
-    private static final String skill1Info = "釘パンチ、攻撃力の1.5倍の威力";
-    private static final String skill2Info = "10万ボルト、攻撃力の10万倍の威力";
-    private static final String skill3Info = "ハイドロポンプ、攻撃力の2倍の威力";
+    private static final String skill1Info = "未実装";
+    private static final String skill2Info = "未実装";
+    private static final String skill3Info = "未実装";
 
     public int[] skill1(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
