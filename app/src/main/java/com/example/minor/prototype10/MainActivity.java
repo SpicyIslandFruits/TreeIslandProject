@@ -16,7 +16,10 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
+import io.realm.OrderedCollectionChangeSet;
+import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * 武器、防具、アイテム、主人公スキル、マップの追加方法
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
     private Realm realm;
     private MakeData makeData;
     private PlayerInfo playerInfo;
+    private RealmResults<PlayerInfo> playerInfos;
     private ImageButton imageButton;
     private int position;
     private SuperOnClickMapButton onClickMapButton;
@@ -55,32 +59,24 @@ public class MainActivity extends AppCompatActivity{
         gameStart();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mainHpBar.setMax(playerInfo.getFmaxHP());
-        mainHpBar.setProgress(playerInfo.getHP());
-        mainMpBar.setMax(playerInfo.getFmaxMP());
-        mainMpBar.setProgress(playerInfo.getMP());
-    }
-
     private void onClickStatus(View view){
         startActivity(new Intent(this, StatusActivity.class));
     }
 
     private void gameStart() {
         realm = Realm.getDefaultInstance();
-        realm.executeTransaction(new Realm.Transaction() {
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        playerInfos = realm.where(PlayerInfo.class).findAll();
+        playerInfos.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<PlayerInfo>>() {
             @Override
-            public void execute(Realm realm) {
-                playerInfo = realm.where(PlayerInfo.class).findFirst();
-                position = playerInfo.getPosition();
+            public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {
+                mainHpBar.setMax(playerInfo.getFmaxHP());
+                mainHpBar.setProgress(playerInfo.getHP());
+                mainMpBar.setMax(playerInfo.getFmaxMP());
+                mainMpBar.setProgress(playerInfo.getMP());
             }
         });
-        mainHpBar.setMax(playerInfo.getFmaxHP());
-        mainHpBar.setProgress(playerInfo.getHP());
-        mainMpBar.setMax(playerInfo.getFmaxMP());
-        mainMpBar.setProgress(playerInfo.getMP());
+        position = playerInfo.getPosition();
         onClickMapButton = makeData.makeMapFromPosition(position);
         onClickMapButton.setDefaultInstances(this);
         onClickMapButton.createMap();

@@ -241,6 +241,7 @@ public class BattleActivity extends AppCompatActivity {
                     breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                 }else if (weapon.skill2(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill2(tempAllStatus);
+                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
@@ -254,6 +255,7 @@ public class BattleActivity extends AppCompatActivity {
                     breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
                 }else if (weapon.skill3(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill3(tempAllStatus);
+                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
