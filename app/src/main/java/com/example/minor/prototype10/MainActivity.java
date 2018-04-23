@@ -87,28 +87,38 @@ public class MainActivity extends AppCompatActivity{
         try {
             realm.beginTransaction();
             playerInfo = realm.createObject(PlayerInfo.class, new String("player"));
-            playerInfo.setPlayerLevel(0);
+            playerInfo.setPlayerLevel(50);
             playerInfo.setPosition(1);
             playerInfo.setMoney(100);
-            playerInfo.setFmaxHP(300);
-            playerInfo.setHP(300);
+            playerInfo.setFmaxHP(1000);
+            playerInfo.setHP(100);
             playerInfo.setFmaxMP(100);
             playerInfo.setMP(100);
             playerInfo.setSP(10);
             playerInfo.setfSP(10);
             playerInfo.setATK(10);
-            playerInfo.setmATK(12);
+            playerInfo.setmATK(120);
             playerInfo.setDF(100);
             playerInfo.setfDF(100);
             playerInfo.setLUK(100);
             playerInfo.setfLUK(100);
             playerInfo.setWeaponId(0);
+            //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください
+            playerInfo.setBaseEnemyLevel(50);
+            playerInfo.setAdditionalEnemyLevel(0);
             WeaponId weaponId = realm.createObject(WeaponId.class, new String("sampleWeapon"));
             weaponId.setWeaponId(0);
             playerInfo.getWeaponIds().add(weaponId);
             weaponId = realm.createObject(WeaponId.class, new String("SampleWeapon2"));
             weaponId.setWeaponId(1);
             playerInfo.getWeaponIds().add(weaponId);
+            realm.commitTransaction();
+            makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
+            realm.beginTransaction();
+            playerInfo.setHP(playerInfo.getMaxHP());
+            playerInfo.setFmaxHP(playerInfo.getMaxHP());
+            playerInfo.setmATK(playerInfo.getATK());
+            playerInfo.setfDF(playerInfo.getDF());
             realm.commitTransaction();
         }catch (Exception e){
             realm.cancelTransaction();

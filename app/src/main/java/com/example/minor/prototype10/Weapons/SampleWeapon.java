@@ -8,33 +8,36 @@ package com.example.minor.prototype10.Weapons;
  * skillメソッドの処理はbeginTransactionとcommitTransactionで挟んでください
  * 後で要素を追加するときは先にSuperWeaponにメソッドを追加してください
  * skillInfoにはスキル名、スキルの効果、消費spを書いてください
+ * ~~武器のステータスの決め方~~
+ * X*(その武器を拾えるマップの基礎レベル)/100+5;
+ * に150前後の値を代入して決めて下さい
  */
 public class SampleWeapon extends SuperWeapon {
     private static final int id = 0;
     private static final String name = "SampleWeapon";
-    private static final int atk = 5;
-    private static final String skill1Info = "2倍アタック、攻撃力の2倍の威力で攻撃";
-    private static final String skill2Info = "3倍アタック、攻撃力の3倍の威力で攻撃";
-    private static final String skill3Info = "4倍アタック、攻撃力の4倍の威力で攻撃";
+    private static final int atk = 150, skill1SpConsumption = 3, skill2SpConsumption = 5, skill3SpConsumption = 7;
+    private static final String skill1Info = "普通の攻撃";
+    private static final String skill2Info = "強い攻撃";
+    private static final String skill3Info = "超強い攻撃";
 
     public int[] skill1(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - (playerAtk)*2;
-        commitTransaction(3);
+        newEnemyHp = enemyHp - calculateDamage(calculateAtk(atk));
+        commitTransaction(skill1SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill2(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - (playerAtk)*3;
-        commitTransaction(5);
+        newEnemyHp = enemyHp - calculateDamage(atk*1.5);
+        commitTransaction(skill2SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - (playerAtk)*4;
-        commitTransaction(7);
+        newEnemyHp = enemyHp - calculateDamage(atk*2);
+        commitTransaction(skill3SpConsumption);
         return newAllStatus;
     }
 

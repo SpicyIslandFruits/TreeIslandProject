@@ -5,12 +5,13 @@ package com.example.minor.prototype10.Enemys;
  * 次にskillメソッドにスキルの中身を書き、setEnemyBehaviorメソッドに行動パターンを書いてください
  * 行動パターンを書くときはbeginTransactionとcommitTransactionで挟んでください
  * 後で要素を追加するときは先にSuperEnemyにメソッドを追加してください
+ * 敵のbaseStatusは攻守の合計が240前後になるようにしてください
  */
 public class SampleBoss extends SuperEnemy {
-    private static final int hp = 500, sp = 10, atk = 10, df = 100, luk = 100;
+    private static final int baseHp = 120, sp = 10, baseAtk = 120, baseDf = 120, luk = 100;
 
     public int getHp() {
-        return hp;
+        return calculateHp(baseHp);
     }
 
     public int getSp() {
@@ -18,11 +19,11 @@ public class SampleBoss extends SuperEnemy {
     }
 
     public int getAtk() {
-        return atk;
+        return calculateAtk(baseAtk);
     }
 
     public int getDf() {
-        return df;
+        return calculateDf(baseDf);
     }
 
     public int getLuk() {
@@ -30,31 +31,35 @@ public class SampleBoss extends SuperEnemy {
     }
 
     @Override
-    protected void skill1(int[] tempAllStatus) {
-        newPlayerHp = playerHp - enemyAtk;
-        newBreakNum = breakNum - 12;
+    protected void skill1(int[] allStatus) {
+        beginTransaction(allStatus);
+        newPlayerHp = playerHp - calculateDamage(atk);
+        newBreakNum = breakNum - 4;
+        commitTransaction();
     }
 
     @Override
-    protected void skill2(int[] tempAllStatus) {
+    protected void skill2(int[] allStatus) {
 
     }
 
     @Override
-    protected void skill3(int[] tempAllStatus) {
+    protected void skill3(int[] allStatus) {
 
     }
 
     @Override
-    protected void skill4(int[] tempAllStatus) {
+    protected void skill4(int[] allStatus) {
 
     }
 
     @Override
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
-        skill1(tempAllStatus);
+        skill1(allStatus);
+        skill1(allStatus);
+        skill1(allStatus);
         commitTransaction();
-        return newAllStatus;
+        return allStatus;
     }
 }

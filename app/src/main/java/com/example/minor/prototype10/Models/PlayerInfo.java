@@ -45,6 +45,8 @@ public class PlayerInfo extends RealmObject {
     private int playerSkill2;
     private int playerSkill3;
     private int playerSkill4;
+    private int baseEnemyLevel;
+    private int additionalEnemyLevel;
 
     public String getPlayer() {
         return player;
@@ -324,5 +326,21 @@ public class PlayerInfo extends RealmObject {
 
     public void setPlayerSkill4(int playerSkill4) {
         this.playerSkill4 = playerSkill4;
+    }
+
+    public int getBaseEnemyLevel() {
+        return baseEnemyLevel;
+    }
+
+    public void setBaseEnemyLevel(int baseEnemyLevel) {
+        this.baseEnemyLevel = baseEnemyLevel;
+    }
+
+    public int getAdditionalEnemyLevel() {
+        return additionalEnemyLevel;
+    }
+
+    public void setAdditionalEnemyLevel(int additionalEnemyLevel) {
+        this.additionalEnemyLevel = additionalEnemyLevel;
     }
 }

@@ -1,42 +1,53 @@
 package com.example.minor.prototype10.Enemys;
 
-abstract public class SuperEnemy {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp;
-    protected int[] newAllStatus, tempAllStatus;
+import com.example.minor.prototype10.Models.PlayerInfo;
 
-    protected void beginTransaction(int[] tempAllStatus){
-        newAllStatus = new int[13];
-        newPlayerHp = playerHp = tempAllStatus[0];
-        newPlayerMp = playerMp = tempAllStatus[1];
-        newPlayerSp = playerSp = tempAllStatus[2];
-        newPlayerAtk = playerAtk = tempAllStatus[3];
-        newPlayerDf = playerDf = tempAllStatus[4];
-        newPlayerLuk = playerLuk = tempAllStatus[5];
-        newEnemyHp = enemyHp = tempAllStatus[6];
-        newEnemySp = enemySp = tempAllStatus[7];
-        newEnemyAtk = enemyAtk = tempAllStatus[8];
-        newEnemyDf = enemyDf = tempAllStatus[9];
-        newEnemyLuk = enemyLuk = tempAllStatus[10];
-        newBreakNum = breakNum = tempAllStatus[11];
-        newPlayerMaxSp = playerMaxSp = tempAllStatus[12];
+import io.realm.Realm;
+
+abstract public class SuperEnemy {
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel;
+    protected int[] allStatus;
+    private int damage;
+    protected int hp, atk, df;
+    private Realm realm;
+    private PlayerInfo playerInfo;
+
+    protected void beginTransaction(int[] allStatus){
+        this.allStatus = new int[14];
+        this.allStatus[0] = newPlayerHp = playerHp = allStatus[0];
+        this.allStatus[1] = newPlayerMp = playerMp = allStatus[1];
+        this.allStatus[2] = newPlayerSp = playerSp = allStatus[2];
+        this.allStatus[3] = newPlayerAtk = playerAtk = allStatus[3];
+        this.allStatus[4] = newPlayerDf = playerDf = allStatus[4];
+        this.allStatus[5] = newPlayerLuk = playerLuk = allStatus[5];
+        this.allStatus[6] = newEnemyHp = enemyHp = allStatus[6];
+        this.allStatus[7] = newEnemySp = enemySp = allStatus[7];
+        this.allStatus[8] = newEnemyAtk = enemyAtk = allStatus[8];
+        this.allStatus[9] = newEnemyDf = enemyDf = allStatus[9];
+        this.allStatus[10] = newEnemyLuk = enemyLuk = allStatus[10];
+        this.allStatus[11] = newBreakNum = breakNum = allStatus[11];
+        this.allStatus[12] = newPlayerMaxSp = playerMaxSp = allStatus[12];
+        this.allStatus[13] = newPlayerLevel = playerLevel = allStatus[13];
     }
 
     protected void commitTransaction(){
-        newAllStatus[0] = newPlayerHp;
-        newAllStatus[1] = newPlayerMp;
-        newAllStatus[2] = newPlayerSp;
-        newAllStatus[3] = newPlayerAtk;
-        newAllStatus[4] = newPlayerDf;
-        newAllStatus[5] = newPlayerLuk;
-        newAllStatus[6] = newEnemyHp;
-        newAllStatus[7] = newEnemySp;
-        newAllStatus[8] = newEnemyAtk;
-        newAllStatus[9] = newEnemyDf;
-        newAllStatus[10] = newEnemyLuk;
-        newAllStatus[11] = newBreakNum;
-        newAllStatus[12] = newPlayerMaxSp;
+        allStatus[0] = newPlayerHp;
+        allStatus[1] = newPlayerMp;
+        allStatus[2] = newPlayerSp;
+        allStatus[3] = newPlayerAtk;
+        allStatus[4] = newPlayerDf;
+        allStatus[5] = newPlayerLuk;
+        allStatus[6] = newEnemyHp;
+        allStatus[7] = newEnemySp;
+        allStatus[8] = newEnemyAtk;
+        allStatus[9] = newEnemyDf;
+        allStatus[10] = newEnemyLuk;
+        allStatus[11] = newBreakNum;
+        allStatus[12] = newPlayerMaxSp;
+        allStatus[13] = newPlayerLevel;
     }
+
     abstract public int getHp();
     abstract public int getSp();
     abstract public int getAtk();
@@ -47,5 +58,45 @@ abstract public class SuperEnemy {
     abstract protected void skill3(int[] tempAllStatus);
     abstract protected void skill4(int[] tempAllStatus);
     abstract public int[] setEnemyBehavior(int[] tempAllStatus);
+    //式中のatkはcalculateAtkメソッドを実行したときに代入されたもの
+    protected int calculateDamage(int atk){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
+        damage = (int)(
+                (
+                        (( enemyLevel * 2 / 5 + 2) * (double)atk * (double)enemyAtk / (double)playerDf /50 +2)
+                                * ((double)85 + Math.random() * 15)
+                ) / 100
+        );
+        realm.close();
+        return damage;
+    }
 
+    protected int calculateHp(int baseHp){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
+        hp = baseHp*(enemyLevel)/100 + enemyLevel + 10;
+        realm.close();
+        return hp;
+    }
+
+    protected int calculateAtk(int baseAtk){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
+        atk = baseAtk*(enemyLevel)/100 + 5;
+        realm.close();
+        return atk;
+    }
+
+    protected int calculateDf(int baseDf){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
+        df = baseDf*(enemyLevel)/100 + 5;
+        realm.close();
+        return df;
+    }
 }

@@ -1,12 +1,19 @@
 package com.example.minor.prototype10.Weapons;
 
+import com.example.minor.prototype10.Models.PlayerInfo;
+
+import io.realm.Realm;
+
 abstract public class SuperWeapon {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum ,newPlayerMaxSp;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum ,newPlayerMaxSp, newPlayerLevel;
     protected int[] newAllStatus;
+    private int damage;
+    private Realm realm;
+    private PlayerInfo playerInfo;
 
     public void beginTransaction(int[] tempAllStatus){
-        newAllStatus = new int[13];
+        newAllStatus = new int[14];
         newPlayerHp = playerHp = tempAllStatus[0];
         newPlayerMp = playerMp = tempAllStatus[1];
         newPlayerSp = playerSp = tempAllStatus[2];
@@ -20,6 +27,7 @@ abstract public class SuperWeapon {
         newEnemyLuk = enemyLuk = tempAllStatus[10];
         newBreakNum = breakNum = tempAllStatus[11];
         newPlayerMaxSp = playerMaxSp = tempAllStatus[12];
+        newPlayerLevel = playerLevel = tempAllStatus[13];
     }
 
     protected void commitTransaction(int spConsumption){
@@ -36,6 +44,7 @@ abstract public class SuperWeapon {
         newAllStatus[10] = newEnemyLuk;
         newAllStatus[11] = newBreakNum;
         newAllStatus[12] = newPlayerMaxSp;
+        newAllStatus[13] = newPlayerLevel;
     }
 
     abstract public int[] skill1(int[] tempAllStatus);
@@ -47,4 +56,29 @@ abstract public class SuperWeapon {
     abstract public String getSkill1Info();
     abstract public String getSkill2Info();
     abstract public String getSkill3Info();
+    protected int calculateDamage(double atk){
+        damage = (int)(
+                (
+                (( (double)playerLevel * 2 / 5 + 2) * atk * (double)playerAtk / (double)enemyDf /50 +2)
+                * ((double)85 + Math.random() * 15)
+                ) / 100
+        );
+        return damage;
+    }
+
+    public int[] skill0(int[] tempAllStatus){
+        beginTransaction(tempAllStatus);
+        newEnemyHp = enemyHp - calculateDamage(30);
+        commitTransaction(playerMaxSp/3);
+        return newAllStatus;
+    }
+
+    protected int calculateAtk(int atk){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
+        atk = atk*(enemyLevel)/100 + 5;
+        realm.close();
+        return atk;
+    }
 }

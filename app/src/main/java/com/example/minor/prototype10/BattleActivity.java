@@ -38,7 +38,7 @@ public class BattleActivity extends AppCompatActivity {
     private ImageButton decisionButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum;
+    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
 
@@ -73,7 +73,7 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill4 = new SampleSkill();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
         enemy = new SampleBoss();
-        tempAllStatus = new int[13];
+        tempAllStatus = new int[14];
         hpBar = (ProgressBar) findViewById(R.id.hp_bar);
         mpBar = (ProgressBar) findViewById(R.id.mp_bar);
         spBar = (ProgressBar) findViewById(R.id.sp_bar);
@@ -209,12 +209,11 @@ public class BattleActivity extends AppCompatActivity {
         switch (num){
             case 0:
                 //通常攻撃はsp最大値の1/3を消費します
-                if(tempAllStatus[2] - (int)sp/3 >= 0) {
-                    tempAllStatus[6] = tempAllStatus[6] - tempAllStatus[3];
-                    tempAllStatus[2] = tempAllStatus[2] - (int)sp/3;
+                if(weapon.skill0(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill0(tempAllStatus)[6]) {
+                    tempAllStatus = weapon.skill0(tempAllStatus);
+                    spBar.setProgress(sp - tempAllStatus[2]);
                     tempAllStatus[11] = tempAllStatus[11] + 5;
                     breakGage.setData(tempAllStatus[11], "%", gradation, 10, false);
-                    spBar.setProgress(sp-tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
                 }
@@ -296,13 +295,15 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
+    //mAtkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
+    //fAtkは消してもいいが、一応ステータス画面に表示する時に使っているので残した
     private void inputAllStatus(){
         maxHp = playerInfo.getFmaxHP();
         maxMp = playerInfo.getFmaxMP();
         tempAllStatus[0] = hp = playerInfo.getHP();
         tempAllStatus[1] = mp = playerInfo.getMP();
         tempAllStatus[2] = sp = playerInfo.getfSP();
-        tempAllStatus[3] = atk = playerInfo.getfATK();
+        tempAllStatus[3] = atk = playerInfo.getmATK();
         tempAllStatus[4] = df = playerInfo.getfDF();
         tempAllStatus[5] = luk = playerInfo.getfLUK();
         tempAllStatus[6] = enemyHp = enemy.getHp();
@@ -312,6 +313,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
         tempAllStatus[12] = playerInfo.getfSP();
+        tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
@@ -338,5 +340,6 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[10] = enemyLuk;
         tempAllStatus[11] = breakNum;
         tempAllStatus[12] = sp;
+        tempAllStatus[13] = playerLevel;
     }
 }

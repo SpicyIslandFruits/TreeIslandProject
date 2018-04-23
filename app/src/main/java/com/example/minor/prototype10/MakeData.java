@@ -1,5 +1,6 @@
 package com.example.minor.prototype10;
 
+import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.Weapons.SampleWeapon;
 import com.example.minor.prototype10.Weapons.SampleWeapon2;
@@ -9,6 +10,8 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
 
+import io.realm.Realm;
+
 /**
  * パッケージにクラスを追加したらここにswitch文を追加する
  * どのメソッドもreturn分を含むのでvoidを変える
@@ -17,6 +20,7 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
  */
 
 public class MakeData {
+    private static final int playerBaseStatus = 120;
 
     //マップを追加したときはここに書く
     public SuperOnClickMapButton makeMapFromPosition(int position){
@@ -38,11 +42,19 @@ public class MakeData {
         return onClickMapButton;
     }
 
-    //レベルを受け取ってステータスを生成しRealmに渡す処理を書く
-    //式によって主人公のステータスを生成する
-    //前のレベルのステータス × 1.1 ± 乱数.など
+    //レベルを受け取ってステータスを生成しRealmに渡す
+    //lukとspとmpはレベルによって変化はしない
+    //lukに関しては装飾品やスキル、フィールドバフによって変化するが能力値は一定でlukの数値がそのままクリティカル率になる。また、ごみをあさるなどでアイテムを取得できる確率もluk
+    //mpとspはゲージでのみ表示し、数値は出さない
     public void makePlayerStatusFromLevel(int level){
-
+        Realm realm = Realm.getDefaultInstance();
+        PlayerInfo playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setMaxHP(playerBaseStatus*level/100+level+10);
+        playerInfo.setDF(playerBaseStatus*level/100+5);
+        playerInfo.setATK(playerBaseStatus*level/100+5);
+        realm.commitTransaction();
+        realm.close();
     }
 
     //プレイヤースキルを追加した場合はここに書く

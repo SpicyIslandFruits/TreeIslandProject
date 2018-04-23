@@ -6,14 +6,14 @@ package com.example.minor.prototype10.PlayerSkill;
 public class SampleSkill extends SuperSkill {
     private static final int id = 0;
     private static final String name = "SampleSkill";
-    private static final String skillInfo = "SampleSkill、攻撃力を2増やします";
+    private static final String skillInfo = "SampleSkill、攻撃力アップ";
     private static final int mpConsumption = 7;
     private static final int spConsumption = 3;
 
     @Override
     public int[] skill(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
-        newPlayerAtk = playerAtk + 2;
+        newPlayerAtk = (int)(playerAtk * 1.2);
         commitTransaction(spConsumption, mpConsumption);
         return newAllStatus;
     }
