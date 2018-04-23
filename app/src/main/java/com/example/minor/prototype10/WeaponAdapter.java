@@ -37,6 +37,7 @@ public class WeaponAdapter extends RealmBaseAdapter<WeaponId> {
 
         WeaponId weaponId = adapterData.get(position);
         viewHolder.weaponName.setText(weaponId.getName());
+        viewHolder.weaponName.setMaxLines(1);
         return convertView;
     }
 }

@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity{
             //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください
             playerInfo.setBaseEnemyLevel(50);
             playerInfo.setAdditionalEnemyLevel(0);
-            WeaponId weaponId = realm.createObject(WeaponId.class, new String("sampleWeapon"));
+            WeaponId weaponId = realm.createObject(WeaponId.class, new String("SampleWeapon"));
             weaponId.setWeaponId(0);
             playerInfo.getWeaponIds().add(weaponId);
             weaponId = realm.createObject(WeaponId.class, new String("SampleWeapon2"));

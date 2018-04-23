@@ -91,32 +91,31 @@
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/weapon_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:gravity="center"
             android:text="WeaponName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline27"
             app:layout_constraintEnd_toEndOf="@+id/equipment_status"
             app:layout_constraintStart_toStartOf="@+id/guideline37"
             app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/armor_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="ArmorName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline28"
             app:layout_constraintEnd_toEndOf="@+id/equipment_status"
             app:layout_constraintStart_toStartOf="@+id/guideline37"
@@ -178,7 +177,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/weapon_atk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -186,102 +185,110 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="WeaponATK"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline27" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/weapon_skill1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="2"
-            android:singleLine="false"
+            android:gravity="center_vertical"
             android:text="WeaponSkill1"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline30"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/weapon_skill2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="2"
+            android:gravity="center_vertical"
             android:text="WeaponSkill2"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline31"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline30" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/weapon_skill3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="2"
+            android:gravity="center_vertical"
             android:text="WeaponSkill3"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline20"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/armor_skill1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="2"
+            android:gravity="center_vertical"
             android:text="ArmorSkill1"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline33"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline32" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/armor_df"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
             android:text="ArmorDF"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline32"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline28" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/armor_skill2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="2"
+            android:gravity="center_vertical"
             android:text="ArmorSkill2"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline34"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline33" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/armor_skill3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="2"
+            android:gravity="center_vertical"
             android:text="ArmorSkill3"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline22"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
@@ -317,17 +324,19 @@
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/equiped_weapon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
+            android:maxLines="1"
             android:text="EquipedWeapon"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
             app:layout_constraintDimensionRatio=""
             app:layout_constraintEnd_toStartOf="@+id/guideline26"
@@ -349,17 +358,19 @@
             app:layout_constraintStart_toStartOf="@+id/guideline25"
             app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/equiped_armor"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
+            android:maxLines="1"
             android:text="EquipedArmor"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
             app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="@+id/guideline36"
