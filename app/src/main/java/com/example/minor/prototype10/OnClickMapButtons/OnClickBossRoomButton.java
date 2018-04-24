@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.example.minor.prototype10.BattleActivity;
 
+//ダンジョンのコメント参照
 public class OnClickBossRoomButton extends SuperOnClickMapButton{
     @Override
     public void onClick(View v) {

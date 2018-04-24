@@ -44,6 +44,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             }
         });
     }
+
     abstract public void createMap();
     abstract public void onClick(View v);
 }

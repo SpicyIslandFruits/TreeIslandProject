@@ -23,9 +23,8 @@ import com.example.minor.prototype10.Weapons.SuperWeapon;
 import io.realm.Realm;
 
 /**
- * spの実装、ターンカウントの実装、mpの実装、ブレイクゲージの実装
  * 敵とのエンカウント方式の実装、intentから敵情報受け取り
- * すべてのスキルには消費spと消費mpを書く
+ * 受け取る情報は敵のidのみ基礎ステータスとbaseEnemyLevelとadditionalEnemyLevelからそのダンジョンにふさわしいステータスを生成します
  * 後でキャンセルボタンの追加を行う
  */
 public class BattleActivity extends AppCompatActivity {
@@ -49,7 +48,7 @@ public class BattleActivity extends AppCompatActivity {
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
 
-    //skillButtonをfindViewByIdしてonClickにsetPlayerBehaviorを入れる
+    //skillButtonをfindViewByIdしてonClickにsetPlayerBehaviorを入れる、たぶん編集の必要なし
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -214,14 +213,8 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
-    //ここは後で調整する一時的にブレイクゲージの表示も行っているが、ブレイクゲージの影響は、新しいメソッドを作ってそこで行う
-    //ブレイク値はサインカーブのように変動するためskillの使用だけでは100パーセントに到達できない
     //通常攻撃のみブレイク値を定数にしオーバードライブできるようにする
-    //ブレイクゲージの処理では受け取った最終ステータスにブレイク値の分だけ変更を加える、ブレイクゲージが0未満になるとクラッシュするため対策する
-    //ブレイクゲージは50%に近いほど変化が大きくなる為、sin等を用いて処理を書くが、一時的に5にしている
-    //PlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存
-    //セットしたスキルをスキル確認画面に表示するコードを書く
-    //防御力を実装する際に大幅に変更します
+    //このメソッドではPlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存します
     //mpが0未満になる場合の処理も追加する
     private void executeTempBattle(int num){
         switch (num){
@@ -329,7 +322,8 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     //mAtkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
-    //fAtkは消してもいいが、一応ステータス画面に表示する時に使っているので残した
+    //fAtkは装備中の武器のステータスです
+    //防具の数値も作成する必要あり
     private void inputAllStatus(){
         maxHp = playerInfo.getFmaxHP();
         maxMp = playerInfo.getFmaxMP();

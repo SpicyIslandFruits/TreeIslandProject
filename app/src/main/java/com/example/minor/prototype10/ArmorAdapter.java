@@ -12,7 +12,7 @@ import io.realm.OrderedRealmCollection;
 import io.realm.RealmBaseAdapter;
 
 /**
- * ここを編集する必要はないです
+ * 武器アダプターを参考にして編集
  */
 public class ArmorAdapter extends RealmBaseAdapter<ArmorId> {
     private static class ViewHolder{

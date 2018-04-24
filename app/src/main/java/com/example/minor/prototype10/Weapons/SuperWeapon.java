@@ -80,7 +80,18 @@ abstract public class SuperWeapon {
     //通常攻撃の威力はゲームバランスによって変更してください
     public int[] skill0(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage();
+        damage = (int)(
+                (
+                        (( (double)playerLevel * 2 / 5 + 2) * (double)playerAtk * (double)playerAtk / (double)enemyDf /50 +2)
+                                * ((double)85 + Math.random() * 15)
+                ) / 100
+        );
+        if (breakNum > 50){
+            damage = (int) ((double)damage * 1.2);
+        }else if (breakNum < 50){
+            damage = (int)((double)damage * 0.8);
+        }
+        newEnemyHp = enemyHp - damage;
         commitTransaction(playerMaxSp/3);
         return newAllStatus;
     }

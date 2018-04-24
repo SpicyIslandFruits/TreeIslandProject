@@ -2,6 +2,7 @@ package com.example.minor.prototype10.PlayerSkill;
 
 /**
  * 消費spのほかに消費mpも書かなければいけないことに注意
+ * すべてバフや状態異常などのスキルです、全部割合にします(固定値だとバランス調整がめんどい)
  */
 public class SampleSkill extends SuperSkill {
     private static final int id = 0;

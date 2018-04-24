@@ -108,17 +108,21 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setLUK(100);
             playerInfo.setfLUK(100);
             playerInfo.setWeaponId(0);
-            //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください
+            //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください、後々時間経過で敵のレベルが戻っていく処理も追加します
             playerInfo.setBaseEnemyLevel(50);
             playerInfo.setAdditionalEnemyLevel(0);
             realm.commitTransaction();
+            //atkとdfとhpのステータスを自動生成してだい素のステータスに代入してくれるメソッドです
             makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
+            //防具の処理を後々見直します
             realm.beginTransaction();
+            //防具のステータスは考慮していません、後で考える
             playerInfo.setHP(playerInfo.getMaxHP());
             playerInfo.setFmaxHP(playerInfo.getMaxHP());
             playerInfo.setmATK(playerInfo.getATK());
             playerInfo.setfDF(playerInfo.getDF());
             realm.commitTransaction();
+            //防具もこれと同様にしてください
             makeWeaponRealmObject.createNewWeapon(0);
         }catch (Exception e){
             realm.cancelTransaction();

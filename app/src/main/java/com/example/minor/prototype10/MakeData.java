@@ -64,6 +64,7 @@ public class MakeData {
     //プレイヤースキルを追加した場合はここに書く
     public void makePlayerSkillFromId(int id){}
 
+    //idを受け取って敵クラスのインスタンスを返しますmakeWeaponFromIdを参照して書いてください
     public void makeEnemyFromId(int id){
 
     }

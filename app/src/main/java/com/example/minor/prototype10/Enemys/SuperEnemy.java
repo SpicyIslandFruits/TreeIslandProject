@@ -60,7 +60,7 @@ abstract public class SuperEnemy {
     abstract protected void skill3(int[] tempAllStatus);
     abstract protected void skill4(int[] tempAllStatus);
     abstract public int[] setEnemyBehavior(int[] tempAllStatus);
-    //式中のatkはcalculateAtkメソッドを実行したときに代入されたもの
+
     protected int calculateDamage(int atk){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();

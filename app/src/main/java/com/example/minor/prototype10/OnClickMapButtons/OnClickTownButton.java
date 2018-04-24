@@ -2,6 +2,7 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
 
+//ダンジョンのコメントを参照
 public class OnClickTownButton extends SuperOnClickMapButton{
 
     @Override

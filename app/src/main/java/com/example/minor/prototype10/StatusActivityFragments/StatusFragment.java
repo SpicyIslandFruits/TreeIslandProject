@@ -16,9 +16,9 @@ import io.realm.Realm;
 
 /**
  * fmaxとmmaxが不足しています
- * fmaxは最終的なステータスの最大値
  * mmaxは装備なしの状態のステータスの最大値です
  * maxはフィールドバフと装備がない状態の素のステータスの最大値です
+ * 後で大幅に調整します
  */
 public class StatusFragment extends Fragment {
     private Realm realm;
