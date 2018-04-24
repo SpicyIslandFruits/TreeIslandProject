@@ -34,7 +34,7 @@ public class SampleBoss extends SuperEnemy {
     protected void skill1(int[] allStatus) {
         beginTransaction(allStatus);
         newPlayerHp = playerHp - calculateDamage(atk);
-        newBreakNum = breakNum - 4;
+        newBreakNum = calculateBreakNum(breakNum);
         commitTransaction();
     }
 

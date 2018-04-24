@@ -8,13 +8,14 @@ package com.example.minor.prototype10.Weapons;
  * skillメソッドの処理はbeginTransactionとcommitTransactionで挟んでください
  * 後で要素を追加するときは先にSuperWeaponにメソッドを追加してください
  * skillInfoにはスキル名、スキルの効果、消費spを書いてください
- * ~~武器のステータスの決め方~~
- * X*(その武器を拾えるマップの基礎レベル)/100+5;
- * に150前後の値を代入して決めて下さい
+ * 武器のatkは150前後の値を設定
  */
 public class SampleWeapon extends SuperWeapon {
     private static final int id = 0;
     private static final String name = "SampleWeapon";
+    private static final String skill1Name = "SampleSkill1";
+    private static final String skill2Name = "SampleSkill2";
+    private static final String skill3Name = "SampleSkill3";
     private static final int atk = 150, skill1SpConsumption = 3, skill2SpConsumption = 5, skill3SpConsumption = 7;
     private static final String skill1Info = "普通の攻撃";
     private static final String skill2Info = "強い攻撃";
@@ -22,21 +23,21 @@ public class SampleWeapon extends SuperWeapon {
 
     public int[] skill1(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage(calculateAtk(atk));
+        newEnemyHp = enemyHp - calculateDamage();
         commitTransaction(skill1SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill2(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage(atk*1.5);
+        newEnemyHp = enemyHp - calculateDamage();
         commitTransaction(skill2SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage(atk*2);
+        newEnemyHp = enemyHp - calculateDamage();
         commitTransaction(skill3SpConsumption);
         return newAllStatus;
     }
@@ -65,5 +66,17 @@ public class SampleWeapon extends SuperWeapon {
 
     public String getSkill3Info() {
         return skill3Info;
+    }
+
+    public String getSkill1Name() {
+        return skill1Name;
+    }
+
+    public String getSkill2Name() {
+        return skill2Name;
+    }
+
+    public String getSkill3Name() {
+        return skill3Name;
     }
 }

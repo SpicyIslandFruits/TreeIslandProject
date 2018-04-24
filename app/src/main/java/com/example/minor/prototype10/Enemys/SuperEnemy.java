@@ -5,8 +5,8 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import io.realm.Realm;
 
 abstract public class SuperEnemy {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk;
     protected int[] allStatus;
     private int damage;
     protected int hp, atk, df;
@@ -14,7 +14,7 @@ abstract public class SuperEnemy {
     private PlayerInfo playerInfo;
 
     protected void beginTransaction(int[] allStatus){
-        this.allStatus = new int[14];
+        this.allStatus = new int[15];
         this.allStatus[0] = newPlayerHp = playerHp = allStatus[0];
         this.allStatus[1] = newPlayerMp = playerMp = allStatus[1];
         this.allStatus[2] = newPlayerSp = playerSp = allStatus[2];
@@ -29,6 +29,7 @@ abstract public class SuperEnemy {
         this.allStatus[11] = newBreakNum = breakNum = allStatus[11];
         this.allStatus[12] = newPlayerMaxSp = playerMaxSp = allStatus[12];
         this.allStatus[13] = newPlayerLevel = playerLevel = allStatus[13];
+        this.allStatus[14] = newWeaponAtk = weaponAtk = allStatus[14];
     }
 
     protected void commitTransaction(){
@@ -46,6 +47,7 @@ abstract public class SuperEnemy {
         allStatus[11] = newBreakNum;
         allStatus[12] = newPlayerMaxSp;
         allStatus[13] = newPlayerLevel;
+        allStatus[14] = newWeaponAtk;
     }
 
     abstract public int getHp();
@@ -65,19 +67,25 @@ abstract public class SuperEnemy {
         int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
         damage = (int)(
                 (
-                        (( enemyLevel * 2 / 5 + 2) * (double)atk * (double)enemyAtk / (double)playerDf /50 +2)
+                        (( enemyLevel * 2 / 5 + 2) * (double)enemyAtk * (double)enemyAtk / (double)playerDf /50 +2)
                                 * ((double)85 + Math.random() * 15)
                 ) / 100
         );
         realm.close();
+        if (breakNum > 50){
+            damage = (int)((double)damage * 0.8);
+        }else if(breakNum < 50){
+            damage = (int)((double)damage * 1.2);
+        }
         return damage;
     }
 
+    //hp = の行の最後の数字はmakePlayerStatusFromLevelの数字に合わせる
     protected int calculateHp(int baseHp){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
-        hp = baseHp*(enemyLevel)/100 + enemyLevel + 10;
+        hp = (baseHp*(enemyLevel)/100 + enemyLevel + 10) * 4;
         realm.close();
         return hp;
     }
@@ -98,5 +106,22 @@ abstract public class SuperEnemy {
         df = baseDf*(enemyLevel)/100 + 5;
         realm.close();
         return df;
+    }
+
+    protected int calculateBreakNum(int breakNum){
+        int num = breakNum;
+        if(num > 50){
+            num = num - 8;
+            if(num <= 50){
+                num = 20;
+            }
+        }else if(breakNum <= 50){
+            num = num - 4;
+        }
+
+        if(num < 0){
+            num = 0;
+        }
+        return num;
     }
 }

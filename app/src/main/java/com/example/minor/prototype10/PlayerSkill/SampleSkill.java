@@ -5,8 +5,8 @@ package com.example.minor.prototype10.PlayerSkill;
  */
 public class SampleSkill extends SuperSkill {
     private static final int id = 0;
-    private static final String name = "SampleSkill";
-    private static final String skillInfo = "SampleSkill、攻撃力アップ";
+    private static final String name = "SamplePlayerSkill";
+    private static final String skillInfo = "SamplePlayerSkill、攻撃力アップ";
     private static final int mpConsumption = 7;
     private static final int spConsumption = 3;
 
@@ -31,5 +31,10 @@ public class SampleSkill extends SuperSkill {
     @Override
     public String getSkillInfo() {
         return skillInfo;
+    }
+
+    @Override
+    public String getSkillName() {
+        return name;
     }
 }

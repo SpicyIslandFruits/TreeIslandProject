@@ -1,6 +1,7 @@
 package com.example.minor.prototype10;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.Weapons.SampleWeapon;
 import com.example.minor.prototype10.Weapons.SampleWeapon2;
@@ -21,6 +22,8 @@ import io.realm.Realm;
 
 public class MakeData {
     private static final int playerBaseStatus = 120;
+    private Realm realm;
+    private PlayerInfo playerInfo;
 
     //マップを追加したときはここに書く
     public SuperOnClickMapButton makeMapFromPosition(int position){
@@ -46,11 +49,12 @@ public class MakeData {
     //lukとspとmpはレベルによって変化はしない
     //lukに関しては装飾品やスキル、フィールドバフによって変化するが能力値は一定でlukの数値がそのままクリティカル率になる。また、ごみをあさるなどでアイテムを取得できる確率もluk
     //mpとspはゲージでのみ表示し、数値は出さない
+    //setMaxHpの最後の2つの数字はそれぞれ主人公が同じレベルの敵を平均何回の平均的な攻撃で倒せるか(此処を変更した場合superEnemyの数字も変更)、hpがマックスの状態から何体の敵を倒せるかを表す
     public void makePlayerStatusFromLevel(int level){
-        Realm realm = Realm.getDefaultInstance();
-        PlayerInfo playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
         realm.beginTransaction();
-        playerInfo.setMaxHP(playerBaseStatus*level/100+level+10);
+        playerInfo.setMaxHP((playerBaseStatus*level/100+level+10) * 4 * 4);
         playerInfo.setDF(playerBaseStatus*level/100+5);
         playerInfo.setATK(playerBaseStatus*level/100+5);
         realm.commitTransaction();

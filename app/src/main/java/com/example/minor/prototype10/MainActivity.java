@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity{
     private int position;
     private SuperOnClickMapButton onClickMapButton;
     private ProgressBar mainHpBar, mainMpBar;
+    private MakeWeaponRealmObject makeWeaponRealmObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity{
         realm = Realm.getDefaultInstance();
         //createSaveDataで初期ステータスを取得するために使います
         makeData = new MakeData();
+        makeWeaponRealmObject = new MakeWeaponRealmObject();
         createSaveData();
         gameStart();
     }
@@ -106,12 +108,6 @@ public class MainActivity extends AppCompatActivity{
             //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください
             playerInfo.setBaseEnemyLevel(50);
             playerInfo.setAdditionalEnemyLevel(0);
-            WeaponId weaponId = realm.createObject(WeaponId.class, new String("SampleWeapon"));
-            weaponId.setWeaponId(0);
-            playerInfo.getWeaponIds().add(weaponId);
-            weaponId = realm.createObject(WeaponId.class, new String("SampleWeapon2"));
-            weaponId.setWeaponId(1);
-            playerInfo.getWeaponIds().add(weaponId);
             realm.commitTransaction();
             makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
             realm.beginTransaction();
@@ -120,6 +116,8 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setmATK(playerInfo.getATK());
             playerInfo.setfDF(playerInfo.getDF());
             realm.commitTransaction();
+            makeWeaponRealmObject.createNewWeapon(0);
+            makeWeaponRealmObject.createNewWeapon(1);
         }catch (Exception e){
             realm.cancelTransaction();
         }

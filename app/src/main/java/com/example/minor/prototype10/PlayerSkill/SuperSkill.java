@@ -1,12 +1,12 @@
 package com.example.minor.prototype10.PlayerSkill;
 
 abstract public class SuperSkill {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk;
     protected int[] newAllStatus;
 
     protected void beginTransaction(int[] tempAllStatus){
-        newAllStatus = new int[14];
+        newAllStatus = new int[15];
         newPlayerHp = playerHp = tempAllStatus[0];
         newPlayerMp = playerMp = tempAllStatus[1];
         newPlayerSp = playerSp = tempAllStatus[2];
@@ -21,6 +21,7 @@ abstract public class SuperSkill {
         newBreakNum =  breakNum = tempAllStatus[11];
         newPlayerMaxSp = playerMaxSp = tempAllStatus[12];
         newPlayerLevel = playerLevel = tempAllStatus[13];
+        newWeaponAtk = weaponAtk = tempAllStatus[14];
     }
 
     protected void commitTransaction(int spConsumption, int mpConsumption){
@@ -38,10 +39,13 @@ abstract public class SuperSkill {
         newAllStatus[11] = newBreakNum;
         newAllStatus[12] = newPlayerMaxSp;
         newAllStatus[13] = newPlayerLevel;
+        newAllStatus[14] = newWeaponAtk;
     }
 
     abstract public int[] skill(int[] tempAllStatus);
     abstract public int getId();
     abstract public String getName();
     abstract public String getSkillInfo();
+    abstract public String getSkillName();
+
 }

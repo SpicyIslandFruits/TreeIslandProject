@@ -5,6 +5,9 @@ public class SampleWeapon2 extends SuperWeapon {
     private static final int id = 1;
     private static final String name = "SampleWeapon2";
     private static final int atk = 10;
+    private static final String skill1Name = "SampleSkill1";
+    private static final String skill2Name = "SampleSkill2";
+    private static final String skill3Name = "SampleSkill3";
     private static final String skill1Info = "spを増やします";
     private static final String skill2Info = "一撃必殺";
     private static final String skill3Info = "ブレイクゲージを多く削る攻撃";
@@ -59,5 +62,20 @@ public class SampleWeapon2 extends SuperWeapon {
     @Override
     public String getSkill3Info() {
         return skill3Info;
+    }
+
+    @Override
+    public String getSkill1Name() {
+        return skill1Name;
+    }
+
+    @Override
+    public String getSkill2Name() {
+        return skill2Name;
+    }
+
+    @Override
+    public String getSkill3Name() {
+        return skill3Name;
     }
 }
