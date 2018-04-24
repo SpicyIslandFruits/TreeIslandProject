@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
     private Realm realm;
     private MakeData makeData;
     private PlayerInfo playerInfo;
+    private RealmResults<WeaponId> weaponIds;
     private RealmResults<PlayerInfo> playerInfos;
     private ImageButton imageButton;
     private int position;
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity{
                 mainMpBar.setProgress(playerInfo.getMP());
             }
         });
+        weaponIds = realm.where(WeaponId.class).findAll();
         position = playerInfo.getPosition();
         onClickMapButton = makeData.makeMapFromPosition(position);
         onClickMapButton.setDefaultInstances(this);
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setfDF(playerInfo.getDF());
             realm.commitTransaction();
             makeWeaponRealmObject.createNewWeapon(0);
-            makeWeaponRealmObject.createNewWeapon(1);
         }catch (Exception e){
             realm.cancelTransaction();
         }

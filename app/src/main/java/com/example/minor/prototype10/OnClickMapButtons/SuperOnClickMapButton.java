@@ -10,6 +10,7 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
@@ -30,6 +31,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6 = (ImageButton) main.findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) main.findViewById(R.id.imageButton7);
         imageButton8 = (ImageButton) main.findViewById(R.id.imageButton8);
+
     }
     protected void savePosition(){
         realm = Realm.getDefaultInstance();

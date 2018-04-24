@@ -16,7 +16,8 @@ public class MakeWeaponRealmObject {
     private WeaponId weaponId;
 
     //現在は問答無用で強い方の武器を作成しているが、実際は確認ダイヤログを出す
-    public void createNewWeapon(int id){
+    public boolean createNewWeapon(int id){
+        boolean newWeaponFlag = false;
         realm = Realm.getDefaultInstance();
         makeData = new MakeData();
         superWeapon = makeData.makeWeaponFromId(id);
@@ -28,19 +29,20 @@ public class MakeWeaponRealmObject {
             weaponId.setWeaponLevel(weaponLevel);
             playerInfo.getWeaponIds().add(weaponId);
             realm.commitTransaction();
+            newWeaponFlag = true;
         }catch (Exception e){
             realm.cancelTransaction();
             weaponId = realm.where(WeaponId.class).findFirst();
             if(weaponId.getWeaponAtk() <= newWeaponAtk){
                 realm.beginTransaction();
-                weaponId = realm.createObject(WeaponId.class, new Integer(id));
                 weaponId.setWeaponAtk(newWeaponAtk);
                 weaponId.setWeaponLevel(weaponLevel);
-                playerInfo.getWeaponIds().add(weaponId);
                 realm.commitTransaction();
+                newWeaponFlag = true;
             }
         }
         realm.close();
+        return newWeaponFlag;
     }
 
     //かける10となっているところは後で修正する可能性あり、これは特定の階層と次の階層のbaseEnemyLevelの差である
