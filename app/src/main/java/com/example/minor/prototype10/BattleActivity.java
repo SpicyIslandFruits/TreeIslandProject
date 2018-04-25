@@ -26,6 +26,7 @@ import io.realm.Realm;
  * 敵とのエンカウント方式の実装、intentから敵情報受け取り
  * 受け取る情報は敵のidのみ基礎ステータスとbaseEnemyLevelとadditionalEnemyLevelからそのダンジョンにふさわしいステータスを生成します
  * 後でキャンセルボタンの追加を行う
+ * 戦闘中にアプリが終了した場合は戦闘に負けたことにする
  */
 public class BattleActivity extends AppCompatActivity {
     private Realm realm;
@@ -390,4 +391,10 @@ public class BattleActivity extends AppCompatActivity {
             tempAllStatus[11] = 0;
         }
     }
+
+    //未実装だがそのうち使うかもしれないメソッド
+    //ターンを保存する変数をもう一つ用意する
+    private void autoSkills(){
+
+    };
 }

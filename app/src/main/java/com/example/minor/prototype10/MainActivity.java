@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity{
     private SuperOnClickMapButton onClickMapButton;
     private ProgressBar mainHpBar, mainMpBar;
     private MakeWeaponRealmObject makeWeaponRealmObject;
+    private MakeArmorRealmObject makeArmorRealmObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity{
         //createSaveDataで初期ステータスを取得するために使います
         makeData = new MakeData();
         makeWeaponRealmObject = new MakeWeaponRealmObject();
+        makeArmorRealmObject = new MakeArmorRealmObject();
         createSaveData();
         gameStart();
     }
@@ -104,7 +106,6 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setATK(10);
             playerInfo.setmATK(120);
             playerInfo.setDF(100);
-            playerInfo.setfDF(100);
             playerInfo.setLUK(100);
             playerInfo.setfLUK(100);
             playerInfo.setWeaponId(0);
@@ -123,15 +124,15 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setmATK(playerInfo.getATK());
             playerInfo.setmDF(playerInfo.getDF());
             //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
-            //fDfに設定する処理とスキルの実装方法が今後の課題
+            //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
             //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する
             //hpの増減は防具のステータスによるものではなく、防具のパッシブスキルによるものとし
             //防具装備時にFmaxHPを直接変更する
             //メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
-            playerInfo.setfDF(playerInfo.getDF());
             realm.commitTransaction();
             //防具もこれと同様にしてください
             makeWeaponRealmObject.createNewWeapon(0);
+            makeArmorRealmObject.createNewArmor(0);
         }catch (Exception e){
             realm.cancelTransaction();
         }

@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.minor.prototype10.ArmorAdapter;
+import com.example.minor.prototype10.Armors.SuperArmor;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.ArmorId;
 import com.example.minor.prototype10.Models.PlayerInfo;
@@ -34,8 +35,10 @@ public class EquipmentFragment extends Fragment {
     private RealmResults<WeaponId> weaponIds;
     private RealmResults<ArmorId> armorIds;
     private WeaponId weaponIdInstance;
+    private ArmorId armorIdInstance;
     private MakeData makeData;
     private SuperWeapon weapon;
+    private SuperArmor armor;
     private PlayerInfo playerInfo;
     private WeaponAdapter weaponAdapter;
     private ArmorAdapter armorAdapter;
@@ -61,26 +64,21 @@ public class EquipmentFragment extends Fragment {
         equipedWeapon = (TextView) view.findViewById(R.id.equiped_weapon);
         weaponName = (TextView) view.findViewById(R.id.weapon_name);
         equipedArmor = (TextView) view.findViewById(R.id.equiped_armor);
+        armorName = (TextView) view.findViewById(R.id.armor_name);
         weaponATK = (TextView) view.findViewById(R.id.weapon_atk);
+        armorDF = (TextView) view.findViewById(R.id.armor_df);
         weaponSkill1 = (TextView) view.findViewById(R.id.weapon_skill1);
         weaponSkill2 = (TextView) view.findViewById(R.id.weapon_skill2);
         weaponSkill3 = (TextView) view.findViewById(R.id.weapon_skill3);
+        armorSkill1 = (TextView) view.findViewById(R.id.armor_skill1);
+        armorSkill2 = (TextView) view.findViewById(R.id.armor_skill2);
+        armorSkill3 = (TextView) view.findViewById(R.id.armor_skill3);
         weaponIds = realm.where(WeaponId.class).findAll();
         armorIds = realm.where(ArmorId.class).findAll();
         weaponAdapter = new WeaponAdapter(weaponIds);
         armorAdapter = new ArmorAdapter(armorIds);
         weaponList.setAdapter(weaponAdapter);
         armorList.setAdapter(armorAdapter);
-        playerInfo = realm.where(PlayerInfo.class).findFirst();
-        weaponId = playerInfo.getWeaponId();
-        weapon = makeData.makeWeaponFromId(weaponId);
-        weaponIdInstance = realm.where(WeaponId.class).equalTo("weaponId", weaponId).findFirst();
-        weaponName.setText(weapon.getName());
-        equipedWeapon.setText(weapon.getName());
-        weaponATK.setText("攻撃力:"+String.valueOf(weaponIdInstance.getWeaponAtk()));
-        weaponSkill1.setText(weapon.getSkill1Info());
-        weaponSkill2.setText(weapon.getSkill2Info());
-        weaponSkill3.setText(weapon.getSkill3Info());
 
         weaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -108,7 +106,20 @@ public class EquipmentFragment extends Fragment {
         armorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                armorIdInstance = (ArmorId) parent.getItemAtPosition(position);
+                armorId = armorIdInstance.getArmorId();
+                armor = makeData.makeArmorFromId(armorId);
+                equipedArmor.setText(armor.getName());
+                armorName.setText(armor.getName());
+                armorDF.setText("防御力:"+String.valueOf(armorIdInstance.getArmorDf()));
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        playerInfo = realm.where(PlayerInfo.class).findFirst();
+                        playerInfo.setArmorId(armorId);
+                        playerInfo.setfDF(armorIdInstance.getArmorDf());
+                    }
+                });
             }
         });
     }

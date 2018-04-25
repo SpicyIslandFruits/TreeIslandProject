@@ -7,7 +7,7 @@ import com.example.minor.prototype10.Weapons.SuperWeapon;
 import io.realm.Realm;
 
 /**
- * 防具の分も作る
+ * このクラスでは新しい武器を拾った際にRealmListにその武器の情報を保存します
  */
 public class MakeWeaponRealmObject {
     private MakeData makeData;
