@@ -44,7 +44,7 @@ public class BattleActivity extends AppCompatActivity {
     private ImageButton decisionButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk;
+    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk, armorDf;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
 
@@ -79,7 +79,7 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill4 = new SampleSkill();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
         enemy = new SampleBoss();
-        tempAllStatus = new int[15];
+        tempAllStatus = new int[16];
         skillNameAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list_item_1);
         hpBar = (ProgressBar) findViewById(R.id.hp_bar);
         mpBar = (ProgressBar) findViewById(R.id.mp_bar);
@@ -331,7 +331,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[1] = mp = playerInfo.getMP();
         tempAllStatus[2] = sp = playerInfo.getfSP();
         tempAllStatus[3] = atk = playerInfo.getmATK();
-        tempAllStatus[4] = df = playerInfo.getfDF();
+        tempAllStatus[4] = df = playerInfo.getmDF();
         tempAllStatus[5] = luk = playerInfo.getfLUK();
         tempAllStatus[6] = enemyHp = enemy.getHp();
         tempAllStatus[7] = enemySp = enemy.getSp();
@@ -342,6 +342,8 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[12] = playerInfo.getfSP();
         tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
+        tempAllStatus[15] = armorDf = playerInfo.getfDF();
+
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
@@ -370,6 +372,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[12] = sp;
         tempAllStatus[13] = playerLevel;
         tempAllStatus[14] = weaponAtk;
+        tempAllStatus[15] = armorDf;
     }
 
     //ブレイクゲージの増減式です、敵の攻撃による増減は敵クラスに任意の値を書いてください

@@ -1,5 +1,8 @@
 package com.example.minor.prototype10;
 
+import com.example.minor.prototype10.Armors.SampleArmor;
+import com.example.minor.prototype10.Armors.SampleArmor2;
+import com.example.minor.prototype10.Armors.SuperArmor;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
@@ -84,8 +87,17 @@ public class MakeData {
     }
 
     //防具を追加した場合はここに書く
-    public void makeArmorFromId(int id){
-
+    public SuperArmor makeArmorFromId(int id){
+        SuperArmor armor = new SampleArmor();
+        switch (id){
+            case 0:
+                armor = new SampleArmor();
+                break;
+            case 1:
+                armor = new SampleArmor2();
+                break;
+        }
+        return armor;
     }
 
     //アイテムを追加した場合はここに書く

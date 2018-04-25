@@ -8,7 +8,7 @@ package com.example.minor.prototype10.Weapons;
  * skillメソッドの処理はbeginTransactionとcommitTransactionで挟んでください
  * 後で要素を追加するときは先にSuperWeaponにメソッドを追加してください
  * skillInfoにはスキル名、スキルの効果、消費spを書いてください
- * 武器のatkは150前後の値を設定
+ * 武器のatkは150前後
  */
 public class SampleWeapon extends SuperWeapon {
     private static final int id = 0;
@@ -30,14 +30,14 @@ public class SampleWeapon extends SuperWeapon {
 
     public int[] skill2(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage();
+        newEnemyHp = enemyHp - (int) (calculateDamage()*1.5);
         commitTransaction(skill2SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage();
+        newEnemyHp = enemyHp - calculateDamage()*2;
         commitTransaction(skill3SpConsumption);
         return newAllStatus;
     }

@@ -116,10 +116,18 @@ public class MainActivity extends AppCompatActivity{
             makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
             //防具の処理を後々見直します
             realm.beginTransaction();
-            //防具のステータスは考慮していません、後で考える
+            //防具のステータスは考慮していません、防具の基礎ステータスも120前後、武器と同様にarmorDfとarmorLevelに保存し、装備時にfDfに保存、battleActivityで受け取ります
+            //adapterのsetTextも変える
             playerInfo.setHP(playerInfo.getMaxHP());
             playerInfo.setFmaxHP(playerInfo.getMaxHP());
             playerInfo.setmATK(playerInfo.getATK());
+            playerInfo.setmDF(playerInfo.getDF());
+            //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
+            //fDfに設定する処理とスキルの実装方法が今後の課題
+            //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する
+            //hpの増減は防具のステータスによるものではなく、防具のパッシブスキルによるものとし
+            //防具装備時にFmaxHPを直接変更する
+            //メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
             playerInfo.setfDF(playerInfo.getDF());
             realm.commitTransaction();
             //防具もこれと同様にしてください

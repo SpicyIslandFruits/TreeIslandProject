@@ -5,8 +5,8 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import io.realm.Realm;
 
 abstract public class SuperEnemy {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf;
     protected int[] allStatus;
     private int damage;
     protected int hp, atk, df;
@@ -14,7 +14,7 @@ abstract public class SuperEnemy {
     private PlayerInfo playerInfo;
 
     protected void beginTransaction(int[] allStatus){
-        this.allStatus = new int[15];
+        this.allStatus = new int[16];
         this.allStatus[0] = newPlayerHp = playerHp = allStatus[0];
         this.allStatus[1] = newPlayerMp = playerMp = allStatus[1];
         this.allStatus[2] = newPlayerSp = playerSp = allStatus[2];
@@ -30,6 +30,7 @@ abstract public class SuperEnemy {
         this.allStatus[12] = newPlayerMaxSp = playerMaxSp = allStatus[12];
         this.allStatus[13] = newPlayerLevel = playerLevel = allStatus[13];
         this.allStatus[14] = newWeaponAtk = weaponAtk = allStatus[14];
+        this.allStatus[15] = newArmorDf = armorDf = allStatus[15];
     }
 
     protected void commitTransaction(){
@@ -48,6 +49,7 @@ abstract public class SuperEnemy {
         allStatus[12] = newPlayerMaxSp;
         allStatus[13] = newPlayerLevel;
         allStatus[14] = newWeaponAtk;
+        allStatus[15] = newArmorDf;
     }
 
     abstract public int getHp();
@@ -61,13 +63,15 @@ abstract public class SuperEnemy {
     abstract protected void skill4(int[] tempAllStatus);
     abstract public int[] setEnemyBehavior(int[] tempAllStatus);
 
+    //防具の実装方法
+    //playerDfの所を((playerDf + weaponDf)/2)にする
     protected int calculateDamage(int atk){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
         damage = (int)(
                 (
-                        (( enemyLevel * 2 / 5 + 2) * (double)enemyAtk * (double)enemyAtk / (double)playerDf /50 +2)
+                        (( enemyLevel * 2 / 5 + 2) * (double)enemyAtk * (double)enemyAtk / (((double)playerDf+(double)armorDf)/2) /50 +2)
                                 * ((double)85 + Math.random() * 15)
                 ) / 100
         );

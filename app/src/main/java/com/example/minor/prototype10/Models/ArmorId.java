@@ -5,9 +5,11 @@ import io.realm.annotations.PrimaryKey;
 
 public class ArmorId extends RealmObject{
     @PrimaryKey
-    private String Name;
-
     private int armorId;
+
+    private int armorDf;
+
+    private int armorLevel;
 
     public int getArmorId() {
         return armorId;
@@ -17,11 +19,19 @@ public class ArmorId extends RealmObject{
         this.armorId = armorId;
     }
 
-    public String getName() {
-        return Name;
+    public int getArmorDf() {
+        return armorDf;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setArmorDf(int armorDf) {
+        this.armorDf = armorDf;
+    }
+
+    public int getArmorLevel() {
+        return armorLevel;
+    }
+
+    public void setArmorLevel(int armorLevel) {
+        this.armorLevel = armorLevel;
     }
 }

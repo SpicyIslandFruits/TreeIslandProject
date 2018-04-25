@@ -18,6 +18,7 @@ public class WeaponAdapter extends RealmBaseAdapter<WeaponId> {
     private static class ViewHolder{
         TextView weaponName;
     }
+
     public WeaponAdapter(@Nullable OrderedRealmCollection<WeaponId> data) {
         super(data);
     }
