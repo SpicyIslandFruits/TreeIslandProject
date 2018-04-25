@@ -80,6 +80,18 @@ public class EquipmentFragment extends Fragment {
         weaponList.setAdapter(weaponAdapter);
         armorList.setAdapter(armorAdapter);
 
+        //これと同じことを防具の場合にも行う
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        weaponId = playerInfo.getWeaponId();
+        weapon = makeData.makeWeaponFromId(weaponId);
+        weaponIdInstance = realm.where(WeaponId.class).equalTo("weaponId", weaponId).findFirst();
+        weaponName.setText(weapon.getName());
+        weaponATK.setText("攻撃力:"+String.valueOf(weaponIdInstance.getWeaponAtk()));
+        weaponSkill1.setText(weapon.getSkill1Info());
+        weaponSkill2.setText(weapon.getSkill2Info());
+        weaponSkill3.setText(weapon.getSkill3Info());
+        //これと同じことを防具の場合にも行う
+
         weaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
