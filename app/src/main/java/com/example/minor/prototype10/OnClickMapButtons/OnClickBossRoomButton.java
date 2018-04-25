@@ -14,7 +14,12 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton{
     public void createMap(){
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {mMain.startActivity(new Intent(mMain, BattleActivity.class));}
+            public void onClick(View v) {
+                Intent intent = new Intent(mMain, BattleActivity.class);
+                intent.putExtra("EnemyId", 1);
+                mMain.startActivity(intent);
+
+            }
         });
         OnClickDungeonButton onClickDungeonButton = new OnClickDungeonButton();
         imageButton2.setOnClickListener(onClickDungeonButton);

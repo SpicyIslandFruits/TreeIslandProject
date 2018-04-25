@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setFmaxMP(100);
             playerInfo.setMP(100);
             playerInfo.setSP(10);
-            playerInfo.setfSP(10);
+            playerInfo.setfSP(18);
             playerInfo.setATK(10);
             playerInfo.setmATK(120);
             playerInfo.setDF(100);

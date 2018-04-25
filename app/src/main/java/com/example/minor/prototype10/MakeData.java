@@ -3,6 +3,9 @@ package com.example.minor.prototype10;
 import com.example.minor.prototype10.Armors.SampleArmor;
 import com.example.minor.prototype10.Armors.SampleArmor2;
 import com.example.minor.prototype10.Armors.SuperArmor;
+import com.example.minor.prototype10.Enemys.SampleBoss;
+import com.example.minor.prototype10.Enemys.SampleEnemy;
+import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
@@ -68,8 +71,16 @@ public class MakeData {
     public void makePlayerSkillFromId(int id){}
 
     //idを受け取って敵クラスのインスタンスを返しますmakeWeaponFromIdを参照して書いてください
-    public void makeEnemyFromId(int id){
-
+    public SuperEnemy makeEnemyFromId(int id){
+        SuperEnemy enemy = new SampleBoss();
+        switch (id){
+            case 0:
+                enemy = new SampleBoss();
+                break;
+            case 1:
+                enemy = new SampleEnemy();
+        }
+        return enemy;
     }
 
     //武器を追加した場合はここに書く

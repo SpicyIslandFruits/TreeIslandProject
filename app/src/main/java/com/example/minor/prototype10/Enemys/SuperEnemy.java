@@ -57,10 +57,11 @@ abstract public class SuperEnemy {
     abstract public int getAtk();
     abstract public int getDf();
     abstract public int getLuk();
-    abstract protected void skill1(int[] tempAllStatus);
-    abstract protected void skill2(int[] tempAllStatus);
-    abstract protected void skill3(int[] tempAllStatus);
-    abstract protected void skill4(int[] tempAllStatus);
+    abstract public String getEnemySkills();
+    abstract protected void skill1(int[] allStatus);
+    abstract protected void skill2(int[] allStatus);
+    abstract protected void skill3(int[] allStatus);
+    abstract protected void skill4(int[] allStatus);
     abstract public int[] setEnemyBehavior(int[] tempAllStatus);
 
     //防具の実装方法

@@ -1,5 +1,6 @@
 package com.example.minor.prototype10;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -25,11 +26,14 @@ import io.realm.Realm;
 /**
  * 敵とのエンカウント方式の実装、intentから敵情報受け取り
  * 受け取る情報は敵のidのみ基礎ステータスとbaseEnemyLevelとadditionalEnemyLevelからそのダンジョンにふさわしいステータスを生成します
+ * ランダムにidを渡してintentを開始するメソッド(クラスを作る)
  * 後でキャンセルボタンの追加を行う
  * 戦闘中にアプリが終了した場合は戦闘に負けたことにする
  */
 public class BattleActivity extends AppCompatActivity {
+
     private Realm realm;
+    private Intent intent;
     private PlayerInfo playerInfo;
     private ProgressBar hpBar, mpBar, spBar, enemyHpBar;
     private GaugeView breakGage;
@@ -79,7 +83,9 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill3 = new SampleSkill();
         playerSkill4 = new SampleSkill();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
-        enemy = new SampleBoss();
+        intent = getIntent();
+        enemyId = intent.getIntExtra("EnemyId", 0);
+        enemy = makeData.makeEnemyFromId(enemyId);
         tempAllStatus = new int[16];
         skillNameAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list_item_1);
         hpBar = (ProgressBar) findViewById(R.id.hp_bar);
@@ -155,6 +161,10 @@ public class BattleActivity extends AppCompatActivity {
             }
         });
         inputAllStatus();
+        //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
+        realm.beginTransaction();
+        playerInfo.setAdditionalEnemyLevel(playerInfo.getAdditionalEnemyLevel() + 1);
+        realm.commitTransaction();
     }
 
     //多分ここは編集の必要なし
@@ -202,14 +212,13 @@ public class BattleActivity extends AppCompatActivity {
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
-        spBar.setProgress(0);
+        if(tempAllStatus[2] > sp/2) {
+            spBar.setProgress(0);
+        }else {
+            spBar.setProgress(sp - (tempAllStatus[2] + sp/2));
+        }
         mpBar.setProgress(maxMp-mp);
         if(hp<=0 ||enemyHp<=0){
-            if(enemyHp <= 0){
-                realm.beginTransaction();
-                playerInfo.setAdditionalEnemyLevel(playerInfo.getAdditionalEnemyLevel() + 5);
-                realm.commitTransaction();
-            }
             finish();
         }
     }
@@ -344,7 +353,6 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
         tempAllStatus[15] = armorDf = playerInfo.getfDF();
-
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
@@ -360,7 +368,11 @@ public class BattleActivity extends AppCompatActivity {
     private void startNewTurn(){
         tempAllStatus[0] = hp;
         tempAllStatus[1] = mp;
-        tempAllStatus[2] = sp;
+        if(tempAllStatus[2] > sp/2) {
+            tempAllStatus[2] = sp;
+        }else {
+            tempAllStatus[2] = tempAllStatus[2] + sp/2;
+        }
         tempAllStatus[3] = atk;
         tempAllStatus[4] = df;
         tempAllStatus[5] = luk;
@@ -394,6 +406,8 @@ public class BattleActivity extends AppCompatActivity {
 
     //未実装だがそのうち使うかもしれないメソッド
     //ターンを保存する変数をもう一つ用意する
+    //今のところバフをかけた場合戦闘終了まで持続する
+    //3ターンの間...等のスキルの実装方法を考える
     private void autoSkills(){
 
     };

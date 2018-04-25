@@ -9,39 +9,60 @@ package com.example.minor.prototype10.Enemys;
  * hp,atk,dfについては絶対にcalculateメソッドを使ってからreturnしてください
  * 必ずidも書いておいてください後からどのidがどの敵だったかを確認できます
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
+ * enemySkillsは後々マップに情報屋を追加するときにgetする
  */
-public class SampleBoss extends SuperEnemy {
-    private static final int id = 0, baseHp = 120, sp = 10, baseAtk = 120, baseDf = 120, luk = 100;
-    private static final String enemySkills = "通常攻撃のみ行います";
+public class SampleEnemy extends SuperEnemy {
+    private static final int id = 1, baseHp = 120, sp = 10, baseAtk = 60, baseDf = 120, luk = 100;
+    private static final String enemySkills = "通常攻撃、攻撃力10パーセントアップ、体力15パーセント回復";
 
-    //HpとAtkとDfについては必ずcalculateメソッドを使ってからreturnしてください
+    @Override
+    public String getEnemySkills() {
+        return null;
+    }
+
+    @Override
     public int getHp() {
         return calculateHp(baseHp);
     }
 
+    @Override
     public int getSp() {
         return sp;
     }
 
+    @Override
     public int getAtk() {
         return calculateAtk(baseAtk);
     }
 
+    @Override
     public int getDf() {
         return calculateDf(baseDf);
     }
 
+    @Override
     public int getLuk() {
         return luk;
     }
 
     @Override
-    public String getEnemySkills() {
-        return enemySkills;
+    protected void skill1(int[] allStatus) {
+        beginTransaction(allStatus);
+        newEnemyAtk = (int)(enemyAtk*1.1);
+        commitTransaction();
     }
 
     @Override
-    protected void skill1(int[] allStatus) {
+    protected void skill2(int[] allStatus) {
+        beginTransaction(allStatus);
+        if(calculateHp(baseHp) > (int)(enemyHp + calculateHp(baseHp)/8)){
+            newEnemyHp = enemyHp + calculateHp(baseHp)/8;
+        }
+        commitTransaction();
+    }
+
+    @Override
+    protected void skill3(int[] allStatus) {
         beginTransaction(allStatus);
         newPlayerHp = playerHp - calculateDamage(enemyAtk);
         newBreakNum = calculateBreakNum(breakNum);
@@ -49,26 +70,20 @@ public class SampleBoss extends SuperEnemy {
     }
 
     @Override
-    protected void skill2(int[] allStatus) {
-
-    }
-
-    @Override
-    protected void skill3(int[] allStatus) {
-
-    }
-
-    @Override
     protected void skill4(int[] allStatus) {
-
+        beginTransaction(allStatus);
+        newPlayerHp = playerHp - calculateDamage(enemyAtk);
+        newBreakNum = calculateBreakNum(breakNum);
+        commitTransaction();
     }
 
     @Override
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
         skill1(allStatus);
-        skill1(allStatus);
-        skill1(allStatus);
+        skill2(allStatus);
+        skill3(allStatus);
+        skill4(allStatus);
         commitTransaction();
         return allStatus;
     }
