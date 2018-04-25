@@ -28,7 +28,6 @@ import io.realm.Realm;
  * 受け取る情報は敵のidのみ基礎ステータスとbaseEnemyLevelとadditionalEnemyLevelからそのダンジョンにふさわしいステータスを生成します
  * ランダムにidを渡してintentを開始するメソッド(クラスを作る)
  * 後でキャンセルボタンの追加を行う
- * 戦闘中にアプリが終了した場合は戦闘に負けたことにする
  */
 public class BattleActivity extends AppCompatActivity {
 
