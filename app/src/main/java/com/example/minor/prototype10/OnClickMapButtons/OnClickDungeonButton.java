@@ -16,6 +16,7 @@ import io.realm.RealmResults;
 //一時的にメインテキストに武器取得を表示しています
 //スーパークラスに一定確率で武器を取得するメソッドを追加します
 //そこに取得に成功した場合のif処理を書く予定ですが、一時的にここにif文を書いています
+//敵とのエンカウントをさせたい場合はencounterメソッドを実行してください、エンカウントする敵のidと確率を引数に入れてください
 public class OnClickDungeonButton extends SuperOnClickMapButton{
     @Override
     public void onClick(View v) {
@@ -34,6 +35,5 @@ public class OnClickDungeonButton extends SuperOnClickMapButton{
         if(makeWeaponRealmObject.createNewWeapon(1)){
             mainText.setText("武器を取得しました");
         };
-
     }
 }

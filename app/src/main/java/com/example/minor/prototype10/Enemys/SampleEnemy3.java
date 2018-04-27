@@ -10,8 +10,8 @@ package com.example.minor.prototype10.Enemys;
  * 必ずidも書いておいてください後からどのidがどの敵だったかを確認できます
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
  */
-public class SampleBoss extends SuperEnemy {
-    private static final int id = 0, baseHp = 120, sp = 10, baseAtk = 120, baseDf = 120, luk = 100;
+public class SampleEnemy3 extends SuperEnemy {
+    private static final int id = 0, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
     private static final String enemySkills = "通常攻撃のみ行います";
 
     //HpとAtkとDfについては必ずcalculateメソッドを使ってからreturnしてください
@@ -42,10 +42,10 @@ public class SampleBoss extends SuperEnemy {
 
     @Override
     protected void skill1(int[] allStatus) {
-        beginTransaction(allStatus);
+        beginTransaction();
         newPlayerHp = playerHp - calculateDamage(enemyAtk);
         newBreakNum = calculateBreakNum(breakNum);
-        commitTransaction();
+        commitTransaction(30);
     }
 
     @Override
@@ -65,11 +65,17 @@ public class SampleBoss extends SuperEnemy {
 
     @Override
     public int[] setEnemyBehavior(int[] tempAllStatus) {
-        beginTransaction(tempAllStatus);
+        setTempAllStatus(tempAllStatus);
+        beginTransaction();
         skill1(allStatus);
         skill1(allStatus);
         skill1(allStatus);
-        commitTransaction();
         return allStatus;
+    }
+
+
+    @Override
+    protected void chooseSkillWithinSp(int skill1Priority, int skill2Priority, int skill3Priority, int skill4Priority) {
+
     }
 }

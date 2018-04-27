@@ -1,12 +1,12 @@
 package com.example.minor.prototype10.PlayerSkill;
 
 abstract public class SuperSkill {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf, enemyMaxSp;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf, newEnemyMaxSp;
     protected int[] newAllStatus;
 
     protected void beginTransaction(int[] tempAllStatus){
-        newAllStatus = new int[16];
+        newAllStatus = new int[17];
         newPlayerHp = playerHp = tempAllStatus[0];
         newPlayerMp = playerMp = tempAllStatus[1];
         newPlayerSp = playerSp = tempAllStatus[2];
@@ -23,6 +23,7 @@ abstract public class SuperSkill {
         newPlayerLevel = playerLevel = tempAllStatus[13];
         newWeaponAtk = weaponAtk = tempAllStatus[14];
         newArmorDf = armorDf = tempAllStatus[15];
+        newEnemyMaxSp = enemyMaxSp = tempAllStatus[16];
     }
 
     protected void commitTransaction(int spConsumption, int mpConsumption){
@@ -42,6 +43,7 @@ abstract public class SuperSkill {
         newAllStatus[13] = newPlayerLevel;
         newAllStatus[14] = newWeaponAtk;
         newAllStatus[15] = newArmorDf;
+        newAllStatus[16] = newEnemyMaxSp;
     }
 
     abstract public int[] skill(int[] tempAllStatus);

@@ -47,6 +47,8 @@ public class PlayerInfo extends RealmObject {
     private int playerSkill4;
     private int baseEnemyLevel;
     private int additionalEnemyLevel;
+    private boolean battleFlag;
+    private int lastAffrontEnemy;
 
     public String getPlayer() {
         return player;
@@ -342,5 +344,21 @@ public class PlayerInfo extends RealmObject {
 
     public void setAdditionalEnemyLevel(int additionalEnemyLevel) {
         this.additionalEnemyLevel = additionalEnemyLevel;
+    }
+
+    public boolean isBattleFlag() {
+        return battleFlag;
+    }
+
+    public void setBattleFlag(boolean battleFlag) {
+        this.battleFlag = battleFlag;
+    }
+
+    public int getLastAffrontEnemy() {
+        return lastAffrontEnemy;
+    }
+
+    public void setLastAffrontEnemy(int lastAffrontEnemy) {
+        this.lastAffrontEnemy = lastAffrontEnemy;
     }
 }

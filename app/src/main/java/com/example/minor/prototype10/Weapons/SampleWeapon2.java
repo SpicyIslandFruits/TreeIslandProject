@@ -1,36 +1,34 @@
 package com.example.minor .prototype10.Weapons;
 
-
 public class SampleWeapon2 extends SuperWeapon {
     private static final int id = 1;
     private static final String name = "SampleWeapon2";
-    private static final int atk = 10;
     private static final String skill1Name = "SampleSkill1";
     private static final String skill2Name = "SampleSkill2";
     private static final String skill3Name = "SampleSkill3";
+    private static final int atk = 150, skill1SpConsumption = 70, skill2SpConsumption = 280, skill3SpConsumption = 30;
     private static final String skill1Info = "spを増やします";
     private static final String skill2Info = "一撃必殺";
-    private static final String skill3Info = "ブレイクゲージを多く削る攻撃";
+    private static final String skill3Info = "普通の攻撃";
 
     public int[] skill1(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newPlayerMaxSp = playerMaxSp + 2;
-        commitTransaction(7);
+        newPlayerMaxSp = playerMaxSp + 20;
+        commitTransaction(skill1SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill2(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
         newEnemyHp = 0;
-        commitTransaction(20);
+        commitTransaction(skill2SpConsumption);
         return newAllStatus;
     }
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage();
-        newBreakNum = breakNum + 45;
-        commitTransaction(5);
+        newEnemyHp = enemyHp - (int)(calculateDamage());
+        commitTransaction(skill3SpConsumption);
         return newAllStatus;
     }
 

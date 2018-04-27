@@ -86,6 +86,12 @@ public class MainActivity extends AppCompatActivity{
         position = playerInfo.getPosition();
         onClickMapButton = makeData.makeMapFromPosition(position);
         onClickMapButton.setDefaultInstances(this);
+        //trueだった場合戦闘アクティビティを開きなおします、battleFlagは戦闘開始時にtrueに戦闘終了時にfalseに変更されます
+        if(playerInfo.isBattleFlag()){
+            Intent intent = new Intent(this, BattleActivity.class);
+            intent.putExtra("EnemyId", playerInfo.getLastAffrontEnemy());
+            startActivity(intent);
+        }
         onClickMapButton.createMap();
     }
 
@@ -102,7 +108,7 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setFmaxMP(100);
             playerInfo.setMP(100);
             playerInfo.setSP(10);
-            playerInfo.setfSP(18);
+            playerInfo.setfSP(180);
             playerInfo.setATK(10);
             playerInfo.setmATK(120);
             playerInfo.setDF(100);

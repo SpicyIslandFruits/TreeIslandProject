@@ -5,51 +5,66 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import io.realm.Realm;
 
 abstract public class SuperEnemy {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf;
-    protected int[] allStatus;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf, enemyMaxSp;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf, newEnemyMaxSp;
+    protected int[] allStatus, newAllStatus;
     private int damage;
     protected int hp, atk, df;
     private Realm realm;
     private PlayerInfo playerInfo;
+    protected int skill1Priority, skill2Priority, skill3Priority, skill4Priority;
+    protected int skill1SpConsumption, skill2SpConsumption, skill3SpConsumption, skill4SpConsumption;
 
-    protected void beginTransaction(int[] allStatus){
-        this.allStatus = new int[16];
-        this.allStatus[0] = newPlayerHp = playerHp = allStatus[0];
-        this.allStatus[1] = newPlayerMp = playerMp = allStatus[1];
-        this.allStatus[2] = newPlayerSp = playerSp = allStatus[2];
-        this.allStatus[3] = newPlayerAtk = playerAtk = allStatus[3];
-        this.allStatus[4] = newPlayerDf = playerDf = allStatus[4];
-        this.allStatus[5] = newPlayerLuk = playerLuk = allStatus[5];
-        this.allStatus[6] = newEnemyHp = enemyHp = allStatus[6];
-        this.allStatus[7] = newEnemySp = enemySp = allStatus[7];
-        this.allStatus[8] = newEnemyAtk = enemyAtk = allStatus[8];
-        this.allStatus[9] = newEnemyDf = enemyDf = allStatus[9];
-        this.allStatus[10] = newEnemyLuk = enemyLuk = allStatus[10];
-        this.allStatus[11] = newBreakNum = breakNum = allStatus[11];
-        this.allStatus[12] = newPlayerMaxSp = playerMaxSp = allStatus[12];
-        this.allStatus[13] = newPlayerLevel = playerLevel = allStatus[13];
-        this.allStatus[14] = newWeaponAtk = weaponAtk = allStatus[14];
-        this.allStatus[15] = newArmorDf = armorDf = allStatus[15];
+    protected void setTempAllStatus(int[] tempAllStatus){
+        allStatus = new int[17];
+        newAllStatus = new int[17];
+        newAllStatus = allStatus = tempAllStatus;
     }
 
-    protected void commitTransaction(){
-        allStatus[0] = newPlayerHp;
-        allStatus[1] = newPlayerMp;
-        allStatus[2] = newPlayerSp;
-        allStatus[3] = newPlayerAtk;
-        allStatus[4] = newPlayerDf;
-        allStatus[5] = newPlayerLuk;
-        allStatus[6] = newEnemyHp;
-        allStatus[7] = newEnemySp;
-        allStatus[8] = newEnemyAtk;
-        allStatus[9] = newEnemyDf;
-        allStatus[10] = newEnemyLuk;
-        allStatus[11] = newBreakNum;
-        allStatus[12] = newPlayerMaxSp;
-        allStatus[13] = newPlayerLevel;
-        allStatus[14] = newWeaponAtk;
-        allStatus[15] = newArmorDf;
+    public void close(){
+        allStatus = null;
+        newAllStatus = null;
+    };
+
+    protected void beginTransaction(){
+        allStatus = newAllStatus;
+        newPlayerHp = playerHp = allStatus[0];
+        newPlayerMp = playerMp = allStatus[1];
+        newPlayerSp = playerSp = allStatus[2];
+        newPlayerAtk = playerAtk = allStatus[3];
+        newPlayerDf = playerDf = allStatus[4];
+        newPlayerLuk = playerLuk = allStatus[5];
+        newEnemyHp = enemyHp = allStatus[6];
+        newEnemySp = enemySp = allStatus[7];
+        newEnemyAtk = enemyAtk = allStatus[8];
+        newEnemyDf = enemyDf = allStatus[9];
+        newEnemyLuk = enemyLuk = allStatus[10];
+        newBreakNum = breakNum = allStatus[11];
+        newPlayerMaxSp = playerMaxSp = allStatus[12];
+        newPlayerLevel = playerLevel = allStatus[13];
+        newWeaponAtk = weaponAtk = allStatus[14];
+        newArmorDf = armorDf = allStatus[15];
+        newEnemyMaxSp = enemyMaxSp = allStatus[16];
+    }
+
+    protected void commitTransaction(int spConsumption){
+        newAllStatus[0] = newPlayerHp;
+        newAllStatus[1] = newPlayerMp;
+        newAllStatus[2] = newPlayerSp;
+        newAllStatus[3] = newPlayerAtk;
+        newAllStatus[4] = newPlayerDf;
+        newAllStatus[5] = newPlayerLuk;
+        newAllStatus[6] = newEnemyHp;
+        newAllStatus[7] = newEnemySp - spConsumption;
+        newAllStatus[8] = newEnemyAtk;
+        newAllStatus[9] = newEnemyDf;
+        newAllStatus[10] = newEnemyLuk;
+        newAllStatus[11] = newBreakNum;
+        newAllStatus[12] = newPlayerMaxSp;
+        newAllStatus[13] = newPlayerLevel;
+        newAllStatus[14] = newWeaponAtk;
+        newAllStatus[15] = newArmorDf;
+        newAllStatus[16] = newEnemyMaxSp;
     }
 
     abstract public int getHp();
@@ -77,10 +92,12 @@ abstract public class SuperEnemy {
                 ) / 100
         );
         realm.close();
-        if (breakNum > 50){
+        if (breakNum > 50 && breakNum < 100){
             damage = (int)((double)damage * 0.8);
         }else if(breakNum < 50){
             damage = (int)((double)damage * 1.2);
+        }else if(breakNum >= 100){
+            damage = (int)((double)damage*1.5);
         }
         return damage;
     }
@@ -113,20 +130,346 @@ abstract public class SuperEnemy {
         return df;
     }
 
-    protected int calculateBreakNum(int breakNum){
+    protected int calculateBreakNum(int breakNum) {
         int num = breakNum;
-        if(num > 50){
+        if (num > 50) {
             num = num - 8;
-            if(num <= 50){
+            if (num <= 50) {
                 num = 20;
             }
-        }else if(breakNum <= 50){
+        } else if (breakNum <= 50) {
             num = num - 4;
         }
 
-        if(num < 0){
+        if (num < 0) {
             num = 0;
         }
         return num;
+    }
+
+    protected void chooseSkillWithinSp(int skill1Priority, int skill2Priority, int skill3Priority, int skill4Priority){
+        boolean isSkill1Available = true, isSkill2Available = true, isSkill3Available = true, isSkill4Available = true;
+        while (isSkill1Available || isSkill2Available || isSkill3Available || isSkill4Available) {
+            while (isSkill1Available && isSkill2Available && isSkill3Available && isSkill4Available) {
+                int prioritySum = skill1Priority + skill2Priority + skill3Priority + skill4Priority + 3;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + skill2Priority + skill3Priority + 3 && tempPriority <= skill1Priority + skill2Priority + skill3Priority + skill4Priority + 3) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= skill1Priority + skill2Priority + 2 && tempPriority <= skill1Priority + skill2Priority + skill3Priority + 2) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+
+                } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill1Available && isSkill2Available && isSkill3Available && isSkill4Available == false) {
+                int prioritySum = skill1Priority + skill2Priority + skill3Priority + 2;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + skill2Priority + 2 && tempPriority <= skill1Priority + skill2Priority + skill3Priority + 2) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+
+                } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill1Available && isSkill2Available && isSkill4Available && isSkill3Available == false) {
+                int prioritySum = skill1Priority + skill2Priority + skill4Priority + 2;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + skill2Priority + 2 && tempPriority <= skill1Priority + skill2Priority + skill4Priority + 2) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill1Available && isSkill3Available && isSkill4Available && isSkill2Available == false) {
+                int prioritySum = skill1Priority + skill3Priority + skill4Priority + 2;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + skill3Priority + 2 && tempPriority <= skill1Priority + skill3Priority + skill4Priority + 2) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill3Priority + 1) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill2Available && isSkill3Available && isSkill4Available && isSkill1Available == false) {
+                int prioritySum = skill2Priority + skill3Priority + skill4Priority + 2;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill2Priority + skill3Priority + 2 && tempPriority <= skill2Priority + skill3Priority + skill4Priority + 2) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= skill2Priority + 1 && tempPriority <= skill2Priority + skill3Priority + 1) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill2Priority) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill1Available && isSkill2Available && isSkill3Available == false && isSkill4Available == false){
+                int prioritySum = skill1Priority + skill2Priority + 1;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill1Available && isSkill3Available && isSkill2Available == false && isSkill4Available == false){
+                int prioritySum = skill1Priority + skill3Priority + 1;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill3Priority + 1) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill1Available && isSkill4Available && isSkill2Available == false && isSkill3Available == false){
+                int prioritySum = skill1Priority + skill4Priority + 1;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill4Priority + 1) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
+
+                    if (skill1SpConsumption < enemySp) {
+                        skill1(allStatus);
+                    } else {
+                        isSkill1Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill2Available && isSkill3Available && isSkill1Available == false && isSkill4Available == false){
+                int prioritySum = skill2Priority + skill3Priority + 1;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill2Priority + 1 && tempPriority <= skill2Priority + skill3Priority + 1) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill2Priority) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill2Available && isSkill4Available && isSkill1Available == false && isSkill3Available == false){
+                int prioritySum = skill2Priority + skill4Priority + 1;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill2Priority + 1 && tempPriority <= skill2Priority + skill4Priority + 1) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill2Priority) {
+
+                    if (skill2SpConsumption < enemySp) {
+                        skill2(allStatus);
+                    } else {
+                        isSkill2Available = false;
+                    }
+
+                }
+            }
+
+            while (isSkill3Available && isSkill4Available && isSkill1Available == false && isSkill2Available == false){
+                int prioritySum = skill3Priority + skill4Priority + 1;
+                int tempPriority = (int) (prioritySum * Math.random());
+                if (tempPriority >= skill3Priority + 1 && tempPriority <= skill3Priority + skill4Priority + 1) {
+
+                    if (skill4SpConsumption < enemySp) {
+                        skill4(allStatus);
+                    } else {
+                        isSkill4Available = false;
+                    }
+
+                } else if (tempPriority >= 0 && tempPriority <= skill3Priority) {
+
+                    if (skill3SpConsumption < enemySp) {
+                        skill3(allStatus);
+                    } else {
+                        isSkill3Available = false;
+                    }
+                }
+            }
+
+            while (isSkill1Available && isSkill2Available == false && isSkill3Available == false && isSkill4Available == false){
+                if (skill1SpConsumption < enemySp) {
+                    skill1(allStatus);
+                } else {
+                    isSkill1Available = false;
+                }
+            }
+
+            while (isSkill1Available == false && isSkill2Available && isSkill3Available == false && isSkill4Available == false){
+                if (skill2SpConsumption < enemySp) {
+                    skill2(allStatus);
+                } else {
+                    isSkill2Available = false;
+                }
+            }
+
+            while (isSkill1Available == false && isSkill2Available == false && isSkill3Available && isSkill4Available == false){
+                if (skill3SpConsumption < enemySp) {
+                    skill3(allStatus);
+                } else {
+                    isSkill3Available = false;
+                }
+            }
+
+            while (isSkill1Available == false && isSkill2Available == false && isSkill3Available == false && isSkill4Available){
+                if (skill4SpConsumption < enemySp) {
+                    skill4(allStatus);
+                } else {
+                    isSkill4Available = false;
+                }
+            }
+        }
     }
 }

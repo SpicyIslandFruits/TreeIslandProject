@@ -8,13 +8,13 @@ public class SampleSkill extends SuperSkill {
     private static final int id = 0;
     private static final String name = "SamplePlayerSkill";
     private static final String skillInfo = "SamplePlayerSkill、攻撃力アップ";
-    private static final int mpConsumption = 7;
-    private static final int spConsumption = 3;
+    private static final int mpConsumption = 20;
+    private static final int spConsumption = 50;
 
     @Override
     public int[] skill(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
-        newPlayerAtk = (int)(playerAtk * 1.2);
+        newPlayerAtk = (int)(playerAtk * 1.1);
         commitTransaction(spConsumption, mpConsumption);
         return newAllStatus;
     }

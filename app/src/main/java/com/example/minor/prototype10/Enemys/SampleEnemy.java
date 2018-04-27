@@ -5,15 +5,17 @@ package com.example.minor.prototype10.Enemys;
  * 次にskillメソッドにスキルの中身を書き、setEnemyBehaviorメソッドに行動パターンを書いてください
  * 行動パターンを書くときはbeginTransactionとcommitTransactionで挟んでください
  * 後で要素を追加するときは先にSuperEnemyにメソッドを追加してください
- * 敵のbaseStatusは攻守HPの合計が360前後になるようにしてください
+ * 敵の基礎ステータスは攻守HPすべて120ですSpの基準値は100です
  * hp,atk,dfについては絶対にcalculateメソッドを使ってからreturnしてください
  * 必ずidも書いておいてください後からどのidがどの敵だったかを確認できます
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
  * enemySkillsは後々マップに情報屋を追加するときにgetする
+ * 敵のスキルは
  */
 public class SampleEnemy extends SuperEnemy {
-    private static final int id = 1, baseHp = 120, sp = 10, baseAtk = 60, baseDf = 120, luk = 100;
+    private static final int id = 1, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
     private static final String enemySkills = "通常攻撃、攻撃力10パーセントアップ、体力15パーセント回復";
+    private static final int skill1SpConsumption = 50, skill2SpConsumption = 50, skill3SpConsumption = 30, skill4SpConsumption = 30;
 
     @Override
     public String getEnemySkills() {
@@ -47,44 +49,40 @@ public class SampleEnemy extends SuperEnemy {
 
     @Override
     protected void skill1(int[] allStatus) {
-        beginTransaction(allStatus);
+        beginTransaction();
         newEnemyAtk = (int)(enemyAtk*1.1);
-        commitTransaction();
+        commitTransaction(skill1SpConsumption);
     }
 
     @Override
     protected void skill2(int[] allStatus) {
-        beginTransaction(allStatus);
-        if(calculateHp(baseHp) > (int)(enemyHp + calculateHp(baseHp)/8)){
-            newEnemyHp = enemyHp + calculateHp(baseHp)/8;
-        }
-        commitTransaction();
+        beginTransaction();
+        newEnemyHp = enemyHp + calculateHp(baseHp)/8;
+        commitTransaction(skill2SpConsumption);
     }
 
     @Override
     protected void skill3(int[] allStatus) {
-        beginTransaction(allStatus);
+        beginTransaction();
         newPlayerHp = playerHp - calculateDamage(enemyAtk);
         newBreakNum = calculateBreakNum(breakNum);
-        commitTransaction();
+        commitTransaction(skill3SpConsumption);
     }
 
     @Override
     protected void skill4(int[] allStatus) {
-        beginTransaction(allStatus);
-        newPlayerHp = playerHp - calculateDamage(enemyAtk);
+        beginTransaction();
+        newEnemyMaxSp = enemyMaxSp + 10;
         newBreakNum = calculateBreakNum(breakNum);
-        commitTransaction();
+        commitTransaction(skill4SpConsumption);
     }
 
     @Override
     public int[] setEnemyBehavior(int[] tempAllStatus) {
-        beginTransaction(tempAllStatus);
-        skill1(allStatus);
-        skill2(allStatus);
-        skill3(allStatus);
-        skill4(allStatus);
-        commitTransaction();
+        setTempAllStatus(tempAllStatus);
+        beginTransaction();
+        //int型にキャストしているため10以上の数字を入れること与えられた数字の比がスキルの優先度の比になる　
+        chooseSkillWithinSp(10, 10, 40, 10);
         return allStatus;
     }
 }

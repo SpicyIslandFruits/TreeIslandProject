@@ -1,11 +1,13 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.minor.prototype10.BattleActivity;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
 
@@ -43,6 +45,14 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
                 playerInfo.setPosition(position);
             }
         });
+    }
+
+    public void encounter(int id, double percent){
+        if(Math.random() < percent/100){
+            Intent intent = new Intent(mMain, BattleActivity.class);
+            intent.putExtra("EnemyId", id);
+            mMain.startActivity(intent);
+        }
     }
 
     abstract public void createMap();

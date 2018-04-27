@@ -16,10 +16,10 @@ public class SampleWeapon extends SuperWeapon {
     private static final String skill1Name = "SampleSkill1";
     private static final String skill2Name = "SampleSkill2";
     private static final String skill3Name = "SampleSkill3";
-    private static final int atk = 150, skill1SpConsumption = 3, skill2SpConsumption = 5, skill3SpConsumption = 7;
+    private static final int atk = 150, skill1SpConsumption = 30, skill2SpConsumption = 50, skill3SpConsumption = 30;
     private static final String skill1Info = "普通の攻撃";
     private static final String skill2Info = "強い攻撃";
-    private static final String skill3Info = "超強い攻撃";
+    private static final String skill3Info = "ブレイクゲージを多く削る攻撃";
 
     public int[] skill1(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
@@ -37,7 +37,8 @@ public class SampleWeapon extends SuperWeapon {
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - calculateDamage()*2;
+        newEnemyHp = enemyHp - (int)(calculateDamage()*0.5);
+        newBreakNum = breakNum + 4;
         commitTransaction(skill3SpConsumption);
         return newAllStatus;
     }

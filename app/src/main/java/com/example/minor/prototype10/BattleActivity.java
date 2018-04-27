@@ -2,9 +2,9 @@ package com.example.minor.prototype10;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -12,13 +12,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.Enemys.SampleBoss;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
-import com.example.minor.prototype10.Weapons.SampleWeapon;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
 
 import io.realm.Realm;
@@ -72,8 +69,13 @@ public class BattleActivity extends AppCompatActivity {
         };
         gradation = colors;
         makeData = new MakeData();
+        intent = getIntent();
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setBattleFlag(true);
+        playerInfo.setLastAffrontEnemy(intent.getIntExtra("EnemyId", 0));
+        realm.commitTransaction();
         weaponId = playerInfo.getWeaponId();
         weapon = makeData.makeWeaponFromId(weaponId);
         //一時的にサンプルスキルを使う本来は上に書いてあるweaponと同様の処理を行って自分の装備してあるスキルのインスタンスを取得する
@@ -82,10 +84,9 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill3 = new SampleSkill();
         playerSkill4 = new SampleSkill();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
-        intent = getIntent();
         enemyId = intent.getIntExtra("EnemyId", 0);
         enemy = makeData.makeEnemyFromId(enemyId);
-        tempAllStatus = new int[16];
+        tempAllStatus = new int[17];
         skillNameAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list_item_1);
         hpBar = (ProgressBar) findViewById(R.id.hp_bar);
         mpBar = (ProgressBar) findViewById(R.id.mp_bar);
@@ -107,56 +108,70 @@ public class BattleActivity extends AppCompatActivity {
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDecision();
-                executeBattle();
+                enableButtons(false);
+                executePlayerBehavior();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        executeEnemyBehavior();
+                    }
+                }, 1500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
+                        enableButtons(true);
+                        startNewTurn();
+                        turnCount++;
+                    }
+                }, 3000);
             }
         });
         normalAttackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(0);
+                executeTempBattle(0);
             }
         });
         skillButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(1);
+                executeTempBattle(1);
             }
         });
         skillButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(2);
+                executeTempBattle(2);
             }
         });
         skillButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(3);
+                executeTempBattle(3);
             }
         });
         playerSkill1Button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                setPlayerBehavior(4);
+            public void onClick(View v) { executeTempBattle(4);
             }
         });
         playerSkill2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(5);
+                executeTempBattle(5);
             }
         });
         playerSkill3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(6);
+                executeTempBattle(6);
             }
         });
         playerSkill4Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPlayerBehavior(7);
+                executeTempBattle(7);
             }
         });
         inputAllStatus();
@@ -166,20 +181,10 @@ public class BattleActivity extends AppCompatActivity {
         realm.commitTransaction();
     }
 
-    //多分ここは編集の必要なし
-    private void setPlayerBehavior(int num) {
-        if(turnCount != tempTurnCount){
-            startNewTurn();
-            executeTempBattle(num);
-            tempTurnCount = turnCount;
-        }else{
-            executeTempBattle(num);
-        }
-    }
-
-    //tempを実際の値に代入、ターンを進める、後でspの処理を見直す
-    private void onDecision(){
-        tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
+    //どちらかのhpが0以下になったらリザルト画面を表示する処理
+    //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
+    private void executePlayerBehavior(){
+        battleText.setText("主人公の攻撃！");
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
         realm.executeTransaction(new Realm.Transaction() {
@@ -200,14 +205,7 @@ public class BattleActivity extends AppCompatActivity {
         enemyDf = tempAllStatus[9];
         enemyLuk = tempAllStatus[10];
         breakNum = tempAllStatus[11];
-        turnCount++;
-    }
-
-    //どちらかのhpが0以下になったらリザルト画面を表示する処理
-    //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
-    private void executeBattle(){
         skillNameAdapter.clear();
-        battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
@@ -218,13 +216,61 @@ public class BattleActivity extends AppCompatActivity {
         }
         mpBar.setProgress(maxMp-mp);
         if(hp<=0 ||enemyHp<=0){
+            //一時的にここでセットしていますが、実際にはリザルトアクティビティでセットします
+            realm.beginTransaction();
+            playerInfo.setBattleFlag(false);
+            realm.commitTransaction();
+            finish();
+        }
+    }
+
+    //どちらかのhpが0以下になったらリザルト画面を表示する処理
+    private void executeEnemyBehavior(){
+        battleText.setText("敵の攻撃！");
+        tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
+        enemy.close();
+        hp = tempAllStatus[0];
+        mp = tempAllStatus[1];
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                playerInfo = realm.where(PlayerInfo.class).findFirst();
+                playerInfo.setMP(mp);
+                playerInfo.setHP(hp);
+            }
+        });
+        sp = tempAllStatus[12];
+        atk = tempAllStatus[3];
+        df = tempAllStatus[4];
+        luk = tempAllStatus[5];
+        enemyHp = tempAllStatus[6];
+        enemySp = tempAllStatus[16];
+        enemyAtk = tempAllStatus[8];
+        enemyDf = tempAllStatus[9];
+        enemyLuk = tempAllStatus[10];
+        breakNum = tempAllStatus[11];
+        skillNameAdapter.clear();
+        breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
+        hpBar.setProgress(hp);
+        enemyHpBar.setProgress(enemyHp);
+        if(tempAllStatus[2] > sp/2) {
+            spBar.setProgress(0);
+        }else {
+            spBar.setProgress(sp - (tempAllStatus[2] + sp/2));
+        }
+        mpBar.setProgress(maxMp-mp);
+        if(hp<=0 ||enemyHp<=0){
+            //一時的にここでセットしていますが、実際にはリザルトアクティビティでセットします
+            realm.beginTransaction();
+            playerInfo.setBattleFlag(false);
+            realm.commitTransaction();
             finish();
         }
     }
 
     //通常攻撃のみブレイク値を定数にしオーバードライブできるようにする
     //このメソッドではPlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存します
-    //mpが0未満になる場合の処理も追加する
+    //状態異常も実装する
     private void executeTempBattle(int num){
         switch (num){
             case 0:
@@ -234,7 +280,11 @@ public class BattleActivity extends AppCompatActivity {
                     skillNameAdapter.add("通常攻撃");
                     spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
-                    tempAllStatus[11] = tempAllStatus[11] + 5;
+                    if (tempAllStatus[11] < 100 && tempAllStatus[11] + 4 >= 100) {
+                        tempAllStatus[11] = 150;
+                    }else{
+                        tempAllStatus[11] = tempAllStatus[11] + 5;
+                    }
                 }else{
                     battleText.setText("spが足りません");
                 }
@@ -293,6 +343,7 @@ public class BattleActivity extends AppCompatActivity {
                     skillNameAdapter.add(playerSkill1.getSkillName());
                     spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
+                    mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
                     battleText.setText("spまたはmpが足りません");
                 }
@@ -303,6 +354,7 @@ public class BattleActivity extends AppCompatActivity {
                     skillNameAdapter.add(playerSkill2.getSkillName());
                     spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
+                    mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
                     battleText.setText("spまたはmpが足りません");
                 }
@@ -313,6 +365,7 @@ public class BattleActivity extends AppCompatActivity {
                     skillNameAdapter.add(playerSkill3.getSkillName());
                     spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
+                    mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
                     battleText.setText("spまたはmpが足りません");
                 }
@@ -323,6 +376,7 @@ public class BattleActivity extends AppCompatActivity {
                     skillNameAdapter.add(playerSkill4.getSkillName());
                     spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
+                    mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
                     battleText.setText("spまたはmpが足りません");
                 }
@@ -332,7 +386,6 @@ public class BattleActivity extends AppCompatActivity {
 
     //mAtkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
     //fAtkは装備中の武器のステータスです
-    //防具の数値も作成する必要あり
     private void inputAllStatus(){
         maxHp = playerInfo.getFmaxHP();
         maxMp = playerInfo.getFmaxMP();
@@ -352,6 +405,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
         tempAllStatus[15] = armorDf = playerInfo.getfDF();
+        tempAllStatus[16] = enemy.getSp();
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
@@ -376,7 +430,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[4] = df;
         tempAllStatus[5] = luk;
         tempAllStatus[6] = enemyHp;
-        tempAllStatus[7] = enemySp;
+        tempAllStatus[7] = tempAllStatus[16];
         tempAllStatus[8] = enemyAtk;
         tempAllStatus[9] = enemyDf;
         tempAllStatus[10] = enemyLuk;
@@ -391,7 +445,11 @@ public class BattleActivity extends AppCompatActivity {
     //スキルによってさらに増減させたい場合はここに書いてある値を考慮してください
     private void calculateIncrementOfBreakGageFromBreakNum(){
         if(tempAllStatus[11]>50){
-            tempAllStatus[11] = tempAllStatus[11] + 4;
+            if (tempAllStatus[11] < 100 && tempAllStatus[11] + 4 >= 100) {
+                tempAllStatus[11] = 99;
+            }else{
+                tempAllStatus[11] = tempAllStatus[11] + 4;
+            }
         }else if(tempAllStatus[11]<=50){
             tempAllStatus[11] = tempAllStatus[11] + 8;
             if (tempAllStatus[11] > 50){
@@ -410,4 +468,16 @@ public class BattleActivity extends AppCompatActivity {
     private void autoSkills(){
 
     };
+
+    private void enableButtons(boolean enabled){
+        decisionButton.setEnabled(enabled);
+        normalAttackButton.setEnabled(enabled);
+        skillButton1.setEnabled(enabled);
+        skillButton2.setEnabled(enabled);
+        skillButton3.setEnabled(enabled);
+        playerSkill1Button.setEnabled(enabled);
+        playerSkill2Button.setEnabled(enabled);
+        playerSkill3Button.setEnabled(enabled);
+        playerSkill4Button.setEnabled(enabled);
+    }
 }

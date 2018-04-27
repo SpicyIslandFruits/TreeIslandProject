@@ -3,11 +3,11 @@ package com.example.minor.prototype10;
 import com.example.minor.prototype10.Armors.SampleArmor;
 import com.example.minor.prototype10.Armors.SampleArmor2;
 import com.example.minor.prototype10.Armors.SuperArmor;
-import com.example.minor.prototype10.Enemys.SampleBoss;
+import com.example.minor.prototype10.Enemys.SampleEnemy3;
 import com.example.minor.prototype10.Enemys.SampleEnemy;
+import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.Weapons.SampleWeapon;
 import com.example.minor.prototype10.Weapons.SampleWeapon2;
@@ -72,13 +72,17 @@ public class MakeData {
 
     //idを受け取って敵クラスのインスタンスを返しますmakeWeaponFromIdを参照して書いてください
     public SuperEnemy makeEnemyFromId(int id){
-        SuperEnemy enemy = new SampleBoss();
+        SuperEnemy enemy = new SampleEnemy3();
         switch (id){
             case 0:
-                enemy = new SampleBoss();
+                enemy = new SampleEnemy3();
                 break;
             case 1:
                 enemy = new SampleEnemy();
+                break;
+            case 2:
+                enemy = new SampleEnemy2();
+                break;
         }
         return enemy;
     }

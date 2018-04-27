@@ -5,15 +5,15 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import io.realm.Realm;
 
 abstract public class SuperWeapon {
-    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf;
-    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum ,newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf;
+    protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf, enemyMaxSp;
+    protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum ,newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf, newEnemyMaxSp;
     protected int[] newAllStatus;
     private int damage;
     private Realm realm;
     private PlayerInfo playerInfo;
 
     public void beginTransaction(int[] tempAllStatus){
-        newAllStatus = new int[16];
+        newAllStatus = new int[17];
         newPlayerHp = playerHp = tempAllStatus[0];
         newPlayerMp = playerMp = tempAllStatus[1];
         newPlayerSp = playerSp = tempAllStatus[2];
@@ -30,6 +30,7 @@ abstract public class SuperWeapon {
         newPlayerLevel = playerLevel = tempAllStatus[13];
         newWeaponAtk = weaponAtk = tempAllStatus[14];
         newArmorDf = armorDf = tempAllStatus[15];
+        newEnemyMaxSp = enemyMaxSp = tempAllStatus[16];
     }
 
     protected void commitTransaction(int spConsumption){
@@ -49,6 +50,7 @@ abstract public class SuperWeapon {
         newAllStatus[13] = newPlayerLevel;
         newAllStatus[14] = newWeaponAtk;
         newAllStatus[15] = newArmorDf;
+        newAllStatus[16] = newEnemyMaxSp;
     }
 
     abstract public int[] skill1(int[] tempAllStatus);
@@ -88,10 +90,12 @@ abstract public class SuperWeapon {
                                 * ((double)85 + Math.random() * 15)
                 ) / 100
         );
-        if (breakNum > 50){
+        if (breakNum > 50 && breakNum < 100){
             damage = (int) ((double)damage * 1.2);
         }else if (breakNum < 50){
             damage = (int)((double)damage * 0.8);
+        }else if(breakNum >= 100){
+            damage = (int)((double)damage * 12);
         }
         newEnemyHp = enemyHp - damage;
         commitTransaction(playerMaxSp/3);
