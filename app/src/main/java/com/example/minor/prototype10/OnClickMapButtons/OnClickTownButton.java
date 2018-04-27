@@ -2,6 +2,8 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
 
+import com.example.minor.prototype10.AbnormalStates;
+
 //ダンジョンのコメントを参照
 public class OnClickTownButton extends SuperOnClickMapButton{
 

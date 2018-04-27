@@ -2,6 +2,7 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
 
+import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.WeaponId;
 

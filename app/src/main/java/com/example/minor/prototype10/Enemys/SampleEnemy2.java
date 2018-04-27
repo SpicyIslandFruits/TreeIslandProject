@@ -1,8 +1,12 @@
 package com.example.minor.prototype10.Enemys;
 
+import com.example.minor.prototype10.Models.PlayerInfo;
+
+import io.realm.Realm;
+
 public class SampleEnemy2 extends SuperEnemy{
-    private static final int id = 2, baseHp = 1000, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
-    private static final String enemySkills = "何もしてこない敵です、ダメージ計算に使用してくださ";
+    private static final int id = 2, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
+    private static final String enemySkills = "毒状態にしたり、出血させたりしてきます";
 
     @Override
     public String getEnemySkills() {
@@ -37,36 +41,37 @@ public class SampleEnemy2 extends SuperEnemy{
     @Override
     protected void skill1(int[] allStatus) {
         beginTransaction();
-        commitTransaction(0);
+        poison();
+        commitTransaction(40);
     }
 
     @Override
     protected void skill2(int[] allStatus) {
         beginTransaction();
-        commitTransaction(0);
+        bleeding();
+        commitTransaction(40);
     }
 
     @Override
     protected void skill3(int[] allStatus) {
         beginTransaction();
-        commitTransaction(0);
+        newPlayerHp = playerHp - calculateDamage(enemyAtk);
+        commitTransaction(30);
     }
+
 
     @Override
     protected void skill4(int[] allStatus) {
         beginTransaction();
-        commitTransaction(0);
+        newEnemyDf = (int)(enemyDf*1.2);
+        commitTransaction(30);
     }
 
     @Override
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         setTempAllStatus(tempAllStatus);
         beginTransaction();
+        chooseSkillWithinSp(10, 10, 40,10);
         return allStatus;
-    }
-
-    @Override
-    protected void chooseSkillWithinSp(int skill1Priority, int skill2Priority, int skill3Priority, int skill4Priority) {
-
     }
 }

@@ -42,11 +42,14 @@ public class MainActivity extends AppCompatActivity{
     private ProgressBar mainHpBar, mainMpBar;
     private MakeWeaponRealmObject makeWeaponRealmObject;
     private MakeArmorRealmObject makeArmorRealmObject;
+    private TextView bleedingText, poisonText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bleedingText = (TextView) findViewById(R.id.bleeding_state);
+        poisonText = (TextView) findViewById(R.id.poison_state);
         imageButton = (ImageButton) findViewById(R.id.status_button);
         mainHpBar = (ProgressBar) findViewById(R.id.main_hp_bar);
         mainMpBar = (ProgressBar) findViewById(R.id.main_mp_bar);
@@ -80,6 +83,16 @@ public class MainActivity extends AppCompatActivity{
                 mainHpBar.setProgress(playerInfo.getHP());
                 mainMpBar.setMax(playerInfo.getFmaxMP());
                 mainMpBar.setProgress(playerInfo.getMP());
+                if(playerInfo.isBleedingFlag()){
+                    bleedingText.setText("出血しています");
+                }else {
+                    bleedingText.setText("健康です");
+                };
+                if(playerInfo.isPoisonFlag()){
+                    poisonText.setText("毒状態です");
+                }else{
+                    poisonText.setText("健康です");
+                }
             }
         });
         weaponIds = realm.where(WeaponId.class).findAll();
@@ -115,6 +128,9 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setLUK(100);
             playerInfo.setfLUK(100);
             playerInfo.setWeaponId(0);
+            //状態異常のセット
+            playerInfo.setBleedingFlag(true);
+            playerInfo.setPoisonFlag(true);
             //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください、後々時間経過で敵のレベルが戻っていく処理も追加します
             playerInfo.setBaseEnemyLevel(50);
             playerInfo.setAdditionalEnemyLevel(0);

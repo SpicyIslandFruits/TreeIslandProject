@@ -49,6 +49,8 @@ public class PlayerInfo extends RealmObject {
     private int additionalEnemyLevel;
     private boolean battleFlag;
     private int lastAffrontEnemy;
+    private boolean poisonFlag;
+    private boolean bleedingFlag;
 
     public String getPlayer() {
         return player;
@@ -360,5 +362,21 @@ public class PlayerInfo extends RealmObject {
 
     public void setLastAffrontEnemy(int lastAffrontEnemy) {
         this.lastAffrontEnemy = lastAffrontEnemy;
+    }
+
+    public boolean isPoisonFlag() {
+        return poisonFlag;
+    }
+
+    public void setPoisonFlag(boolean poisonFlag) {
+        this.poisonFlag = poisonFlag;
+    }
+
+    public boolean isBleedingFlag() {
+        return bleedingFlag;
+    }
+
+    public void setBleedingFlag(boolean bleedingFlag) {
+        this.bleedingFlag = bleedingFlag;
     }
 }

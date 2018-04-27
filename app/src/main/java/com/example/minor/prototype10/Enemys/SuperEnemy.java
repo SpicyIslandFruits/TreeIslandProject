@@ -10,8 +10,8 @@ abstract public class SuperEnemy {
     protected int[] allStatus, newAllStatus;
     private int damage;
     protected int hp, atk, df;
-    private Realm realm;
-    private PlayerInfo playerInfo;
+    protected Realm realm;
+    protected PlayerInfo playerInfo;
     protected int skill1Priority, skill2Priority, skill3Priority, skill4Priority;
     protected int skill1SpConsumption, skill2SpConsumption, skill3SpConsumption, skill4SpConsumption;
 
@@ -65,6 +65,22 @@ abstract public class SuperEnemy {
         newAllStatus[14] = newWeaponAtk;
         newAllStatus[15] = newArmorDf;
         newAllStatus[16] = newEnemyMaxSp;
+    }
+
+    protected void poison(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setPoisonFlag(true);
+        realm.commitTransaction();
+    }
+
+    protected void bleeding(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setBleedingFlag(true);
+        realm.commitTransaction();
     }
 
     abstract public int getHp();

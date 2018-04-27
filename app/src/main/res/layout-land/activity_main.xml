@@ -388,4 +388,24 @@
         app:layout_constraintStart_toStartOf="@+id/text_background_image"
         app:layout_constraintTop_toTopOf="@+id/text_background_image" />
 
+    <TextView
+        android:id="@+id/bleeding_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="実際は画像で示そうと思っています"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10" />
+
+    <TextView
+        android:id="@+id/poison_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="状態異常を表示します"
+        app:layout_constraintBottom_toTopOf="@+id/bleeding_state"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10" />
+
 </android.support.constraint.ConstraintLayout>

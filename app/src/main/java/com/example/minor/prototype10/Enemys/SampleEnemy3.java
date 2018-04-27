@@ -73,7 +73,6 @@ public class SampleEnemy3 extends SuperEnemy {
         return allStatus;
     }
 
-
     @Override
     protected void chooseSkillWithinSp(int skill1Priority, int skill2Priority, int skill3Priority, int skill4Priority) {
 

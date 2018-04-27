@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.BattleActivity;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
@@ -18,9 +19,10 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
     protected PlayerInfo playerInfo;
     protected static AppCompatActivity mMain;
-    protected static TextView mainText;
+    protected static TextView mainText, bleedingText, poisonText;
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;
     protected int position;
+    protected AbnormalStates abnormalStates;
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
@@ -33,11 +35,12 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6 = (ImageButton) main.findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) main.findViewById(R.id.imageButton7);
         imageButton8 = (ImageButton) main.findViewById(R.id.imageButton8);
-
     }
+
     protected void savePosition(){
         realm = Realm.getDefaultInstance();
-        
+        abnormalStates = new AbnormalStates();
+        abnormalStates.abnormalEffect();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
