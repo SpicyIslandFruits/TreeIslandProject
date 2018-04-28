@@ -365,4 +365,24 @@
         app:layout_constraintStart_toStartOf="@+id/behavior"
         app:layout_constraintTop_toTopOf="@+id/behavior" />
 
+    <TextView
+        android:id="@+id/battle_bleeding_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="実際は画像で示す予定です"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline40" />
+
+    <TextView
+        android:id="@+id/battle_poison_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="状態異常を示します"
+        app:layout_constraintBottom_toTopOf="@+id/battle_bleeding_text"
+        app:layout_constraintEnd_toStartOf="@+id/guideline40" />
+
 </android.support.constraint.ConstraintLayout>

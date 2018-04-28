@@ -9,6 +9,9 @@ import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
+import com.example.minor.prototype10.PlayerSkill.SampleSkill;
+import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
+import com.example.minor.prototype10.PlayerSkill.SuperSkill;
 import com.example.minor.prototype10.Weapons.SampleWeapon;
 import com.example.minor.prototype10.Weapons.SampleWeapon2;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
@@ -68,7 +71,18 @@ public class MakeData {
     }
 
     //プレイヤースキルを追加した場合はここに書く
-    public void makePlayerSkillFromId(int id){}
+    public SuperSkill makePlayerSkillFromId(int id){
+        SuperSkill skill = new SampleSkill();
+        switch (id){
+            case 0:
+                skill = new SampleSkill();
+                break;
+            case 1:
+                skill = new SampleSkill2();
+                break;
+        }
+        return skill;
+    }
 
     //idを受け取って敵クラスのインスタンスを返しますmakeWeaponFromIdを参照して書いてください
     public SuperEnemy makeEnemyFromId(int id){

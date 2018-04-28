@@ -21,11 +21,6 @@ abstract public class SuperEnemy {
         newAllStatus = allStatus = tempAllStatus;
     }
 
-    public void close(){
-        allStatus = null;
-        newAllStatus = null;
-    };
-
     protected void beginTransaction(){
         allStatus = newAllStatus;
         newPlayerHp = playerHp = allStatus[0];
@@ -73,6 +68,7 @@ abstract public class SuperEnemy {
         realm.beginTransaction();
         playerInfo.setPoisonFlag(true);
         realm.commitTransaction();
+        realm.close();
     }
 
     protected void bleeding(){
@@ -81,6 +77,7 @@ abstract public class SuperEnemy {
         realm.beginTransaction();
         playerInfo.setBleedingFlag(true);
         realm.commitTransaction();
+        realm.close();
     }
 
     abstract public int getHp();
@@ -171,7 +168,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + skill2Priority + skill3Priority + 3 && tempPriority <= skill1Priority + skill2Priority + skill3Priority + skill4Priority + 3) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -179,7 +176,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= skill1Priority + skill2Priority + 2 && tempPriority <= skill1Priority + skill2Priority + skill3Priority + 2) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -187,7 +184,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -195,7 +192,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -209,7 +206,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + skill2Priority + 2 && tempPriority <= skill1Priority + skill2Priority + skill3Priority + 2) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -217,7 +214,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -225,7 +222,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -239,7 +236,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + skill2Priority + 2 && tempPriority <= skill1Priority + skill2Priority + skill4Priority + 2) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -247,7 +244,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -255,7 +252,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -269,7 +266,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + skill3Priority + 2 && tempPriority <= skill1Priority + skill3Priority + skill4Priority + 2) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -277,7 +274,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill3Priority + 1) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -285,7 +282,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -299,7 +296,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill2Priority + skill3Priority + 2 && tempPriority <= skill2Priority + skill3Priority + skill4Priority + 2) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -307,7 +304,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= skill2Priority + 1 && tempPriority <= skill2Priority + skill3Priority + 1) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -315,7 +312,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill2Priority) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -329,7 +326,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill2Priority + 1) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -337,7 +334,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -351,7 +348,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill3Priority + 1) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -359,7 +356,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -373,7 +370,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill1Priority + 1 && tempPriority <= skill1Priority + skill4Priority + 1) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -381,7 +378,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill1Priority) {
 
-                    if (skill1SpConsumption < enemySp) {
+                    if (skill1SpConsumption < newAllStatus[7]) {
                         skill1(allStatus);
                     } else {
                         isSkill1Available = false;
@@ -395,7 +392,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill2Priority + 1 && tempPriority <= skill2Priority + skill3Priority + 1) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -403,7 +400,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill2Priority) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -417,7 +414,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill2Priority + 1 && tempPriority <= skill2Priority + skill4Priority + 1) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -425,7 +422,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill2Priority) {
 
-                    if (skill2SpConsumption < enemySp) {
+                    if (skill2SpConsumption < newAllStatus[7]) {
                         skill2(allStatus);
                     } else {
                         isSkill2Available = false;
@@ -439,7 +436,7 @@ abstract public class SuperEnemy {
                 int tempPriority = (int) (prioritySum * Math.random());
                 if (tempPriority >= skill3Priority + 1 && tempPriority <= skill3Priority + skill4Priority + 1) {
 
-                    if (skill4SpConsumption < enemySp) {
+                    if (skill4SpConsumption < newAllStatus[7]) {
                         skill4(allStatus);
                     } else {
                         isSkill4Available = false;
@@ -447,7 +444,7 @@ abstract public class SuperEnemy {
 
                 } else if (tempPriority >= 0 && tempPriority <= skill3Priority) {
 
-                    if (skill3SpConsumption < enemySp) {
+                    if (skill3SpConsumption < newAllStatus[7]) {
                         skill3(allStatus);
                     } else {
                         isSkill3Available = false;
@@ -456,7 +453,7 @@ abstract public class SuperEnemy {
             }
 
             while (isSkill1Available && isSkill2Available == false && isSkill3Available == false && isSkill4Available == false){
-                if (skill1SpConsumption < enemySp) {
+                if (skill1SpConsumption < newAllStatus[7]) {
                     skill1(allStatus);
                 } else {
                     isSkill1Available = false;
@@ -464,7 +461,7 @@ abstract public class SuperEnemy {
             }
 
             while (isSkill1Available == false && isSkill2Available && isSkill3Available == false && isSkill4Available == false){
-                if (skill2SpConsumption < enemySp) {
+                if (skill2SpConsumption < newAllStatus[7]) {
                     skill2(allStatus);
                 } else {
                     isSkill2Available = false;
@@ -472,7 +469,7 @@ abstract public class SuperEnemy {
             }
 
             while (isSkill1Available == false && isSkill2Available == false && isSkill3Available && isSkill4Available == false){
-                if (skill3SpConsumption < enemySp) {
+                if (skill3SpConsumption < newAllStatus[7]) {
                     skill3(allStatus);
                 } else {
                     isSkill3Available = false;
@@ -480,7 +477,7 @@ abstract public class SuperEnemy {
             }
 
             while (isSkill1Available == false && isSkill2Available == false && isSkill3Available == false && isSkill4Available){
-                if (skill4SpConsumption < enemySp) {
+                if (skill4SpConsumption < newAllStatus[7]) {
                     skill4(allStatus);
                 } else {
                     isSkill4Available = false;

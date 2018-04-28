@@ -15,10 +15,14 @@ import android.widget.TextView;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
+import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
 
+import io.realm.OrderedCollectionChangeSet;
+import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * 敵とのエンカウント方式の実装、intentから敵情報受け取り
@@ -27,15 +31,15 @@ import io.realm.Realm;
  * 後でキャンセルボタンの追加を行う
  */
 public class BattleActivity extends AppCompatActivity {
-
     private Realm realm;
     private Intent intent;
     private PlayerInfo playerInfo;
     private ProgressBar hpBar, mpBar, spBar, enemyHpBar;
     private GaugeView breakGage;
-    private TextView battleText;
+    private TextView battleText, battleBleedingText, battlePoisonText;
     private ListView selectedSkillLists;
     private ArrayAdapter<String> skillNameAdapter;
+    private RealmResults<PlayerInfo> playerInfos;
     private MakeData makeData;
     private int weaponId;
     private int enemyId;
@@ -48,6 +52,7 @@ public class BattleActivity extends AppCompatActivity {
     private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk, armorDf;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
+    private AbnormalStates abnormalStates;
 
     //skillButtonをfindViewByIdしてonClickにsetPlayerBehaviorを入れる、たぶん編集の必要なし
     @Override
@@ -68,6 +73,7 @@ public class BattleActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, R.color.color_100)
         };
         gradation = colors;
+        abnormalStates = new AbnormalStates();
         makeData = new MakeData();
         intent = getIntent();
         realm = Realm.getDefaultInstance();
@@ -79,10 +85,10 @@ public class BattleActivity extends AppCompatActivity {
         weaponId = playerInfo.getWeaponId();
         weapon = makeData.makeWeaponFromId(weaponId);
         //一時的にサンプルスキルを使う本来は上に書いてあるweaponと同様の処理を行って自分の装備してあるスキルのインスタンスを取得する
-        playerSkill1 = new SampleSkill();
-        playerSkill2 = new SampleSkill();
-        playerSkill3 = new SampleSkill();
-        playerSkill4 = new SampleSkill();
+        playerSkill1 = new SampleSkill2();
+        playerSkill2 = new SampleSkill2();
+        playerSkill3 = new SampleSkill2();
+        playerSkill4 = new SampleSkill2();
         //一時的にサンプルボスを使う、本来はintentから受けとったidを使ってMakeDataクラスのメソッドでインスタンスを取得する
         enemyId = intent.getIntExtra("EnemyId", 0);
         enemy = makeData.makeEnemyFromId(enemyId);
@@ -94,6 +100,8 @@ public class BattleActivity extends AppCompatActivity {
         enemyHpBar = (ProgressBar) findViewById(R.id.enemy_hp_bar);
         breakGage = (GaugeView) findViewById(R.id.break_gage);
         battleText = (TextView) findViewById(R.id.battle_text);
+        battleBleedingText = (TextView) findViewById(R.id.battle_bleeding_text);
+        battlePoisonText = (TextView) findViewById(R.id.battle_poison_text);
         decisionButton = (ImageButton) findViewById(R.id.decision_button);
         normalAttackButton = (ImageButton) findViewById(R.id.normal_attack);
         skillButton1 = (ImageButton) findViewById(R.id.skill1);
@@ -175,16 +183,37 @@ public class BattleActivity extends AppCompatActivity {
             }
         });
         inputAllStatus();
+        playerInfos = realm.where(PlayerInfo.class).findAll();
+        playerInfos.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<PlayerInfo>>() {
+            @Override
+            public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {
+                if(playerInfo.isBleedingFlag()){
+                    battleBleedingText.setText("出血しています");
+                }else {
+                    battleBleedingText.setText("健康です");
+                };
+                if(playerInfo.isPoisonFlag()){
+                    battlePoisonText.setText("毒状態です");
+                }else{
+                    battlePoisonText.setText("健康です");
+                }
+            }
+        });
         //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
         realm.beginTransaction();
         playerInfo.setAdditionalEnemyLevel(playerInfo.getAdditionalEnemyLevel() + 1);
+        playerInfo.setPlayerAutoAbsorbingFlag(false);
+        playerInfo.setPlayerAutoHealingFlag(false);
+        playerInfo.setEnemyPoisonFlag(false);
         realm.commitTransaction();
     }
 
     //どちらかのhpが0以下になったらリザルト画面を表示する処理
     //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
+    //ここに状態異常の効果の発動を書いてみました
     private void executePlayerBehavior(){
         battleText.setText("主人公の攻撃！");
+        autoSkills();
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
         realm.executeTransaction(new Realm.Transaction() {
@@ -228,7 +257,7 @@ public class BattleActivity extends AppCompatActivity {
     private void executeEnemyBehavior(){
         battleText.setText("敵の攻撃！");
         tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
-        enemy.close();
+        tempAllStatus = abnormalStates.battleAbnormalEffect(tempAllStatus);
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
         realm.executeTransaction(new Realm.Transaction() {
@@ -270,7 +299,6 @@ public class BattleActivity extends AppCompatActivity {
 
     //通常攻撃のみブレイク値を定数にしオーバードライブできるようにする
     //このメソッドではPlayerSkillクラスとWeaponクラスからskillを受け取って実行し、tempに処理後のデータを保存します
-    //状態異常も実装する
     private void executeTempBattle(int num){
         switch (num){
             case 0:
@@ -280,7 +308,7 @@ public class BattleActivity extends AppCompatActivity {
                     skillNameAdapter.add("通常攻撃");
                     spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
-                    if (tempAllStatus[11] < 100 && tempAllStatus[11] + 4 >= 100) {
+                    if (tempAllStatus[11] < 100 && tempAllStatus[11] + 5 >= 100) {
                         tempAllStatus[11] = 150;
                     }else{
                         tempAllStatus[11] = tempAllStatus[11] + 5;
@@ -418,6 +446,7 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     //ここは編集の必要なし
+    //tempAllStatus[16]は書かなくてよい
     private void startNewTurn(){
         tempAllStatus[0] = hp;
         tempAllStatus[1] = mp;
@@ -464,10 +493,19 @@ public class BattleActivity extends AppCompatActivity {
     //未実装だがそのうち使うかもしれないメソッド
     //ターンを保存する変数をもう一つ用意する
     //今のところバフをかけた場合戦闘終了まで持続する
-    //3ターンの間...等のスキルの実装方法を考える
+    //ポケモンと一緒で効果のスキルやバフの効果は戦闘終了まで持続
     private void autoSkills(){
-
-    };
+        if(playerInfo.isEnemyPoisonFlag()){
+            tempAllStatus[6] = (int)(tempAllStatus[6]*0.95);
+        }
+        if(playerInfo.isPlayerAutoHealingFlag() && tempAllStatus[0]*1.02 < maxHp){
+            tempAllStatus[0] = (int) (tempAllStatus[0] * 1.02);
+        }
+        if(playerInfo.isPlayerAutoAbsorbingFlag() && tempAllStatus[0]*1.01 < maxHp){
+            tempAllStatus[0] = (int)(tempAllStatus[0]*1.01);
+            tempAllStatus[6] = (int)(tempAllStatus[6]*0.97);
+        }
+    }
 
     private void enableButtons(boolean enabled){
         decisionButton.setEnabled(enabled);

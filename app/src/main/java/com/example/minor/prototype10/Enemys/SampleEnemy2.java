@@ -1,9 +1,5 @@
 package com.example.minor.prototype10.Enemys;
 
-import com.example.minor.prototype10.Models.PlayerInfo;
-
-import io.realm.Realm;
-
 public class SampleEnemy2 extends SuperEnemy{
     private static final int id = 2, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
     private static final String enemySkills = "毒状態にしたり、出血させたりしてきます";
@@ -56,6 +52,7 @@ public class SampleEnemy2 extends SuperEnemy{
     protected void skill3(int[] allStatus) {
         beginTransaction();
         newPlayerHp = playerHp - calculateDamage(enemyAtk);
+        newBreakNum = calculateBreakNum(breakNum);
         commitTransaction(30);
     }
 
@@ -71,7 +68,7 @@ public class SampleEnemy2 extends SuperEnemy{
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         setTempAllStatus(tempAllStatus);
         beginTransaction();
-        chooseSkillWithinSp(10, 10, 40,10);
+        chooseSkillWithinSp(10, 10, 40, 10);
         return allStatus;
     }
 }

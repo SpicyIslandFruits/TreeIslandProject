@@ -1,20 +1,18 @@
 package com.example.minor.prototype10.PlayerSkill;
 
-/**
- * 消費spのほかに消費mpも書かなければいけないことに注意書き忘れ厳禁
- * すべてバフや状態異常などのスキルです、全部割合にします(固定値だとバランス調整がめんどい)
- */
-public class SampleSkill extends SuperSkill {
-    private static final int id = 0;
-    private static final String name = "SamplePlayerSkill";
-    private static final String skillInfo = "SamplePlayerSkill、攻撃力アップ";
-    private static final int mpConsumption = 20;
+public class SampleSkill2 extends SuperSkill {
+    private static final int id = 1;
+    private static final String name = "SamplePlayerSkill2";
+    private static final String skillInfo = "SamplePlayerSkill、Hp自動回復、Hp吸収、毒状態";
+    private static final int mpConsumption = 70;
     private static final int spConsumption = 50;
 
     @Override
     public int[] skill(int[] tempAllStatus) {
         beginTransaction(tempAllStatus);
-        newPlayerAtk = (int)(playerAtk * 1.1);
+        setPlayerAutoHealing();
+        setPlayerAutoAbsorbing();
+        setEnemyPoison();
         commitTransaction(spConsumption, mpConsumption);
         return newAllStatus;
     }
@@ -39,3 +37,4 @@ public class SampleSkill extends SuperSkill {
         return name;
     }
 }
+

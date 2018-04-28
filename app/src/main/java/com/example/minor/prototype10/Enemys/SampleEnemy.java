@@ -10,7 +10,7 @@ package com.example.minor.prototype10.Enemys;
  * 必ずidも書いておいてください後からどのidがどの敵だったかを確認できます
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
  * enemySkillsは後々マップに情報屋を追加するときにgetする
- * 敵のスキルは
+ * spConsumptionを書かなかった場合スキルが正しく選択されず戦闘アクティビティが動かなくなるので書き忘れ注意
  */
 public class SampleEnemy extends SuperEnemy {
     private static final int id = 1, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;

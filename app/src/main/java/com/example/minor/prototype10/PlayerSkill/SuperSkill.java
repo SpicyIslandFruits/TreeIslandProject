@@ -1,9 +1,15 @@
 package com.example.minor.prototype10.PlayerSkill;
 
+import com.example.minor.prototype10.Models.PlayerInfo;
+
+import io.realm.Realm;
+
 abstract public class SuperSkill {
     protected int playerHp, playerMp, playerSp, playerAtk, playerDf, playerLuk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerMaxSp, playerLevel, weaponAtk, armorDf, enemyMaxSp;
     protected int newPlayerHp, newPlayerMp, newPlayerSp, newPlayerAtk, newPlayerDf, newPlayerLuk, newEnemyHp, newEnemySp, newEnemyAtk, newEnemyDf, newEnemyLuk, newBreakNum, newPlayerMaxSp, newPlayerLevel, newWeaponAtk, newArmorDf, newEnemyMaxSp;
     protected int[] newAllStatus;
+    protected Realm realm;
+    protected PlayerInfo playerInfo;
 
     protected void beginTransaction(int[] tempAllStatus){
         newAllStatus = new int[17];
@@ -44,6 +50,33 @@ abstract public class SuperSkill {
         newAllStatus[14] = newWeaponAtk;
         newAllStatus[15] = newArmorDf;
         newAllStatus[16] = newEnemyMaxSp;
+    }
+
+    protected void setEnemyPoison(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setEnemyPoisonFlag(true);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    protected void setPlayerAutoHealing(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setPlayerAutoHealingFlag(true);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    protected void setPlayerAutoAbsorbing(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        realm.beginTransaction();
+        playerInfo.setPlayerAutoAbsorbingFlag(true);
+        realm.commitTransaction();
+        realm.close();
     }
 
     abstract public int[] skill(int[] tempAllStatus);

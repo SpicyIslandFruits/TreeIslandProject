@@ -51,6 +51,9 @@ public class PlayerInfo extends RealmObject {
     private int lastAffrontEnemy;
     private boolean poisonFlag;
     private boolean bleedingFlag;
+    private boolean enemyPoisonFlag;
+    private boolean playerAutoHealingFlag;
+    private boolean playerAutoAbsorbingFlag;
 
     public String getPlayer() {
         return player;
@@ -378,5 +381,29 @@ public class PlayerInfo extends RealmObject {
 
     public void setBleedingFlag(boolean bleedingFlag) {
         this.bleedingFlag = bleedingFlag;
+    }
+
+    public boolean isEnemyPoisonFlag() {
+        return enemyPoisonFlag;
+    }
+
+    public void setEnemyPoisonFlag(boolean enemyPoisonFlag) {
+        this.enemyPoisonFlag = enemyPoisonFlag;
+    }
+
+    public boolean isPlayerAutoHealingFlag() {
+        return playerAutoHealingFlag;
+    }
+
+    public void setPlayerAutoHealingFlag(boolean playerAutoHealingFlag) {
+        this.playerAutoHealingFlag = playerAutoHealingFlag;
+    }
+
+    public boolean isPlayerAutoAbsorbingFlag() {
+        return playerAutoAbsorbingFlag;
+    }
+
+    public void setPlayerAutoAbsorbingFlag(boolean playerAutoAbsorbingFlag) {
+        this.playerAutoAbsorbingFlag = playerAutoAbsorbingFlag;
     }
 }
