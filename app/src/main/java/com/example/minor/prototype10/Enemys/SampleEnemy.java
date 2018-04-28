@@ -64,7 +64,7 @@ public class SampleEnemy extends SuperEnemy {
     @Override
     protected void skill3(int[] allStatus) {
         beginTransaction();
-        newPlayerHp = playerHp - calculateDamage(enemyAtk);
+        newPlayerHp = playerHp - calculateDamage();
         newBreakNum = calculateBreakNum(breakNum);
         commitTransaction(skill3SpConsumption);
     }
@@ -82,7 +82,7 @@ public class SampleEnemy extends SuperEnemy {
         setTempAllStatus(tempAllStatus);
         beginTransaction();
         //int型にキャストしているため10以上の数字を入れること与えられた数字の比がスキルの優先度の比になる　
-        chooseSkillWithinSp(10, 10, 40, 10);
+        chooseSkillWithinSp(10, skill1SpConsumption, 10, skill2SpConsumption, 40, skill3SpConsumption, 10, skill4SpConsumption);
         return allStatus;
     }
 }

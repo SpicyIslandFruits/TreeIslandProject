@@ -1,6 +1,5 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
@@ -39,15 +37,13 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
 
     protected void savePosition(){
         realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
         abnormalStates = new AbnormalStates();
-        abnormalStates.abnormalEffect();
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                playerInfo = realm.where(PlayerInfo.class).findFirst();
-                playerInfo.setPosition(position);
-            }
-        });
+        abnormalStates.abnormalEffect(realm, playerInfo);
+        realm.beginTransaction();
+        playerInfo.setPosition(position);
+        realm.commitTransaction();
+        realm.close();
     }
 
     public void encounter(int id, double percent){

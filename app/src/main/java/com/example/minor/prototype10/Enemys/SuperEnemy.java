@@ -12,13 +12,13 @@ abstract public class SuperEnemy {
     protected int hp, atk, df;
     protected Realm realm;
     protected PlayerInfo playerInfo;
-    protected int skill1Priority, skill2Priority, skill3Priority, skill4Priority;
-    protected int skill1SpConsumption, skill2SpConsumption, skill3SpConsumption, skill4SpConsumption;
 
     protected void setTempAllStatus(int[] tempAllStatus){
         allStatus = new int[17];
         newAllStatus = new int[17];
         newAllStatus = allStatus = tempAllStatus;
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
     }
 
     protected void beginTransaction(){
@@ -63,21 +63,17 @@ abstract public class SuperEnemy {
     }
 
     protected void poison(){
-        realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         realm.beginTransaction();
         playerInfo.setPoisonFlag(true);
         realm.commitTransaction();
-        realm.close();
     }
 
     protected void bleeding(){
-        realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         realm.beginTransaction();
         playerInfo.setBleedingFlag(true);
         realm.commitTransaction();
-        realm.close();
     }
 
     abstract public int getHp();
@@ -94,9 +90,7 @@ abstract public class SuperEnemy {
 
     //防具の実装方法
     //playerDfの所を((playerDf + weaponDf)/2)にする
-    protected int calculateDamage(int atk){
-        realm = Realm.getDefaultInstance();
-        playerInfo = realm.where(PlayerInfo.class).findFirst();
+    protected int calculateDamage(){
         int enemyLevel = playerInfo.getBaseEnemyLevel()+playerInfo.getAdditionalEnemyLevel();
         damage = (int)(
                 (
@@ -104,7 +98,6 @@ abstract public class SuperEnemy {
                                 * ((double)85 + Math.random() * 15)
                 ) / 100
         );
-        realm.close();
         if (breakNum > 50 && breakNum < 100){
             damage = (int)((double)damage * 0.8);
         }else if(breakNum < 50){
@@ -160,7 +153,7 @@ abstract public class SuperEnemy {
         return num;
     }
 
-    protected void chooseSkillWithinSp(int skill1Priority, int skill2Priority, int skill3Priority, int skill4Priority){
+    protected void chooseSkillWithinSp(int skill1Priority, int skill1SpConsumption, int skill2Priority, int skill2SpConsumption, int skill3Priority, int skill3SpConsumption, int skill4Priority, int skill4SpConsumption){
         boolean isSkill1Available = true, isSkill2Available = true, isSkill3Available = true, isSkill4Available = true;
         while (isSkill1Available || isSkill2Available || isSkill3Available || isSkill4Available) {
             while (isSkill1Available && isSkill2Available && isSkill3Available && isSkill4Available) {

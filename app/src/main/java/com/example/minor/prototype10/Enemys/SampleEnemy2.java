@@ -3,6 +3,7 @@ package com.example.minor.prototype10.Enemys;
 public class SampleEnemy2 extends SuperEnemy{
     private static final int id = 2, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
     private static final String enemySkills = "毒状態にしたり、出血させたりしてきます";
+    private static final int skill1SpConsumption = 40, skill2SpConsumption = 40, skill3SpConsumption = 30, skill4SpConsumption = 30;
 
     @Override
     public String getEnemySkills() {
@@ -51,7 +52,7 @@ public class SampleEnemy2 extends SuperEnemy{
     @Override
     protected void skill3(int[] allStatus) {
         beginTransaction();
-        newPlayerHp = playerHp - calculateDamage(enemyAtk);
+        newPlayerHp = playerHp - calculateDamage();
         newBreakNum = calculateBreakNum(breakNum);
         commitTransaction(30);
     }
@@ -68,7 +69,7 @@ public class SampleEnemy2 extends SuperEnemy{
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         setTempAllStatus(tempAllStatus);
         beginTransaction();
-        chooseSkillWithinSp(10, 10, 40, 10);
+        chooseSkillWithinSp(10,skill1SpConsumption,10, skill2SpConsumption,40, skill3SpConsumption,10, skill4SpConsumption);
         return allStatus;
     }
 }

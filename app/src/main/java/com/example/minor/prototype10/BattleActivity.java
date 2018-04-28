@@ -78,9 +78,14 @@ public class BattleActivity extends AppCompatActivity {
         intent = getIntent();
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
+        //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
         realm.beginTransaction();
         playerInfo.setBattleFlag(true);
         playerInfo.setLastAffrontEnemy(intent.getIntExtra("EnemyId", 0));
+        playerInfo.setAdditionalEnemyLevel(playerInfo.getAdditionalEnemyLevel() + 1);
+        playerInfo.setPlayerAutoAbsorbingFlag(false);
+        playerInfo.setPlayerAutoHealingFlag(false);
+        playerInfo.setEnemyPoisonFlag(false);
         realm.commitTransaction();
         weaponId = playerInfo.getWeaponId();
         weapon = makeData.makeWeaponFromId(weaponId);
@@ -161,7 +166,8 @@ public class BattleActivity extends AppCompatActivity {
         });
         playerSkill1Button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { executeTempBattle(4);
+            public void onClick(View v) {
+                executeTempBattle(4);
             }
         });
         playerSkill2Button.setOnClickListener(new View.OnClickListener() {
@@ -199,13 +205,6 @@ public class BattleActivity extends AppCompatActivity {
                 }
             }
         });
-        //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
-        realm.beginTransaction();
-        playerInfo.setAdditionalEnemyLevel(playerInfo.getAdditionalEnemyLevel() + 1);
-        playerInfo.setPlayerAutoAbsorbingFlag(false);
-        playerInfo.setPlayerAutoHealingFlag(false);
-        playerInfo.setEnemyPoisonFlag(false);
-        realm.commitTransaction();
     }
 
     //どちらかのhpが0以下になったらリザルト画面を表示する処理
@@ -216,14 +215,10 @@ public class BattleActivity extends AppCompatActivity {
         autoSkills();
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                playerInfo = realm.where(PlayerInfo.class).findFirst();
-                playerInfo.setMP(mp);
-                playerInfo.setHP(hp);
-            }
-        });
+        realm.beginTransaction();
+        playerInfo.setMP(mp);
+        playerInfo.setHP(hp);
+        realm.commitTransaction();
         sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
@@ -249,7 +244,7 @@ public class BattleActivity extends AppCompatActivity {
             realm.beginTransaction();
             playerInfo.setBattleFlag(false);
             realm.commitTransaction();
-            finish();
+            finishAndRemoveTask();
         }
     }
 
@@ -257,17 +252,13 @@ public class BattleActivity extends AppCompatActivity {
     private void executeEnemyBehavior(){
         battleText.setText("敵の攻撃！");
         tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
-        tempAllStatus = abnormalStates.battleAbnormalEffect(tempAllStatus);
+        tempAllStatus = abnormalStates.battleAbnormalEffect(tempAllStatus, playerInfo);
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                playerInfo = realm.where(PlayerInfo.class).findFirst();
-                playerInfo.setMP(mp);
-                playerInfo.setHP(hp);
-            }
-        });
+        realm.beginTransaction();
+        playerInfo.setMP(mp);
+        playerInfo.setHP(hp);
+        realm.commitTransaction();
         sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
@@ -293,7 +284,7 @@ public class BattleActivity extends AppCompatActivity {
             realm.beginTransaction();
             playerInfo.setBattleFlag(false);
             realm.commitTransaction();
-            finish();
+            finishAndRemoveTask();
         }
     }
 
@@ -517,5 +508,11 @@ public class BattleActivity extends AppCompatActivity {
         playerSkill2Button.setEnabled(enabled);
         playerSkill3Button.setEnabled(enabled);
         playerSkill4Button.setEnabled(enabled);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
