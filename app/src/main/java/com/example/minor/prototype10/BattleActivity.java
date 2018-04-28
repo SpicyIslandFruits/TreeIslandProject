@@ -132,6 +132,10 @@ public class BattleActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        realm.beginTransaction();
+                        playerInfo.setMP(mp);
+                        playerInfo.setHP(hp);
+                        realm.commitTransaction();
                         battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
                         enableButtons(true);
                         startNewTurn();
@@ -215,10 +219,6 @@ public class BattleActivity extends AppCompatActivity {
         autoSkills();
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
-        realm.beginTransaction();
-        playerInfo.setMP(mp);
-        playerInfo.setHP(hp);
-        realm.commitTransaction();
         sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
@@ -255,10 +255,6 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus = abnormalStates.battleAbnormalEffect(tempAllStatus, playerInfo);
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
-        realm.beginTransaction();
-        playerInfo.setMP(mp);
-        playerInfo.setHP(hp);
-        realm.commitTransaction();
         sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
@@ -513,6 +509,7 @@ public class BattleActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        playerInfos.removeAllChangeListeners();
         realm.close();
     }
 }

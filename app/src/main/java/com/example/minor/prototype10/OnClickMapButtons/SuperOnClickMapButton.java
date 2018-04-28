@@ -35,6 +35,29 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton8 = (ImageButton) main.findViewById(R.id.imageButton8);
     }
 
+    protected void stopAllButtons(){
+        imageButton1.setEnabled(false);
+        imageButton2.setEnabled(false);
+        imageButton3.setEnabled(false);
+        imageButton4.setEnabled(false);
+        imageButton5.setEnabled(false);
+        imageButton6.setEnabled(false);
+        imageButton7.setEnabled(false);
+        imageButton8.setEnabled(false);
+    }
+
+    protected void startAllButtons(){
+        imageButton1.setEnabled(true);
+        imageButton2.setEnabled(true);
+        imageButton3.setEnabled(true);
+        imageButton4.setEnabled(true);
+        imageButton5.setEnabled(true);
+        imageButton6.setEnabled(true);
+        imageButton7.setEnabled(true);
+        imageButton8.setEnabled(true);
+    }
+
+    //マップのクラスでは必ずこのメソッドを呼んでください
     protected void savePosition(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();

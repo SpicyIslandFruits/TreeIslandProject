@@ -18,6 +18,7 @@ public class OnClickInnButton extends SuperOnClickMapButton{
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {mainText.setText("宿泊しました。体力とmpが全回復しました。敵の強さをリセットしました。状態異常を回復しました。");
+                stopAllButtons();
                 realm.beginTransaction();
                 playerInfo.setHP(playerInfo.getFmaxHP());
                 playerInfo.setMP(playerInfo.getFmaxMP());
@@ -25,6 +26,7 @@ public class OnClickInnButton extends SuperOnClickMapButton{
                 playerInfo.setPoisonFlag(false);
                 playerInfo.setBleedingFlag(false);
                 realm.commitTransaction();
+                startAllButtons();
             }
         });
         mainText.setText("ここは宿です");
