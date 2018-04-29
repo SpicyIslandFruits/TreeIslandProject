@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.BattleActivity;
+import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
 
@@ -21,6 +22,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;
     protected int position;
     protected AbnormalStates abnormalStates;
+    protected MakeWeaponRealmObject makeWeaponRealmObject;
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
@@ -69,12 +71,26 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         realm.close();
     }
 
-    public void encounter(int id, double percent){
+    //必ずsavePositionの後に呼んでください
+    protected void changeBaseEnemyLevel(int baseEnemyLevel){
+        realm.beginTransaction();
+        playerInfo.setBaseEnemyLevel(baseEnemyLevel);
+        realm.commitTransaction();
+    }
+
+    protected void encounter(int id, double percent){
         if(Math.random() < percent/100){
             Intent intent = new Intent(mMain, BattleActivity.class);
             intent.putExtra("EnemyId", id);
             mMain.startActivity(intent);
         }
+    }
+
+    protected void obtainWeapon(int id, int percent){
+        makeWeaponRealmObject = new MakeWeaponRealmObject();
+        if(makeWeaponRealmObject.createNewWeapon(id) && Math.random() <= percent){
+            mainText.setText("武器を取得しました");
+        };
     }
 
     abstract public void createMap();

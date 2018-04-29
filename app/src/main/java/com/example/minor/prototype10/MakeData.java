@@ -8,6 +8,7 @@ import com.example.minor.prototype10.Enemys.SampleEnemy;
 import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2Button;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
@@ -49,6 +50,9 @@ public class MakeData {
                 break;
             case 3:
                 onClickMapButton = new OnClickBossRoomButton();
+                break;
+            case 4:
+                onClickMapButton = new OnClickDungeon2Button();
                 break;
         }
         return onClickMapButton;

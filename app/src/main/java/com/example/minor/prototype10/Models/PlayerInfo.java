@@ -11,6 +11,7 @@ import io.realm.annotations.PrimaryKey;
 public class PlayerInfo extends RealmObject {
     @PrimaryKey
     private String player;
+
     private int playerLevel;
     private int experiencePointSum;
     private int position;

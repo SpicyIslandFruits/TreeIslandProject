@@ -7,14 +7,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickBossRoomButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 import io.realm.OrderedCollectionChangeSet;
@@ -73,7 +68,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void gameStart() {
-        realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         playerInfos = realm.where(PlayerInfo.class).findAll();
         playerInfos.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<PlayerInfo>>() {

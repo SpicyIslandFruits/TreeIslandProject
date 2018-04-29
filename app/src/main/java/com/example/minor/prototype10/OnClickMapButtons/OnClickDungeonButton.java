@@ -2,14 +2,6 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
 
-import com.example.minor.prototype10.AbnormalStates;
-import com.example.minor.prototype10.MakeWeaponRealmObject;
-import com.example.minor.prototype10.Models.WeaponId;
-
-import io.realm.OrderedCollectionChangeSet;
-import io.realm.OrderedRealmCollectionChangeListener;
-import io.realm.RealmResults;
-
 //マップの階層が深くなる時はbaseEnemyLevelを編集してください
 //onClickListenerを登録してください
 //これからテキストを三つに増やす
@@ -24,17 +16,15 @@ public class OnClickDungeonButton extends SuperOnClickMapButton{
         createMap();
     }
     public void createMap(){
-        OnClickBossRoomButton onClickBossRoomButton = new OnClickBossRoomButton();
-        imageButton1.setOnClickListener(onClickBossRoomButton);
+        OnClickDungeon2Button onClickDungeon2Button = new OnClickDungeon2Button();
+        imageButton1.setOnClickListener(onClickDungeon2Button);
         OnClickTownButton onClickTownButton = new OnClickTownButton();
         imageButton2.setOnClickListener(onClickTownButton);
         mainText.setText("ここはダンジョンです");
         position = 2;
         savePosition();
+        changeBaseEnemyLevel(50);
         //一時的にここに書いているが、実際はスーパークラスにメソッドとして一定確率で武器を取得するメソッドを書きどこからでも呼び出せるようにする
-        MakeWeaponRealmObject makeWeaponRealmObject = new MakeWeaponRealmObject();
-        if(makeWeaponRealmObject.createNewWeapon(1)){
-            mainText.setText("武器を取得しました");
-        };
+        obtainWeapon(1, 100);
     }
 }

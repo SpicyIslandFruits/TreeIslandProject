@@ -1,10 +1,6 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
-import android.content.Intent;
 import android.view.View;
-
-import com.example.minor.prototype10.AbnormalStates;
-import com.example.minor.prototype10.BattleActivity;
 
 //ダンジョンのコメント参照
 public class OnClickBossRoomButton extends SuperOnClickMapButton{
@@ -21,8 +17,8 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton{
                 encounter(id, 100);
             }
         });
-        OnClickDungeonButton onClickDungeonButton = new OnClickDungeonButton();
-        imageButton2.setOnClickListener(onClickDungeonButton);
+        OnClickDungeon2Button onClickDungeon2Button = new OnClickDungeon2Button();
+        imageButton2.setOnClickListener(onClickDungeon2Button);
         mainText.setText("ここはボス部屋です");
         position = 3;
         savePosition();
