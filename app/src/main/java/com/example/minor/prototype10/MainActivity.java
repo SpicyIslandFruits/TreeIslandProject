@@ -125,8 +125,9 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setATK(10);
             playerInfo.setmATK(120);
             playerInfo.setDF(100);
-            playerInfo.setLUK(100);
-            playerInfo.setfLUK(100);
+            playerInfo.setLUK(10);
+            //fLukはデフォで1/12*100程度の値をセット
+            playerInfo.setfLUK(10);
             playerInfo.setWeaponId(0);
             //状態異常のセット
             playerInfo.setBleedingFlag(true);
@@ -159,7 +160,6 @@ public class MainActivity extends AppCompatActivity{
             realm.cancelTransaction();
         }
     }
-
 
     protected void onDestroy(){
         super.onDestroy();

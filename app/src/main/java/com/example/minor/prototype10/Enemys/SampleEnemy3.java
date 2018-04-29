@@ -13,7 +13,7 @@ import com.example.minor.prototype10.BattleActivity;
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
  */
 public class SampleEnemy3 extends SuperEnemy {
-    private static final int id = 0, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
+    private static final int id = 0, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 10;
     private static final String enemySkills = "通常攻撃のみ行います";
 
     //HpとAtkとDfについては必ずcalculateメソッドを使ってからreturnしてください

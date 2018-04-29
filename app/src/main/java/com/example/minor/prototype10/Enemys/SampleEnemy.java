@@ -11,9 +11,10 @@ package com.example.minor.prototype10.Enemys;
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
  * enemySkillsは後々マップに情報屋を追加するときにgetする
  * spConsumptionを書かなかった場合スキルが正しく選択されず戦闘アクティビティが動かなくなるので書き忘れ注意
+ * Lukの値はそのままクリティカルの出る確率なので1/12*100程度の値に設定する
  */
 public class SampleEnemy extends SuperEnemy {
-    private static final int id = 1, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 100;
+    private static final int id = 1, baseHp = 120, sp = 100, baseAtk = 120, baseDf = 120, luk = 10;
     private static final String enemySkills = "通常攻撃、攻撃力10パーセントアップ、体力15パーセント回復";
     private static final int skill1SpConsumption = 50, skill2SpConsumption = 50, skill3SpConsumption = 30, skill4SpConsumption = 30;
 

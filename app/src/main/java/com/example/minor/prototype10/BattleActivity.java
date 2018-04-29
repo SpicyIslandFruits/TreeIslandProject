@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
@@ -211,19 +212,28 @@ public class BattleActivity extends AppCompatActivity {
         });
     }
 
+    private void makeToast(){
+    }
+
     //どちらかのhpが0以下になったらリザルト画面を表示する処理
     //一回敵を倒すごとにどれだけ敵のレベルが上がるかどうかをsetAdditionalEnemyLevelの引数に代入してください
     //ここに状態異常の効果の発動を書いてみました
     private void executePlayerBehavior(){
+        int damageSum = enemyHp - tempAllStatus[6];
         battleText.setText("主人公の攻撃！");
         autoSkills();
+        if(Math.random()*100 < luk){
+            damageSum = (int)((enemyHp - tempAllStatus[6]) * 1.5);
+            Toast toast = Toast.makeText(this, "プレイヤーのクリティカルヒット！", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
         sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
         luk = tempAllStatus[5];
-        enemyHp = tempAllStatus[6];
+        enemyHp = enemyHp - damageSum;
         enemySp = tempAllStatus[7];
         enemyAtk = tempAllStatus[8];
         enemyDf = tempAllStatus[9];
@@ -253,7 +263,13 @@ public class BattleActivity extends AppCompatActivity {
         battleText.setText("敵の攻撃！");
         tempAllStatus = enemy.setEnemyBehavior(tempAllStatus);
         tempAllStatus = abnormalStates.battleAbnormalEffect(tempAllStatus, playerInfo);
-        hp = tempAllStatus[0];
+        int damageSum = hp - tempAllStatus[0];
+        if(Math.random()*100 < enemyLuk){
+            damageSum = (int)((hp - tempAllStatus[0]) * 1.5);
+            Toast toast = Toast.makeText(this, "敵のクリティカルヒット！", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        hp = hp - damageSum;
         mp = tempAllStatus[1];
         sp = tempAllStatus[12];
         atk = tempAllStatus[3];

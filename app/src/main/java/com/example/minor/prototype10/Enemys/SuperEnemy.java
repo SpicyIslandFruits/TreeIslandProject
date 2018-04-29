@@ -1,6 +1,11 @@
 package com.example.minor.prototype10.Enemys;
 
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
 
@@ -12,6 +17,7 @@ abstract public class SuperEnemy {
     protected int hp, atk, df;
     protected Realm realm;
     protected PlayerInfo playerInfo;
+    protected AppCompatActivity mBattleActivity;
 
     protected void setTempAllStatus(int[] tempAllStatus){
         allStatus = new int[17];
