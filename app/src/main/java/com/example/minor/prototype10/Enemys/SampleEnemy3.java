@@ -69,6 +69,7 @@ public class SampleEnemy3 extends SuperEnemy {
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         setTempAllStatus(tempAllStatus);
         beginTransaction();
+        chooseSkillWithinSp(100, 30, 0, 100, 0, 100, 0, 100);
         return allStatus;
     }
 }
