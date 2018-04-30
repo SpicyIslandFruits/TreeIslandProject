@@ -3,8 +3,11 @@ package com.example.minor.prototype10.OnClickMapButtons;
 import android.view.View;
 
 import com.example.minor.prototype10.AbnormalStates;
+import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.WeaponId;
+
+import java.util.logging.Handler;
 
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollectionChangeListener;
@@ -26,9 +29,17 @@ import io.realm.RealmResults;
 public class OnClickDungeonButton extends SuperOnClickMapButton{
     @Override
     public void onClick(View v) {
+        stopAllButtons();
         createMap();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startAllButtons();
+            }
+        }, 1000);
     }
     public void createMap(){
+        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         position = 2;
         savePosition();
         OnClickBossRoomButton onClickBossRoomButton = new OnClickBossRoomButton();

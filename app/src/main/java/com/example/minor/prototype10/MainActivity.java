@@ -1,8 +1,13 @@
 package com.example.minor.prototype10;
 
+import android.app.usage.UsageEvents;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity{
     private MakeWeaponRealmObject makeWeaponRealmObject;
     private MakeArmorRealmObject makeArmorRealmObject;
     private TextView bleedingText, poisonText;
+    public static SoundPool soundPool;
+    public static int sampleSound1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,16 @@ public class MainActivity extends AppCompatActivity{
         makeData = new MakeData();
         makeWeaponRealmObject = new MakeWeaponRealmObject();
         makeArmorRealmObject = new MakeArmorRealmObject();
+        AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();
+        soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).setMaxStreams(1).build();
+        sampleSound1 = soundPool.load(this, R.raw.sample_bgm1, 1);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                Log.d("debug", "sampleId="+sampleId);
+                Log.d("debug", "status="+status);
+            }
+        });
         createSaveData();
         gameStart();
     }
