@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
     private MakeArmorRealmObject makeArmorRealmObject;
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
-    public static int sampleSound1;
+    public static int sampleSound1, cureSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity{
         AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();
         soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).setMaxStreams(1).build();
         sampleSound1 = soundPool.load(this, R.raw.sample_bgm1, 1);
+        cureSound = soundPool.load(this, R.raw.inn3, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
