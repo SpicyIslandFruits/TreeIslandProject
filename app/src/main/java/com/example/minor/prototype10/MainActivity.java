@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
     private MakeArmorRealmObject makeArmorRealmObject;
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
-    public static int sampleSound1, cureSound;
+    public static int sampleSound1, cureSound, battleStartSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +73,10 @@ public class MainActivity extends AppCompatActivity{
         makeArmorRealmObject = new MakeArmorRealmObject();
         AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();
         soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).setMaxStreams(1).build();
+        //soundpoolのロードは非同期処理なのでここですべて行う、ロードに時間がかかる為ロードしてすぐに再生してはいけない
         sampleSound1 = soundPool.load(this, R.raw.sample_bgm1, 1);
         cureSound = soundPool.load(this, R.raw.inn3, 1);
+        battleStartSound = soundPool.load(this, R.raw.sample_battle_start, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity{
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         playerInfos = realm.where(PlayerInfo.class).findAll();
+        //ここは後から編集します
         playerInfos.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<PlayerInfo>>() {
             @Override
             public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {

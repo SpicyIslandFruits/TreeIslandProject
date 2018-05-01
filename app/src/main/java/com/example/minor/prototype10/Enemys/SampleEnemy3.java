@@ -1,7 +1,5 @@
 package com.example.minor.prototype10.Enemys;
 
-import com.example.minor.prototype10.BattleActivity;
-
 /**
  * 最初にクラスのメンバとして敵のステータスを書いてください
  * 次にskillメソッドにスキルの中身を書き、setEnemyBehaviorメソッドに行動パターンを書いてください

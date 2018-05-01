@@ -28,7 +28,6 @@ import io.realm.Realm;
  * 武器防具は重複不可、同一武器を拾った場合は捨てたり換金したり
  * アイテムもPrimaryKeyが名前になっているのでこのままだと重複不可あとで何とかする
  */
-
 public class MakeData {
     private static final int playerBaseStatus = 120;
     private Realm realm;
