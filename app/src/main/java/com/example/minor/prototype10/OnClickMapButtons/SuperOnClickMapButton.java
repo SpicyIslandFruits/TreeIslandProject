@@ -1,7 +1,11 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -11,6 +15,8 @@ import com.example.minor.prototype10.BattleActivity;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
+
+import java.io.IOException;
 
 import io.realm.Realm;
 
@@ -23,6 +29,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected static TextView imageButton1Text, imageButton2Text, imageButton3Text, imageButton4Text, imageButton5Text, imageButton6Text, imageButton7Text, imageButton8Text;
     protected int position;
     protected AbnormalStates abnormalStates;
+    protected MediaPlayer mediaPlayer;
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
@@ -44,6 +51,8 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6Text = (TextView) main.findViewById(R.id.image_button6_text);
         imageButton7Text = (TextView) main.findViewById(R.id.image_button7_text);
         imageButton8Text = (TextView) main.findViewById(R.id.image_button8_text);
+
+
     }
 
     protected void resetAllButtons(){
@@ -134,4 +143,48 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
 
     abstract public void createMap();
     abstract public void onClick(View v);
+
+    protected boolean audioSetup(MediaPlayer mMediaPlayer){
+        boolean fileCheck = false;
+
+        // rawにファイルがある場合
+        mediaPlayer = mMediaPlayer;
+        // 音量調整を端末のボタンに任せる
+        mMain.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        fileCheck = true;
+
+        return fileCheck;
+    }
+
+    protected void audioPlay() {
+        // 繰り返し再生する場合
+        mediaPlayer.stop();
+        mediaPlayer.reset();
+        // リソースの解放
+        mediaPlayer.release();
+
+        // 再生する
+        mediaPlayer.start();
+
+        // 終了を検知するリスナー
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Log.d("debug","end of audio");
+                audioStop();
+            }
+        });
+    }
+
+    protected void audioStop() {
+        // 再生終了
+        mediaPlayer.stop();
+        // リセット
+        mediaPlayer.reset();
+        // リソースの解放
+        mediaPlayer.release();
+
+        mediaPlayer = null;
+    }
 }
+

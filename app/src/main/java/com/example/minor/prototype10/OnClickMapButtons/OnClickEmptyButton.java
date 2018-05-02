@@ -5,6 +5,7 @@ import android.view.View;
 import com.example.minor.prototype10.MainActivity;
 
 /**
+ * 作成中のマップで未実装のマップを使う必要が出た場合はとりあえずここにつなげてください
  * positionの定義savePositionを一番最初に絶対実行せなあかん
  * resetAllButtonsを一番最初に絶対実行せなあかん
  * mainText.setTextを変える
@@ -15,6 +16,7 @@ import com.example.minor.prototype10.MainActivity;
  * imageButton.setOnClickListener(onClickMapButton);
  * imageButtonText.setText("");
  * をやる
+ * makeDataにswitchを追加
  * encounter, obtainWeapon, changeBaseEnemyLevel, changeAdditionalEnemyLevel
  * マップの階層が深くなる時はbaseEnemyLevelを編集してください
  * 敵とのエンカウントをさせたい場合はencounterメソッドを実行してください、エンカウントする敵のidと確率を引数に入れてください
@@ -27,7 +29,7 @@ public class OnClickEmptyButton extends SuperOnClickMapButton {
         position = 7;
         savePosition();
         resetAllButtons();
-        mainText.setText("未実装です.to touge");
+        mainText.setText("未実装です。 orz...");
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         OnClickPassButton onClickPassButton = new OnClickPassButton();
         imageButton8.setOnClickListener(onClickPassButton);

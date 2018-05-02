@@ -563,6 +563,7 @@ public class BattleActivity extends AppCompatActivity {
                 return;
             }
         }
+
         else{
             // 繰り返し再生する場合
             mediaPlayer.stop();
@@ -580,6 +581,7 @@ public class BattleActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 Log.d("debug","end of audio");
                 audioStop();
+                mediaPlayer.start();
             }
         });
     }

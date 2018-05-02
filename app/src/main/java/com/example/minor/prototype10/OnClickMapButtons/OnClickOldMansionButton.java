@@ -11,12 +11,13 @@ public class OnClickOldMansionButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         position = 6;
         savePosition();
-        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-        imageButton1.setOnClickListener(onClickEmptyButton);
+        OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
+        imageButton1.setOnClickListener(onClickOldMansion1FButton);
         imageButton1Text.setText("中に入る");
         OnClickPassButton onClickPassButton = new OnClickPassButton();
         imageButton2.setOnClickListener(onClickPassButton);
         imageButton2Text.setText("やめる");
+        mainText.setText("そこには大きな屋敷があった。\nいかにも一昔前の別荘だと分かる趣のある古い建物だ。\n不思議なことに、ここは自分以外には見つけられない、そんな確信があった。");
     }
 
     @Override

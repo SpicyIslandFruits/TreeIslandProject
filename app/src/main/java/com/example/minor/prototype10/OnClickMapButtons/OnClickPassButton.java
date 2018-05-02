@@ -51,7 +51,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
                 mainText.setText("もうすぐ日が沈む。");
                 break;
             case 10:
-                mainText.setText("ユグドラシルがハッキリと見える...この世界を体現する樹だ。");
+                mainText.setText("ユグドラシルがはっきりと見える...この世界を体現する樹だ。");
                 break;
             case 11:
                 mainText.setText("人々はユグドラシルの下で暮らしている。");

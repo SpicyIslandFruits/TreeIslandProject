@@ -10,6 +10,7 @@ import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansionButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
@@ -64,6 +65,9 @@ public class MakeData {
                 break;
             case 7:
                 onClickMapButton = new OnClickEmptyButton();
+                break;
+            case 8:
+                onClickMapButton = new OnClickOldMansion1FButton();
                 break;
         }
         return onClickMapButton;
