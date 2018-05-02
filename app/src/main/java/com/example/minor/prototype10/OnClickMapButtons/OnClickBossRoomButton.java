@@ -21,6 +21,7 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton{
         }, 1000);
     }
     public void createMap(){
+        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,8 +30,8 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton{
                 encounter(id, 100);
             }
         });
-        OnClickDungeonButton onClickDungeonButton = new OnClickDungeonButton();
-        imageButton2.setOnClickListener(onClickDungeonButton);
+        OnClickDungeon2FButton onClickDungeon2FButton = new OnClickDungeon2FButton();
+        imageButton2.setOnClickListener(onClickDungeon2FButton);
         mainText.setText("ここはボス部屋です");
         position = 3;
         savePosition();

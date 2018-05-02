@@ -39,11 +39,12 @@ public class OnClickDungeonButton extends SuperOnClickMapButton{
         }, 1000);
     }
     public void createMap(){
+        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         position = 2;
         savePosition();
-        OnClickBossRoomButton onClickBossRoomButton = new OnClickBossRoomButton();
-        imageButton1.setOnClickListener(onClickBossRoomButton);
+        OnClickDungeon2FButton onClickDungeon2FButton = new OnClickDungeon2FButton();
+        imageButton1.setOnClickListener(onClickDungeon2FButton);
         OnClickTownButton onClickTownButton = new OnClickTownButton();
         imageButton2.setOnClickListener(onClickTownButton);
         mainText.setText("ここはダンジョンです");

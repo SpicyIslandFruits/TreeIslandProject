@@ -20,6 +20,7 @@ public class OnClickTownButton extends SuperOnClickMapButton{
         }, 1000);
     }
     public void createMap(){
+        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         OnClickDungeonButton onClickDungeonButton = new OnClickDungeonButton();
         imageButton1.setOnClickListener(onClickDungeonButton);

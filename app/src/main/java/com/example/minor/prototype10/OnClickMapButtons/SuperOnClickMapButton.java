@@ -20,6 +20,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected static AppCompatActivity mMain;
     protected static TextView mainText, bleedingText, poisonText;
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;
+    protected static TextView imageButton1Text, imageButton2Text, imageButton3Text, imageButton4Text, imageButton5Text, imageButton6Text, imageButton7Text, imageButton8Text;
     protected int position;
     protected AbnormalStates abnormalStates;
 
@@ -34,6 +35,37 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6 = (ImageButton) main.findViewById(R.id.imageButton6);
         imageButton7 = (ImageButton) main.findViewById(R.id.imageButton7);
         imageButton8 = (ImageButton) main.findViewById(R.id.imageButton8);
+
+        imageButton1Text = (TextView) main.findViewById(R.id.image_button1_text);
+        imageButton2Text = (TextView) main.findViewById(R.id.image_button2_text);
+        imageButton3Text = (TextView) main.findViewById(R.id.image_button3_text);
+        imageButton4Text = (TextView) main.findViewById(R.id.image_button4_text);
+        imageButton5Text = (TextView) main.findViewById(R.id.image_button5_text);
+        imageButton6Text = (TextView) main.findViewById(R.id.image_button6_text);
+        imageButton7Text = (TextView) main.findViewById(R.id.image_button7_text);
+        imageButton8Text = (TextView) main.findViewById(R.id.image_button8_text);
+    }
+
+    protected void resetAllButtons(){
+        imageButton1.setOnClickListener(null);
+        imageButton2.setOnClickListener(null);
+        imageButton3.setOnClickListener(null);
+        imageButton4.setOnClickListener(null);
+        imageButton5.setOnClickListener(null);
+        imageButton6.setOnClickListener(null);
+        imageButton7.setOnClickListener(null);
+        imageButton8.setOnClickListener(null);
+
+        imageButton1Text.setText("");
+        imageButton2Text.setText("");
+        imageButton3Text.setText("");
+        imageButton4Text.setText("");
+        imageButton5Text.setText("");
+        imageButton6Text.setText("");
+        imageButton7Text.setText("");
+        imageButton8Text.setText("");
+
+        mainText.setText("");
     }
 
     protected void obtainWeapon(int weaponId, int percent){
@@ -83,6 +115,12 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected void changeBaseEnemyLevel(int baseEnemyLevel){
         realm.beginTransaction();
         playerInfo.setBaseEnemyLevel(baseEnemyLevel);
+        realm.commitTransaction();
+    }
+
+    protected void changeAdditionalEnemyLevel(int additionalEnemyLevel){
+        realm.beginTransaction();
+        playerInfo.setAdditionalEnemyLevel(additionalEnemyLevel);
         realm.commitTransaction();
     }
 

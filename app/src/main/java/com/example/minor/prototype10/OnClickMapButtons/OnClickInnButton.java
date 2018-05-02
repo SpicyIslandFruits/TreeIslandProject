@@ -21,6 +21,7 @@ public class OnClickInnButton extends SuperOnClickMapButton{
         }, 1000);
     }
     public void createMap(){
+        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         OnClickTownButton onClickTownButton = new OnClickTownButton();
         imageButton1.setOnClickListener(onClickTownButton);

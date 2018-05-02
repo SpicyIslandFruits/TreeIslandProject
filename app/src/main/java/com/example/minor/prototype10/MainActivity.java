@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void gameStart() {
-        realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         playerInfos = realm.where(PlayerInfo.class).findAll();
         //ここは後から編集します
