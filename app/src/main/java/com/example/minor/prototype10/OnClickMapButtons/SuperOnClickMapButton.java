@@ -51,8 +51,6 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6Text = (TextView) main.findViewById(R.id.image_button6_text);
         imageButton7Text = (TextView) main.findViewById(R.id.image_button7_text);
         imageButton8Text = (TextView) main.findViewById(R.id.image_button8_text);
-
-
     }
 
     protected void resetAllButtons(){

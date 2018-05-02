@@ -15,9 +15,38 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         savePosition();
+        OnClickEmptyButton onClickEmptyButton1 = new OnClickEmptyButton();
+        imageButton1.setOnClickListener(onClickEmptyButton1);
+        imageButton1Text.setText("ダンジョン1");
+
+        OnClickEmptyButton onClickEmptyButton2 = new OnClickEmptyButton();
+        imageButton2.setOnClickListener(onClickEmptyButton2);
+        imageButton2Text.setText("ダンジョン2");
+
+        OnClickEmptyButton onClickEmptyButton3 = new OnClickEmptyButton();
+        imageButton3.setOnClickListener(onClickEmptyButton3);
+        imageButton3Text.setText("ダンジョン3");
+
+        OnClickEmptyButton onClickEmptyButton4 = new OnClickEmptyButton();
+        imageButton4.setOnClickListener(onClickEmptyButton4);
+        imageButton4Text.setText("ダンジョン4");
+
+        OnClickEmptyButton onClickEmptyButton5 = new OnClickEmptyButton();
+        imageButton5.setOnClickListener(onClickEmptyButton5);
+        imageButton5Text.setText("ダンジョン5");
+
+        OnClickEmptyButton onClickEmptyButton6 = new OnClickEmptyButton();
+        imageButton6.setOnClickListener(onClickEmptyButton6);
+        imageButton6Text.setText("ダンジョン6");
+
         OnClickOldMansionButton onClickOldMansionButton = new OnClickOldMansionButton();
         imageButton7.setOnClickListener(onClickOldMansionButton);
         imageButton7Text.setText("古びた屋敷");
+
+        OnClickEmptyButton onClickEmptyButton8 = new OnClickEmptyButton();
+        imageButton8.setOnClickListener(onClickEmptyButton8);
+        imageButton8Text.setText("街の門");
+
         changeBaseEnemyLevel(0);
         changeAdditionalEnemyLevel(0);
         int textNum;
