@@ -52,7 +52,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton7Text = (TextView) main.findViewById(R.id.image_button7_text);
         imageButton8Text = (TextView) main.findViewById(R.id.image_button8_text);
 
-
+        mediaPlayer = new MediaPlayer();
     }
 
     protected void resetAllButtons(){
@@ -157,12 +157,6 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     }
 
     protected void audioPlay() {
-        // 繰り返し再生する場合
-        mediaPlayer.stop();
-        mediaPlayer.reset();
-        // リソースの解放
-        mediaPlayer.release();
-
         // 再生する
         mediaPlayer.start();
 
