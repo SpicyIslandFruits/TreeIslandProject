@@ -150,6 +150,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         // rawにファイルがある場合
         mediaPlayer = mMediaPlayer;
         // 音量調整を端末のボタンに任せる
+        mediaPlayer.setLooping(true);
         mMain.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         fileCheck = true;
 
@@ -159,15 +160,6 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected void audioPlay() {
         // 再生する
         mediaPlayer.start();
-
-        // 終了を検知するリスナー
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Log.d("debug","end of audio");
-                audioStop();
-            }
-        });
     }
 
     protected void audioStop() {
