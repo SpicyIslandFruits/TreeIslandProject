@@ -1,7 +1,9 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.media.MediaPlayer;
 import android.view.View;
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
     @Override
@@ -10,6 +12,9 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         resetAllButtons();
         position = 8;
         savePosition();
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
+        audioSetup(mediaPlayer);
+        audioPlay();
         OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
         imageButton1.setOnClickListener(onClickEmptyButton);
         imageButton1Text.setText("キッチン");
