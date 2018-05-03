@@ -15,8 +15,8 @@ public class OnClickOldMansionButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(onClickOldMansion1FButton);
         imageButton1Text.setText("中に入る");
         OnClickPassButton onClickPassButton = new OnClickPassButton();
-        imageButton2.setOnClickListener(onClickPassButton);
-        imageButton2Text.setText("やめる");
+        imageButton8.setOnClickListener(onClickPassButton);
+        imageButton8Text.setText("やめる");
         mainText.setText("そこには大きな屋敷があった。\nいかにも一昔前の別荘だと分かる趣のある古い建物だ。\n不思議なことに、ここは自分以外には見つけられない、そんな確信があった。");
     }
 
