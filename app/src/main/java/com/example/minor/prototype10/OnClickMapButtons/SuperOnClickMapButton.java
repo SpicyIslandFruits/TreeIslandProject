@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.BattleActivity;
+import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
@@ -19,6 +20,8 @@ import com.example.minor.prototype10.R;
 import java.io.IOException;
 
 import io.realm.Realm;
+
+import static com.example.minor.prototype10.MainActivity.mediaPlayer;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
@@ -29,7 +32,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected static TextView imageButton1Text, imageButton2Text, imageButton3Text, imageButton4Text, imageButton5Text, imageButton6Text, imageButton7Text, imageButton8Text;
     protected int position;
     protected AbnormalStates abnormalStates;
-    protected static MediaPlayer mediaPlayer;
+    protected MediaPlayer mediaPlayer;
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
@@ -52,7 +55,10 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton7Text = (TextView) main.findViewById(R.id.image_button7_text);
         imageButton8Text = (TextView) main.findViewById(R.id.image_button8_text);
 
-        mediaPlayer = new MediaPlayer();
+        makeBgm();
+        MainActivity.mediaPlayer.setLooping(true);
+        mMain.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        MainActivity.mediaPlayer.start();
     }
 
     protected void resetAllButtons(){
@@ -144,33 +150,44 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     abstract public void createMap();
     abstract public void onClick(View v);
 
-    protected boolean audioSetup(MediaPlayer mMediaPlayer){
-        boolean fileCheck = false;
-
-        // rawにファイルがある場合
-        mediaPlayer = mMediaPlayer;
-        // 音量調整を端末のボタンに任せる
-        mediaPlayer.setLooping(true);
+    protected void audioSetup(){
+        MainActivity.mediaPlayer.setLooping(true);
         mMain.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        fileCheck = true;
-
-        return fileCheck;
     }
 
-    protected void audioPlay() {
-        // 再生する
-        mediaPlayer.start();
+    protected void audioPlay(MediaPlayer mediaPlayer, int bgmId) {
+        if(playerInfo.getNowPlayingBgm() != bgmId) {
+            realm.beginTransaction();
+            playerInfo.setNowPlayingBgm(bgmId);
+            realm.commitTransaction();
+            audioStop();
+            MainActivity.mediaPlayer = mediaPlayer;
+            audioSetup();
+            MainActivity.mediaPlayer.start();
+        }else {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     protected void audioStop() {
-        // 再生終了
-        mediaPlayer.stop();
-        // リセット
-        mediaPlayer.reset();
-        // リソースの解放
-        mediaPlayer.release();
+        MainActivity.mediaPlayer.stop();
+        MainActivity.mediaPlayer.reset();
+        MainActivity.mediaPlayer.release();
+        MainActivity.mediaPlayer = null;
+    }
 
-        mediaPlayer = null;
+    protected void makeBgm(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        int bgmId = playerInfo.getNowPlayingBgm();
+        switch (bgmId){
+            case 0:
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
+                break;
+        }
     }
 }
 

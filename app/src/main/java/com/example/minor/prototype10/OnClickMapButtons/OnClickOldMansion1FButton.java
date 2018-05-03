@@ -12,9 +12,9 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         resetAllButtons();
         position = 8;
         savePosition();
+        int bgmId = 0;
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
-        audioSetup(mediaPlayer);
-        audioPlay();
+        audioPlay(mediaPlayer, bgmId);
         OnClickKitchenButton onClickKitchenButton = new OnClickKitchenButton();
         imageButton1.setOnClickListener(onClickKitchenButton);
         imageButton1Text.setText("台所");

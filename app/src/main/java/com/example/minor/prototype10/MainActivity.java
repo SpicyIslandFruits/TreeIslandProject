@@ -2,6 +2,7 @@ package com.example.minor.prototype10;
 
 import android.content.Intent;
 import android.media.AudioAttributes;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity{
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
     public static int sampleSound1, oldMansionWalkingSound, cureSound, battleStartSound;
+    public static MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

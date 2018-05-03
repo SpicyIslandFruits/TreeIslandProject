@@ -9,12 +9,13 @@ public class OnClickBathButton extends SuperOnClickMapButton {
         position = 10;
         savePosition();
         resetAllButtons();
-        mainText.setText("浴室には余分なスペースはほとんどないのに、なぜか窮屈な感じはしなかった。天井が高いのと、大きめの窓がついているせいかもしれない...");
+        mainText.setText("浴室には余分なスペースはほとんどないが、なぜか窮屈な感じはしなかった。天井が高く、大きめの窓がついているせいかもしれない...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.mediaPlayer.pause();
                 mainText.setText("入浴中・・・");
                 MainActivity.soundPool.play(MainActivity.cureSound, 1.0f, 1.0f, 1, 0, 1);
                 stopAllButtons();
@@ -25,6 +26,7 @@ public class OnClickBathButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        MainActivity.mediaPlayer.start();
                         mainText.setText("入浴しました。状態異常が回復しました。");
                         startAllButtons();
                     }

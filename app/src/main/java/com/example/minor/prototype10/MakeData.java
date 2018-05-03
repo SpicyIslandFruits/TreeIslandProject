@@ -9,6 +9,7 @@ import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBathButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBedroomButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
@@ -16,6 +17,9 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansionButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickRooftopButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickStudyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickWarehouseButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
@@ -82,16 +86,16 @@ public class MakeData {
                 onClickMapButton = new OnClickOldMansion2FButton();
                 break;
             case 12:
-                onClickMapButton = new OnClickOldMansion2FButton();
+                onClickMapButton = new OnClickRooftopButton();
                 break;
             case 13:
-                onClickMapButton = new OnClickOldMansion2FButton();
+                onClickMapButton = new OnClickBedroomButton();
                 break;
             case 14:
-                onClickMapButton = new OnClickOldMansion2FButton();
+                onClickMapButton = new OnClickWarehouseButton();
                 break;
             case 15:
-                onClickMapButton = new OnClickOldMansion2FButton();
+                onClickMapButton = new OnClickStudyButton();
                 break;
 
         }
