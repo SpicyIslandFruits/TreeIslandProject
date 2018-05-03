@@ -10,7 +10,8 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         position = 11;
         savePosition();
         resetAllButtons();
-        mainText.setText("部屋の中は真っ暗だ。\n窓には重厚なカーテンがひかれ、室内に明かりはついていない。\nカーテンの隙間から僅かに光の筋がもれていたが、かえって暗闇を際立たせるだけだった。");
+        MainActivity.mediaPlayer.start();
+        mainText.setText("窓には重厚なカーテンがひかれ、室内に明かりはついていない。\nカーテンの隙間から僅かに光の筋がもれていたが、かえって暗闇を際立たせるだけだった。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
         imageButton1.setOnClickListener(onClickEmptyButton);

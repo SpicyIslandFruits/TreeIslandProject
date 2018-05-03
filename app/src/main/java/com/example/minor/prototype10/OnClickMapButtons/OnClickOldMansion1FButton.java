@@ -20,7 +20,7 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         imageButton1Text.setText("台所");
         OnClickBathButton onClickBathButton = new OnClickBathButton();
         imageButton2.setOnClickListener(onClickBathButton);
-        imageButton2Text.setText("風呂場");
+        imageButton2Text.setText("浴室");
         OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
         imageButton3.setOnClickListener(onClickOldMansion2FButton);
         imageButton3Text.setText("2階へ上がる");

@@ -206,14 +206,14 @@ public class BattleActivity extends AppCompatActivity {
             @Override
             public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {
                 if(playerInfo.isBleedingFlag()){
-                    battleBleedingText.setText("出血しています");
+                    battleBleedingText.setText("血");
                 }else {
-                    battleBleedingText.setText("健康です");
+                    battleBleedingText.setText("");
                 };
                 if(playerInfo.isPoisonFlag()){
-                    battlePoisonText.setText("毒状態です");
+                    battlePoisonText.setText("毒");
                 }else{
-                    battlePoisonText.setText("健康です");
+                    battlePoisonText.setText("");
                 }
             }
         });

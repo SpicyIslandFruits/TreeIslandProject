@@ -9,15 +9,16 @@ public class OnClickBathButton extends SuperOnClickMapButton {
         position = 10;
         savePosition();
         resetAllButtons();
-        mainText.setText("浴室には余分なスペースはほとんどないが、なぜか窮屈な感じはしなかった。天井が高く、大きめの窓がついているせいかもしれない...");
+        mainText.setText("浴室には余分なスペースはほとんどないが、なぜか窮屈な感じはしなかった。\n天井が高く、大きめの窓がついているせいかもしれない...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.mediaPlayer.pause();
+                imageButton1Text.setText("");
+                imageButton8Text.setText("");
                 mainText.setText("入浴中・・・");
-                MainActivity.soundPool.play(MainActivity.cureSound, 1.0f, 1.0f, 1, 0, 1);
+                MainActivity.soundPool.play(MainActivity.oldMansionShowerSound, 1.0f, 1.0f, 1, 0, 1);
                 stopAllButtons();
                 realm.beginTransaction();
                 playerInfo.setPoisonFlag(false);
@@ -26,15 +27,15 @@ public class OnClickBathButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        MainActivity.mediaPlayer.start();
+                        imageButton1Text.setText("入浴する");
+                        imageButton8Text.setText("戻る");
                         mainText.setText("入浴しました。状態異常が回復しました。");
                         startAllButtons();
                     }
                 }, 6100);
             }
         });
-        imageButton1Text.setText("風呂に入る");
-
+        imageButton1Text.setText("入浴する");
 
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity{
     private MakeArmorRealmObject makeArmorRealmObject;
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
-    public static int sampleSound1, oldMansionWalkingSound, cureSound, battleStartSound;
+    public static int sampleSound1, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound;
     public static MediaPlayer mediaPlayer;
 
     @Override
@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity{
         sampleSound1 = soundPool.load(this, R.raw.sample_bgm1, 1);
         cureSound = soundPool.load(this, R.raw.inn3, 1);
         battleStartSound = soundPool.load(this, R.raw.sample_battle_start, 1);
+        oldMansionShowerSound = soundPool.load(this, R.raw.old_mansion_shower_sound, 1);
         oldMansionWalkingSound = soundPool.load(this, R.raw.old_mansion_walking_sound, 1);
+        oldMansionSleepSound = soundPool.load(this, R.raw.old_mansion_sleep_sound, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
@@ -100,14 +102,14 @@ public class MainActivity extends AppCompatActivity{
                 mainMpBar.setMax(playerInfo.getFmaxMP());
                 mainMpBar.setProgress(playerInfo.getMP());
                 if(playerInfo.isBleedingFlag()){
-                    bleedingText.setText("出血しています");
+                    bleedingText.setText("血");
                 }else {
-                    bleedingText.setText("健康です");
+                    bleedingText.setText("");
                 };
                 if(playerInfo.isPoisonFlag()){
-                    poisonText.setText("毒状態です");
+                    poisonText.setText("毒");
                 }else{
-                    poisonText.setText("健康です");
+                    poisonText.setText("");
                 }
             }
         });
