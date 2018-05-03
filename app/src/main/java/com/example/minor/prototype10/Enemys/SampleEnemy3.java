@@ -1,7 +1,5 @@
 package com.example.minor.prototype10.Enemys;
 
-import com.example.minor.prototype10.BattleActivity;
-
 /**
  * 最初にクラスのメンバとして敵のステータスを書いてください
  * 次にskillメソッドにスキルの中身を書き、setEnemyBehaviorメソッドに行動パターンを書いてください
@@ -69,6 +67,7 @@ public class SampleEnemy3 extends SuperEnemy {
     public int[] setEnemyBehavior(int[] tempAllStatus) {
         setTempAllStatus(tempAllStatus);
         beginTransaction();
+        chooseSkillWithinSp(100, 30, 0, 100, 0, 100, 0, 100);
         return allStatus;
     }
 }

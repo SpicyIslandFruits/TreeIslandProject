@@ -1,8 +1,11 @@
 package com.example.minor.prototype10;
 
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity{
     private MakeWeaponRealmObject makeWeaponRealmObject;
     private MakeArmorRealmObject makeArmorRealmObject;
     private TextView bleedingText, poisonText;
+    public static SoundPool soundPool;
+    public static int sampleSound1, oldMansionWalkingSound, cureSound, battleStartSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,20 @@ public class MainActivity extends AppCompatActivity{
         makeData = new MakeData();
         makeWeaponRealmObject = new MakeWeaponRealmObject();
         makeArmorRealmObject = new MakeArmorRealmObject();
+        AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();
+        soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).setMaxStreams(1).build();
+        //soundPoolのロードは非同期処理なのでここですべて行う、ロードに時間がかかる為ロードしてすぐに再生してはいけない
+        sampleSound1 = soundPool.load(this, R.raw.sample_bgm1, 1);
+        cureSound = soundPool.load(this, R.raw.inn3, 1);
+        battleStartSound = soundPool.load(this, R.raw.sample_battle_start, 1);
+        oldMansionWalkingSound = soundPool.load(this, R.raw.old_mansion_walking_sound, 1);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                Log.d("debug", "sampleId="+sampleId);
+                Log.d("debug", "status="+status);
+            }
+        });
         createSaveData();
         gameStart();
     }
@@ -70,6 +89,7 @@ public class MainActivity extends AppCompatActivity{
     private void gameStart() {
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         playerInfos = realm.where(PlayerInfo.class).findAll();
+        //ここは後から編集します
         playerInfos.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<PlayerInfo>>() {
             @Override
             public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {
@@ -108,7 +128,7 @@ public class MainActivity extends AppCompatActivity{
             realm.beginTransaction();
             playerInfo = realm.createObject(PlayerInfo.class, new String("player"));
             playerInfo.setPlayerLevel(50);
-            playerInfo.setPosition(1);
+            playerInfo.setPosition(5);
             playerInfo.setMoney(100);
             playerInfo.setFmaxHP(1000);
             playerInfo.setHP(100);
@@ -124,8 +144,8 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setfLUK(10);
             playerInfo.setWeaponId(0);
             //状態異常のセット
-            playerInfo.setBleedingFlag(true);
-            playerInfo.setPoisonFlag(true);
+            playerInfo.setBleedingFlag(false);
+            playerInfo.setPoisonFlag(false);
             //階層を移動したときはsetEnemyLevel,街の中で敵を倒したときはsetAdditionalEnemyLevelを実行してください、後々時間経過で敵のレベルが戻っていく処理も追加します
             playerInfo.setBaseEnemyLevel(50);
             playerInfo.setAdditionalEnemyLevel(0);

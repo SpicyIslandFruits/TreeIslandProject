@@ -8,7 +8,14 @@ import com.example.minor.prototype10.Enemys.SampleEnemy;
 import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2Button;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBathButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion2FButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansionButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
@@ -29,7 +36,6 @@ import io.realm.Realm;
  * 武器防具は重複不可、同一武器を拾った場合は捨てたり換金したり
  * アイテムもPrimaryKeyが名前になっているのでこのままだと重複不可あとで何とかする
  */
-
 public class MakeData {
     private static final int playerBaseStatus = 120;
     private Realm realm;
@@ -52,8 +58,42 @@ public class MakeData {
                 onClickMapButton = new OnClickBossRoomButton();
                 break;
             case 4:
-                onClickMapButton = new OnClickDungeon2Button();
+                onClickMapButton = new OnClickDungeon2FButton();
                 break;
+            case 5:
+                onClickMapButton = new OnClickPassButton();
+                break;
+            case 6:
+                onClickMapButton = new OnClickOldMansionButton();
+                break;
+            case 7:
+                onClickMapButton = new OnClickEmptyButton();
+                break;
+            case 8:
+                onClickMapButton = new OnClickOldMansion1FButton();
+                break;
+            case 9:
+                onClickMapButton = new OnClickKitchenButton();
+                break;
+            case 10:
+                onClickMapButton = new OnClickBathButton();
+                break;
+            case 11:
+                onClickMapButton = new OnClickOldMansion2FButton();
+                break;
+            case 12:
+                onClickMapButton = new OnClickOldMansion2FButton();
+                break;
+            case 13:
+                onClickMapButton = new OnClickOldMansion2FButton();
+                break;
+            case 14:
+                onClickMapButton = new OnClickOldMansion2FButton();
+                break;
+            case 15:
+                onClickMapButton = new OnClickOldMansion2FButton();
+                break;
+
         }
         return onClickMapButton;
     }
