@@ -10,7 +10,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
         position = 16;
         savePosition();
         resetAllButtons();
-        mainText.setText("お前は押入れの中に入っていった...。\nたまには押し入れで眠ってみるのもいいかもしれない。\n文章未完");
+        mainText.setText("お前は押入れの中に入った。\nとても落ち着く...。\nたまには押入れで眠ってみるのもいいかもしれない。");
         MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +38,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
                         mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは認識できない何かの存在を恐れていた。\nこの世界に存在する生命がそれを知ることは許されることではなかった。");
                         break;
                     case 5:
-                        mainText.setText("お前には生まれた瞬間の記憶が一つだけ残っている。\nとても大きな扉の、鍵が開く音を聞いたのだ。\n小さな産小屋で生まれたお前がどうしてそんな音を聞いたのか、今となっては謎である\nそんな過去の小さな出来事を辿っているうちに、何かに誘われるように深い眠りについた。");
+                        mainText.setText("お前には生まれた瞬間の記憶が一つだけ残っている。\nとても大きな扉の鍵が開く音を聞いたのだ。\n小さな産小屋で生まれたお前がどうしてそんな音を聞いたのか、今となっては分かりようもない\nそんな過去の小さな出来事を辿っているうちに、何かに誘われるように深い眠りについた。");
                         break;
                     case 6:
                         mainText.setText("家主はどんな人だったのだろう...。どうしてこんなところに住もうと思ったのだろう...。\nそんなことを考えているうちに意識が朦朧として、お前は眠りについた。");

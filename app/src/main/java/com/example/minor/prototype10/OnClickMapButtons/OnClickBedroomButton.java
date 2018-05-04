@@ -10,7 +10,7 @@ public class OnClickBedroomButton extends SuperOnClickMapButton {
         position = 13;
         savePosition();
         resetAllButtons();
-        mainText.setText("窓には重厚なカーテンがひかれ、室内に明かりはついていない。\nカーテンの隙間から僅かに光の筋がもれていたが、かえって暗闇を際立たせるだけだった。");
+        mainText.setText("窓には重々しいカーテンがおろされ、室内に明かりはついていない。\nカーテンの隙間から微かに光がもれていたが、かえって暗闇を際立たせていた。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
         OnClickBedButton onClickBedButton = new OnClickBedButton();
@@ -18,8 +18,8 @@ public class OnClickBedroomButton extends SuperOnClickMapButton {
         imageButton1Text.setText("ベッド");
 
         OnClickOshiireButton onClickOshiireButton = new OnClickOshiireButton();
-        imageButton2.setOnClickListener(onClickOshiireButton);
-        imageButton2Text.setText("押入れ");
+        imageButton7.setOnClickListener(onClickOshiireButton);
+        imageButton7Text.setText("押入れ");
 
         OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
         imageButton8.setOnClickListener(onClickOldMansion2FButton);

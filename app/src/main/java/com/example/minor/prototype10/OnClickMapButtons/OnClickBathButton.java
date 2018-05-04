@@ -9,9 +9,8 @@ public class OnClickBathButton extends SuperOnClickMapButton {
         position = 10;
         savePosition();
         resetAllButtons();
-        mainText.setText("浴室には余分なスペースはほとんどないが、なぜか窮屈な感じはしなかった。\n天井が高く、大きめの窓がついているせいかもしれない...");
+        mainText.setText("浴室には大きめの窓がついており、とても開放的だ。\n窓の外では杉林が夜の闇に沈んでいる...。\nあたりには生き物の気配はなく、死んだような静寂だけが広がっていた。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +58,7 @@ public class OnClickBathButton extends SuperOnClickMapButton {
                     public void run() {
                         imageButton1Text.setText("入浴する");
                         imageButton8Text.setText("戻る");
-                        mainText.setText("汗みどろになった後のシャワーの味は格別だ。\n体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n流石に生まれ変わったような気分だ。");
+                        mainText.setText("汗みどろになった後のシャワーは格別だ。\n体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n脱皮して生まれ変わったような気分である。");
                         startAllButtons();
                     }
                 }, 6100);

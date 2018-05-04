@@ -183,6 +183,10 @@ public class MainActivity extends AppCompatActivity{
 
     protected void onDestroy(){
         super.onDestroy();
+        MainActivity.mediaPlayer.stop();
+        MainActivity.mediaPlayer.reset();
+        MainActivity.mediaPlayer.release();
+        MainActivity.mediaPlayer = null;
         soundPool.release();
         playerInfos.removeAllChangeListeners();
         realm.close();

@@ -71,7 +71,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
                 mainText.setText("この先は黒く沈んでいる...何がいてもおかしくない");
                 break;
             case 7:
-                mainText.setText("青い氷のような風が吹き抜けて行く");
+                mainText.setText("青い氷のような風がお前の横を吹き抜けて行く");
                 break;
             case 8:
                 mainText.setText("ここは寒い。");
