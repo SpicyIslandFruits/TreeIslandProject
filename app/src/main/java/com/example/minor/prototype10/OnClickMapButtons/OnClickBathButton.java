@@ -17,7 +17,37 @@ public class OnClickBathButton extends SuperOnClickMapButton {
             public void onClick(View v) {
                 imageButton1Text.setText("");
                 imageButton8Text.setText("");
-                mainText.setText("入浴中・・・");
+                mainText.setText("入浴中・");
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("入浴中・・");
+                    }
+                }, 1100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("入浴中・・・");
+                    }
+                }, 2100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("入浴中・・・・");
+                    }
+                }, 3100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("入浴中・・・・・");
+                    }
+                }, 4100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("入浴中・・・・・・");
+                    }
+                }, 5100);
                 MainActivity.soundPool.play(MainActivity.oldMansionShowerSound, 1.0f, 1.0f, 1, 0, 1);
                 stopAllButtons();
                 realm.beginTransaction();
@@ -29,7 +59,7 @@ public class OnClickBathButton extends SuperOnClickMapButton {
                     public void run() {
                         imageButton1Text.setText("入浴する");
                         imageButton8Text.setText("戻る");
-                        mainText.setText("入浴しました。状態異常が回復しました。");
+                        mainText.setText("汗みどろになった後のシャワーの味は格別だ。\n体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n流石に生まれ変わったような気分だ。");
                         startAllButtons();
                     }
                 }, 6100);

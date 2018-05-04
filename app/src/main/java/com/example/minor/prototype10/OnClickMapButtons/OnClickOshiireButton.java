@@ -10,7 +10,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
         position = 16;
         savePosition();
         resetAllButtons();
-        mainText.setText("お前は押入れの中に入っていった...。文章未完");
+        mainText.setText("お前は押入れの中に入っていった...。\nたまには押し入れで眠ってみるのもいいかもしれない。\n文章未完");
         MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        imageButton1Text.setText("押入れで眠る");
+                        imageButton1Text.setText("眠る");
                         imageButton8Text.setText("出る");
                         mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n\n真っ暗だ...。\n\n何度も目を疑ったが、しばらくしてここが押入れの中だと気付いた。");
                         startAllButtons();
@@ -76,7 +76,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
                 }, 6500);
             }
         });
-        imageButton1Text.setText("押入れで眠る");
+        imageButton1Text.setText("眠る");
 
         OnClickBedroomButton onClickBedroomButton = new OnClickBedroomButton();
         imageButton8.setOnClickListener(onClickBedroomButton);
