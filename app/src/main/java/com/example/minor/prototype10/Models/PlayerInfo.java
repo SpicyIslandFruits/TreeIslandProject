@@ -11,6 +11,7 @@ import io.realm.annotations.PrimaryKey;
 public class PlayerInfo extends RealmObject {
     @PrimaryKey
     private String player;
+
     private int playerLevel;
     private int experiencePointSum;
     private int position;
@@ -54,6 +55,7 @@ public class PlayerInfo extends RealmObject {
     private boolean enemyPoisonFlag;
     private boolean playerAutoHealingFlag;
     private boolean playerAutoAbsorbingFlag;
+    private int nowPlayingBgm;
 
     public String getPlayer() {
         return player;
@@ -405,5 +407,13 @@ public class PlayerInfo extends RealmObject {
 
     public void setPlayerAutoAbsorbingFlag(boolean playerAutoAbsorbingFlag) {
         this.playerAutoAbsorbingFlag = playerAutoAbsorbingFlag;
+    }
+
+    public int getNowPlayingBgm() {
+        return nowPlayingBgm;
+    }
+
+    public void setNowPlayingBgm(int nowPlayingBgm) {
+        this.nowPlayingBgm = nowPlayingBgm;
     }
 }

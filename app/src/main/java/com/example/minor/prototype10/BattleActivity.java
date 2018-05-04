@@ -206,14 +206,14 @@ public class BattleActivity extends AppCompatActivity {
             @Override
             public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {
                 if(playerInfo.isBleedingFlag()){
-                    battleBleedingText.setText("出血しています");
+                    battleBleedingText.setText("血");
                 }else {
-                    battleBleedingText.setText("健康です");
+                    battleBleedingText.setText("");
                 };
                 if(playerInfo.isPoisonFlag()){
-                    battlePoisonText.setText("毒状態です");
+                    battlePoisonText.setText("毒");
                 }else{
-                    battlePoisonText.setText("健康です");
+                    battlePoisonText.setText("");
                 }
             }
         });
@@ -539,61 +539,21 @@ public class BattleActivity extends AppCompatActivity {
         realm.close();
     }
 
-    private boolean audioSetup(){
-        boolean fileCheck = false;
-
-        // rawにファイルがある場合
+    private void audioSetup(){
         mediaPlayer = MediaPlayer.create(this, R.raw.sample_battle_bgm1);
-        // 音量調整を端末のボタンに任せる
+        mediaPlayer.setLooping(true);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        fileCheck = true;
-
-        return fileCheck;
     }
 
     private void audioPlay() {
-
-        if (mediaPlayer == null) {
-            // audio ファイルを読出し
-            if (audioSetup()){
-                Toast.makeText(getApplication(), "敵が現れた！", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(getApplication(), "Error: read audio file", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-
-        else{
-            // 繰り返し再生する場合
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-            // リソースの解放
-            mediaPlayer.release();
-        }
-
-        // 再生する
+        audioSetup();
         mediaPlayer.start();
-
-        // 終了を検知するリスナー
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Log.d("debug","end of audio");
-                audioStop();
-                mediaPlayer.start();
-            }
-        });
     }
 
     private void audioStop() {
-        // 再生終了
         mediaPlayer.stop();
-        // リセット
         mediaPlayer.reset();
-        // リソースの解放
         mediaPlayer.release();
-
         mediaPlayer = null;
     }
 }

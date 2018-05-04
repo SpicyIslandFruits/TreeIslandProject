@@ -1,7 +1,9 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.media.MediaPlayer;
 import android.view.View;
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
     @Override
@@ -10,15 +12,18 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         resetAllButtons();
         position = 8;
         savePosition();
-        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-        imageButton1.setOnClickListener(onClickEmptyButton);
-        imageButton1Text.setText("キッチン");
-        OnClickEmptyButton onClickEmptyButton1 = new OnClickEmptyButton();
-        imageButton2.setOnClickListener(onClickEmptyButton1);
-        imageButton2Text.setText("風呂");
-        OnClickEmptyButton onClickEmptyButton2 = new OnClickEmptyButton();
-        imageButton3.setOnClickListener(onClickEmptyButton2);
-        imageButton1Text.setText("2階へ上がる");
+        int bgmId = 0;
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
+        audioPlay(mediaPlayer, bgmId);
+        OnClickKitchenButton onClickKitchenButton = new OnClickKitchenButton();
+        imageButton1.setOnClickListener(onClickKitchenButton);
+        imageButton1Text.setText("台所");
+        OnClickBathButton onClickBathButton = new OnClickBathButton();
+        imageButton2.setOnClickListener(onClickBathButton);
+        imageButton2Text.setText("浴室");
+        OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
+        imageButton3.setOnClickListener(onClickOldMansion2FButton);
+        imageButton3Text.setText("2階へ上がる");
         OnClickEmptyButton onClickEmptyButton3 = new OnClickEmptyButton();
         imageButton7.setOnClickListener(onClickEmptyButton3);
         imageButton7Text.setText("部屋の隅");
