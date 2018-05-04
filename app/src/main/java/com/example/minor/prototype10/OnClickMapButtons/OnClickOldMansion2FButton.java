@@ -11,10 +11,10 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         MainActivity.mediaPlayer.start();
-        mainText.setText("文章未定");
+        mainText.setText("お前は2階へと上がっていった。\n広く、静かで、古い家具や見捨てられた敷物の醸し出す時間の匂いがする。\n子供のころ嗅いだことのあるような匂いだ。\n部屋には最小限の家具しかなく、がらんとしている。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-        imageButton1.setOnClickListener(onClickEmptyButton);
+        OnClickRooftopButton onClickRooftopButton = new OnClickRooftopButton();
+        imageButton1.setOnClickListener(onClickRooftopButton);
         imageButton1Text.setText("屋上");
         OnClickEmptyButton onClickEmptyButton4 = new OnClickEmptyButton();
         imageButton2.setOnClickListener(onClickEmptyButton4);
@@ -22,8 +22,8 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         OnClickBedroomButton onClickBedroomButton = new OnClickBedroomButton();
         imageButton3.setOnClickListener(onClickBedroomButton);
         imageButton3Text.setText("寝室");
-        OnClickEmptyButton onClickEmptyButton3 = new OnClickEmptyButton();
-        imageButton4.setOnClickListener(onClickEmptyButton3);
+        OnClickWarehouseButton onClickWarehouseButton3 = new OnClickWarehouseButton();
+        imageButton4.setOnClickListener(onClickWarehouseButton3);
         imageButton4Text.setText("倉庫");
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
