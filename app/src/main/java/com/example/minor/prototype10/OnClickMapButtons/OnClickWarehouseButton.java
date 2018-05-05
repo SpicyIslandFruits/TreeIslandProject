@@ -10,10 +10,10 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
         position = 14;
         savePosition();
         resetAllButtons();
-        mainText.setText("倉庫は未実装です。");
+        mainText.setText("倉庫は薄暗く、様々なものが散らばっている。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-        OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
-        imageButton8.setOnClickListener(onClickOldMansion2FButton);
+        OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
+        imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("戻る");
     }
 

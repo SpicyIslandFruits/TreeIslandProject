@@ -19,12 +19,11 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
             public void onClick(View v) {
                 imageButton1.setEnabled(false);
                 imageButton7.setEnabled(false);
-                MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
+                MainActivity.soundPool.play(MainActivity.oldMansionNightSkySound, 1.0f, 1.0f, 1, 0, 1);
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound
-                                , 1.0f, 1.0f, 1, 0, 1);
+                        MainActivity.soundPool.play(MainActivity.oldMansionNightSkySound, 1.0f, 1.0f, 1, 0, 1);
                         imageButton1.setEnabled(true);
                         imageButton7.setEnabled(true);
                         imageButton1Text.setText("夜空を見上げる");

@@ -4,7 +4,8 @@ import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
 
-public class OnClickBedButton extends SuperOnClickMapButton {
+public class
+OnClickBedButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 17;

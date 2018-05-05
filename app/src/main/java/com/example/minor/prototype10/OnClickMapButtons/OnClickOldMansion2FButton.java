@@ -22,9 +22,6 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         OnClickBedroomButton onClickBedroomButton = new OnClickBedroomButton();
         imageButton3.setOnClickListener(onClickBedroomButton);
         imageButton3Text.setText("寝室");
-        OnClickWarehouseButton onClickWarehouseButton = new OnClickWarehouseButton();
-        imageButton4.setOnClickListener(onClickWarehouseButton);
-        imageButton4Text.setText("倉庫");
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("1階に降りる");
