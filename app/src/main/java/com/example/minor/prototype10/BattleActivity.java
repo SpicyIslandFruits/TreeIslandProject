@@ -253,7 +253,6 @@ public class BattleActivity extends AppCompatActivity {
         enemyDf = tempAllStatus[9];
         enemyLuk = tempAllStatus[10];
         breakNum = tempAllStatus[11];
-        skillNameAdapter.clear();
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
