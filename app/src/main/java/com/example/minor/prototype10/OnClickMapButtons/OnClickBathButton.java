@@ -69,7 +69,6 @@ public class OnClickBathButton extends SuperOnClickMapButton {
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("戻る");
-
     }
 
     @Override

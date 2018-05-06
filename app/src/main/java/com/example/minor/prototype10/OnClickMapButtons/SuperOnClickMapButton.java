@@ -101,6 +101,14 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6.setEnabled(false);
         imageButton7.setEnabled(false);
         imageButton8.setEnabled(false);
+        imageButton1Text.setText("");
+        imageButton2Text.setText("");
+        imageButton3Text.setText("");
+        imageButton4Text.setText("");
+        imageButton5Text.setText("");
+        imageButton6Text.setText("");
+        imageButton7Text.setText("");
+        imageButton8Text.setText("");
     }
 
     protected void startAllButtons(){
