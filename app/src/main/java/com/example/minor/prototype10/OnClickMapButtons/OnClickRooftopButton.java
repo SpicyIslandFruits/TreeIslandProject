@@ -51,14 +51,16 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 resetAllButtons();
+                MainActivity.mediaPlayer.pause();
+                MainActivity.soundPool.play(MainActivity.oldMansionSleepSound, 1.0f, 1.0f, 1, 0, 1);
                 //ゲームオーバー画面に遷移する予定です。ラスボスが主人公を助ける場面です。
-                mainText.setText("文章未定");
+                mainText.setText("何もかもおしまいだ。\nお前はすべてを失った、もう思い残すことは何もない。\n\n薄れゆく意識の中、黒い人影があらわれて...。");
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         mMain.finishAndRemoveTask();
                     }
-                }, 2000);
+                }, 6100);
             }
         });
 

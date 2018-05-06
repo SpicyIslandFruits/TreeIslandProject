@@ -56,6 +56,7 @@ public class PlayerInfo extends RealmObject {
     private boolean playerAutoHealingFlag;
     private boolean playerAutoAbsorbingFlag;
     private int nowPlayingBgm;
+    private boolean playerSuicideFlag;
 
     public String getPlayer() {
         return player;
@@ -415,5 +416,13 @@ public class PlayerInfo extends RealmObject {
 
     public void setNowPlayingBgm(int nowPlayingBgm) {
         this.nowPlayingBgm = nowPlayingBgm;
+    }
+
+    public boolean isPlayerSuicideFlag() {
+        return playerSuicideFlag;
+    }
+
+    public void setPlayerSuicideFlag(boolean playerSuicideFlag) {
+        this.playerSuicideFlag = playerSuicideFlag;
     }
 }
