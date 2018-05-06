@@ -105,26 +105,26 @@ public class BattleActivity extends AppCompatActivity {
         enemyId = intent.getIntExtra("EnemyId", 0);
         enemy = makeData.makeEnemyFromId(enemyId);
         tempAllStatus = new int[17];
-        skillNameAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list_item_1);
-        hpBar = (ProgressBar) findViewById(R.id.hp_bar);
-        mpBar = (ProgressBar) findViewById(R.id.mp_bar);
-        spBar = (ProgressBar) findViewById(R.id.sp_bar);
-        enemyHpBar = (ProgressBar) findViewById(R.id.enemy_hp_bar);
-        breakGage = (GaugeView) findViewById(R.id.break_gage);
-        battleText = (TextView) findViewById(R.id.battle_text);
-        battleBleedingText = (TextView) findViewById(R.id.battle_bleeding_text);
-        battlePoisonText = (TextView) findViewById(R.id.battle_poison_text);
-        decisionButton = (ImageButton) findViewById(R.id.decision_button);
-        cancelButton = (ImageButton) findViewById(R.id.cancel_button);
-        normalAttackButton = (ImageButton) findViewById(R.id.normal_attack);
-        skillButton1 = (ImageButton) findViewById(R.id.skill1);
-        skillButton2 = (ImageButton) findViewById(R.id.skill2);
-        skillButton3 = (ImageButton) findViewById(R.id.skill3);
-        playerSkill1Button = (ImageButton) findViewById(R.id.player_skill1);
-        playerSkill2Button = (ImageButton) findViewById(R.id.player_skill2);
-        playerSkill3Button = (ImageButton) findViewById(R.id.player_skill3);
-        playerSkill4Button = (ImageButton) findViewById(R.id.player_skill4);
-        selectedSkillLists = (ListView) findViewById(R.id.selected_skills_list);
+        skillNameAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_list_item_1);
+        hpBar = findViewById(R.id.hp_bar);
+        mpBar = findViewById(R.id.mp_bar);
+        spBar = findViewById(R.id.sp_bar);
+        enemyHpBar = findViewById(R.id.enemy_hp_bar);
+        breakGage = findViewById(R.id.break_gage);
+        battleText = findViewById(R.id.battle_text);
+        battleBleedingText = findViewById(R.id.battle_bleeding_text);
+        battlePoisonText = findViewById(R.id.battle_poison_text);
+        decisionButton = findViewById(R.id.decision_button);
+        cancelButton = findViewById(R.id.cancel_button);
+        normalAttackButton = findViewById(R.id.normal_attack);
+        skillButton1 = findViewById(R.id.skill1);
+        skillButton2 = findViewById(R.id.skill2);
+        skillButton3 = findViewById(R.id.skill3);
+        playerSkill1Button = findViewById(R.id.player_skill1);
+        playerSkill2Button = findViewById(R.id.player_skill2);
+        playerSkill3Button = findViewById(R.id.player_skill3);
+        playerSkill4Button = findViewById(R.id.player_skill4);
+        selectedSkillLists = findViewById(R.id.selected_skills_list);
         selectedSkillLists.setAdapter(skillNameAdapter);
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,7 +216,7 @@ public class BattleActivity extends AppCompatActivity {
                     battleBleedingText.setText("血");
                 }else {
                     battleBleedingText.setText("");
-                };
+                }
                 if(playerInfo.isPoisonFlag()){
                     battlePoisonText.setText("毒");
                 }else{
@@ -486,14 +486,13 @@ public class BattleActivity extends AppCompatActivity {
             }else{
                 tempAllStatus[11] = tempAllStatus[11] + 4;
             }
-        }else if(tempAllStatus[11]<=50){
+        }else{
             tempAllStatus[11] = tempAllStatus[11] + 8;
             if (tempAllStatus[11] > 50){
                 tempAllStatus[11] = 80;
+            }else if(tempAllStatus[11] < 0){
+                tempAllStatus[11] = 0;
             }
-        }
-        if(tempAllStatus[11] < 0){
-            tempAllStatus[11] = 0;
         }
     }
 
