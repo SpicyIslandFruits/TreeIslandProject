@@ -453,8 +453,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
         tempAllStatus[15] = armorDf = playerInfo.getfDF();
         tempAllStatus[16] = enemy.getSp();
-        breakGage.setData(breakNum, "%", gradation, 10
-                , true);
+        breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
         spBar.setMax(sp);

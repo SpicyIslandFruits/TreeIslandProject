@@ -11,7 +11,14 @@ OnClickBedButton extends SuperOnClickMapButton {
         position = 17;
         savePosition();
         resetAllButtons();
-        mainText.setText("お前は小さな白木のベッドに横たわった。\nなぜだろう、ここは不思議と安心できるのだ。\n瞳を閉じると布団の柔らかい感触が包み込んでくる。");
+        if(playerInfo.isPlayerSuicideFlag()){
+            realm.beginTransaction();
+            playerInfo.setPlayerSuicideFlag(false);
+            mainText.setText("目が覚めるとお前はベッドに横たわっていた。\n体を確認したが、かすり傷一つない。\nあれは夢だったのだろうか...。");
+            realm.commitTransaction();
+        }else {
+            mainText.setText("お前は小さな白木のベッドに横たわった。\nなぜだろう、ここは不思議と安心できるのだ。\n瞳を閉じると布団の柔らかい感触が包み込んでくる。");
+        }
         MainActivity.soundPool.play(MainActivity.oldMansionBedSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
