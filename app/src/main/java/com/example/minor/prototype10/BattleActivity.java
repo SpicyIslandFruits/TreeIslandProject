@@ -242,7 +242,6 @@ public class BattleActivity extends AppCompatActivity {
         }
         hp = tempAllStatus[0];
         mp = tempAllStatus[1];
-        sp = tempAllStatus[12];
         atk = tempAllStatus[3];
         df = tempAllStatus[4];
         luk = tempAllStatus[5];
@@ -462,8 +461,6 @@ public class BattleActivity extends AppCompatActivity {
     private void startNewTurn(){
         tempAllStatus[0] = hp;
         tempAllStatus[1] = mp;
-        psp = tempAllStatus[2] = Math.min(sp , tempAllStatus[2] + sp/2 );
-        spBar.setProgress(sp - psp);
         tempAllStatus[3] = atk;
         tempAllStatus[4] = df;
         tempAllStatus[5] = luk;
@@ -473,10 +470,11 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf;
         tempAllStatus[10] = enemyLuk;
         tempAllStatus[11] = breakNum;
-        tempAllStatus[12] = sp;
         tempAllStatus[13] = playerLevel;
         tempAllStatus[14] = weaponAtk;
         tempAllStatus[15] = armorDf;
+        psp = tempAllStatus[2] = Math.min(sp , tempAllStatus[2] + sp/2 );
+        spBar.setProgress(sp - psp);
     }
 
     //ブレイクゲージの増減式です、敵の攻撃による増減は敵クラスに任意の値を書いてください
