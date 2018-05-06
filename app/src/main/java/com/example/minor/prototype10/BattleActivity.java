@@ -52,10 +52,10 @@ public class BattleActivity extends AppCompatActivity {
     private SuperEnemy enemy;
     private SuperWeapon weapon;
     private SuperSkill playerSkill1, playerSkill2, playerSkill3, playerSkill4;
-    private ImageButton decisionButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
+    private ImageButton decisionButton,cancelButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, sp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk, armorDf;
+    private int maxHp, hp, maxMp, mp, sp,psp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk, armorDf;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
     private AbnormalStates abnormalStates;
@@ -115,6 +115,7 @@ public class BattleActivity extends AppCompatActivity {
         battleBleedingText = (TextView) findViewById(R.id.battle_bleeding_text);
         battlePoisonText = (TextView) findViewById(R.id.battle_poison_text);
         decisionButton = (ImageButton) findViewById(R.id.decision_button);
+        cancelButton = (ImageButton) findViewById(R.id.cancel_button);
         normalAttackButton = (ImageButton) findViewById(R.id.normal_attack);
         skillButton1 = (ImageButton) findViewById(R.id.skill1);
         skillButton2 = (ImageButton) findViewById(R.id.skill2);
@@ -149,6 +150,12 @@ public class BattleActivity extends AppCompatActivity {
                         turnCount++;
                     }
                 }, 3000);
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSelectedSkills();
             }
         });
         normalAttackButton.setOnClickListener(new View.OnClickListener() {
@@ -250,10 +257,11 @@ public class BattleActivity extends AppCompatActivity {
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
         if(tempAllStatus[2] > sp/2) {
-            spBar.setProgress(0);
+            psp = sp;
         }else {
-            spBar.setProgress(sp - (tempAllStatus[2] + sp/2));
+            psp = tempAllStatus[2] + sp/2;
         }
+        spBar.setProgress(sp - psp);
         mpBar.setProgress(maxMp-mp);
         if(hp<=0 ||enemyHp<=0){
             //一時的にここでセットしていますが、実際にはリザルトアクティビティでセットします
@@ -440,7 +448,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        tempAllStatus[12] = playerInfo.getfSP();
+        tempAllStatus[12] = psp =playerInfo.getfSP();
         tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
         tempAllStatus[15] = armorDf = playerInfo.getfDF();
@@ -456,6 +464,21 @@ public class BattleActivity extends AppCompatActivity {
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
     }
+    private void cancelSelectedSkills(){
+        skillNameAdapter.clear();
+        tempAllStatus[0]= hp;
+        tempAllStatus[1] = mp;
+        tempAllStatus[2] = psp;
+        tempAllStatus[3] = atk;
+        tempAllStatus[4] = df;
+        tempAllStatus[5] = luk;
+        tempAllStatus[7] = enemySp;
+        tempAllStatus[8] = enemyAtk;
+        tempAllStatus[9] = enemyDf;
+        tempAllStatus[10] = enemyLuk;
+        tempAllStatus[11] = breakNum;
+        spBar.setProgress(sp-psp);
+    }
 
     //ここは編集の必要なし
     //tempAllStatus[16]は書かなくてよい
@@ -467,6 +490,7 @@ public class BattleActivity extends AppCompatActivity {
         }else {
             tempAllStatus[2] = tempAllStatus[2] + sp/2;
         }
+     //   psp = tempAllStatus[2];
         tempAllStatus[3] = atk;
         tempAllStatus[4] = df;
         tempAllStatus[5] = luk;
