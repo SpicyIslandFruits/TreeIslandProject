@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity{
         oldMansionSleepSound = soundPool.load(this, R.raw.old_mansion_sleep_sound, 1);
         oldMansionBedSound = soundPool.load(this, R.raw.old_mansion_bed_sound, 1);
         oldMansionOshiireSound = soundPool.load(this, R.raw.old_mansion_oshiire_sound, 1);
-        oldMansionNightSkySound = soundPool.load(this, R.raw.old_mansion_walking_sound, 1);
+        oldMansionNightSkySound = soundPool.load(this, R.raw.old_mansion_night_sky_sound, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {

@@ -17,13 +17,21 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopAllButtons();
                 imageButton1.setEnabled(false);
                 imageButton7.setEnabled(false);
                 MainActivity.soundPool.play(MainActivity.oldMansionNightSkySound, 1.0f, 1.0f, 1, 0, 1);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageButton8Text.setText("やめる");
+                        startAllButtons();
+                    }
+                }, 1000);
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MainActivity.soundPool.play(MainActivity.oldMansionNightSkySound, 1.0f, 1.0f, 1, 0, 1);
+                        MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
                         imageButton1.setEnabled(true);
                         imageButton7.setEnabled(true);
                         imageButton1Text.setText("夜空を見上げる");
@@ -33,9 +41,9 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
                         mainText.setText("お前は空を見上げるのをやめた。");
                     }
                 });
+                imageButton8Text.setText("");
                 imageButton1Text.setText("");
                 imageButton7Text.setText("");
-                imageButton8Text.setText("やめる");
                 mainText.setText("お前は空を見上げた。\n余分な明かりがないせいか、空気が汚れていないせいか、お前は星の多さに驚かされる。\n人々の営みとは無縁のように輝く星々は、とても超越的であった。");
             }
         });
@@ -52,7 +60,6 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
                         mMain.finishAndRemoveTask();
                     }
                 }, 2000);
-
             }
         });
 
