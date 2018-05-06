@@ -319,67 +319,78 @@ public class BattleActivity extends AppCompatActivity {
                     }else{
                         tempAllStatus[11] = tempAllStatus[11] + 5;
                     }
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 1:
                 if(weapon.skill1(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill1(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill1Name());
                     calculateIncrementOfBreakGageFromBreakNum();
-                    break;
                 }else if (weapon.skill1(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill1Name());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 2:
                 if(weapon.skill2(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill2(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill2(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill2Name());
                     calculateIncrementOfBreakGageFromBreakNum();
-                    break;
                 }else if (weapon.skill2(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill2(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill2Name());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 3:
                 if(weapon.skill3(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill3(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill3(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill3Name());
                     calculateIncrementOfBreakGageFromBreakNum();
-                    break;
                 }else if (weapon.skill3(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill3(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill3Name());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 4:
                 if(playerSkill1.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill1.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill1.getSkillName());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 5:
                 if(playerSkill2.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill2.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill2.getSkillName());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 6:
                 if(playerSkill3.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill3.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill3.getSkillName());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
+                break;
             case 7:
                 if(playerSkill4.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill4.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill4.getSkillName());
-                    break;
+                }else{
+                    battleText.setText("spまたはmpが足りません");
                 }
-            default:
-                battleText.setText("spまたはmpが足りません");
+                break;
 
         }
         spBar.setProgress(sp - tempAllStatus[2]);
