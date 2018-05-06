@@ -4,6 +4,8 @@ import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
 
+import java.util.logging.Handler;
+
 public class OnClickRooftopButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
@@ -17,31 +19,28 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopAllButtons();
                 imageButton1.setEnabled(false);
                 imageButton7.setEnabled(false);
                 MainActivity.soundPool.play(MainActivity.oldMansionNightSkySound, 1.0f, 1.0f, 1, 0, 1);
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageButton8Text.setText("やめる");
-                        startAllButtons();
-                    }
-                }, 1000);
+                imageButton8Text.setText("やめる");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
-                        imageButton1.setEnabled(true);
-                        imageButton7.setEnabled(true);
                         imageButton1Text.setText("夜空を見上げる");
                         imageButton7Text.setText("飛び降りる");
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageButton1.setEnabled(true);
+                                imageButton7.setEnabled(true);
+                                imageButton8.setOnClickListener(new OnClickOldMansion2FButton());
+                            }
+                        }, 1000);
                         imageButton8Text.setText("戻る");
-                        imageButton8.setOnClickListener(new OnClickOldMansion2FButton());
                         mainText.setText("お前は空を見上げるのをやめた。");
                     }
                 });
-                imageButton8Text.setText("");
                 imageButton1Text.setText("");
                 imageButton7Text.setText("");
                 mainText.setText("お前は空を見上げた。\n余分な明かりがないせいか、空気が汚れていないせいか、お前は星の多さに驚かされる。\n人々の営みとは無縁のように輝く星々は、とても超越的であった。");
@@ -52,8 +51,8 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 resetAllButtons();
-                //ゲームオーバー画面に遷移する予定です。
-                mainText.setText("お前は死んでしまった。");
+                //ゲームオーバー画面に遷移する予定です。ラスボスが主人公を助ける場面です。
+                mainText.setText("文章未定");
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

@@ -58,14 +58,13 @@ public class OnClickBathButton extends SuperOnClickMapButton {
                     public void run() {
                         imageButton1Text.setText("入浴する");
                         imageButton8Text.setText("戻る");
-                        mainText.setText("汗みどろになった後のシャワーは格別だ。\n体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n脱皮して生まれ変わったような気分である。");
+                        mainText.setText("汗みどろになった後のシャワーは格別だ。\n体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n脱皮して生まれ変わったような気分である。\n※状態異常が回復した。");
                         startAllButtons();
                     }
                 }, 6100);
             }
         });
         imageButton1Text.setText("入浴する");
-
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("戻る");
