@@ -145,7 +145,8 @@ public class BattleActivity extends AppCompatActivity {
                         realm.commitTransaction();
                         battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
                         enableButtons(true);
-                        startNewTurn();
+                        psp = tempAllStatus[2] = Math.min(sp , tempAllStatus[2] + sp/2 );
+                        cancelSelectedSkills();
                         turnCount++;
                     }
                 }, 3000);
@@ -154,6 +155,8 @@ public class BattleActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                skillNameAdapter.clear();
+                battleText.setText("");
                 cancelSelectedSkills();
             }
         });
@@ -417,25 +420,9 @@ public class BattleActivity extends AppCompatActivity {
         enemyHpBar.setProgress(enemyHp);
     }
     private void cancelSelectedSkills(){
-        skillNameAdapter.clear();
         tempAllStatus[0]= hp;
         tempAllStatus[1] = mp;
         tempAllStatus[2] = psp;
-        tempAllStatus[3] = atk;
-        tempAllStatus[4] = df;
-        tempAllStatus[5] = luk;
-        tempAllStatus[7] = enemySp;
-        tempAllStatus[8] = enemyAtk;
-        tempAllStatus[9] = enemyDf;
-        tempAllStatus[10] = enemyLuk;
-        tempAllStatus[11] = breakNum;
-        spBar.setProgress(sp-psp);
-    }
-
-    //tempAllStatus[16]は書かなくてよい
-    private void startNewTurn(){
-        tempAllStatus[0] = hp;
-        tempAllStatus[1] = mp;
         tempAllStatus[3] = atk;
         tempAllStatus[4] = df;
         tempAllStatus[5] = luk;
@@ -448,8 +435,8 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[13] = playerLevel;
         tempAllStatus[14] = weaponAtk;
         tempAllStatus[15] = armorDf;
-        psp = tempAllStatus[2] = Math.min(sp , tempAllStatus[2] + sp/2 );
-        spBar.setProgress(sp - psp);
+        spBar.setProgress(sp-psp);
+        mpBar.setProgress(maxMp-mp);
     }
 
     //ブレイクゲージの増減式です、敵の攻撃による増減は敵クラスに任意の値を書いてください
