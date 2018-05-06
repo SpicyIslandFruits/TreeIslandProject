@@ -4,15 +4,23 @@ import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
 
-public class OnClickRoomCornerButton extends SuperOnClickMapButton {
+/**
+ * Created by nishiokakota on 2018/05/06.
+ */
+
+public class OnClickBackDoorButton extends SuperOnClickMapButton {
+    @Override
     public void createMap() {
         position = 18;
         savePosition();
         resetAllButtons();
-        mainText.setText("部屋の隅は未実装です。");
+        mainText.setText("ここから外に出られるようだ。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-        imageButton8.setOnClickListener(onClickEmptyButton);
+        OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
+        imageButton1.setOnClickListener(onClickGardenButton);
+        imageButton1Text.setText("外に出る");
+        OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
+        imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("戻る");
     }
 
@@ -26,6 +34,5 @@ public class OnClickRoomCornerButton extends SuperOnClickMapButton {
                 startAllButtons();
             }
         }, 1000);
-
     }
 }

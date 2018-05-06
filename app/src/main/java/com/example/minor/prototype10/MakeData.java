@@ -3,16 +3,21 @@ package com.example.minor.prototype10;
 import com.example.minor.prototype10.Armors.SampleArmor;
 import com.example.minor.prototype10.Armors.SampleArmor2;
 import com.example.minor.prototype10.Armors.SuperArmor;
-import com.example.minor.prototype10.Enemys.SampleEnemy3;
 import com.example.minor.prototype10.Enemys.SampleEnemy;
 import com.example.minor.prototype10.Enemys.SampleEnemy2;
+import com.example.minor.prototype10.Enemys.SampleEnemy3;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBackDoorButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBathButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBedButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBedroomButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBossRoomButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion2FButton;
@@ -20,8 +25,8 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansionButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOshiireButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickRooftopButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickRoomCornerButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickStudyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickWarehouseButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
@@ -30,10 +35,6 @@ import com.example.minor.prototype10.PlayerSkill.SuperSkill;
 import com.example.minor.prototype10.Weapons.SampleWeapon;
 import com.example.minor.prototype10.Weapons.SampleWeapon2;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickBossRoomButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
 
 import io.realm.Realm;
 
@@ -107,7 +108,11 @@ public class MakeData {
                 onClickMapButton = new OnClickBedButton();
                 break;
             case 18:
-                onClickMapButton = new OnClickRoomCornerButton();
+                onClickMapButton = new OnClickBackDoorButton();
+                break;
+            case 19:
+                onClickMapButton = new OnClickGardenButton();
+                break;
         }
         return onClickMapButton;
     }

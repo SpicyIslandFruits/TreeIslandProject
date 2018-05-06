@@ -29,7 +29,7 @@ public class OnClickEmptyButton extends SuperOnClickMapButton {
         position = 7;
         savePosition();
         resetAllButtons();
-        mainText.setText("未実装です。 orz...");
+        mainText.setText("ここは空のマップです。");
         MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
         OnClickPassButton onClickPassButton = new OnClickPassButton();
         imageButton8.setOnClickListener(onClickPassButton);
@@ -46,6 +46,5 @@ public class OnClickEmptyButton extends SuperOnClickMapButton {
                 startAllButtons();
             }
         }, 1000);
-
     }
 }
