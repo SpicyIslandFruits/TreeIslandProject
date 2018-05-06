@@ -52,10 +52,10 @@ public class BattleActivity extends AppCompatActivity {
     private SuperEnemy enemy;
     private SuperWeapon weapon;
     private SuperSkill playerSkill1, playerSkill2, playerSkill3, playerSkill4;
-    private ImageButton decisionButton,cancelButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
+    private ImageButton decisionButton, cancelButton, normalAttackButton,skillButton1, skillButton2, skillButton3;
     private ImageButton playerSkill1Button, playerSkill2Button, playerSkill3Button, playerSkill4Button;
     private int[] tempAllStatus;
-    private int maxHp, hp, maxMp, mp, sp,psp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk, armorDf;
+    private int maxHp, hp, maxMp, mp, sp, psp, atk, df, luk, enemyHp, enemySp, enemyAtk, enemyDf, enemyLuk, breakNum, playerLevel, weaponAtk, armorDf;
     private int turnCount = 0, tempTurnCount = 0;
     private int[] gradation;
     private AbnormalStates abnormalStates;
@@ -256,12 +256,6 @@ public class BattleActivity extends AppCompatActivity {
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
-        if(tempAllStatus[2] > sp/2) {
-            psp = sp;
-        }else {
-            psp = tempAllStatus[2] + sp/2;
-        }
-        spBar.setProgress(sp - psp);
         mpBar.setProgress(maxMp-mp);
         if(hp<=0 ||enemyHp<=0){
             //一時的にここでセットしていますが、実際にはリザルトアクティビティでセットします
@@ -299,11 +293,6 @@ public class BattleActivity extends AppCompatActivity {
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
-        if(tempAllStatus[2] > sp/2) {
-            spBar.setProgress(0);
-        }else {
-            spBar.setProgress(sp - (tempAllStatus[2] + sp/2));
-        }
         mpBar.setProgress(maxMp-mp);
         if(hp<=0 ||enemyHp<=0){
             //たぶん経験値処理などで長くなるのでメソッドを追加してそこにまとめます
@@ -325,7 +314,6 @@ public class BattleActivity extends AppCompatActivity {
                 if(weapon.skill0(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill0(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill0(tempAllStatus);
                     skillNameAdapter.add("通常攻撃");
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     if (tempAllStatus[11] < 100 && tempAllStatus[11] + 5 >= 100) {
                         tempAllStatus[11] = 150;
@@ -340,13 +328,11 @@ public class BattleActivity extends AppCompatActivity {
                 if(weapon.skill1(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill1(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill1Name());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     calculateIncrementOfBreakGageFromBreakNum();
                 }else if (weapon.skill1(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill1(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill1Name());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
@@ -356,13 +342,11 @@ public class BattleActivity extends AppCompatActivity {
                 if(weapon.skill2(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill2(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill2(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill2Name());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     calculateIncrementOfBreakGageFromBreakNum();
                 }else if (weapon.skill2(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill2(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill2Name());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
@@ -372,13 +356,11 @@ public class BattleActivity extends AppCompatActivity {
                 if(weapon.skill3(tempAllStatus)[2] >= 0 && tempAllStatus[6] > weapon.skill3(tempAllStatus)[6]) {
                     tempAllStatus = weapon.skill3(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill3Name());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     calculateIncrementOfBreakGageFromBreakNum();
                 }else if (weapon.skill3(tempAllStatus)[2] >= 0){
                     tempAllStatus = weapon.skill3(tempAllStatus);
                     skillNameAdapter.add(weapon.getSkill3Name());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                 }else{
                     battleText.setText("spが足りません");
@@ -388,7 +370,6 @@ public class BattleActivity extends AppCompatActivity {
                 if(playerSkill1.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill1.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill1.getSkillName());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
@@ -399,7 +380,6 @@ public class BattleActivity extends AppCompatActivity {
                 if(playerSkill2.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill2.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill2.getSkillName());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
@@ -410,7 +390,6 @@ public class BattleActivity extends AppCompatActivity {
                 if(playerSkill3.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill3.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill3.getSkillName());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
@@ -421,7 +400,6 @@ public class BattleActivity extends AppCompatActivity {
                 if(playerSkill4.skill(tempAllStatus)[2] >= 0 && playerSkill1.skill(tempAllStatus)[1] >= 0){
                     tempAllStatus = playerSkill4.skill(tempAllStatus);
                     skillNameAdapter.add(playerSkill4.getSkillName());
-                    spBar.setMax(sp);
                     spBar.setProgress(sp - tempAllStatus[2]);
                     mpBar.setProgress(maxMp - tempAllStatus[1]);
                 }else{
@@ -484,12 +462,8 @@ public class BattleActivity extends AppCompatActivity {
     private void startNewTurn(){
         tempAllStatus[0] = hp;
         tempAllStatus[1] = mp;
-        if(tempAllStatus[2] > sp/2) {
-            tempAllStatus[2] = sp;
-        }else {
-            tempAllStatus[2] = tempAllStatus[2] + sp/2;
-        }
-     //   psp = tempAllStatus[2];
+        psp = tempAllStatus[2] = Math.min(sp , tempAllStatus[2] + sp/2 );
+        spBar.setProgress(sp - psp);
         tempAllStatus[3] = atk;
         tempAllStatus[4] = df;
         tempAllStatus[5] = luk;
