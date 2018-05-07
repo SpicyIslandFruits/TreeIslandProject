@@ -29,7 +29,7 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
-                mainText.setText("井戸の中は真っ暗だ。\nまさかこの中に入ろうとした者はいないだろう。");
+                mainText.setText("井戸の中に何かあるかもしれない...。\n\n\nなどと思って入ろうとした者はまさかいないだろう。");
                 imageButton1.setEnabled(false);
                 imageButton2.setEnabled(false);
                 imageButton3.setEnabled(false);
@@ -57,13 +57,17 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
                         imageButton3.setEnabled(false);
                         imageButton7.setEnabled(false);
                         imageButton8.setEnabled(false);
-                        imageButton2Text.setText("井戸を覗く");
+                        imageButton2Text.setText("井戸");
                         imageButton3Text.setText("ブランコ");
                         imageButton7Text.setText("庭の隅");
-                        //ここはOnClickGardenButtonの処理に合わせる
-                        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-                        imageButton1.setOnClickListener(onClickEmptyButton);
-                        imageButton1Text.setText("ベンチ");
+                        imageButton1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
+                                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは使えない。");
+                            }
+                        });
+                        imageButton1Text.setText("壊れたベンチ");
                         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
                         imageButton8.setOnClickListener(onClickOldMansion1FButton);
                         imageButton8Text.setText("戻る");
@@ -90,7 +94,7 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
                 }, 1000);
             }
         });
-        imageButton2Text.setText("井戸を覗く");
+        imageButton2Text.setText("井戸");
 
         OnClickEmptyButton onClickEmptyButton3 = new OnClickEmptyButton();
         imageButton3.setOnClickListener(onClickEmptyButton3);

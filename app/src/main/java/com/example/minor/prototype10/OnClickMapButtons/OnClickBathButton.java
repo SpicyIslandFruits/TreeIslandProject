@@ -58,7 +58,7 @@ public class OnClickBathButton extends SuperOnClickMapButton {
                     public void run() {
                         imageButton1Text.setText("入浴する");
                         imageButton8Text.setText("戻る");
-                        mainText.setText("汗みどろになった後のシャワーは格別だ。\n体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n脱皮して生まれ変わったような気分である。\n※状態異常が回復した。");
+                        mainText.setText("お前の体にたまった疲れや汚れが、シャワーの水と一緒に落ちていった。\n生まれ変わったような気分である。\n※状態異常が回復した。");
                         startAllButtons();
                     }
                 }, 6100);

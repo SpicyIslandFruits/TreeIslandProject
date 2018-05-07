@@ -15,8 +15,8 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         savePosition();
-        OnClickDungeonButton onClickDungeonButton1 = new OnClickDungeonButton();
-        imageButton1.setOnClickListener(onClickDungeonButton1);
+        OnClickEmptyButton onClickEmptyButton1 = new OnClickEmptyButton();
+        imageButton1.setOnClickListener(onClickEmptyButton1);
         imageButton1Text.setText("ダンジョン1");
 
         OnClickEmptyButton onClickEmptyButton2 = new OnClickEmptyButton();

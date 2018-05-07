@@ -187,6 +187,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         MainActivity.mediaPlayer = null;
     }
 
+    //書き間違え。後で訂正
     protected void makeBgm(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity{
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
-    public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound;
+    public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound;
     public static MediaPlayer mediaPlayer;
 
     @Override
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity{
         oldMansionNightSkySound = soundPool.load(this, R.raw.old_mansion_night_sky_sound, 1);
         moneyDropSound = soundPool.load(this, R.raw.money_drop, 1);
         waterDropSound = soundPool.load(this, R.raw.water_drop, 1);
+        burstSound = soundPool.load(this, R.raw.burst_sound, 1);
         oldWoodenDoorSound = soundPool.load(this, R.raw.old_wooden_door, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override

@@ -76,10 +76,16 @@ OnClickBedButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        imageButton1Text.setText("眠る");
-                        imageButton8Text.setText("起き上がる");
-                        mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n\n時間が経っていない...。\n\n何度も目を疑ったが、お前は現実を受け入れるしかなかった。");
-                        startAllButtons();
+                        imageButton1.setEnabled(true);
+                        imageButton1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                createMap();
+                                mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n\n時間が経っていない...。\n\n何度も目を疑ったが、お前は現実を受け入れるしかなかった。");
+                                startAllButtons();
+                            }
+                        });
+                        imageButton1Text.setText("目を覚ます");
                     }
                 }, 6500);
             }

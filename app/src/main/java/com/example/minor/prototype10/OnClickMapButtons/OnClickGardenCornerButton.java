@@ -19,10 +19,30 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
                 stopAllButtons();
                 //あとで音声を変える
                 MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
-                mainText.setText("文章未定");
+                mainText.setText("目の前に扉が現れた...。\nこの先にはいったい何があるというのだろう。");
                 OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-                imageButton1.setOnClickListener(onClickEmptyButton);
-                imageButton1Text.setText("開ける");
+                imageButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        stopAllButtons();
+                        MainActivity.mediaPlayer.pause();
+                        imageButton8Text.setText("戻る");
+                        MainActivity.soundPool.play(MainActivity.burstSound, 1.0f, 1.0f, 1, 0, 1);
+                        mainText.setText("お前はありったけの力を振り絞り、魔法を放った！\n\nsᴜɴ ᴀɴᴅ ᴍᴏᴏɴ\n\"番いの破壊者\"");
+                        realm.beginTransaction();
+                        playerInfo.setMP(0);
+                        realm.commitTransaction();
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                MainActivity.mediaPlayer.start();
+                                mainText.setText("...しかし扉はびくともしない。\n\nどうやら魔力が足りなかったようだ...。");
+                                startAllButtons();
+                            }
+                        }, 6500);
+                    }
+                });
+                imageButton1Text.setText("爆破する");
                 imageButton8Text.setText("戻る");
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
@@ -31,7 +51,7 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
                 }, 1000);
             }
         });
-        imageButton1Text.setText("確認する");
+        imageButton1Text.setText("土をどかす");
 
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
         imageButton8.setOnClickListener(onClickGardenButton);
