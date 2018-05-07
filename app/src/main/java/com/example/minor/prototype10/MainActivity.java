@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity{
     private MakeArmorRealmObject makeArmorRealmObject;
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
-    public static int sampleSound1, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound, oldMansionOshiireSound, oldMansionNightSkySound;
+    public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
+    public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound;
     public static MediaPlayer mediaPlayer;
 
     @Override
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity{
         AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();
         soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).setMaxStreams(1).build();
         //soundPoolのロードは非同期処理なのでここで行う、ロードに時間がかかる為ロードしてすぐに再生してはいけない
-        sampleSound1 = soundPool.load(this, R.raw.sample_bgm1, 1);
+        walkingSound = soundPool.load(this, R.raw.walking_sound, 1);
         cureSound = soundPool.load(this, R.raw.inn3, 1);
         battleStartSound = soundPool.load(this, R.raw.sample_battle_start, 1);
         oldMansionShowerSound = soundPool.load(this, R.raw.old_mansion_shower_sound, 1);
@@ -78,6 +79,9 @@ public class MainActivity extends AppCompatActivity{
         oldMansionBedSound = soundPool.load(this, R.raw.old_mansion_bed_sound, 1);
         oldMansionOshiireSound = soundPool.load(this, R.raw.old_mansion_oshiire_sound, 1);
         oldMansionNightSkySound = soundPool.load(this, R.raw.old_mansion_night_sky_sound, 1);
+        moneyDropSound = soundPool.load(this, R.raw.money_drop, 1);
+        waterDropSound = soundPool.load(this, R.raw.water_drop, 1);
+        oldWoodenDoorSound = soundPool.load(this, R.raw.old_wooden_door, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {

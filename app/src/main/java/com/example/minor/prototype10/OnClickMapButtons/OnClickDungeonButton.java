@@ -2,16 +2,7 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
 
-import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.MakeWeaponRealmObject;
-import com.example.minor.prototype10.Models.WeaponId;
-
-import java.util.logging.Handler;
-
-import io.realm.OrderedCollectionChangeSet;
-import io.realm.OrderedRealmCollectionChangeListener;
-import io.realm.RealmResults;
 
 /**
  * マップの階層が深くなる時はbaseEnemyLevelを編集してください
@@ -40,7 +31,7 @@ public class OnClickDungeonButton extends SuperOnClickMapButton{
     }
     public void createMap(){
         resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 2;
         savePosition();
         OnClickDungeon2FButton onClickDungeon2FButton = new OnClickDungeon2FButton();

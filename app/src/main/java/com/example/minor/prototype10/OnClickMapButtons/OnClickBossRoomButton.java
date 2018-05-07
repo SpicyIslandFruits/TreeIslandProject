@@ -1,10 +1,7 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
-import android.content.Intent;
 import android.view.View;
 
-import com.example.minor.prototype10.AbnormalStates;
-import com.example.minor.prototype10.BattleActivity;
 import com.example.minor.prototype10.MainActivity;
 
 //ダンジョンのコメント参照
@@ -22,7 +19,7 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton{
     }
     public void createMap(){
         resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

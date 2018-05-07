@@ -12,7 +12,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         savePosition();
         OnClickDungeonButton onClickDungeonButton1 = new OnClickDungeonButton();

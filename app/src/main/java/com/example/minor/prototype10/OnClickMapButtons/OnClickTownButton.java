@@ -2,7 +2,6 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
 
-import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.MainActivity;
 
 //ダンジョンのコメントを参照
@@ -21,7 +20,7 @@ public class OnClickTownButton extends SuperOnClickMapButton{
     }
     public void createMap(){
         resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickDungeonButton onClickDungeonButton = new OnClickDungeonButton();
         imageButton1.setOnClickListener(onClickDungeonButton);
         OnClickInnButton onClickInnButton = new OnClickInnButton();

@@ -8,7 +8,7 @@ public class OnClickOldMansionButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 6;
         savePosition();
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();

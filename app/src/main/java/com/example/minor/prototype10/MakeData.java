@@ -17,6 +17,7 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
@@ -112,6 +113,9 @@ public class MakeData {
                 break;
             case 19:
                 onClickMapButton = new OnClickGardenButton();
+                break;
+            case 20:
+                onClickMapButton = new OnClickGardenCornerButton();
                 break;
         }
         return onClickMapButton;

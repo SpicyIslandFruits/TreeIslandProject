@@ -3,9 +3,6 @@ package com.example.minor.prototype10.OnClickMapButtons;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.Models.PlayerInfo;
-
-import io.realm.Realm;
 
 //ダンジョンのコメントを参照
 public class OnClickInnButton extends SuperOnClickMapButton{
@@ -22,7 +19,7 @@ public class OnClickInnButton extends SuperOnClickMapButton{
     }
     public void createMap(){
         resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.sampleSound1, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickTownButton onClickTownButton = new OnClickTownButton();
         imageButton1.setOnClickListener(onClickTownButton);
         imageButton2.setOnClickListener(new View.OnClickListener() {
