@@ -16,11 +16,13 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("お前は庭に出た...。\n小さなブランコが置いてある、家族で住んでいたのだろうか。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
+
+        //街で木材を買ってきて修理すると使えるようになる。データはsharedPreferenceに保存
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
-                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは使えない。");
+                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない。");
             }
         });
         imageButton1Text.setText("壊れたベンチ");
@@ -96,9 +98,15 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         });
         imageButton2Text.setText("井戸");
 
-        OnClickEmptyButton onClickEmptyButton3 = new OnClickEmptyButton();
-        imageButton3.setOnClickListener(onClickEmptyButton3);
-        imageButton3Text.setText("ブランコ");
+        //ブランコと同様、修理した後に現れるイベントを考える
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
+                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは使えない。");
+            }
+        });
+        imageButton3Text.setText("壊れたブランコ");
 
         OnClickGardenCornerButton onClickGardenCornerButton = new OnClickGardenCornerButton();
         imageButton7.setOnClickListener(onClickGardenCornerButton);

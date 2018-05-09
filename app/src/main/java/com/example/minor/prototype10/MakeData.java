@@ -132,6 +132,7 @@ public class MakeData {
         realm.beginTransaction();
         playerInfo.setMaxHP((playerBaseStatus*level/100+level+10) * 4 * 4);
         playerInfo.setDF(playerBaseStatus*level/100+5);
+
         playerInfo.setATK(playerBaseStatus*level/100+5);
         realm.commitTransaction();
         realm.close();
