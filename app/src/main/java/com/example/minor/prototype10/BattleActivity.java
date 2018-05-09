@@ -429,6 +429,7 @@ public class BattleActivity extends AppCompatActivity {
         hpBar.setProgress(hp);
         enemyHpBar.setProgress(enemyHp);
     }
+
     private void cancelSelectedSkills(){
         tempAllStatus[0]= hp;
         tempAllStatus[1] = mp;

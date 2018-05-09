@@ -1,5 +1,7 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
@@ -21,11 +23,38 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //ここの音声は後で変える、木が折れる音にする。
                 MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
-                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない。");
+                if(sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false) == false){
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("oldMansionGardenBenchBrokenFlag", true);
+                    editor.apply();
+                    stopAllButtons();
+                    mainText.setText("");
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startAllButtons();
+                            imageButton1Text.setText("壊れたベンチ");
+                            imageButton2Text.setText("井戸");
+                            //ここもベンチと同様にするかもしれない
+                            imageButton3Text.setText("壊れたブランコ");
+                            imageButton7Text.setText("庭の隅");
+                            imageButton8Text.setText("戻る");
+                            mainText.setText("ベンチが壊れてしまった...。\n気が腐っていたようだ。");
+                        }
+                    }, 1000);
+                }else {
+                    MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
+                    mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない。");
+                }
             }
         });
-        imageButton1Text.setText("壊れたベンチ");
+        if(sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false) == false) {
+            imageButton1Text.setText("ベンチ");
+        }else{
+            imageButton1Text.setText("壊れたベンチ");
+        }
 
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +127,7 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         });
         imageButton2Text.setText("井戸");
 
-        //ブランコと同様、修理した後に現れるイベントを考える
+        //ブランコと同様、修理した後に現れるイベントを考える、ブランコを直すと、ひとりでにブランコが動き出し、笑い声が聞こえる。幽霊が成仏する設定。幽霊はラスボスの娘。
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

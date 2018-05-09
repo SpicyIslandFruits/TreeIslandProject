@@ -1,6 +1,7 @@
 package com.example.minor.prototype10;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;

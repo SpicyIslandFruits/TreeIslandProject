@@ -1,6 +1,7 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -22,11 +23,13 @@ import java.io.IOException;
 
 import io.realm.Realm;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.minor.prototype10.MainActivity.mediaPlayer;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
     protected PlayerInfo playerInfo;
+    protected static SharedPreferences sharedPreferences;
     protected static AppCompatActivity mMain;
     protected static TextView mainText, bleedingText, poisonText;
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;
@@ -37,6 +40,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
+        sharedPreferences = mMain.getSharedPreferences("MapInfo", MODE_PRIVATE);
         mainText = (TextView) main.findViewById(R.id.main_text);
         imageButton1 = (ImageButton) main.findViewById(R.id.imageButton1);
         imageButton2 = (ImageButton) main.findViewById(R.id.imageButton2);

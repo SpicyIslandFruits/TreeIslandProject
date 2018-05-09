@@ -1,8 +1,5 @@
 package com.example.minor.prototype10;
 
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
