@@ -200,4 +200,15 @@ public class MainActivity extends AppCompatActivity{
         playerInfos.removeAllChangeListeners();
         realm.close();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mediaPlayer.pause();
+    }
+
+    protected void onResume(){
+        super.onResume();
+        mediaPlayer.start();
+    }
 }

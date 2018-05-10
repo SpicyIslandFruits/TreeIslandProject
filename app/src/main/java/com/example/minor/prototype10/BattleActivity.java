@@ -2,15 +2,12 @@ package com.example.minor.prototype10;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
@@ -22,7 +19,6 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
 import com.example.minor.prototype10.Weapons.SuperWeapon;

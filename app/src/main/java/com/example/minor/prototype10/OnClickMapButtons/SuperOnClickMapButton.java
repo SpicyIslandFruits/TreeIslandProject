@@ -192,7 +192,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         MainActivity.mediaPlayer = null;
     }
 
-    //書き間違え。後で訂正
+    //BGMを追加したときはここにswitch文を追加する。場所が場所なので忘れやすい、、、
     protected void makeBgm(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
@@ -201,6 +201,8 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             case 0:
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
                 break;
+            case 1:
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.sample_bgm);
         }
     }
 }
