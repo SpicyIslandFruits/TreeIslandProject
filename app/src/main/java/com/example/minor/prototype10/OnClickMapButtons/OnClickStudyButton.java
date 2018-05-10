@@ -10,6 +10,7 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
         position = 15;
         savePosition();
         resetAllButtons();
+        //書斎は鍵を見つけるためのなぞ解きに利用します。
         mainText.setText("書斎は未実装です。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
@@ -27,6 +28,5 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
                 startAllButtons();
             }
         }, 1000);
-
     }
 }

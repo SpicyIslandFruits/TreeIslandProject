@@ -41,24 +41,24 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
         sharedPreferences = mMain.getSharedPreferences("MapInfo", MODE_PRIVATE);
-        mainText = (TextView) main.findViewById(R.id.main_text);
-        imageButton1 = (ImageButton) main.findViewById(R.id.imageButton1);
-        imageButton2 = (ImageButton) main.findViewById(R.id.imageButton2);
-        imageButton3 = (ImageButton) main.findViewById(R.id.imageButton3);
-        imageButton4 = (ImageButton) main.findViewById(R.id.imageButton4);
-        imageButton5 = (ImageButton) main.findViewById(R.id.imageButton5);
-        imageButton6 = (ImageButton) main.findViewById(R.id.imageButton6);
-        imageButton7 = (ImageButton) main.findViewById(R.id.imageButton7);
-        imageButton8 = (ImageButton) main.findViewById(R.id.imageButton8);
+        mainText = main.findViewById(R.id.main_text);
+        imageButton1 = main.findViewById(R.id.imageButton1);
+        imageButton2 = main.findViewById(R.id.imageButton2);
+        imageButton3 = main.findViewById(R.id.imageButton3);
+        imageButton4 = main.findViewById(R.id.imageButton4);
+        imageButton5 = main.findViewById(R.id.imageButton5);
+        imageButton6 = main.findViewById(R.id.imageButton6);
+        imageButton7 = main.findViewById(R.id.imageButton7);
+        imageButton8 = main.findViewById(R.id.imageButton8);
 
-        imageButton1Text = (TextView) main.findViewById(R.id.image_button1_text);
-        imageButton2Text = (TextView) main.findViewById(R.id.image_button2_text);
-        imageButton3Text = (TextView) main.findViewById(R.id.image_button3_text);
-        imageButton4Text = (TextView) main.findViewById(R.id.image_button4_text);
-        imageButton5Text = (TextView) main.findViewById(R.id.image_button5_text);
-        imageButton6Text = (TextView) main.findViewById(R.id.image_button6_text);
-        imageButton7Text = (TextView) main.findViewById(R.id.image_button7_text);
-        imageButton8Text = (TextView) main.findViewById(R.id.image_button8_text);
+        imageButton1Text = main.findViewById(R.id.image_button1_text);
+        imageButton2Text = main.findViewById(R.id.image_button2_text);
+        imageButton3Text = main.findViewById(R.id.image_button3_text);
+        imageButton4Text = main.findViewById(R.id.image_button4_text);
+        imageButton5Text = main.findViewById(R.id.image_button5_text);
+        imageButton6Text = main.findViewById(R.id.image_button6_text);
+        imageButton7Text = main.findViewById(R.id.image_button7_text);
+        imageButton8Text = main.findViewById(R.id.image_button8_text);
 
         makeBgm();
         MainActivity.mediaPlayer.setLooping(true);
@@ -204,4 +204,3 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         }
     }
 }
-

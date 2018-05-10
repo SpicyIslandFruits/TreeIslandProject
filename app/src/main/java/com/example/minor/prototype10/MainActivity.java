@@ -45,18 +45,18 @@ public class MainActivity extends AppCompatActivity{
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
-    public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound;
+    public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
     public static MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bleedingText = (TextView) findViewById(R.id.bleeding_state);
-        poisonText = (TextView) findViewById(R.id.poison_state);
-        imageButton = (ImageButton) findViewById(R.id.status_button);
-        mainHpBar = (ProgressBar) findViewById(R.id.main_hp_bar);
-        mainMpBar = (ProgressBar) findViewById(R.id.main_mp_bar);
+        bleedingText = findViewById(R.id.bleeding_state);
+        poisonText = findViewById(R.id.poison_state);
+        imageButton = findViewById(R.id.status_button);
+        mainHpBar = findViewById(R.id.main_hp_bar);
+        mainMpBar = findViewById(R.id.main_mp_bar);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity{
         moneyDropSound = soundPool.load(this, R.raw.money_drop, 1);
         waterDropSound = soundPool.load(this, R.raw.water_drop, 1);
         burstSound = soundPool.load(this, R.raw.burst_sound, 1);
+        woodBrokenSound = soundPool.load(this, R.raw.wood_broken_sound, 1);
         oldWoodenDoorSound = soundPool.load(this, R.raw.old_wooden_door, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity{
                     bleedingText.setText("血");
                 }else {
                     bleedingText.setText("");
-                };
+                }
                 if(playerInfo.isPoisonFlag()){
                     poisonText.setText("毒");
                 }else{
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity{
             realm.beginTransaction();
             playerInfo = realm.createObject(PlayerInfo.class, new String("player"));
             playerInfo.setPlayerLevel(50);
-            playerInfo.setPosition(5);
+            playerInfo.setPosition(0);
             playerInfo.setMoney(100);
             playerInfo.setFmaxHP(1000);
             playerInfo.setHP(100);

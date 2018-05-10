@@ -4,17 +4,15 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class ItemId extends RealmObject {
-    @PrimaryKey
+    private int itemType;
     private String Name;
 
-    private int id;
-
-    public int getId() {
-        return id;
+    public int getItemType() {
+        return itemType;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setItemType(int itemType) {
+        this.itemType = itemType;
     }
 
     public String getName() {

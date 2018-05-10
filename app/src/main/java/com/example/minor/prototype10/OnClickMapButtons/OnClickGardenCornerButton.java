@@ -28,7 +28,7 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
                         MainActivity.mediaPlayer.pause();
                         imageButton8Text.setText("戻る");
                         MainActivity.soundPool.play(MainActivity.burstSound, 1.0f, 1.0f, 1, 0, 1);
-                        mainText.setText("お前はありったけの力を振り絞り、魔法を放った！\n\nsᴜɴ ᴀɴᴅ ᴍᴏᴏɴ\n\"番いの破壊者\"");
+                        mainText.setText("お前はありったけの力を振り絞り、魔法を放った！");
                         realm.beginTransaction();
                         playerInfo.setMP(0);
                         realm.commitTransaction();
@@ -52,6 +52,14 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
             }
         });
         imageButton1Text.setText("土をどかす");
+
+        //地下室を作ります。街で素材を買ってブランコとベンチを修理すると幽霊が現れるのでそいつの指示に従うと鍵が手に入ります。
+        if(sharedPreferences.getBoolean("oldMansionGardenCornerKeyFoundedFlag", false)
+                ){
+            OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
+            imageButton7.setOnClickListener(onClickEmptyButton);
+            imageButton7Text.setText("鍵を使う");
+        }
 
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
         imageButton8.setOnClickListener(onClickGardenButton);

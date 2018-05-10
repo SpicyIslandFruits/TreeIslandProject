@@ -1,6 +1,5 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 
@@ -24,8 +23,8 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 //ここの音声は後で変える、木が折れる音にする。
-                MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
-                if(sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false) == false){
+                MainActivity.soundPool.play(MainActivity.woodBrokenSound, 1.0f, 1.0f, 1, 0, 1);
+                if(!sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false)){
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("oldMansionGardenBenchBrokenFlag", true);
                     editor.apply();
@@ -38,19 +37,23 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
                             imageButton1Text.setText("壊れたベンチ");
                             imageButton2Text.setText("井戸");
                             //ここもベンチと同様にするかもしれない
-                            imageButton3Text.setText("壊れたブランコ");
+                            if(!sharedPreferences.getBoolean("oldMansionGardenBurankoBrokenFlag", false)) {
+                                imageButton3Text.setText("ブランコ");
+                            }else{
+                                imageButton3Text.setText("壊れたブランコ");
+                            }
                             imageButton7Text.setText("庭の隅");
                             imageButton8Text.setText("戻る");
-                            mainText.setText("ベンチが壊れてしまった...。\n気が腐っていたようだ。");
+                            mainText.setText("ベンチが壊れてしまった...。\n木が腐っていたようだ。");
                         }
-                    }, 1000);
+                    }, 2000);
                 }else {
                     MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
                     mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない。");
                 }
             }
         });
-        if(sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false) == false) {
+        if(!sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false)) {
             imageButton1Text.setText("ベンチ");
         }else{
             imageButton1Text.setText("壊れたベンチ");
@@ -89,16 +92,52 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
                         imageButton7.setEnabled(false);
                         imageButton8.setEnabled(false);
                         imageButton2Text.setText("井戸");
-                        imageButton3Text.setText("ブランコ");
+                        if(!sharedPreferences.getBoolean("oldMansionGardenBurankoBrokenFlag", false)) {
+                            imageButton3Text.setText("ブランコ");
+                        }else{
+                            imageButton3Text.setText("壊れたブランコ");
+                        }
                         imageButton7Text.setText("庭の隅");
                         imageButton1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
-                                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは使えない。");
+                                //ここの音声は後で変える、木が折れる音にする。
+                                MainActivity.soundPool.play(MainActivity.woodBrokenSound, 1.0f, 1.0f, 1, 0, 1);
+                                if(!sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false)){
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putBoolean("oldMansionGardenBenchBrokenFlag", true);
+                                    editor.apply();
+                                    stopAllButtons();
+                                    mainText.setText("");
+                                    new android.os.Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startAllButtons();
+                                            imageButton1Text.setText("壊れたベンチ");
+                                            imageButton2Text.setText("井戸");
+                                            //ここもベンチと同様にするかもしれない
+                                            if(!sharedPreferences.getBoolean("oldMansionGardenBurankoBrokenFlag", false)) {
+                                                imageButton3Text.setText("ブランコ");
+                                            }else{
+                                                imageButton3Text.setText("壊れたブランコ");
+                                            }
+                                            imageButton7Text.setText("庭の隅");
+                                            imageButton8Text.setText("戻る");
+                                            mainText.setText("ベンチが壊れてしまった...。\n木が腐っていたようだ。");
+                                        }
+                                    }, 2000);
+                                }else {
+                                    MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
+                                    mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない。");
+                                }
                             }
                         });
-                        imageButton1Text.setText("壊れたベンチ");
+                        if(!sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false)) {
+                            imageButton1Text.setText("ベンチ");
+                        }else{
+                            imageButton1Text.setText("壊れたベンチ");
+                        }
+
                         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
                         imageButton8.setOnClickListener(onClickOldMansion1FButton);
                         imageButton8Text.setText("戻る");
@@ -131,11 +170,43 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
-                mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは使えない。");
+                //ここの音声は後で変える、木が折れる音にする。
+                MainActivity.soundPool.play(MainActivity.woodBrokenSound, 1.0f, 1.0f, 1, 0, 1);
+                if(!sharedPreferences.getBoolean("oldMansionGardenBurankoBrokenFlag", false)){
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("oldMansionGardenBurankoBrokenFlag", true);
+                    editor.apply();
+                    stopAllButtons();
+                    mainText.setText("");
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startAllButtons();
+                            if(!sharedPreferences.getBoolean("oldMansionGardenBenchBrokenFlag", false)) {
+                                imageButton1Text.setText("ベンチ");
+                            }else{
+                                imageButton1Text.setText("壊れたベンチ");
+                            }
+                            imageButton2Text.setText("井戸");
+                            //ここもベンチと同様にするかもしれない
+                            imageButton3Text.setText("壊れたブランコ");
+                            imageButton7Text.setText("庭の隅");
+                            imageButton8Text.setText("戻る");
+                            mainText.setText("ブランコが壊れてしまった...。\n鉄がさび付いてしまっていたようだ。");
+                        }
+                    }, 2000);
+                }else {
+                    MainActivity.soundPool.play(MainActivity.oldWoodenDoorSound, 1.0f, 1.0f, 1, 0, 1);
+                    mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない。");
+                }
             }
         });
-        imageButton3Text.setText("壊れたブランコ");
+
+        if(!sharedPreferences.getBoolean("oldMansionGardenBurankoBrokenFlag", false)) {
+            imageButton3Text.setText("ブランコ");
+        }else{
+            imageButton3Text.setText("壊れたブランコ");
+        }
 
         OnClickGardenCornerButton onClickGardenCornerButton = new OnClickGardenCornerButton();
         imageButton7.setOnClickListener(onClickGardenCornerButton);

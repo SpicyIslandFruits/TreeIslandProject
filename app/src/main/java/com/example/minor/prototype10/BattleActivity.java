@@ -1,5 +1,6 @@
 package com.example.minor.prototype10;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
@@ -11,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -59,6 +61,7 @@ public class BattleActivity extends AppCompatActivity {
     private int[] gradation;
     private AbnormalStates abnormalStates;
     private MediaPlayer mediaPlayer;
+    private ObjectAnimator objectAnimator;
 
     //skillButtonをfindViewByIdしてonClickにsetPlayerBehaviorを入れる、たぶん編集の必要なし
     @Override
@@ -254,9 +257,9 @@ public class BattleActivity extends AppCompatActivity {
         enemyLuk = tempAllStatus[10];
         breakNum = tempAllStatus[11];
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
-        hpBar.setProgress(hp);
-        enemyHpBar.setProgress(enemyHp);
-        mpBar.setProgress(maxMp-mp);
+        onProgressChanged(hp, hpBar);
+        onProgressChanged(enemyHp, enemyHpBar);
+        onProgressChanged(maxMp-mp, mpBar);
         if(hp<=0 ||enemyHp<=0){
             //一時的にここでセットしていますが、実際にはリザルトアクティビティでセットします
             realm.beginTransaction();
@@ -291,9 +294,9 @@ public class BattleActivity extends AppCompatActivity {
         breakNum = tempAllStatus[11];
         skillNameAdapter.clear();
         breakGage.setData(tempAllStatus[11], "%", gradation, 10, true);
-        hpBar.setProgress(hp);
-        enemyHpBar.setProgress(enemyHp);
-        mpBar.setProgress(maxMp-mp);
+        onProgressChanged(hp, hpBar);
+        onProgressChanged(enemyHp, enemyHpBar);
+        onProgressChanged(maxMp-mp, mpBar);
         if(hp<=0 ||enemyHp<=0){
             //たぶん経験値処理などで長くなるのでメソッドを追加してそこにまとめます
             //レベルは戦闘後にのみあがるようにしメソッド内でレベルが上がった場合のステータス処理をすべて書きます
@@ -414,7 +417,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        tempAllStatus[12] = psp =playerInfo.getfSP();
+        tempAllStatus[12] = psp = playerInfo.getfSP();
         tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
         tempAllStatus[15] = armorDf = playerInfo.getfDF();
@@ -424,10 +427,19 @@ public class BattleActivity extends AppCompatActivity {
         mpBar.setMax(maxMp);
         spBar.setMax(sp);
         enemyHpBar.setMax(enemyHp);
-        spBar.setProgress(0);
-        mpBar.setProgress(maxMp-mp);
-        hpBar.setProgress(hp);
+        hpBar.setProgress(0);
+        mpBar.setProgress(maxMp);
+        spBar.setProgress(sp);
         enemyHpBar.setProgress(enemyHp);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onProgressChanged(0, spBar);
+                onProgressChanged(maxMp-mp, mpBar);
+                onProgressChanged(hp, hpBar);
+                onProgressChanged(enemyHp, enemyHpBar);
+            }
+        }, 500);
     }
 
     private void cancelSelectedSkills(){
@@ -446,8 +458,8 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[13] = playerLevel;
         tempAllStatus[14] = weaponAtk;
         tempAllStatus[15] = armorDf;
-        spBar.setProgress(sp-psp);
-        mpBar.setProgress(maxMp-mp);
+        onProgressChanged(sp-psp, spBar);
+        onProgressChanged(maxMp-mp, mpBar);
     }
 
     //ブレイクゲージの増減式です、敵の攻撃による増減は敵クラスに任意の値を書いてください
@@ -522,5 +534,12 @@ public class BattleActivity extends AppCompatActivity {
         mediaPlayer.reset();
         mediaPlayer.release();
         mediaPlayer = null;
+    }
+
+    private void onProgressChanged(int progress, ProgressBar progressBar){
+        objectAnimator = ObjectAnimator.ofInt(progressBar, "progress", progress);
+        objectAnimator.setDuration(500);
+        objectAnimator.setInterpolator(new DecelerateInterpolator());
+        objectAnimator.start();
     }
 }
