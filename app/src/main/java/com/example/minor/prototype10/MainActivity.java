@@ -6,6 +6,7 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity{
         //ここは後から編集します
         playerInfos.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<PlayerInfo>>() {
             @Override
-            public void onChange(RealmResults<PlayerInfo> playerInfos, OrderedCollectionChangeSet changeSet) {
+            public void onChange(@NonNull RealmResults<PlayerInfo> playerInfos, @NonNull OrderedCollectionChangeSet changeSet) {
                 mainHpBar.setMax(playerInfo.getFmaxHP());
                 mainHpBar.setProgress(playerInfo.getHP());
                 mainMpBar.setMax(playerInfo.getFmaxMP());
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity{
             realm.beginTransaction();
             playerInfo = realm.createObject(PlayerInfo.class, new String("player"));
             playerInfo.setPlayerLevel(50);
-            playerInfo.setPosition(0);
+            playerInfo.setPosition(5);
             playerInfo.setMoney(100);
             playerInfo.setFmaxHP(1000);
             playerInfo.setHP(100);
