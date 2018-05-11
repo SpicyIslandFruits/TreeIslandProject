@@ -7,6 +7,9 @@ import com.example.minor.prototype10.Enemys.SampleEnemy;
 import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SampleEnemy3;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
+import com.example.minor.prototype10.Items.ImportantItems.BenchMaterial;
+import com.example.minor.prototype10.Items.ImportantItems.BurankoMaterial;
+import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBackDoorButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBathButton;
@@ -198,7 +201,18 @@ public class MakeData {
     }
 
     //アイテムを追加した場合はここに書く
-    public void makeItemFromId(int id){
-
+    //Realmに保存されている名前から、アイテムのインスタンスを作ります。文字列でswitchさせます。
+    //アイテムを追加したときはここに処理を追加
+    public SuperItem makeItemFromName(String itemName){
+        SuperItem item = new BenchMaterial();
+        switch (itemName){
+            case "ベンチの材料":
+                item = new BenchMaterial();
+                break;
+            case "ブランコの材料":
+                item = new BurankoMaterial();
+                break;
+        }
+        return item;
     }
 }

@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.minor.prototype10.Models.ImportantItemId;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
     public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
     public static MediaPlayer mediaPlayer;
+    private ImportantItemId importantItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +177,11 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setFmaxHP(playerInfo.getMaxHP());
             playerInfo.setmATK(playerInfo.getATK());
             playerInfo.setmDF(playerInfo.getDF());
+            //makeItemRealmObjectというクラスを作り、そこで行います。
+            importantItemId = realm.createObject(ImportantItemId.class);
+            importantItemId.setItemName("ベンチの材料");
+            importantItemId = realm.createObject(ImportantItemId.class);
+            importantItemId.setItemName("ブランコの材料");
             //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
             //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
             //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する

@@ -16,7 +16,7 @@ public class OnClickDungeon2FButton extends SuperOnClickMapButton {
         OnClickDungeonButton onClickDungeonButton = new OnClickDungeonButton();
         imageButton2.setOnClickListener(onClickDungeonButton);
         mainText.setText("ここはダンジョン2Fです");
-        encounter(1, 10);
+
     }
 
     @Override
