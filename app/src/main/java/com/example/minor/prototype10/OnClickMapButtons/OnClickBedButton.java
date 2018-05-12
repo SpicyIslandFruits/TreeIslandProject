@@ -40,7 +40,7 @@ OnClickBedButton extends SuperOnClickMapButton {
                         mainText.setText("その夜お前は奇妙な夢を見た...。\n何かがおまえを見つめている。\nその眼には底知れない憎悪が宿っていた。");
                         break;
                     case 3:
-                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かの鼓動を聞いた。ゆっくりと成長を続けるそれは、確実に世界を蝕んでいた...。");
+                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かの鼓動を聞いた。それはゆっくりと成長を続けながら、世界を蝕んでいた...。");
                         break;
                     case 4:
                         mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かの存在を恐れていた。\nこの世界に存在する生命がそれを知ることは許されることではなかった。");

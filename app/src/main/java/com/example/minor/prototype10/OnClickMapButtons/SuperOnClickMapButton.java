@@ -29,7 +29,7 @@ import static com.example.minor.prototype10.MainActivity.mediaPlayer;
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
     protected PlayerInfo playerInfo;
-    protected static SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     protected static AppCompatActivity mMain;
     protected static TextView mainText, bleedingText, poisonText;
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;

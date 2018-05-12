@@ -1,5 +1,6 @@
 package com.example.minor.prototype10;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioAttributes;

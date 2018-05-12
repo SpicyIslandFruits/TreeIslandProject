@@ -15,12 +15,17 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickBackDoorButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBathButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBedButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBedroomButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBenchButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBenchNisuwaruButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBossRoomButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoNisuwaruButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickIdoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
@@ -119,6 +124,21 @@ public class MakeData {
                 break;
             case 20:
                 onClickMapButton = new OnClickGardenCornerButton();
+                break;
+            case 21:
+                onClickMapButton = new OnClickBenchButton();
+                break;
+            case 22:
+                onClickMapButton = new OnClickBenchNisuwaruButton();
+                break;
+            case 23:
+                onClickMapButton = new OnClickBurankoButton();
+                break;
+            case 24:
+                onClickMapButton = new OnClickBurankoNisuwaruButton();
+                break;
+            case 25:
+                onClickMapButton = new OnClickIdoButton();
                 break;
         }
         return onClickMapButton;

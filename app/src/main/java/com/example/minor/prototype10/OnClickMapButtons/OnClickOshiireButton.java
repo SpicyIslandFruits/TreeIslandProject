@@ -22,23 +22,23 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
                 MainActivity.soundPool.play(MainActivity.oldMansionSleepSound, 1.0f, 1.0f, 1, 0, 1);
                 stopAllButtons();
                 int textNum;
-                textNum = (int)(Math.random()*12 + 1);
+                textNum = (int)(Math.random()*11 + 1);
                 //ここはもっと増やしたい
                 switch (textNum){
                     case 1:
-                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かを求めて走り続けていた。\n人の身であるお前では、そこに辿り着けるはずがない。\nしかし諦めることを知らないお前は、どんどんこの世の理から外れていった。");
+                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かを目指して走り続けていた。\n人の身であるお前には辿り着けるはずがない場所だ。\nしかし諦めることを知らないお前は、どんどんこの世の理から外れていった。");
                         break;
                     case 2:
-                        mainText.setText("その夜お前は奇妙な夢を見た...。\n何かがお前を見つめている。\nその眼には底知れない憎悪が宿っていた。");
+                        mainText.setText("その夜お前は奇妙な夢を見た...。\n何かがおまえを見つめている。\nその眼には底知れない憎悪が宿っていた。");
                         break;
                     case 3:
-                        mainText.setText("その夜お前は奇妙な夢を見た...。\nお前は何かの鼓動を聞いた。ゆっくりと成長を続けるそれは、確実に世界を蝕んでいた...。");
+                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かの鼓動を聞いた。それはゆっくりと成長を続けながら、世界を蝕んでいた...。");
                         break;
                     case 4:
-                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは認識できない何かの存在を恐れていた。\nこの世界に存在する生命がそれを知ることは許されることではなかった。");
+                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かの存在を恐れていた。\nこの世界に存在する生命がそれを知ることは許されることではなかった。");
                         break;
                     case 5:
-                        mainText.setText("お前には生まれた瞬間の記憶が一つだけ残っている。\nとても大きな扉の鍵が開く音を聞いたのだ。\n小さな産小屋で生まれたお前がどうしてそんな音を聞いたのか、今となっては分かりようもない\nそんな過去の小さな出来事を辿っているうちに、何かに誘われるように深い眠りについた。");
+                        mainText.setText("お前には母親がいない。\n6際のころ突然育児を父親に押し付け、家を出ていった。\n毎日泣いて、毎日探しまわった。いつか帰ってくるだろうと待っていた。\nそんなことを思い出すうちに、お前は睡魔に襲われて眠りについた。");
                         break;
                     case 6:
                         mainText.setText("家主はどんな人だったのだろう...。どうしてこんなところに住もうと思ったのだろう...。\nそんなことを考えているうちに意識が朦朧として、お前は眠りについた。");
@@ -50,16 +50,14 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
                         mainText.setText("お前には何も残されていなかった。\nお前はこれからのことに考えを巡らせたが、何も得られるものはなかった。\nそうこうしているうちにお前は眠りについた。");
                         break;
                     case 9:
-                        mainText.setText("その夜お前は奇妙な夢を見た...。\nお前は何かから逃げ続けている。\n想像によって肥大化するそれは、果たして生命と呼んでいいのかわからなかった。");
+                        mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かから逃げ続けている。\nおまえはそれを生命と呼んでいいのかわからなかった。");
                         break;
                     case 10:
                         mainText.setText("お前はふと考えた。\n自分はなぜこの屋敷にたどり着けたのだろうか。\nしかしいくら考えても答えは出てこない。\nそうこうしているうちにお前は眠気に誘われていった。");
                         break;
                     case 11:
-                        mainText.setText("お前は奇妙な夢を見た...。\n何かがお前からすべてを奪い去ろうとしている。\nお前を取り巻くこの世界さえも巻き込んで...。");
-                        break;
-                    case 12:
                         mainText.setText("最近よく夢を見る...。\nぼんやりとして得体のしれないものばかりだが、不思議と感情だけははっきりと伝わってくる。\n思い出そうとしているうちに意識が朦朧として、お前は眠りについた。");
+                        break;
                 }
                 realm.beginTransaction();
                 playerInfo.setHP(playerInfo.getFmaxHP());

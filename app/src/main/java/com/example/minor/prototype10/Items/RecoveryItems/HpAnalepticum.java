@@ -7,4 +7,9 @@ public class HpAnalepticum extends SuperItem{
     public String getName() {
         return null;
     }
+
+    @Override
+    public String getInformation() {
+        return null;
+    }
 }
