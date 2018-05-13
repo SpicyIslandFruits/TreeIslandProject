@@ -11,6 +11,10 @@ import io.realm.RealmResults;
 
 /**
  * サブクラスで新しいメソッドを作った場合は必ずここにも書いてください。
+ * アイテムの追加方法はrealmのcreateオブジェクトに名前を渡すだけ。
+ * 自分の所持しているアイテムの名前をrealmに保存し、使う際にMakeDataに名前を渡して名前からアイテムのクラスを作成。
+ * 使用後にrealmから名前を削除する。という流れ。
+ * SuperItem型の変数にクラスを代入するためサブクラスのアイテムで作ったメソッドはスーパークラスにも書く必要がある。
  */
 abstract public class SuperItem {
     public Realm realm;

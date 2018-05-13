@@ -41,6 +41,10 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
             mainText.setText("持ち手がちぎれてしまっている。\nこのままでは座れない...。");
         }else if(sharedPreferences.getInt("oldMansionGardenBurankoState", 0) == 2){
             //中身が未定、謎解きマップにします
+            OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
+            imageButton8.setOnClickListener(onClickGardenButton);
+            imageButton8Text.setText("戻る");
+            mainText.setText("ブランコの材料を使用しました。\nイベントは未定です。");
         }
     }
 
