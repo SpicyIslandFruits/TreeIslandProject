@@ -2,7 +2,6 @@ package com.example.minor.prototype10;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -15,14 +14,16 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.Models.ImportantItemId;
+import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -50,12 +51,15 @@ public class MainActivity extends AppCompatActivity{
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
     public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
     public static MediaPlayer mediaPlayer;
-    private ImportantItemId importantItemId;
+    private ImportantItemName importantItemName;
+    private RecoveryItemName recoveryItemName;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = getApplicationContext();
         bleedingText = findViewById(R.id.bleeding_state);
         poisonText = findViewById(R.id.poison_state);
         imageButton = findViewById(R.id.status_button);
@@ -179,10 +183,20 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setmATK(playerInfo.getATK());
             playerInfo.setmDF(playerInfo.getDF());
             //makeItemRealmObjectというクラスを作り、そこで行います。
-            importantItemId = realm.createObject(ImportantItemId.class);
-            importantItemId.setItemName("ベンチの材料");
-            importantItemId = realm.createObject(ImportantItemId.class);
-            importantItemId.setItemName("ブランコの材料");
+            importantItemName = realm.createObject(ImportantItemName.class);
+            importantItemName.setItemName("ベンチの材料");
+            importantItemName = realm.createObject(ImportantItemName.class);
+            importantItemName.setItemName("ブランコの材料");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("HP回復薬小");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("HP回復薬小");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("HP回復薬小");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("MP回復薬小");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("MP回復薬小");
             //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
             //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
             //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する

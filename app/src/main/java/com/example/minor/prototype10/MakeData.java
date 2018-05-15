@@ -9,6 +9,8 @@ import com.example.minor.prototype10.Enemys.SampleEnemy3;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Items.ImportantItems.BenchMaterial;
 import com.example.minor.prototype10.Items.ImportantItems.BurankoMaterial;
+import com.example.minor.prototype10.Items.RecoveryItems.HpAnalepticumSmall;
+import com.example.minor.prototype10.Items.RecoveryItems.MpAnalepticumSmall;
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBackDoorButton;
@@ -231,6 +233,12 @@ public class MakeData {
                 break;
             case "ブランコの材料":
                 item = new BurankoMaterial();
+                break;
+            case "HP回復薬小":
+                item = new HpAnalepticumSmall();
+                break;
+            case "MP回復薬小":
+                item = new MpAnalepticumSmall();
                 break;
         }
         return item;

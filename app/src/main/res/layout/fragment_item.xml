@@ -292,5 +292,20 @@
             app:layout_constraintEnd_toEndOf="@+id/important_item_background_image"
             app:layout_constraintStart_toStartOf="@+id/guideline60"
             app:layout_constraintTop_toTopOf="@+id/important_item_background_image" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/selected_recovery_item"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="SelectedItem"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/guideline57"
+            app:layout_constraintEnd_toEndOf="@+id/recovery_background_image"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/recovery_background_image" />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

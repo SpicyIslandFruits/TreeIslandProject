@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,10 +15,10 @@ import android.widget.TextView;
 import com.example.minor.prototype10.ImportantItemAdapter;
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MakeData;
-import com.example.minor.prototype10.Models.ImportantItemId;
-import com.example.minor.prototype10.Models.WeaponId;
+import com.example.minor.prototype10.Models.ImportantItemName;
+import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.WeaponAdapter;
+import com.example.minor.prototype10.RecoveryItemAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -29,13 +28,16 @@ public class ItemFragment extends Fragment {
     private MakeData makeData;
     private ListView recoveryItemList, amuletList, importantItemList, rawMaterialsList;
     //後三つ追加します。
-    private TextView selectedImportantItem;
-    private RealmResults<ImportantItemId> importantItemIds;
-    private ImportantItemId importantItemIdInstance;
-    private String importantItemName;
+    private TextView selectedImportantItemText, selectedRecoveryItemText;
+    private RealmResults<ImportantItemName> importantItemNames;
+    private RealmResults<RecoveryItemName> recoveryItemNames;
+    private ImportantItemName importantItemNameInstance;
+    private RecoveryItemName recoveryItemNameInstance;
+    private String importantItemName, recoveryItemName;
     private ImageButton useRecoveryItemButton, useImportantItemButton;
     private SuperItem item;
     private ImportantItemAdapter importantItemAdapter;
+    private RecoveryItemAdapter recoveryItemAdapter;
 
     @Nullable
     @Override
@@ -54,27 +56,52 @@ public class ItemFragment extends Fragment {
         importantItemList = view.findViewById(R.id.important_item_list);
         rawMaterialsList = view.findViewById(R.id.raw_materials_list);
         //四つ分やる
-        selectedImportantItem = view.findViewById(R.id.selected_important_item);
+        selectedImportantItemText = view.findViewById(R.id.selected_important_item);
+        selectedRecoveryItemText = view.findViewById(R.id.selected_recovery_item);
 
         //回復薬の分もやる
         useImportantItemButton = view.findViewById(R.id.use_important_item_button);
+        useRecoveryItemButton = view.findViewById(R.id.use_recovery_item_button);
 
         //四つのリストビューの分やる。
-        importantItemIds = realm.where(ImportantItemId.class).findAll();
-        importantItemAdapter = new ImportantItemAdapter(importantItemIds);
+        //大切なもののリスト
+        importantItemNames = realm.where(ImportantItemName.class).findAll();
+        importantItemAdapter = new ImportantItemAdapter(importantItemNames);
         importantItemList.setAdapter(importantItemAdapter);
+        //回復アイテムのリスト
+        recoveryItemNames = realm.where(RecoveryItemName.class).findAll();
+        recoveryItemAdapter = new RecoveryItemAdapter(recoveryItemNames);
+        recoveryItemList.setAdapter(recoveryItemAdapter);
 
         importantItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                importantItemIdInstance = (ImportantItemId) parent.getItemAtPosition(position);
-                importantItemName = importantItemIdInstance.getItemName();
+                importantItemNameInstance = (ImportantItemName) parent.getItemAtPosition(position);
+                importantItemName = importantItemNameInstance.getItemName();
                 item = makeData.makeItemFromName(importantItemName);
-                selectedImportantItem.setText(item.getName() + "\n" + item.getInformation());
+                selectedImportantItemText.setText(item.getName() + "\n" + item.getInformation());
                 useImportantItemButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         item.useMaterial();
+                        selectedImportantItemText.setText("");
+                    }
+                });
+            }
+        });
+
+        recoveryItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                recoveryItemNameInstance = (RecoveryItemName) parent.getItemAtPosition(position);
+                recoveryItemName = recoveryItemNameInstance.getItemName();
+                item = makeData.makeItemFromName(recoveryItemName);
+                selectedRecoveryItemText.setText(item.getName() + "\n" + item.getInformation());
+                useRecoveryItemButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        item.useRecoveryItem();
+                        selectedRecoveryItemText.setText("");
                     }
                 });
             }

@@ -1,12 +1,12 @@
 package com.example.minor.prototype10.Items;
 
 import android.content.SharedPreferences;
-import com.example.minor.prototype10.Models.ImportantItemId;
+import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 import io.realm.Realm;
-import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
@@ -17,21 +17,30 @@ import io.realm.RealmResults;
  * SuperItem型の変数にクラスを代入するためサブクラスのアイテムで作ったメソッドはスーパークラスにも書く必要がある。
  */
 abstract public class SuperItem {
-    public Realm realm;
-    public PlayerInfo playerInfo;
-    public RealmResults<ImportantItemId> importantItemIds;
-    public ImportantItemId importantItemId;
-    public SharedPreferences sharedPreferences;
-    public SharedPreferences.Editor editor;
+    protected Realm realm;
+    protected PlayerInfo playerInfo;
+    protected RealmResults<ImportantItemName> importantItemNames;
+    protected RealmResults<RecoveryItemName> recoveryItemNames;
+    protected ImportantItemName importantItemName;
+    protected RecoveryItemName recoveryItemName;
+    protected SharedPreferences sharedPreferences;
+    protected SharedPreferences.Editor editor;
 
     abstract public String getName();
     abstract public String getInformation();
 
+    //このメソッドを使う際はeditor.applyを忘れないようにする
     public void useMaterial(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
-        importantItemIds = realm.where(ImportantItemId.class).findAll();
+        importantItemNames = realm.where(ImportantItemName.class).findAll();
         sharedPreferences = SuperOnClickMapButton.sharedPreferences;
         editor = sharedPreferences.edit();
+    }
+
+    public void useRecoveryItem(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        recoveryItemNames = realm.where(RecoveryItemName.class).findAll();
     }
 }

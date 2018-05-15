@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.Models.ImportantItemId;
+import com.example.minor.prototype10.Models.ImportantItemName;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmBaseAdapter;
@@ -14,12 +14,12 @@ import io.realm.RealmBaseAdapter;
 /**
  * 編集の必要なし
  */
-public class ImportantItemAdapter extends RealmBaseAdapter<ImportantItemId> {
+public class ImportantItemAdapter extends RealmBaseAdapter<ImportantItemName> {
     private static class ViewHolder{
         TextView importantItemName;
     }
 
-    public ImportantItemAdapter(@Nullable OrderedRealmCollection<ImportantItemId> data) {
+    public ImportantItemAdapter(@Nullable OrderedRealmCollection<ImportantItemName> data) {
         super(data);
     }
 
@@ -36,9 +36,9 @@ public class ImportantItemAdapter extends RealmBaseAdapter<ImportantItemId> {
             viewHolder = (ImportantItemAdapter.ViewHolder)convertView.getTag();
         }
 
-        ImportantItemId importantItemId = adapterData.get(position);
+        ImportantItemName importantItemName = adapterData.get(position);
         MakeData makeData = new MakeData();
-        viewHolder.importantItemName.setText(makeData.makeItemFromName(importantItemId.getItemName()).getName());
+        viewHolder.importantItemName.setText(makeData.makeItemFromName(importantItemName.getItemName()).getName());
         viewHolder.importantItemName.setMaxLines(1);
         return convertView;
     }
