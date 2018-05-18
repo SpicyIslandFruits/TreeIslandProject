@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.Models.ArmorId;
+import com.example.minor.prototype10.Models.ArmorName;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmBaseAdapter;
@@ -14,12 +14,12 @@ import io.realm.RealmBaseAdapter;
 /**
  * 武器アダプターを参考にして編集
  */
-public class ArmorAdapter extends RealmBaseAdapter<ArmorId> {
+public class ArmorAdapter extends RealmBaseAdapter<ArmorName> {
     private static class ViewHolder{
         TextView armorName;
     }
 
-    public ArmorAdapter(@Nullable OrderedRealmCollection<ArmorId> data) {
+    public ArmorAdapter(@Nullable OrderedRealmCollection<ArmorName> data) {
         super(data);
     }
 
@@ -36,9 +36,8 @@ public class ArmorAdapter extends RealmBaseAdapter<ArmorId> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        ArmorId armorId = adapterData.get(position);
-        MakeData makeData = new MakeData();
-        viewHolder.armorName.setText(makeData.makeWeaponFromId(armorId.getArmorId()).getName());
+        ArmorName armorName = adapterData.get(position);
+        viewHolder.armorName.setText(armorName.getArmorName());
         viewHolder.armorName.setMaxLines(1);
         return convertView;
     }

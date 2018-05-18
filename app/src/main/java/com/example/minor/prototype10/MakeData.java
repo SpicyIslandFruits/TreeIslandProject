@@ -209,13 +209,13 @@ public class MakeData {
     }
 
     //防具を追加した場合はここに書く
-    public SuperArmor makeArmorFromId(int id){
+    public SuperArmor makeArmorFromId(String armorName){
         SuperArmor armor = new SampleArmor();
-        switch (id){
-            case 0:
+        switch (armorName){
+            case "SampleArmor":
                 armor = new SampleArmor();
                 break;
-            case 1:
+            case "SampleArmor2":
                 armor = new SampleArmor2();
                 break;
         }

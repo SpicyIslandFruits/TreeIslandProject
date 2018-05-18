@@ -36,8 +36,6 @@ public class PlayerInfo extends RealmObject {
     private int LUK;
     private int mLUK;
     private int fLUK;
-    private RealmList<ArmorId> armorIds;
-    private int armorId;
     private RealmList<WeaponId> weaponIds;
     private int weaponId;
     private RealmList<ItemId> itemIds;
@@ -256,22 +254,6 @@ public class PlayerInfo extends RealmObject {
 
     public void setfLUK(int fLUK) {
         this.fLUK = fLUK;
-    }
-
-    public RealmList<ArmorId> getArmorIds() {
-        return armorIds;
-    }
-
-    public void setArmorIds(RealmList<ArmorId> armorIds) {
-        this.armorIds = armorIds;
-    }
-
-    public int getArmorId() {
-        return armorId;
-    }
-
-    public void setArmorId(int armorId) {
-        this.armorId = armorId;
     }
 
     public RealmList<WeaponId> getWeaponIds() {

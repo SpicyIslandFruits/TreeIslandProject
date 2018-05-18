@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.minor.prototype10.ArmorAdapter;
 import com.example.minor.prototype10.Armors.SuperArmor;
 import com.example.minor.prototype10.MakeData;
-import com.example.minor.prototype10.Models.ArmorId;
+import com.example.minor.prototype10.Models.ArmorName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponId;
 import com.example.minor.prototype10.R;
@@ -33,9 +33,9 @@ import io.realm.RealmResults;
 public class EquipmentFragment extends Fragment {
     private Realm realm;
     private RealmResults<WeaponId> weaponIds;
-    private RealmResults<ArmorId> armorIds;
+    private RealmResults<ArmorName> armorNames;
     private WeaponId weaponIdInstance;
-    private ArmorId armorIdInstance;
+    private ArmorName armorNameInstance;
     private MakeData makeData;
     private SuperWeapon weapon;
     private SuperArmor armor;
@@ -43,9 +43,11 @@ public class EquipmentFragment extends Fragment {
     private WeaponAdapter weaponAdapter;
     private ArmorAdapter armorAdapter;
     private ListView weaponList, armorList;
-    private TextView equipedWeapon, weaponName, weaponATK, weaponSkill1, weaponSkill2, weaponSkill3;
-    private TextView equipedArmor, armorName, armorDF, armorSkill1, armorSkill2, armorSkill3;
+    private TextView equipedWeapon, weaponNameText, weaponATK, weaponSkill1, weaponSkill2, weaponSkill3;
+    private TextView equipedArmor, armorNameText, armorDF, armorSkill1, armorSkill2, armorSkill3;
+    //後で消します。
     private int weaponId, armorId;
+    private String armorName;
 
     @Nullable
     @Override
@@ -62,9 +64,9 @@ public class EquipmentFragment extends Fragment {
         weaponList = view.findViewById(R.id.weapon_list);
         armorList = view.findViewById(R.id.armor_list);
         equipedWeapon = view.findViewById(R.id.equiped_weapon);
-        weaponName = view.findViewById(R.id.weapon_name);
+        weaponNameText = view.findViewById(R.id.weapon_name);
         equipedArmor = view.findViewById(R.id.equiped_armor);
-        armorName = view.findViewById(R.id.armor_name);
+        armorNameText = view.findViewById(R.id.armor_name);
         weaponATK = view.findViewById(R.id.weapon_atk);
         armorDF = view.findViewById(R.id.armor_df);
         weaponSkill1 = view.findViewById(R.id.weapon_skill1);
@@ -74,9 +76,9 @@ public class EquipmentFragment extends Fragment {
         armorSkill2 = view.findViewById(R.id.armor_skill2);
         armorSkill3 = view.findViewById(R.id.armor_skill3);
         weaponIds = realm.where(WeaponId.class).findAll();
-        armorIds = realm.where(ArmorId.class).findAll();
+        armorNames = realm.where(ArmorName.class).findAll();
         weaponAdapter = new WeaponAdapter(weaponIds);
-        armorAdapter = new ArmorAdapter(armorIds);
+        armorAdapter = new ArmorAdapter(armorNames);
         weaponList.setAdapter(weaponAdapter);
         armorList.setAdapter(armorAdapter);
 
@@ -85,7 +87,7 @@ public class EquipmentFragment extends Fragment {
         weaponId = playerInfo.getWeaponId();
         weapon = makeData.makeWeaponFromId(weaponId);
         weaponIdInstance = realm.where(WeaponId.class).equalTo("weaponId", weaponId).findFirst();
-        weaponName.setText(weapon.getName());
+        weaponNameText.setText(weapon.getName());
         equipedWeapon.setText(weapon.getName());
         weaponATK.setText("攻撃力:"+String.valueOf(weaponIdInstance.getWeaponAtk()));
         weaponSkill1.setText(weapon.getSkill1Info());
@@ -100,7 +102,7 @@ public class EquipmentFragment extends Fragment {
                 weaponId = weaponIdInstance.getWeaponId();
                 weapon = makeData.makeWeaponFromId(weaponId);
                 equipedWeapon.setText(weapon.getName());
-                weaponName.setText(weapon.getName());
+                weaponNameText.setText(weapon.getName());
                 weaponATK.setText("攻撃力:"+String.valueOf(weaponIdInstance.getWeaponAtk()));
                 weaponSkill1.setText(weapon.getSkill1Info());
                 weaponSkill2.setText(weapon.getSkill2Info());
@@ -119,18 +121,16 @@ public class EquipmentFragment extends Fragment {
         armorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                armorIdInstance = (ArmorId) parent.getItemAtPosition(position);
-                armorId = armorIdInstance.getArmorId();
-                armor = makeData.makeArmorFromId(armorId);
-                equipedArmor.setText(armor.getName());
-                armorName.setText(armor.getName());
-                armorDF.setText("防御力:"+String.valueOf(armorIdInstance.getArmorDf()));
+                armorNameInstance = (ArmorName) parent.getItemAtPosition(position);
+                armorName = armorNameInstance.getArmorName();
+                equipedArmor.setText(armorName);
+                armorNameText.setText(armorName);
+                armorDF.setText("防御力:"+String.valueOf(armorNameInstance.getArmorDf()));
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realm) {
                         playerInfo = realm.where(PlayerInfo.class).findFirst();
-                        playerInfo.setArmorId(armorId);
-                        playerInfo.setfDF(armorIdInstance.getArmorDf());
+                        playerInfo.setfDF(armorNameInstance.getArmorDf());
                     }
                 });
             }

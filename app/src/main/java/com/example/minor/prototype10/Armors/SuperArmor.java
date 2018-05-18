@@ -1,7 +1,6 @@
 package com.example.minor.prototype10.Armors;
 
 abstract public class SuperArmor {
-    abstract public int getId();
     abstract public String getName();
     abstract public int getDf();
     abstract public String getSkill1Info();

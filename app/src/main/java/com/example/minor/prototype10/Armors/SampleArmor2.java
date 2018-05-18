@@ -1,13 +1,8 @@
 package com.example.minor.prototype10.Armors;
 
 public class SampleArmor2 extends SuperArmor {
-    private static final int id = 1;
     private static final String name = "SampleArmor2";
     private static final int df = 120;
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

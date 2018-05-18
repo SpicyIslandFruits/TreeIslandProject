@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.BattleActivity;
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.MakeArmorRealmObject;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.R;
@@ -93,6 +94,16 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         if(Math.random()*100 < percent) {
             if (makeWeaponRealmObject.createNewWeapon(weaponId)) {
                 mainText.setText("武器を取得しました");
+            }
+        }
+    }
+
+    protected void obtainArmor(String armorName, int percent){
+        MakeArmorRealmObject makeArmorRealmObject = new MakeArmorRealmObject();
+        if(Math.random()*100 < percent){
+            if(makeArmorRealmObject.createNewArmor(armorName)){
+                //取得した防具の名前を表示した方がいいかもしれない。
+                mainText.setText("防具を取得しました。");
             }
         }
     }

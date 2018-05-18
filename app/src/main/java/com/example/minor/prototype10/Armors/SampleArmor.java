@@ -8,13 +8,8 @@ package com.example.minor.prototype10.Armors;
  * バトルアクティビティのexecuteTempBattleの中にオートスキルメソッドの実行を書く
  */
 public class SampleArmor extends SuperArmor {
-    private static final int id = 0;
     private static final String name = "SampleArmor";
     private static final int df = 120;
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

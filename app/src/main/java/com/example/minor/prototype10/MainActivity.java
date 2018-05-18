@@ -206,7 +206,8 @@ public class MainActivity extends AppCompatActivity{
             realm.commitTransaction();
             //防具もこれと同様にしてください
             makeWeaponRealmObject.createNewWeapon(0);
-            makeArmorRealmObject.createNewArmor(0);
+            makeArmorRealmObject.createNewArmor("SampleArmor");
+            makeArmorRealmObject.createNewArmor("SampleArmor2");
         }catch (Exception e){
             realm.cancelTransaction();
         }
