@@ -195,13 +195,13 @@ public class MakeData {
     }
 
     //武器を追加した場合はここに書く
-    public SuperWeapon makeWeaponFromId(int id){
+    public SuperWeapon makeWeaponFromName(String weaponName){
         SuperWeapon weapon = new SampleWeapon();
-        switch (id){
-            case 0:
+        switch (weaponName){
+            case "SampleWeapon":
                 weapon = new SampleWeapon();
                 break;
-            case 1:
+            case "SampleWeapon2":
                 weapon = new SampleWeapon2();
                 break;
         }
@@ -209,7 +209,7 @@ public class MakeData {
     }
 
     //防具を追加した場合はここに書く
-    public SuperArmor makeArmorFromId(String armorName){
+    public SuperArmor makeArmorFromName(String armorName){
         SuperArmor armor = new SampleArmor();
         switch (armorName){
             case "SampleArmor":

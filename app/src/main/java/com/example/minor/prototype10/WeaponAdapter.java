@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.Models.WeaponId;
+import com.example.minor.prototype10.Models.WeaponName;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmBaseAdapter;
@@ -14,12 +14,12 @@ import io.realm.RealmBaseAdapter;
 /**
  * ここを編集する必要はないです
  */
-public class WeaponAdapter extends RealmBaseAdapter<WeaponId> {
+public class WeaponAdapter extends RealmBaseAdapter<WeaponName> {
     private static class ViewHolder{
         TextView weaponName;
     }
 
-    public WeaponAdapter(@Nullable OrderedRealmCollection<WeaponId> data) {
+    public WeaponAdapter(@Nullable OrderedRealmCollection<WeaponName> data) {
         super(data);
     }
 
@@ -36,9 +36,8 @@ public class WeaponAdapter extends RealmBaseAdapter<WeaponId> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        WeaponId weaponId = adapterData.get(position);
-        MakeData makeData = new MakeData();
-        viewHolder.weaponName.setText(makeData.makeWeaponFromId(weaponId.getWeaponId()).getName());
+        WeaponName weaponName = adapterData.get(position);
+        viewHolder.weaponName.setText(weaponName.getWeaponName());
         viewHolder.weaponName.setMaxLines(1);
         return convertView;
     }

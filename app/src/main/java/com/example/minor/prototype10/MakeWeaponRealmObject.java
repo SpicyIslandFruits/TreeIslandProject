@@ -1,7 +1,7 @@
 package com.example.minor.prototype10;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.Models.WeaponId;
+import com.example.minor.prototype10.Models.WeaponName;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
 
 import io.realm.Realm;
@@ -16,34 +16,23 @@ public class MakeWeaponRealmObject {
     private PlayerInfo playerInfo;
     private Realm realm;
     private int weaponLevel;
-    private WeaponId weaponId;
+    private WeaponName weaponName;
 
     //現在は問答無用で強い方の武器を作成しているが、実際は確認ダイヤログを出す
-    public boolean createNewWeapon(int id){
-        boolean newWeaponFlag = false;
+    public boolean createNewWeapon(String weaponName){
+        boolean newWeaponFlag;
         realm = Realm.getDefaultInstance();
         makeData = new MakeData();
-        superWeapon = makeData.makeWeaponFromId(id);
+        superWeapon = makeData.makeWeaponFromName(weaponName);
         newWeaponAtk = calculateAtk(superWeapon.getAtk());
-        try{
-            realm.beginTransaction();
-            weaponId = realm.createObject(WeaponId.class, new Integer(id));
-            weaponId.setWeaponAtk(newWeaponAtk);
-            weaponId.setWeaponLevel(weaponLevel);
-            playerInfo.getWeaponIds().add(weaponId);
-            realm.commitTransaction();
-            newWeaponFlag = true;
-        }catch (Exception e){
-            realm.cancelTransaction();
-            weaponId = realm.where(WeaponId.class).findFirst();
-            if(weaponId.getWeaponAtk() <= newWeaponAtk){
-                realm.beginTransaction();
-                weaponId.setWeaponAtk(newWeaponAtk);
-                weaponId.setWeaponLevel(weaponLevel);
-                realm.commitTransaction();
-                newWeaponFlag = true;
-            }
-        }
+        realm.beginTransaction();
+        this.weaponName = realm.createObject(WeaponName.class);
+        this.weaponName.setWeaponName(weaponName);
+        this.weaponName.setWeaponAtk(newWeaponAtk);
+        this.weaponName.setWeaponLevel(weaponLevel);
+        playerInfo.setWeaponName(weaponName);
+        realm.commitTransaction();
+        newWeaponFlag = true;
         realm.close();
         return newWeaponFlag;
     }

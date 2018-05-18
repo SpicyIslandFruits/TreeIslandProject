@@ -3,20 +3,19 @@ package com.example.minor.prototype10.Models;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class WeaponId extends RealmObject{
-    @PrimaryKey
-    private int weaponId;
+public class WeaponName extends RealmObject{
+    private String weaponName;
 
     private int weaponAtk;
 
     private int weaponLevel;
 
-    public int getWeaponId() {
-        return weaponId;
+    public String getWeaponName() {
+        return weaponName;
     }
 
-    public void setWeaponId(int weaponId) {
-        this.weaponId = weaponId;
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
     }
 
     public int getWeaponAtk() {

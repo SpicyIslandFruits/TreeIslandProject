@@ -36,10 +36,8 @@ public class PlayerInfo extends RealmObject {
     private int LUK;
     private int mLUK;
     private int fLUK;
-    private RealmList<WeaponId> weaponIds;
-    private int weaponId;
-    private RealmList<ItemId> itemIds;
-    private RealmList<PlayerSkillId> playerSkillIds;
+    private String weaponName;
+    private String armorName;
     private int playerSkill1;
     private int playerSkill2;
     private int playerSkill3;
@@ -55,6 +53,14 @@ public class PlayerInfo extends RealmObject {
     private boolean playerAutoAbsorbingFlag;
     private int nowPlayingBgm;
     private boolean playerSuicideFlag;
+
+    public String getArmorName() {
+        return armorName;
+    }
+
+    public void setArmorName(String armorName) {
+        this.armorName = armorName;
+    }
 
     public String getPlayer() {
         return player;
@@ -256,36 +262,12 @@ public class PlayerInfo extends RealmObject {
         this.fLUK = fLUK;
     }
 
-    public RealmList<WeaponId> getWeaponIds() {
-        return weaponIds;
+    public String getWeaponName() {
+        return weaponName;
     }
 
-    public void setWeaponIds(RealmList<WeaponId> weaponIds) {
-        this.weaponIds = weaponIds;
-    }
-
-    public int getWeaponId() {
-        return weaponId;
-    }
-
-    public void setWeaponId(int weaponId) {
-        this.weaponId = weaponId;
-    }
-
-    public RealmList<ItemId> getItemIds() {
-        return itemIds;
-    }
-
-    public void setItemIds(RealmList<ItemId> itemIds) {
-        this.itemIds = itemIds;
-    }
-
-    public RealmList<PlayerSkillId> getPlayerSkillIds() {
-        return playerSkillIds;
-    }
-
-    public void setPlayerSkillIds(RealmList<PlayerSkillId> playerSkillIds) {
-        this.playerSkillIds = playerSkillIds;
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
     }
 
     public int getPlayerSkill1() {

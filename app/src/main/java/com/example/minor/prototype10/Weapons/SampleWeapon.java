@@ -2,7 +2,7 @@ package com.example.minor.prototype10.Weapons;
 
 /**
  * 武器を追加したらMakeDataクラスでswitch文に処理を追加してください
- * 武器を取得するイベントを書いてください、取得する際にはPlayerInfoのweaponIdではなくRealmList<WeaponId>のほうにidを追加してください
+ * 武器を取得するイベントを書いてください、取得する際にはPlayerInfoのweaponIdではなくRealmList<WeaponName>のほうにidを追加してください
  * playerAtkにはすでに武器装備時の攻撃力が代入されています
  * skillメソッドの中に処理を書いてください、spを消費させる処理を忘れないでください。
  * skillメソッドの処理はbeginTransactionとcommitTransactionで挟んでください
@@ -11,7 +11,6 @@ package com.example.minor.prototype10.Weapons;
  * 武器のatkは150前後
  */
 public class SampleWeapon extends SuperWeapon {
-    private static final int id = 0;
     private static final String name = "SampleWeapon";
     private static final String skill1Name = "SampleSkill1";
     private static final String skill2Name = "SampleSkill2";
@@ -41,10 +40,6 @@ public class SampleWeapon extends SuperWeapon {
         newBreakNum = breakNum + 4;
         commitTransaction(skill3SpConsumption);
         return newAllStatus;
-    }
-
-    public int getId() {
-        return id;
     }
 
     @Override

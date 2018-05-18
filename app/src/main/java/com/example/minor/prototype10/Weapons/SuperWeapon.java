@@ -56,7 +56,6 @@ abstract public class SuperWeapon {
     abstract public int[] skill1(int[] tempAllStatus);
     abstract public int[] skill2(int[] tempAllStatus);
     abstract public int[] skill3(int[] tempAllStatus);
-    abstract public int getId();
     abstract public String getName();
     abstract public int getAtk();
     abstract public String getSkill1Info();

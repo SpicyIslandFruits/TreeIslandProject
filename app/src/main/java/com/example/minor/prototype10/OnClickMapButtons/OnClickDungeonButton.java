@@ -41,6 +41,6 @@ public class OnClickDungeonButton extends SuperOnClickMapButton{
         mainText.setText("ここはダンジョンです");
         changeBaseEnemyLevel(50);
         encounter(0, 10);
-        obtainWeapon(1, 10);
+        obtainWeapon("SampleWeapon2", 100);
     }
 }

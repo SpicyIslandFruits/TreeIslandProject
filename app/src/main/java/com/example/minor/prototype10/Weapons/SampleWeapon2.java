@@ -1,7 +1,6 @@
 package com.example.minor .prototype10.Weapons;
 
 public class SampleWeapon2 extends SuperWeapon {
-    private static final int id = 1;
     private static final String name = "SampleWeapon2";
     private static final String skill1Name = "SampleSkill1";
     private static final String skill2Name = "SampleSkill2";
@@ -27,7 +26,7 @@ public class SampleWeapon2 extends SuperWeapon {
 
     public int[] skill3(int[] tempAllStatus){
         beginTransaction(tempAllStatus);
-        newEnemyHp = enemyHp - (int)(calculateDamage());
+        newEnemyHp = enemyHp - calculateDamage();
         commitTransaction(skill3SpConsumption);
         return newAllStatus;
     }
@@ -40,11 +39,6 @@ public class SampleWeapon2 extends SuperWeapon {
     @Override
     public int getAtk() {
         return atk;
-    }
-
-    @Override
-    public int getId() {
-        return id;
     }
 
     @Override

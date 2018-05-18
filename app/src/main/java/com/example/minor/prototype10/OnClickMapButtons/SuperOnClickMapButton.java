@@ -89,10 +89,10 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         mainText.setText("");
     }
 
-    protected void obtainWeapon(int weaponId, int percent){
+    protected void obtainWeapon(String weaponName, int percent){
         MakeWeaponRealmObject makeWeaponRealmObject = new MakeWeaponRealmObject();
         if(Math.random()*100 < percent) {
-            if (makeWeaponRealmObject.createNewWeapon(weaponId)) {
+            if (makeWeaponRealmObject.createNewWeapon(weaponName)) {
                 mainText.setText("武器を取得しました");
             }
         }

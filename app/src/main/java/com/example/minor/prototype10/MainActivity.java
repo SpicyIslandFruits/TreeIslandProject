@@ -17,13 +17,12 @@ import android.widget.TextView;
 import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
-import com.example.minor.prototype10.Models.WeaponId;
+import com.example.minor.prototype10.Models.WeaponName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
-import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity{
     private Realm realm;
     private MakeData makeData;
     private PlayerInfo playerInfo;
-    private RealmResults<WeaponId> weaponIds;
+    private RealmResults<WeaponName> weaponNames;
     private RealmResults<PlayerInfo> playerInfos;
     private ImageButton imageButton;
     private int position;
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity{
                 }
             }
         });
-        weaponIds = realm.where(WeaponId.class).findAll();
+        weaponNames = realm.where(WeaponName.class).findAll();
         position = playerInfo.getPosition();
         onClickMapButton = makeData.makeMapFromPosition(position);
         onClickMapButton.setDefaultInstances(this);
@@ -164,7 +163,6 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setLUK(10);
             //fLukはデフォで1/12*100程度の値をセット
             playerInfo.setfLUK(10);
-            playerInfo.setWeaponId(0);
             //状態異常のセット
             playerInfo.setBleedingFlag(false);
             playerInfo.setPoisonFlag(false);
@@ -205,7 +203,7 @@ public class MainActivity extends AppCompatActivity{
             //メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
             realm.commitTransaction();
             //防具もこれと同様にしてください
-            makeWeaponRealmObject.createNewWeapon(0);
+            makeWeaponRealmObject.createNewWeapon("SampleWeapon");
             makeArmorRealmObject.createNewArmor("SampleArmor");
             makeArmorRealmObject.createNewArmor("SampleArmor2");
         }catch (Exception e){

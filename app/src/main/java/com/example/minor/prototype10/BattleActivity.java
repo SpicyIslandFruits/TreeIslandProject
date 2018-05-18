@@ -44,7 +44,7 @@ public class BattleActivity extends AppCompatActivity {
     private ArrayAdapter<String> skillNameAdapter;
     private RealmResults<PlayerInfo> playerInfos;
     private MakeData makeData;
-    private int weaponId;
+    private String weaponName;
     private int enemyId;
     private SuperEnemy enemy;
     private SuperWeapon weapon;
@@ -92,8 +92,8 @@ public class BattleActivity extends AppCompatActivity {
         playerInfo.setPlayerAutoHealingFlag(false);
         playerInfo.setEnemyPoisonFlag(false);
         realm.commitTransaction();
-        weaponId = playerInfo.getWeaponId();
-        weapon = makeData.makeWeaponFromId(weaponId);
+        weaponName = playerInfo.getWeaponName();
+        weapon = makeData.makeWeaponFromName(weaponName);
         //一時的にサンプルスキルを使う本来は上に書いてあるweaponと同様の処理を行って自分の装備してあるスキルのインスタンスを取得する
         playerSkill1 = new SampleSkill2();
         playerSkill2 = new SampleSkill2();

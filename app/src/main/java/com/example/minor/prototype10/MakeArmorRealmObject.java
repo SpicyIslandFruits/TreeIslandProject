@@ -23,13 +23,14 @@ public class MakeArmorRealmObject {
         boolean newArmorFlag;
         realm = Realm.getDefaultInstance();
         makeData = new MakeData();
-        superArmor = makeData.makeArmorFromId(armorName);
+        superArmor = makeData.makeArmorFromName(armorName);
         newArmorDf = calculateDf(superArmor.getDf());
         realm.beginTransaction();
         this.armorName = realm.createObject(ArmorName.class);
         this.armorName.setArmorName(armorName);
         this.armorName.setArmorDf(newArmorDf);
         this.armorName.setArmorLevel(armorLevel);
+        playerInfo.setArmorName(armorName);
         realm.commitTransaction();
         newArmorFlag = true;
         realm.close();
