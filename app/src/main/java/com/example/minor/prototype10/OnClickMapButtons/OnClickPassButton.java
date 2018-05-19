@@ -5,8 +5,9 @@ import android.view.View;
 import com.example.minor.prototype10.MainActivity;
 
 /**
- *　BGMを追加する。
+ * BGMを追加する。
  * 街でのバフやお守りをすべて消滅させる。
+ * つまりatkとdfのmステータスをプレイヤーの素のステータスに、その他のfステータスをmステータスに更新する
  */
 public class OnClickPassButton extends SuperOnClickMapButton {
     @Override

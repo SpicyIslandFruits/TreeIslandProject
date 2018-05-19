@@ -5,7 +5,6 @@ package com.example.minor.prototype10.PlayerSkill;
  * すべてバフや状態異常などのスキルです、全部割合にします(固定値だとバランス調整がめんどい)
  */
 public class SampleSkill extends SuperSkill {
-    private static final int id = 0;
     private static final String name = "SamplePlayerSkill";
     private static final String skillInfo = "SamplePlayerSkill、攻撃力アップ";
     private static final int mpConsumption = 20;

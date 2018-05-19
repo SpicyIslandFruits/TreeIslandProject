@@ -43,4 +43,9 @@ abstract public class SuperItem {
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         recoveryItemNames = realm.where(RecoveryItemName.class).findAll();
     }
+
+    public void putOnAmulet(){
+        realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+    }
 }

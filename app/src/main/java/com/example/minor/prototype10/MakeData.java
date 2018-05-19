@@ -7,6 +7,7 @@ import com.example.minor.prototype10.Enemys.SampleEnemy;
 import com.example.minor.prototype10.Enemys.SampleEnemy2;
 import com.example.minor.prototype10.Enemys.SampleEnemy3;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
+import com.example.minor.prototype10.Items.Amulets.SampleAmulet;
 import com.example.minor.prototype10.Items.ImportantItems.BenchMaterial;
 import com.example.minor.prototype10.Items.ImportantItems.BurankoMaterial;
 import com.example.minor.prototype10.Items.RecoveryItems.HpAnalepticumSmall;
@@ -164,13 +165,13 @@ public class MakeData {
     }
 
     //プレイヤースキルを追加した場合はここに書く
-    public SuperSkill makePlayerSkillFromId(int id){
+    public SuperSkill makePlayerSkillFromName(String skillName){
         SuperSkill skill = new SampleSkill();
-        switch (id){
-            case 0:
+        switch (skillName){
+            case "SamplePlayerSkill":
                 skill = new SampleSkill();
                 break;
-            case 1:
+            case "SamplePlayerSkill2":
                 skill = new SampleSkill2();
                 break;
         }
@@ -239,6 +240,9 @@ public class MakeData {
                 break;
             case "MP回復薬小":
                 item = new MpAnalepticumSmall();
+                break;
+            case "SampleAmulet":
+                item = new SampleAmulet();
                 break;
         }
         return item;

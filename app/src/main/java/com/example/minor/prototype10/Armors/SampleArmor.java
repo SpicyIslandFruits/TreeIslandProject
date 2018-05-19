@@ -6,6 +6,8 @@ package com.example.minor.prototype10.Armors;
  * 防具スキルを本格的に実装する場合、まずバトルアクティビティにオートスキルメソッドを実装する
  * オートスキルメソッドでは、装備中の防具のインスタンスを取得し、すべてのスキルを実行する
  * バトルアクティビティのexecuteTempBattleの中にオートスキルメソッドの実行を書く
+ * アーマーによるステータスの増減はmすてーたすにたいしておこなわれます。
+ * その際にmステータスの増減をfステータスにもたし引きするのを忘れないように！
  */
 public class SampleArmor extends SuperArmor {
     private static final String name = "SampleArmor";

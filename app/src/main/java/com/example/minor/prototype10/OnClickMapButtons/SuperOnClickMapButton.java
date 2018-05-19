@@ -108,6 +108,11 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         }
     }
 
+    //ここに装飾品のスキルを実行する処理を書く。
+    protected void obtainAmulet(String amuletName, int percent){
+
+    }
+
     protected void stopAllButtons(){
         imageButton1.setEnabled(false);
         imageButton2.setEnabled(false);

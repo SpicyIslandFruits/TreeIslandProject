@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity{
     public static MediaPlayer mediaPlayer;
     private ImportantItemName importantItemName;
     private RecoveryItemName recoveryItemName;
+    private AmuletName amuletName;
     public static Context context;
 
     @Override
@@ -195,6 +197,8 @@ public class MainActivity extends AppCompatActivity{
             recoveryItemName.setItemName("MP回復薬小");
             recoveryItemName = realm.createObject(RecoveryItemName.class);
             recoveryItemName.setItemName("MP回復薬小");
+            amuletName = realm.createObject(AmuletName.class);
+            amuletName.setAmuletName("SampleAmulet");
             //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
             //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
             //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する

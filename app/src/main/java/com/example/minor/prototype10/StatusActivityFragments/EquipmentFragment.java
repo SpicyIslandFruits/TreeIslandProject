@@ -116,6 +116,7 @@ public class EquipmentFragment extends Fragment {
             }
         });
 
+        //防具のスキルは装備と同時にmステータスに対して行われるのでここにスキルを実行する処理を書きます。
         armorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

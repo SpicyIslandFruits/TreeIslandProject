@@ -1,7 +1,6 @@
 package com.example.minor.prototype10.PlayerSkill;
 
 public class SampleSkill2 extends SuperSkill {
-    private static final int id = 1;
     private static final String name = "SamplePlayerSkill2";
     private static final String skillInfo = "SamplePlayerSkill、Hp自動回復、Hp吸収、毒状態";
     private static final int mpConsumption = 70;

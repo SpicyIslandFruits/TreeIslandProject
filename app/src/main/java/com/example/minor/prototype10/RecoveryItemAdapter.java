@@ -34,8 +34,7 @@ public class RecoveryItemAdapter extends RealmBaseAdapter<RecoveryItemName> {
         }
 
         RecoveryItemName recoveryItemName = adapterData.get(position);
-        MakeData makeData = new MakeData();
-        viewHolder.recoveryItemName.setText(makeData.makeItemFromName(recoveryItemName.getItemName()).getName());
+        viewHolder.recoveryItemName.setText(recoveryItemName.getItemName());
         viewHolder.recoveryItemName.setMaxLines(1);
         return convertView;
     }

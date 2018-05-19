@@ -37,8 +37,7 @@ public class ImportantItemAdapter extends RealmBaseAdapter<ImportantItemName> {
         }
 
         ImportantItemName importantItemName = adapterData.get(position);
-        MakeData makeData = new MakeData();
-        viewHolder.importantItemName.setText(makeData.makeItemFromName(importantItemName.getItemName()).getName());
+        viewHolder.importantItemName.setText(importantItemName.getItemName());
         viewHolder.importantItemName.setMaxLines(1);
         return convertView;
     }
