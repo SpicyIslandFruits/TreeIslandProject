@@ -2,6 +2,7 @@ package com.example.minor.prototype10.Items.Amulets;
 
 import com.example.minor.prototype10.Items.SuperItem;
 
+//装飾品はMPとLUKとSPのみ上げる
 public class SampleAmulet extends SuperItem {
     private static final String name = "SampleAmulet";
     private static final String information = "Lukが100パーセント増加。";

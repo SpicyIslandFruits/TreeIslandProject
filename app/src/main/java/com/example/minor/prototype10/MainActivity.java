@@ -153,15 +153,11 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setPlayerLevel(50);
             playerInfo.setPosition(5);
             playerInfo.setMoney(100);
-            playerInfo.setFmaxHP(1000);
-            playerInfo.setHP(100);
             playerInfo.setFmaxMP(100);
+            playerInfo.setMaxMP(100);
             playerInfo.setMP(100);
-            playerInfo.setSP(10);
+            playerInfo.setSP(180);
             playerInfo.setfSP(180);
-            playerInfo.setATK(10);
-            playerInfo.setmATK(120);
-            playerInfo.setDF(100);
             playerInfo.setLUK(10);
             //fLukはデフォで1/12*100程度の値をセット
             playerInfo.setfLUK(10);
@@ -180,8 +176,6 @@ public class MainActivity extends AppCompatActivity{
             //adapterのsetTextも変える
             playerInfo.setHP(playerInfo.getMaxHP());
             playerInfo.setFmaxHP(playerInfo.getMaxHP());
-            playerInfo.setmATK(playerInfo.getATK());
-            playerInfo.setmDF(playerInfo.getDF());
             //makeItemRealmObjectというクラスを作り、そこで行います。
             importantItemName = realm.createObject(ImportantItemName.class);
             importantItemName.setItemName("ベンチの材料");
@@ -197,8 +191,6 @@ public class MainActivity extends AppCompatActivity{
             recoveryItemName.setItemName("MP回復薬小");
             recoveryItemName = realm.createObject(RecoveryItemName.class);
             recoveryItemName.setItemName("MP回復薬小");
-            amuletName = realm.createObject(AmuletName.class);
-            amuletName.setAmuletName("SampleAmulet");
             //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
             //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
             //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する

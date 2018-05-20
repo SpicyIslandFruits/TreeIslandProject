@@ -17,24 +17,18 @@ public class PlayerInfo extends RealmObject {
     private int position;
     private int money;
     private int maxHP;
-    private int mmaxHP;
     private int fmaxHP;
     private int HP;
     private int maxMP;
-    private int mmaxMP;
     private int fmaxMP;
     private int MP;
     private int SP;
-    private int mSP;
     private int fSP;
     private int ATK;
-    private int mATK;
     private int fATK;
     private int DF;
-    private int mDF;
     private int fDF;
     private int LUK;
-    private int mLUK;
     private int fLUK;
     private String weaponName;
     private String armorName;
@@ -110,14 +104,6 @@ public class PlayerInfo extends RealmObject {
         this.maxHP = maxHP;
     }
 
-    public int getMmaxHP() {
-        return mmaxHP;
-    }
-
-    public void setMmaxHP(int mmaxHP) {
-        this.mmaxHP = mmaxHP;
-    }
-
     public int getFmaxHP() {
         return fmaxHP;
     }
@@ -140,14 +126,6 @@ public class PlayerInfo extends RealmObject {
 
     public void setMaxMP(int maxMP) {
         this.maxMP = maxMP;
-    }
-
-    public int getMmaxMP() {
-        return mmaxMP;
-    }
-
-    public void setMmaxMP(int mmaxMP) {
-        this.mmaxMP = mmaxMP;
     }
 
     public int getFmaxMP() {
@@ -174,14 +152,6 @@ public class PlayerInfo extends RealmObject {
         this.SP = SP;
     }
 
-    public int getmSP() {
-        return mSP;
-    }
-
-    public void setmSP(int mSP) {
-        this.mSP = mSP;
-    }
-
     public int getfSP() {
         return fSP;
     }
@@ -196,14 +166,6 @@ public class PlayerInfo extends RealmObject {
 
     public void setATK(int ATK) {
         this.ATK = ATK;
-    }
-
-    public int getmATK() {
-        return mATK;
-    }
-
-    public void setmATK(int mATK) {
-        this.mATK = mATK;
     }
 
     public int getfATK() {
@@ -222,14 +184,6 @@ public class PlayerInfo extends RealmObject {
         this.DF = DF;
     }
 
-    public int getmDF() {
-        return mDF;
-    }
-
-    public void setmDF(int mDF) {
-        this.mDF = mDF;
-    }
-
     public int getfDF() {
         return fDF;
     }
@@ -244,14 +198,6 @@ public class PlayerInfo extends RealmObject {
 
     public void setLUK(int LUK) {
         this.LUK = LUK;
-    }
-
-    public int getmLUK() {
-        return mLUK;
-    }
-
-    public void setmLUK(int mLUK) {
-        this.mLUK = mLUK;
     }
 
     public int getfLUK() {

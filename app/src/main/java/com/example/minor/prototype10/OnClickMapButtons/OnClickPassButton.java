@@ -16,6 +16,12 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         savePosition();
+        realm.beginTransaction();
+        playerInfo.setfLUK(playerInfo.getLUK());
+        playerInfo.setfSP(playerInfo.getSP());
+        playerInfo.setFmaxMP(playerInfo.getMP());
+        realm.commitTransaction();
+
         //戦闘処理のテストのために一時的にボスマップとつなげてあります
         OnClickBossRoomButton onClickEmptyButton1 = new OnClickBossRoomButton();
         imageButton1.setOnClickListener(onClickEmptyButton1);

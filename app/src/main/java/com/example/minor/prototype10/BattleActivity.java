@@ -396,7 +396,7 @@ public class BattleActivity extends AppCompatActivity {
         mpBar.setProgress(maxMp - tempAllStatus[1]);
     }
 
-    //mAtkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
+    //Atkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
     //fAtkは装備中の武器のステータスです
     private void inputAllStatus(){
         maxHp = playerInfo.getFmaxHP();
@@ -404,8 +404,8 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[0] = hp = playerInfo.getHP();
         tempAllStatus[1] = mp = playerInfo.getMP();
         tempAllStatus[2] = sp = playerInfo.getfSP();
-        tempAllStatus[3] = atk = playerInfo.getmATK();
-        tempAllStatus[4] = df = playerInfo.getmDF();
+        tempAllStatus[3] = atk = playerInfo.getATK();
+        tempAllStatus[4] = df = playerInfo.getDF();
         tempAllStatus[5] = luk = playerInfo.getfLUK();
         tempAllStatus[6] = enemyHp = enemy.getHp();
         tempAllStatus[7] = enemySp = enemy.getSp();

@@ -11,13 +11,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.BattleActivity;
+import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.MakeArmorRealmObject;
+import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
+import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
 
 import java.io.IOException;
@@ -93,7 +98,8 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         MakeWeaponRealmObject makeWeaponRealmObject = new MakeWeaponRealmObject();
         if(Math.random()*100 < percent) {
             if (makeWeaponRealmObject.createNewWeapon(weaponName)) {
-                mainText.setText("武器を取得しました");
+                Toast toast = Toast.makeText(MainActivity.context, "武器を取得した！", Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
     }
@@ -103,14 +109,25 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         if(Math.random()*100 < percent){
             if(makeArmorRealmObject.createNewArmor(armorName)){
                 //取得した防具の名前を表示した方がいいかもしれない。
-                mainText.setText("防具を取得しました。");
+                Toast toast = Toast.makeText(MainActivity.context, "防具を取得した！", Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
     }
 
     //ここに装飾品のスキルを実行する処理を書く。
     protected void obtainAmulet(String amuletName, int percent){
-
+        if(Math.random()*100 < percent) {
+            realm.beginTransaction();
+            AmuletName amuletNameInstance = realm.createObject(AmuletName.class);
+            amuletNameInstance.setAmuletName(amuletName);
+            realm.commitTransaction();
+            MakeData makeData = new MakeData();
+            SuperItem superItem = makeData.makeItemFromName(amuletName);
+            superItem.putOnAmulet();
+            Toast toast = Toast.makeText(MainActivity.context, "装飾品を取得した！", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     protected void stopAllButtons(){
