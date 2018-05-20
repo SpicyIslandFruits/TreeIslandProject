@@ -191,6 +191,10 @@ public class MainActivity extends AppCompatActivity{
             recoveryItemName.setItemName("MP回復薬小");
             recoveryItemName = realm.createObject(RecoveryItemName.class);
             recoveryItemName.setItemName("MP回復薬小");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("解毒薬");
+            recoveryItemName = realm.createObject(RecoveryItemName.class);
+            recoveryItemName.setItemName("包帯");
             //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
             //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
             //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する

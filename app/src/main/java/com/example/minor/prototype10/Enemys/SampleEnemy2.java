@@ -57,7 +57,6 @@ public class SampleEnemy2 extends SuperEnemy{
         commitTransaction(30);
     }
 
-
     @Override
     protected void skill4(int[] allStatus) {
         beginTransaction();

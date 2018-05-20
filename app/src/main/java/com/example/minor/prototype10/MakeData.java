@@ -10,8 +10,10 @@ import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Items.Amulets.SampleAmulet;
 import com.example.minor.prototype10.Items.ImportantItems.BenchMaterial;
 import com.example.minor.prototype10.Items.ImportantItems.BurankoMaterial;
+import com.example.minor.prototype10.Items.RecoveryItems.Bandage;
 import com.example.minor.prototype10.Items.RecoveryItems.HpAnalepticumSmall;
 import com.example.minor.prototype10.Items.RecoveryItems.MpAnalepticumSmall;
+import com.example.minor.prototype10.Items.RecoveryItems.Antidote;
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBackDoorButton;
@@ -242,6 +244,12 @@ public class MakeData {
                 break;
             case "SampleAmulet":
                 item = new SampleAmulet();
+                break;
+            case "解毒薬":
+                item = new Antidote();
+                break;
+            case "包帯":
+                item = new Bandage();
                 break;
         }
         return item;

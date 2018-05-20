@@ -1,13 +1,15 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Models.AmuletName;
+
+import io.realm.RealmResults;
 
 /**
  * BGMを追加する。
- * 街でのバフやお守りをすべて消滅させる。
- * つまりatkとdfのmステータスをプレイヤーの素のステータスに、その他のfステータスをmステータスに更新する
  */
 public class OnClickPassButton extends SuperOnClickMapButton {
     @Override
@@ -16,10 +18,17 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         savePosition();
+
+        if(playerInfo.getLUK() != playerInfo.getfLUK() || playerInfo.getSP() != playerInfo.getfSP() || playerInfo.getMaxMP() != playerInfo.getFmaxMP()){
+            Toast toast = Toast.makeText(MainActivity.context, "お守りや補助効果が消滅した", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         realm.beginTransaction();
         playerInfo.setfLUK(playerInfo.getLUK());
         playerInfo.setfSP(playerInfo.getSP());
-        playerInfo.setFmaxMP(playerInfo.getMP());
+        playerInfo.setFmaxMP(playerInfo.getMaxMP());
+        RealmResults<AmuletName> amuletNames = realm.where(AmuletName.class).findAll();
+        amuletNames.deleteAllFromRealm();
         realm.commitTransaction();
 
         //戦闘処理のテストのために一時的にボスマップとつなげてあります

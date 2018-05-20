@@ -30,7 +30,7 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton{
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id = (int)(0);
+                int id = 2;
                 encounter(id, 100);
             }
         });
