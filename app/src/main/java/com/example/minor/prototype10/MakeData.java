@@ -16,6 +16,8 @@ import com.example.minor.prototype10.Items.RecoveryItems.MpAnalepticumSmall;
 import com.example.minor.prototype10.Items.RecoveryItems.Antidote;
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBBBothRepairedEvtButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBBEitherOneRepairedEvtButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBackDoorButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBathButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBedButton;
@@ -144,6 +146,12 @@ public class MakeData {
                 break;
             case 25:
                 onClickMapButton = new OnClickIdoButton();
+                break;
+            case 26:
+                onClickMapButton = new OnClickBBEitherOneRepairedEvtButton();
+                break;
+            case 27:
+                onClickMapButton = new OnClickBBBothRepairedEvtButton();
                 break;
         }
         return onClickMapButton;
