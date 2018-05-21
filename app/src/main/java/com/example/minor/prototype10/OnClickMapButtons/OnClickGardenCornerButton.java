@@ -13,6 +13,8 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
         mainText.setText("土が不自然に盛り上がっている...。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
 
+        //イベントによってbgmが止められていた場合再生しなおす。
+
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

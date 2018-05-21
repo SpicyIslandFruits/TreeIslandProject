@@ -8,10 +8,10 @@ public class OnClickBBEitherOneRepairedEvtButton extends SuperOnClickMapButton {
         position = 27;
         savePosition();
         resetAllButtons();
-        mainText.setText("イベント未定");
+        mainText.setText("確かに人の気配がしたが...");
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
         imageButton8.setOnClickListener(onClickGardenButton);
-        imageButton8Text.setText("戻る");
+        imageButton8Text.setText("立ち上がる");
     }
 
     @Override

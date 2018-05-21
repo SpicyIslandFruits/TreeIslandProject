@@ -55,10 +55,22 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("BBEitherOneRepairedEvtDoneFlag", true);
                 editor.apply();
+
+                //ハンドラーのディレイミリに合わせて効果音を流します。
+                MainActivity.mediaPlayer.pause();
+                stopAllButtons();
                 OnClickBBEitherOneRepairedEvtButton onClickBBEitherOneRepairedEvtButton = new OnClickBBEitherOneRepairedEvtButton();
                 imageButton1.setOnClickListener(onClickBBEitherOneRepairedEvtButton);
-                imageButton1Text.setText("おや？");
-                mainText.setText("ベンチとブランコのうち片方を修理しました。\n幽霊の声が聞こえます。\n文章未定");
+                mainText.setText("お前はベンチに座った。\n以外に大変な作業だった。\n庭はとても静かで風が心地いい、このままひと眠りしよう...");
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //笑い声の音声を再生する
+                        startAllButtons();
+                        imageButton1Text.setText("振り向く");
+                        mainText.setText("！！！");
+                    }
+                }, 2000);
             }else{
                 //普通にベンチに座った時の処理です
                 OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
