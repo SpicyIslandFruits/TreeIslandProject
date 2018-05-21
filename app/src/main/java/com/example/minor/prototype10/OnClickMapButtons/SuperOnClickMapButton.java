@@ -236,6 +236,8 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
                 break;
             case 1:
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.sample_bgm);
+            case 2:
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
         }
     }
 }

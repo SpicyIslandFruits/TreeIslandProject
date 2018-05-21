@@ -1,9 +1,11 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 /**
  * Created by nishiokakota on 2018/05/06.
@@ -17,6 +19,9 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("お前は庭に出た...。\n小さなブランコが置いてある、家族で住んでいたのだろうか。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
+        int bgmId = 0;
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
+        audioPlay(mediaPlayer, bgmId);
 
         //街で木材を買ってきて修理すると使えるようになる。データはsharedPreferenceに保存
         OnClickBenchButton onClickBenchButton = new OnClickBenchButton();
