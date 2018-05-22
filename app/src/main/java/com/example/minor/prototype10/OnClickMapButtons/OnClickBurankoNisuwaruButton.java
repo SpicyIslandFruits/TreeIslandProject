@@ -46,11 +46,29 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("BBBothRepairedEvtDoneFlag", true);
                 editor.apply();
-                //中身未定、謎解きマップにします、幽霊が現れる
-                OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();
-                imageButton1.setOnClickListener(onClickBBBothRepairedEvtButton);
-                imageButton1Text.setText("！！！");
-                mainText.setText("ベンチの材料とブランコの材料を共に使用しました。\nイベントは未定です。\n文章未定");
+
+                int bgmId = 2;
+                mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
+                audioPlay(mediaPlayer, bgmId);
+                mainText.setText("お前はブランコに座った。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nこれで修理は終わった。\nなかなか大変だったな...");
+                imageButton8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        imageButton8.setEnabled(false);
+                        imageButton8Text.setText("");
+                        MainActivity.soundPool.play(MainActivity.warauSound, 1.0f, 1.0f, 1, 0, 1);
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();
+                                imageButton1.setOnClickListener(onClickBBBothRepairedEvtButton);
+                                imageButton1Text.setText("振り向く");
+                                mainText.setText("！！！");
+                            }
+                        }, 1500);
+                    }
+                });
+                imageButton8Text.setText("黄昏る");
             }else if(!sharedPreferences.getBoolean("BBEitherOneRepairedEvtDoneFlag", false) && !sharedPreferences.getBoolean("BBBothRepairedEvtDoneFlag", false) ){
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("BBEitherOneRepairedEvtDoneFlag", true);
@@ -59,9 +77,6 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 int bgmId = 2;
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
                 audioPlay(mediaPlayer, bgmId);
-                OnClickBBEitherOneRepairedEvtButton onClickBBEitherOneRepairedEvtButton = new OnClickBBEitherOneRepairedEvtButton();
-                imageButton1.setOnClickListener(onClickBBEitherOneRepairedEvtButton);
-                imageButton1.setEnabled(false);
                 mainText.setText("お前はブランコに座った。\n以外に大変な作業だった。\n庭はとても静かで風が心地いい、\nブランコに揺られているうちにお前は眠くなってきて...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -73,7 +88,8 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                         new android.os.Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                imageButton1.setEnabled(true);
+                                OnClickBBEitherOneRepairedEvtButton onClickBBEitherOneRepairedEvtButton = new OnClickBBEitherOneRepairedEvtButton();
+                                imageButton1.setOnClickListener(onClickBBEitherOneRepairedEvtButton);
                                 imageButton1Text.setText("振り向く");
                                 mainText.setText("！！！");
                             }
