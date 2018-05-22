@@ -26,20 +26,23 @@ public class BurankoMaterial extends SuperItem{
     @Override
     public void useMaterial() {
         super.useMaterial();
-        editor.putInt("oldMansionGardenBurankoState", 2);
-        editor.apply();
         if(playerInfo.getPosition() == 19 || playerInfo.getPosition() == 21 || playerInfo.getPosition() == 22) {
             try {
                 importantItemName = importantItemNames.where().equalTo("itemName", "ブランコの材料").findFirst();
                 realm.beginTransaction();
                 importantItemName.deleteFromRealm();
                 realm.commitTransaction();
+                editor.putInt("oldMansionGardenBurankoState", 2);
+                editor.apply();
+                Toast toast = Toast.makeText(MainActivity.context, "ブランコが治った。", Toast.LENGTH_SHORT);
+                toast.show();
             } catch (Exception e) {
                 realm.cancelTransaction();
             }
+        }else{
+            Toast toast = Toast.makeText(MainActivity.context, "ここでは使用できません。", Toast.LENGTH_SHORT);
+            toast.show();
         }
-        Toast toast = Toast.makeText(MainActivity.context, "ブランコが治った。", Toast.LENGTH_SHORT);
-        toast.show();
         realm.close();
     }
 }

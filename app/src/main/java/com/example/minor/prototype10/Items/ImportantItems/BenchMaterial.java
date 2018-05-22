@@ -27,20 +27,23 @@ public class BenchMaterial extends SuperItem{
     @Override
     public void useMaterial() {
         super.useMaterial();
-        editor.putInt("oldMansionGardenBenchState", 2);
-        editor.apply();
         if(playerInfo.getPosition() == 19 || playerInfo.getPosition() == 21 || playerInfo.getPosition() == 22) {
             try {
                 importantItemName = importantItemNames.where().equalTo("itemName", "ベンチの材料").findFirst();
                 realm.beginTransaction();
                 importantItemName.deleteFromRealm();
                 realm.commitTransaction();
+                Toast toast = Toast.makeText(MainActivity.context, "ベンチが治った。", Toast.LENGTH_SHORT);
+                toast.show();
+                editor.putInt("oldMansionGardenBenchState", 2);
+                editor.apply();
             } catch (Exception e) {
                 realm.cancelTransaction();
             }
+        }else{
+            Toast toast = Toast.makeText(MainActivity.context, "ここでは使用できません。", Toast.LENGTH_SHORT);
+            toast.show();
         }
-        Toast toast = Toast.makeText(MainActivity.context, "ベンチが治った。", Toast.LENGTH_SHORT);
-        toast.show();
         realm.close();
     }
 }
