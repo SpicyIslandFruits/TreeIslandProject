@@ -50,7 +50,7 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 int bgmId = 2;
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
                 audioPlay(mediaPlayer, bgmId);
-                mainText.setText("お前はブランコに座った。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nこれで修理は終わった。\nなかなか大変だったな...");
+                mainText.setText("お前はブランコに座った。\nこれで修理は終わった。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nなかなか大変だった...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
