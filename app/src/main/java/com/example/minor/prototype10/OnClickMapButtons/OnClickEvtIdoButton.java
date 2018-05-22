@@ -4,20 +4,19 @@ import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
 
-public class OnClickIdoButton extends SuperOnClickMapButton {
+public class OnClickEvtIdoButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
-        position = 25;
+        position = 32;
         savePosition();
         resetAllButtons();
-        mainText.setText("井戸の中に何かあるかもしれない...。\n\n\nなどと思って入ろうとしたものはまさかいないだろう。");
+        mainText.setText("井戸の中に隠れているのだろうか...");
         MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
-        //選択肢の中から金額を指定して投げ込めるようにします
-        OnClickMoneyThrowButton onClickMoneyThrowButton = new OnClickMoneyThrowButton();
-        imageButton1.setOnClickListener(onClickMoneyThrowButton);
+        OnClickEvtMoneyThrowButton onClickEvtMoneyThrowButton = new OnClickEvtMoneyThrowButton();
+        imageButton1.setOnClickListener(onClickEvtMoneyThrowButton);
         imageButton1Text.setText("お金を投げ込む");
-        OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
-        imageButton8.setOnClickListener(onClickGardenButton);
+        OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();
+        imageButton8.setOnClickListener(onClickBBBothRepairedEvtButton);
         imageButton8Text.setText("やめる");
     }
 
@@ -32,4 +31,5 @@ public class OnClickIdoButton extends SuperOnClickMapButton {
             }
         }, 1000);
     }
+
 }

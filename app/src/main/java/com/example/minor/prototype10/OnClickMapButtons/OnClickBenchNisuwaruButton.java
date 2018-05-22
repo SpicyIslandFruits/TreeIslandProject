@@ -65,7 +65,7 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
                             public void run() {
                                 OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();
                                 imageButton1.setOnClickListener(onClickBBBothRepairedEvtButton);
-                                imageButton1Text.setText("振り向く");
+                                imageButton1Text.setText("立ち上がる");
                                 mainText.setText("！！！");
                             }
                         }, 1500);

@@ -30,11 +30,18 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoNisuwaruBut
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchNisuwaruButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoNisuwaruButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtIdoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickIdoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtMoneyThrowButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickMoneyThrowButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansionButton;
@@ -152,6 +159,27 @@ public class MakeData {
                 break;
             case 27:
                 onClickMapButton = new OnClickBBBothRepairedEvtButton();
+                break;
+            case 28:
+                onClickMapButton = new OnClickEvtBenchButton();
+                break;
+            case 29:
+                onClickMapButton = new OnClickEvtBenchNisuwaruButton();
+                break;
+            case 30:
+                onClickMapButton = new OnClickEvtBurankoButton();
+                break;
+            case 31:
+                onClickMapButton = new OnClickEvtBurankoNisuwaruButton();
+                break;
+            case 32:
+                onClickMapButton = new OnClickEvtIdoButton();
+                break;
+            case 33:
+                onClickMapButton = new OnClickEvtMoneyThrowButton();
+                break;
+            case 34:
+                onClickMapButton = new OnClickMoneyThrowButton();
                 break;
         }
         return onClickMapButton;

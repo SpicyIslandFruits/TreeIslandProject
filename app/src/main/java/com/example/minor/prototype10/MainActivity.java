@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity{
     public static SoundPool soundPool;
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
     public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
-    public static int warauSound;
+    public static int warauSound, walletSound;
     public static MediaPlayer mediaPlayer;
     private ImportantItemName importantItemName;
     private RecoveryItemName recoveryItemName;
@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity{
         woodBrokenSound = soundPool.load(this, R.raw.wood_broken_sound, 1);
         oldWoodenDoorSound = soundPool.load(this, R.raw.old_wooden_door, 1);
         warauSound = soundPool.load(this, R.raw.warau_sound, 1);
+        warauSound = soundPool.load(this, R.raw.wallet1, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity{
             playerInfo = realm.createObject(PlayerInfo.class, new String("player"));
             playerInfo.setPlayerLevel(50);
             playerInfo.setPosition(5);
-            playerInfo.setMoney(100);
+            playerInfo.setMoney(100000);
             playerInfo.setFmaxMP(100);
             playerInfo.setMaxMP(100);
             playerInfo.setMP(100);
