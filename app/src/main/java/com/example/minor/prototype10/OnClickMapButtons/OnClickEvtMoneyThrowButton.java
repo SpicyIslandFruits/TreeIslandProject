@@ -11,13 +11,13 @@ public class OnClickEvtMoneyThrowButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         mainText.setText("何を思ったのか、お前は無性にお金を投げ込みたくなったのだ。\n\n\n幾ら投げ込もうか...");
-        MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.walletSound, 1.0f, 1.0f, 1, 0, 1);
         //幽霊の笑い声を流し、sharedPreferenceのイベントの進度フラッグを一増やします。
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(playerInfo.getMoney() >= 100) {
-                    MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                    MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 100);
                     realm.commitTransaction();
@@ -44,7 +44,7 @@ public class OnClickEvtMoneyThrowButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 if(playerInfo.getMoney() >= 500) {
-                    MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                    MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 500);
                     realm.commitTransaction();
@@ -71,7 +71,7 @@ public class OnClickEvtMoneyThrowButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 if(playerInfo.getMoney() >= 1000) {
-                    MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                    MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 1000);
                     realm.commitTransaction();

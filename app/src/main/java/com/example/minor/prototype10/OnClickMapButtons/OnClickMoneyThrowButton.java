@@ -16,12 +16,18 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 if(playerInfo.getMoney() >= 100) {
-                    MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                    MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 100);
                     realm.commitTransaction();
                     stopAllButtons();
                     mainText.setText("");
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                        }
+                    }, 500);
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -65,12 +71,18 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 if(playerInfo.getMoney() >= 500) {
-                    MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                    MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 500);
                     realm.commitTransaction();
                     stopAllButtons();
                     mainText.setText("");
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                        }
+                    }, 500);
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -114,12 +126,18 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
             @Override
             public void onClick(View v) {
                 if(playerInfo.getMoney() >= 1000) {
-                    MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                    MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 1000);
                     realm.commitTransaction();
                     stopAllButtons();
                     mainText.setText("");
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                        }
+                    }, 500);
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {

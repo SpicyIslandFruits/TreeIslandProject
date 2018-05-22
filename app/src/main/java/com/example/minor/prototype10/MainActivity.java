@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity{
         woodBrokenSound = soundPool.load(this, R.raw.wood_broken_sound, 1);
         oldWoodenDoorSound = soundPool.load(this, R.raw.old_wooden_door, 1);
         warauSound = soundPool.load(this, R.raw.warau_sound, 1);
-        warauSound = soundPool.load(this, R.raw.wallet1, 1);
+        walletSound = soundPool.load(this, R.raw.wallet1, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
