@@ -35,12 +35,12 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchNisuwaruBu
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoNisuwaruButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtIdoButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtMansion1FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickIdoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickInnButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickKitchenButton;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtMoneyThrowButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickMoneyThrowButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion1FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickOldMansion2FButton;
@@ -176,7 +176,7 @@ public class MakeData {
                 onClickMapButton = new OnClickEvtIdoButton();
                 break;
             case 33:
-                onClickMapButton = new OnClickEvtMoneyThrowButton();
+                onClickMapButton = new OnClickEvtMansion1FButton();
                 break;
             case 34:
                 onClickMapButton = new OnClickMoneyThrowButton();

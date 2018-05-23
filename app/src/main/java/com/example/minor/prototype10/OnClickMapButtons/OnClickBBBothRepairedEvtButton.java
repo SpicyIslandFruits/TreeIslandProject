@@ -1,8 +1,10 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 public class OnClickBBBothRepairedEvtButton extends SuperOnClickMapButton {
     @Override
@@ -12,6 +14,9 @@ public class OnClickBBBothRepairedEvtButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("気のせいではない...確かに誰かがいたのだ。\n探そう。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
+        int bgmId = 3;
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_event_sound);
+        audioPlay(mediaPlayer, bgmId);
         //イベントマップにつなげます、テキスト以外の部分はほとんど通常マップのコピペ。
         OnClickEvtBenchButton onClickEvtBenchButton = new OnClickEvtBenchButton();
         imageButton1.setOnClickListener(onClickEvtBenchButton);

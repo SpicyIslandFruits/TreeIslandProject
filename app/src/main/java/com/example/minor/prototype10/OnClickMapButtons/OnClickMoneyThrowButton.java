@@ -12,6 +12,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("何を思ったのか、お前は無性にお金を投げ込みたくなったのだ。\n\n\n幾ら投げ込もうか...");
         MainActivity.soundPool.play(MainActivity.walletSound, 1.0f, 1.0f, 1, 0, 1);
+        //投げ込んだ金額を足し算して、幽霊のイベントの際に1.1倍にして返すのもあり。
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,20 +28,11 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                         public void run() {
                             MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
                         }
-                    }, 500);
+                    }, 700);
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            int textNum;
-                            textNum = (int)(Math.random()*2 + 1);
-                            switch (textNum) {
-                                case 1:
-                                    mainText.setText("お前は100$投げ込んだ、何か物足りない気分だ。");
-                                    break;
-                                case 2:
-                                    mainText.setText("きっといいことがあるだろう。こういうのは気持ちの問題だ。");
-                                    break;
-                            }
+                            mainText.setText("お前は100$投げ込んだ...\n\nちょっともったいない気がした。");
                             startAllButtons();
                             imageButton1Text.setText("100$");
                             imageButton2Text.setText("500$");
@@ -82,7 +74,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                         public void run() {
                             MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
                         }
-                    }, 500);
+                    }, 700);
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -90,10 +82,10 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                             textNum = (int)(Math.random()*2 + 1);
                             switch (textNum) {
                                 case 1:
-                                    mainText.setText("お前は500$投げ込んだ、何とも言えない気分だ。");
+                                    mainText.setText("お前は500$投げ込んだ。ご利益があるだろうか。");
                                     break;
                                 case 2:
-                                    mainText.setText("きっといいことがあるだろう");
+                                    mainText.setText("コインを投げると願いが叶うと聞いたことがある。\nきっといいことがあるだろう");
                                     break;
                             }
                             startAllButtons();
@@ -137,7 +129,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                         public void run() {
                             MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
                         }
-                    }, 500);
+                    }, 700);
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -148,7 +140,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                                     mainText.setText("何をやっているのだろう...\nお前は少し後悔した。");
                                     break;
                                 case 2:
-                                    mainText.setText("こんなことをして何になるんだろう...");
+                                    mainText.setText("お前は1000$投げ込んだ。\n少しもったいない気もするが...");
                                     break;
                             }
                             startAllButtons();
