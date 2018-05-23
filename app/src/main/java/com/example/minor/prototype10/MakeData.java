@@ -30,6 +30,7 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoNisuwaruBut
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBackDoorButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchNisuwaruButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoButton;
@@ -180,6 +181,9 @@ public class MakeData {
                 break;
             case 34:
                 onClickMapButton = new OnClickMoneyThrowButton();
+                break;
+            case 35:
+                onClickMapButton = new OnClickEvtBackDoorButton();
                 break;
         }
         return onClickMapButton;

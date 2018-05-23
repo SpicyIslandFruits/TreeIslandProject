@@ -1,5 +1,6 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.view.View;
 
@@ -12,45 +13,53 @@ public class OnClickEvtIdoButton extends SuperOnClickMapButton {
         position = 32;
         savePosition();
         resetAllButtons();
-        mainText.setText("井戸の中に隠れているかもしれない...");
         MainActivity.soundPool.play(MainActivity.waterDropSound, 1.0f, 1.0f, 1, 0, 1);
-        imageButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainText.setText("");
-                stopAllButtons();
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        MainActivity.soundPool.play(MainActivity.stoneWaterDropSound, 1.0f, 1.0f, 1, 0, 1);
-                    }
-                }, 300);
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainText.setText("お前は石を投げ込んだ、果たしてここにいるのだろうか。");
-                    }
-                }, 1000);
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        MainActivity.soundPool.play(MainActivity.yuureiMituketaSound, 1.0f, 1.0f, 1, 0, 1);
-                    }
-                }, 2500);
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainText.setText("何かが飛び出してきて屋敷の中へと入っていった！");
-                        startAllButtons();
-                        imageButton1.setOnClickListener(null);
-                        imageButton8Text.setText("追いかける");
-                        OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
-                        imageButton8.setOnClickListener(onClickEvtMansion1FButton);
-                    }
-                }, 3000);
-            }
-        });
-        imageButton1Text.setText("石を投げ込む");
+        if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 0) {
+            mainText.setText("井戸の中に隠れているかもしれない...");
+            imageButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainText.setText("");
+                    stopAllButtons();
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.soundPool.play(MainActivity.stoneWaterDropSound, 1.0f, 1.0f, 1, 0, 1);
+                        }
+                    }, 300);
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainText.setText("お前は石を投げ込んだ、果たしてここにいるのだろうか。");
+                        }
+                    }, 1000);
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.soundPool.play(MainActivity.yuureiMituketaSound, 1.0f, 1.0f, 1, 0, 1);
+                        }
+                    }, 2500);
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //0が井戸に隠れている状態1が屋敷に逃げ込んだ状態です
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt("oldMansionGhostPosition", 1);
+                            editor.apply();
+                            mainText.setText("何かが飛び出してきて屋敷の中へと入っていった！！！\n一瞬の出来事に、お前は反応することができなかった...");
+                            startAllButtons();
+                            imageButton1.setOnClickListener(null);
+                            imageButton8Text.setText("追いかける");
+                            OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
+                            imageButton8.setOnClickListener(onClickEvtMansion1FButton);
+                        }
+                    }, 3000);
+                }
+            });
+            imageButton1Text.setText("石を投げ込む");
+        }else{
+            mainText.setText("もうここにはいないだろう");
+        }
         OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();
         imageButton8.setOnClickListener(onClickBBBothRepairedEvtButton);
         imageButton8Text.setText("やめる");
