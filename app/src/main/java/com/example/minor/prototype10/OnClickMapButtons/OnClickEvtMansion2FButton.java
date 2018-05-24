@@ -8,7 +8,27 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
     private void setBack() {
         stopAllButtons();
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-        mainText.setText("ここにはいないようだ...");
+        mainText.setText("ここに隠れているのだろうか...");
+        imageButton1Text.setText("探す");
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageButton1.setEnabled(false);
+                imageButton1Text.setText("");
+                imageButton8.setEnabled(false);
+                imageButton8Text.setText("");
+                mainText.setText("");
+                MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 0.5f);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageButton8.setEnabled(true);
+                        imageButton8Text.setText("戻る");
+                        mainText.setText("ここにはいないようだ...");
+                    }
+                }, 1500);
+            }
+        });
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -16,6 +36,12 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
                 MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
                 mainText.setText("あれは何だったんだろう...\nどこへ行ったのだろう...\n謎は深まるばかりだ。");
                 imageButton1Text.setText("屋上");
+                imageButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setBack();
+                    }
+                });
                 imageButton2Text.setText("書斎");
                 imageButton3Text.setText("寝室");
                 imageButton8Text.setText("一階に降りる");
@@ -34,6 +60,7 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                imageButton1.setEnabled(true);
                 imageButton8.setEnabled(true);
             }
         }, 1000);
@@ -48,8 +75,8 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
         mainText.setText("二階にいるのだろうか...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
-        //井戸を確認せず入った場合
-        //if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 0) {
+        //倉庫を確認せずに2階に上がった場合
+        if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 0 || sharedPreferences.getInt("oldMansionGhostPosition", 0) == 1) {
             imageButton1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -76,9 +103,31 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
             OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
             imageButton8.setOnClickListener(onClickEvtMansion1FButton);
             imageButton8Text.setText("1階に降りる");
-        //}else if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 1){
-        //ここにイベントが発生する場合の処理書きます
-        //}
+        //イベントを書く後で修正
+        }else if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 2){
+            imageButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setBack();
+                }
+            });
+            imageButton1Text.setText("屋上");
+
+            OnClickEvtStudyButton onClickEvtStudyButton = new OnClickEvtStudyButton();
+            imageButton2.setOnClickListener(onClickEvtStudyButton);
+            imageButton2Text.setText("書斎");
+
+            imageButton3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setBack();
+                }
+            });
+            imageButton3Text.setText("寝室");
+            OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
+            imageButton8.setOnClickListener(onClickEvtMansion1FButton);
+            imageButton8Text.setText("1階に降りる");
+        }
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
     @Override
@@ -10,7 +12,9 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         position = 11;
         savePosition();
         resetAllButtons();
-        MainActivity.mediaPlayer.start();
+        int bgmId = 0;
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
+        audioPlay(mediaPlayer, bgmId);
         mainText.setText("お前は2階へと上がっていった...。\n部屋には最小限の家具しかなく、広く、静かで、がらんとしている。\n古い家具や、置き去りにされた敷物の醸し出す匂いは、どこか懐かしい感じがした。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickRooftopButton onClickRooftopButton = new OnClickRooftopButton();

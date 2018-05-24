@@ -10,6 +10,7 @@ import com.example.minor.prototype10.Enemys.SuperEnemy;
 import com.example.minor.prototype10.Items.Amulets.SampleAmulet;
 import com.example.minor.prototype10.Items.ImportantItems.BenchMaterial;
 import com.example.minor.prototype10.Items.ImportantItems.BurankoMaterial;
+import com.example.minor.prototype10.Items.ImportantItems.GardenCornerKey;
 import com.example.minor.prototype10.Items.RecoveryItems.Bandage;
 import com.example.minor.prototype10.Items.RecoveryItems.HpAnalepticumSmall;
 import com.example.minor.prototype10.Items.RecoveryItems.MpAnalepticumSmall;
@@ -24,6 +25,7 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickBedButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBedroomButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBenchButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBenchNisuwaruButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBookshelfButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBossRoomButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoNisuwaruButton;
@@ -33,10 +35,13 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBackDoorButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchNisuwaruButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBookshelfButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoNisuwaruButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtIdoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtMansion1FButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtStudyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtWarehouseButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickIdoButton;
@@ -185,6 +190,18 @@ public class MakeData {
             case 35:
                 onClickMapButton = new OnClickEvtBackDoorButton();
                 break;
+            case 36:
+                onClickMapButton = new OnClickEvtWarehouseButton();
+                break;
+            case 37:
+                onClickMapButton = new OnClickEvtStudyButton();
+                break;
+            case 38:
+                onClickMapButton = new OnClickEvtBookshelfButton();
+                break;
+            case 39:
+                onClickMapButton = new OnClickBookshelfButton();
+                break;
         }
         return onClickMapButton;
     }
@@ -290,6 +307,9 @@ public class MakeData {
                 break;
             case "包帯":
                 item = new Bandage();
+                break;
+            case "地下室の鍵":
+                item = new GardenCornerKey();
                 break;
         }
         return item;

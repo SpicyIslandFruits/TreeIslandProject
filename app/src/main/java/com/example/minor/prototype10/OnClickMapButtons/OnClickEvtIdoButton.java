@@ -46,12 +46,12 @@ public class OnClickEvtIdoButton extends SuperOnClickMapButton {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putInt("oldMansionGhostPosition", 1);
                             editor.apply();
-                            mainText.setText("何かが飛び出してきて屋敷の中へと入っていった！！！\n一瞬の出来事に、お前は反応することができなかった...");
+                            mainText.setText("黒い影が飛びだしてきた！！！\n一瞬の出来事に、お前は反応することができなかった...");
                             startAllButtons();
                             imageButton1.setOnClickListener(null);
                             imageButton8Text.setText("追いかける");
-                            OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
-                            imageButton8.setOnClickListener(onClickEvtMansion1FButton);
+                            OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();
+                            imageButton8.setOnClickListener(onClickBBBothRepairedEvtButton);
                         }
                     }, 3000);
                 }
