@@ -1,11 +1,9 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.R;
 
 public class OnClickEvtIdoButton extends SuperOnClickMapButton {
     @Override

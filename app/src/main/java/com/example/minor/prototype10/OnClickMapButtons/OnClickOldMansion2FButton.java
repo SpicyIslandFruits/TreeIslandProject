@@ -1,5 +1,6 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.view.View;
 
@@ -15,7 +16,15 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         int bgmId = 0;
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
         audioPlay(mediaPlayer, bgmId);
-        mainText.setText("お前は2階へと上がっていった...。\n部屋には最小限の家具しかなく、広く、静かで、がらんとしている。\n古い家具や、置き去りにされた敷物の醸し出す匂いは、どこか懐かしい感じがした。");
+        //次から、イベントを作セする際は、一つ一つのイベントすべてに対してFlagを立ててtrueの時は実行falseの時は実行しないようにする。数字で一元管理すると場合分けがめんどくさい。
+        if(sharedPreferences.getBoolean("oldMansionGhostRunAwayFlag", false)){
+            mainText.setText("あれは何だったのだろうか...\n既に飛び去って行ってしまった今、お前に確認するすべはない。");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("oldMansionGhostRunAwayFlag", false);
+            editor.apply();
+        }else {
+            mainText.setText("お前は2階へと上がっていった...。\n部屋には最小限の家具しかなく、広く、静かで、がらんとしている。\n古い家具や、置き去りにされた敷物の醸し出す匂いは、どこか懐かしい感じがした。");
+        }
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickRooftopButton onClickRooftopButton = new OnClickRooftopButton();
         imageButton1.setOnClickListener(onClickRooftopButton);

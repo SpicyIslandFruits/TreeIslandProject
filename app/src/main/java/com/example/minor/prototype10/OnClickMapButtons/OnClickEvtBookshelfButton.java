@@ -15,7 +15,7 @@ public class OnClickEvtBookshelfButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         mainText.setText("古そうな書物が並んでいる...");
-        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1Text.setText("書物1を読む");
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +83,7 @@ public class OnClickEvtBookshelfButton extends SuperOnClickMapButton {
                                 ImportantItemName importantItemName = realm.createObject(ImportantItemName.class);
                                 importantItemName.setItemName("地下室の鍵");
                                 realm.commitTransaction();
-                                mainText.setText("これは...\n\nおそらく地下室の鍵だ。");
+                                mainText.setText("これは...\n\nおそらく地下室の鍵だ。\nどうしてこんなところにあるのだろう...");
                                 new android.os.Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -94,7 +94,7 @@ public class OnClickEvtBookshelfButton extends SuperOnClickMapButton {
                             }
                         });
                     }
-                }, 1000);
+                }, 2000);
             }
         });
         OnClickEvtStudyButton onClickEvtStudyButton = new OnClickEvtStudyButton();

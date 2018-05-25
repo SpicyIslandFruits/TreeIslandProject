@@ -47,6 +47,15 @@ public class PlayerInfo extends RealmObject {
     private boolean playerAutoAbsorbingFlag;
     private int nowPlayingBgm;
     private boolean playerSuicideFlag;
+    private int idoMoneyCount;
+
+    public int getIdoMoneyCount() {
+        return idoMoneyCount;
+    }
+
+    public void setIdoMoneyCount(int idoMoneyCount) {
+        this.idoMoneyCount = idoMoneyCount;
+    }
 
     public String getArmorName() {
         return armorName;

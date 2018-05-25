@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity{
     public static SoundPool soundPool;
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
     public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
-    public static int warauSound, walletSound, stoneWaterDropSound, yuureiMituketaSound, glassBreakSound, horrorPianoSound, birdsFlySound;
+    public static int warauSound, walletSound, stoneWaterDropSound, yuureiMituketaSound, glassBreakSound, horrorPianoSound, birdsFlySound, doorOpenSound;
     public static MediaPlayer mediaPlayer;
     private ImportantItemName importantItemName;
     private RecoveryItemName recoveryItemName;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity{
         waterDropSound = soundPool.load(this, R.raw.water_drop, 1);
         burstSound = soundPool.load(this, R.raw.burst_sound, 1);
         woodBrokenSound = soundPool.load(this, R.raw.wood_broken_sound, 1);
-        oldWoodenDoorSound = soundPool.load(this, R.raw.old_wooden_door, 1);
+        oldWoodenDoorSound = soundPool.load(this, R.raw.broken_chair_sound, 1);
         warauSound = soundPool.load(this, R.raw.warau_sound, 1);
         walletSound = soundPool.load(this, R.raw.wallet_sound, 1);
         stoneWaterDropSound = soundPool.load(this, R.raw.stone_water_drop_sound, 1);
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity{
         glassBreakSound = soundPool.load(this, R.raw.glass_break_sound, 1);
         horrorPianoSound = soundPool.load(this, R.raw.horror_piano_sound, 1);
         birdsFlySound = soundPool.load(this, R.raw.birds_fly_sound, 1);
+        doorOpenSound = soundPool.load(this, R.raw.door_open_sound, 1);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {

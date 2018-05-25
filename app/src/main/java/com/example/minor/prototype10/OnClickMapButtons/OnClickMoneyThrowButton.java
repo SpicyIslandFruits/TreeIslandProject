@@ -12,7 +12,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("何を思ったのか、お前は無性にお金を投げ込みたくなったのだ。\n\n\n幾ら投げ込もうか...");
         MainActivity.soundPool.play(MainActivity.walletSound, 1.0f, 1.0f, 1, 0, 1);
-        //投げ込んだ金額を足し算して、幽霊のイベントの際に1.1倍にして返すのもあり。
+        //投げ込んだ金額を足し算して、幽霊のイベントの際に1.1倍にして返す。
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -20,6 +20,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                     MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 100);
+                    playerInfo.setIdoMoneyCount(playerInfo.getIdoMoneyCount() + 100);
                     realm.commitTransaction();
                     stopAllButtons();
                     mainText.setText("");
@@ -66,6 +67,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                     MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 500);
+                    playerInfo.setIdoMoneyCount(playerInfo.getIdoMoneyCount() + 500);
                     realm.commitTransaction();
                     stopAllButtons();
                     mainText.setText("");
@@ -121,6 +123,7 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
                     MainActivity.soundPool.play(MainActivity.moneyDropSound, 1.0f, 1.0f, 1, 0, 1);
                     realm.beginTransaction();
                     playerInfo.setMoney(playerInfo.getMoney() - 1000);
+                    playerInfo.setIdoMoneyCount(playerInfo.getIdoMoneyCount() + 1000);
                     realm.commitTransaction();
                     stopAllButtons();
                     mainText.setText("");

@@ -11,7 +11,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         mainText.setText("古そうな書物が並んでいる...");
-        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
+        MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1Text.setText("書物1を読む");
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override

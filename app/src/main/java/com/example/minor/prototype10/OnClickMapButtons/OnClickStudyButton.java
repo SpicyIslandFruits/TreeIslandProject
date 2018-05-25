@@ -14,6 +14,7 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
         if(sharedPreferences.getBoolean("oldMansionGardenCornerKeyFoundFlag", false)) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("oldMansionGardenCornerKeyFoundFlag", false);
+            editor.putBoolean("oldMansionGhostRunAwayFlag", true);
             editor.apply();
             new android.os.Handler().postDelayed(new Runnable() {
                 @Override

@@ -19,14 +19,21 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
         if(sharedPreferences.getBoolean("ghostDroppedMoneyFlag", false)){
             //幽霊の落とした貯金箱を拾います。中には自分が今まで井戸に投げ込んだ金額*1.2が入っています。
             mainText.setText("何かが散らばっている。");
-            imageButton1Text.setText("拾う");
-            imageButton1.setOnClickListener(new View.OnClickListener() {
+            imageButton3Text.setText("拾う");
+            imageButton3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    MainActivity.soundPool.play(MainActivity.walletSound, 1.0f, 1.0f, 1, 0, 1);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //editor.putBoolean("ghostDroppedMoneyFlag", false);
+                    editor.putBoolean("ghostDroppedMoneyFlag", false);
                     editor.apply();
-                    mainText.setText("拾う処理は未実装です");
+                    realm.beginTransaction();
+                    playerInfo.setMoney(playerInfo.getMoney() + (int)(playerInfo.getIdoMoneyCount()*1.2));
+                    playerInfo.setIdoMoneyCount(0);
+                    realm.commitTransaction();
+                    mainText.setText("金だ！\nこれは今まで自分が井戸に投げ込んできたものではないか...\n気のせいか少し増えている気がする...");
+                    imageButton3.setOnClickListener(null);
+                    imageButton3Text.setText("");
                 }
             });
         }

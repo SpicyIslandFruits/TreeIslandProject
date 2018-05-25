@@ -47,6 +47,21 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
                         }
                     });
                     imageButton1Text.setText("爆破する");
+                    //地下室を作ります。街で素材を買ってブランコとベンチを修理すると幽霊が現れるのでそいつの指示に従うと鍵が手に入ります。
+                    if(sharedPreferences.getBoolean("oldMansionBasementOpenFlag", false)){
+                        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
+                        imageButton7.setOnClickListener(onClickEmptyButton);
+                        imageButton7Text.setText("扉を開く");
+                    }else{
+                        imageButton7Text.setText("扉を開く");
+                        imageButton7.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mainText.setText("扉には鍵がかかっている...");
+                            }
+                        });
+                    }
+                    
                     imageButton8Text.setText("戻る");
                     new android.os.Handler().postDelayed(new Runnable() {
                         @Override
@@ -81,26 +96,26 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
                 }
             });
             imageButton1Text.setText("爆破する");
+
+            //地下室を作ります。街で素材を買ってブランコとベンチを修理すると幽霊が現れるのでそいつの指示に従うと鍵が手に入ります。
+            if(sharedPreferences.getBoolean("oldMansionBasementOpenFlag", false)){
+                OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
+                imageButton7.setOnClickListener(onClickEmptyButton);
+                imageButton7Text.setText("扉を開く");
+            }else{
+                imageButton7Text.setText("扉を開く");
+                imageButton7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mainText.setText("扉には鍵がかかっている...");
+                    }
+                });
+            }
         }
 
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
         imageButton8.setOnClickListener(onClickGardenButton);
         imageButton8Text.setText("戻る");
-
-        //地下室を作ります。街で素材を買ってブランコとベンチを修理すると幽霊が現れるのでそいつの指示に従うと鍵が手に入ります。
-        if(sharedPreferences.getBoolean("oldMansionBasementOpenFlag", false)){
-            OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-            imageButton7.setOnClickListener(onClickEmptyButton);
-            imageButton7Text.setText("扉を開く");
-        }else{
-            imageButton7Text.setText("扉を開く");
-            imageButton7.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mainText.setText("扉には鍵がかかっている...");
-                }
-            });
-        }
     }
 
     @Override
