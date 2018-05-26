@@ -30,9 +30,9 @@ public class OnClickBBBothRepairedEvtButton extends SuperOnClickMapButton {
         imageButton3.setOnClickListener(onClickEvtBurankoButton);
         imageButton3Text.setText("ブランコ");
 
-        //OnClickEvtGardenCornerButton onClickEvtGardenCornerButton = new OnClickEvtGardenCornerButton();
-        //imageButton7.setOnClickListener(onClickEvtGardenCornerButton);
-        //imageButton7Text.setText("庭の隅");
+        OnClickEvtGardenCornerButton onClickEvtGardenCornerButton = new OnClickEvtGardenCornerButton();
+        imageButton7.setOnClickListener(onClickEvtGardenCornerButton);
+        imageButton7Text.setText("庭の隅");
 
         OnClickEvtMansion1FButton onClickOldMansion1FButton = new OnClickEvtMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);

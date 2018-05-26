@@ -33,14 +33,17 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeon2FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickDungeonButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBackDoorButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBedroomButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBenchNisuwaruButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBookshelfButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtBurankoNisuwaruButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtGardenCornerButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtIdoButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtMansion1FButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtStudyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtStudyTableButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickEvtWarehouseButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
@@ -56,6 +59,7 @@ import com.example.minor.prototype10.OnClickMapButtons.OnClickOshiireButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickRooftopButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickStudyButton;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickStudyTableButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickTownButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickWarehouseButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
@@ -205,6 +209,18 @@ public class MakeData {
                 break;
             case 40:
                 onClickMapButton = new OnClickOldMansionEnterBasementButton();
+                break;
+            case 41:
+                onClickMapButton = new OnClickStudyTableButton();
+                break;
+            case 42:
+                onClickMapButton = new OnClickEvtStudyTableButton();
+                break;
+            case 43:
+                onClickMapButton = new OnClickEvtBedroomButton();
+                break;
+            case 44:
+                onClickMapButton = new OnClickEvtGardenCornerButton();
                 break;
         }
         return onClickMapButton;

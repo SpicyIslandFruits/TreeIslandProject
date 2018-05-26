@@ -32,9 +32,12 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
                 @Override
                 public void run() {
                     mainText.setText("窓の外で、黒い影がものすごい速さで飛び去って行くのが見えた...");
+                    OnClickStudyTableButton onClickStudyTableButton = new OnClickStudyTableButton();
+                    imageButton1.setOnClickListener(onClickStudyTableButton);
+                    imageButton1Text.setText("机");
                     OnClickBookshelfButton onClickBookshelfButton = new OnClickBookshelfButton();
-                    imageButton3.setOnClickListener(onClickBookshelfButton);
-                    imageButton3Text.setText("書棚");
+                    imageButton2.setOnClickListener(onClickBookshelfButton);
+                    imageButton2Text.setText("書棚");
                     OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
                     imageButton8.setOnClickListener(onClickOldMansion2FButton);
                     imageButton8Text.setText("戻る");
@@ -42,10 +45,13 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
             }, 2000);
         }else{
             MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-            mainText.setText("書斎の文章は未定です。これから二つのオブジェクトを追加する予定です。");
+            mainText.setText("書斎の文章は未定です。");
+            OnClickStudyTableButton onClickStudyTableButton = new OnClickStudyTableButton();
+            imageButton1.setOnClickListener(onClickStudyTableButton);
+            imageButton1Text.setText("机");
             OnClickBookshelfButton onClickBookshelfButton = new OnClickBookshelfButton();
-            imageButton3.setOnClickListener(onClickBookshelfButton);
-            imageButton3Text.setText("書棚");
+            imageButton2.setOnClickListener(onClickBookshelfButton);
+            imageButton2Text.setText("書棚");
             OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
             imageButton8.setOnClickListener(onClickOldMansion2FButton);
             imageButton8Text.setText("戻る");

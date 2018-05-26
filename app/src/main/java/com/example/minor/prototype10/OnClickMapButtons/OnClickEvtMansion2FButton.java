@@ -93,12 +93,8 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
             });
             imageButton2Text.setText("書斎");
 
-            imageButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setBack();
-                }
-            });
+            OnClickEvtBedroomButton onClickEvtBedroomButton = new OnClickEvtBedroomButton();
+            imageButton3.setOnClickListener(onClickEvtBedroomButton);
             imageButton3Text.setText("寝室");
             OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
             imageButton8.setOnClickListener(onClickEvtMansion1FButton);
@@ -117,12 +113,8 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
             imageButton2.setOnClickListener(onClickEvtStudyButton);
             imageButton2Text.setText("書斎");
 
-            imageButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setBack();
-                }
-            });
+            OnClickEvtBedroomButton onClickEvtBedroomButton = new OnClickEvtBedroomButton();
+            imageButton3.setOnClickListener(onClickEvtBedroomButton);
             imageButton3Text.setText("寝室");
             OnClickEvtMansion1FButton onClickEvtMansion1FButton = new OnClickEvtMansion1FButton();
             imageButton8.setOnClickListener(onClickEvtMansion1FButton);
