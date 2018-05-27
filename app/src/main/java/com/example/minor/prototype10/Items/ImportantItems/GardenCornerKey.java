@@ -21,7 +21,7 @@ public class GardenCornerKey extends SuperItem {
     @Override
     public void useMaterial() {
         super.useMaterial();
-        if(playerInfo.getPosition() == 20) {
+        if(playerInfo.getPosition() == 20 || playerInfo.getPosition() == 19) {
             try {
                 importantItemName = importantItemNames.where().equalTo("itemName", "地下室の鍵").findFirst();
                 realm.beginTransaction();

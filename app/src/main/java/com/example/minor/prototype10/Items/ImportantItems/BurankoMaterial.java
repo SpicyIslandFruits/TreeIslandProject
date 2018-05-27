@@ -26,7 +26,7 @@ public class BurankoMaterial extends SuperItem{
     @Override
     public void useMaterial() {
         super.useMaterial();
-        if(playerInfo.getPosition() == 19 || playerInfo.getPosition() == 21 || playerInfo.getPosition() == 22) {
+        if(playerInfo.getPosition() == 19 || playerInfo.getPosition() == 23 || playerInfo.getPosition() == 24) {
             try {
                 importantItemName = importantItemNames.where().equalTo("itemName", "ブランコの材料").findFirst();
                 realm.beginTransaction();
