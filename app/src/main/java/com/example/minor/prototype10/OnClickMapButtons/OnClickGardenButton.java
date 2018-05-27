@@ -1,6 +1,5 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.view.View;
 
@@ -43,7 +42,7 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
 
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
-        imageButton8Text.setText("戻る");
+        imageButton8Text.setText("屋敷に戻る");
     }
 
     @Override

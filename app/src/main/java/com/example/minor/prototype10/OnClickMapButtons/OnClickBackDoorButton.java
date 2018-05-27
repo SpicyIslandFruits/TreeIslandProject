@@ -18,7 +18,7 @@ public class OnClickBackDoorButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
         imageButton1.setOnClickListener(onClickGardenButton);
-        imageButton1Text.setText("外に出る");
+        imageButton1Text.setText("庭に出る");
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("戻る");

@@ -99,9 +99,7 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 imageButton8Text.setText("眠ろう...");
             }else{
                 //普通にブランコに座った時の処理です
-                int bgmId = 2;
-                mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
-                audioPlay(mediaPlayer, bgmId);
+                MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
                 OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
                 imageButton8.setOnClickListener(onClickGardenButton);
                 imageButton8Text.setText("戻る");

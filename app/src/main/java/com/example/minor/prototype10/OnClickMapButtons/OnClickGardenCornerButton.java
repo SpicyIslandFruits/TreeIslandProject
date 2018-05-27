@@ -1,9 +1,11 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 public class OnClickGardenCornerButton extends SuperOnClickMapButton {
     @Override
@@ -11,6 +13,9 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
         position = 20;
         savePosition();
         resetAllButtons();
+        int bgmId = 0;
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
+        audioPlay(mediaPlayer, bgmId);
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         if(sharedPreferences.getInt("oldMansionGardenCornerSandRemoved", 0) == 0) {
             mainText.setText("土が不自然に盛り上がっている...");
@@ -99,8 +104,8 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
 
             //地下室を作ります。街で素材を買ってブランコとベンチを修理すると幽霊が現れるのでそいつの指示に従うと鍵が手に入ります。
             if(sharedPreferences.getBoolean("oldMansionBasementOpenFlag", false)){
-                OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-                imageButton7.setOnClickListener(onClickEmptyButton);
+                OnClickOldMansionEnterBasementButton onClickOldMansionEnterBasementButton = new OnClickOldMansionEnterBasementButton();
+                imageButton7.setOnClickListener(onClickOldMansionEnterBasementButton);
                 imageButton7Text.setText("扉を開く");
             }else{
                 imageButton7Text.setText("扉を開く");

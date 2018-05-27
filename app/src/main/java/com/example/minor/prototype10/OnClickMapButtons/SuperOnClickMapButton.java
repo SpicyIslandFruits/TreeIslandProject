@@ -2,12 +2,9 @@ package com.example.minor.prototype10.OnClickMapButtons;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,15 +19,11 @@ import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
-
-import java.io.IOException;
 
 import io.realm.Realm;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.minor.prototype10.MainActivity.mediaPlayer;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected Realm realm;
@@ -243,6 +236,13 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             case 3:
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_event_sound);
                 break;
+            case 4:
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);
+                break;
+            case 5:
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
+                break;
+
         }
     }
 }

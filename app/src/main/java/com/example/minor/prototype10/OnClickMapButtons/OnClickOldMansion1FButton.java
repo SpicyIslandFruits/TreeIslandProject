@@ -1,6 +1,5 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.view.View;
 import com.example.minor.prototype10.MainActivity;
