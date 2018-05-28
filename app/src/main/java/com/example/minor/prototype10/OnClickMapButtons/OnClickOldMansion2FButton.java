@@ -16,6 +16,9 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         int bgmId = 0;
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
         audioPlay(mediaPlayer, bgmId);
+        if(!MainActivity.mediaPlayer.isPlaying()){
+            MainActivity.mediaPlayer.start();
+        }
         //次から、イベントを作セする際は、一つ一つのイベントすべてに対してFlagを立ててtrueの時は実行falseの時は実行しないようにする。数字で一元管理すると場合分けがめんどくさい。
         if(sharedPreferences.getBoolean("oldMansionGhostRunAwayFlag", false)){
             mainText.setText("あれは何だったのだろうか...\n既に飛び去って行ってしまった今、お前に確認するすべはない。");
