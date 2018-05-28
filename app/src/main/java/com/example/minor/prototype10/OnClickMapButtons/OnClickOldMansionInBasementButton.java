@@ -34,6 +34,8 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                             @Override
                             public void onClick(View v) {
                                 MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
+                                stopAllButtons();
+                                mainText.setText("");
                                 new android.os.Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -63,6 +65,8 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                             @Override
                             public void onClick(View v) {
                                 MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
+                                stopAllButtons();
+                                mainText.setText("");
                                 new android.os.Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
