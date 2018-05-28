@@ -12,7 +12,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("古そうな書物が並んでいる...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-        imageButton1Text.setText("書物1を読む");
+        imageButton1Text.setText("書物1");
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -22,7 +22,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("書物1の内容");
+                        mainText.setText("初めに、神は海と地を創造された。海は混沌であって、闇が深淵の表にあり、光が水の表を動いていた。それぞれの世界をつなぐようにして、果樹が地に芽生えた。ユグドラシルである。");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("本を閉じる");
                         OnClickBookshelfButton onClickBookshelfButton = new OnClickBookshelfButton();
@@ -31,7 +31,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
                 }, 800);
             }
         });
-        imageButton2Text.setText("書物2を読む");
+        imageButton2Text.setText("書物2");
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +41,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("書物2の内容");
+                        mainText.setText("");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("本を閉じる");
                         OnClickBookshelfButton onClickBookshelfButton = new OnClickBookshelfButton();
@@ -50,7 +50,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
                 }, 800);
             }
         });
-        imageButton3Text.setText("書物3を読む");
+        imageButton3Text.setText("書物3");
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("書物3の内容");
+                        mainText.setText("アメルーン族は、神を裏切り、悪魔に身を売った呪われた種族である。彼らはとても貧弱だが、悪魔に与えられた、無力で奇妙な力を使う。\n我々バルト族は、決して彼らの声に耳を傾けてはならない。なぜなら我々も、呪われてしまうかもしれないからだ。");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("本を閉じる");
                         OnClickBookshelfButton onClickBookshelfButton = new OnClickBookshelfButton();

@@ -1,8 +1,10 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.R;
 
 public class OnClickBedroomButton extends SuperOnClickMapButton {
     @Override
@@ -10,6 +12,9 @@ public class OnClickBedroomButton extends SuperOnClickMapButton {
         position = 13;
         savePosition();
         resetAllButtons();
+        if(!MainActivity.mediaPlayer.isPlaying()){
+            MainActivity.mediaPlayer.start();
+        }
         mainText.setText("窓には重々しいカーテンがおろされ、室内に明かりはついていない。\nカーテンの隙間から光がもれていたが、思ったより弱々しく、かえって暗闇を際立たせていた。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
