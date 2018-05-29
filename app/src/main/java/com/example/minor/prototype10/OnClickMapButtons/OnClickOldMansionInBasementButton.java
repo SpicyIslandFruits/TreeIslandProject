@@ -27,7 +27,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("資料1の内容");
+                        mainText.setText("アメルーン一族とバルト族の間に子供が生まれることはない。(正確には、生まれてくるのは人ではない。見たものにしか分からない、忌まわしいものだ。)\n私はその理由について研究を重ねたが、遺伝的な原因は一切見つからなかった。");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("閉じる");
                         imageButton8.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("資料2の内容");
+                        mainText.setText("我々とバルト族の関係は、ますます悪化している。\n彼らは際立った人種主義と、群集暗示の魔術的な力に翻弄され、我々と同じ過ちを繰り返そうとしている。\nこれから我々アメルーン一族には、確実に暗い未来が訪れるだろう。");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("閉じる");
                         imageButton8.setOnClickListener(new View.OnClickListener() {
