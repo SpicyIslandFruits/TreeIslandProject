@@ -11,6 +11,9 @@ import java.util.logging.Handler;
 public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
+        position = 45;
+        savePosition();
+        resetAllButtons();
         startAllButtons();
         int bgmId = 5;
         mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
@@ -27,7 +30,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("アメルーン一族とバルト族の間に子供が生まれることはない。(正確には、生まれてくるのは人ではない。見たものにしか分からない、忌まわしいものだ。)\n私はその理由について研究を重ねたが、遺伝的な原因は一切見つからなかった。");
+                        mainText.setText("我々アメルーン一族とバルト族の間に子供が生まれることはない。(正確には、生まれてくるのは人ではない。見たものにしか分からない、忌まわしいものだ。)\n私はその理由について研究を重ねたが、遺伝的な原因は一切見つからなかった。");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("閉じる");
                         imageButton8.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +61,8 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("アメルーン一族とバルト族の関係は、ますます悪化している。\nバルト族は、際立った人種主義と、群集暗示の魔術的な力に翻弄され、過去のアメルーン一族と同じ過ちを繰り返そうとしている。\nこれからアメルーン一族には、確実に暗い未来が訪れるだろう。");
+                        //人工島に人類が移住し、魔族が弱体化したため、最初は対等に暮らしていたが、過去の恨みと力量の差から、今度は魔族が差別されるようになる話
+                        mainText.setText("我々とバルト族の関係は、ますます悪化している。\nバルト族は、際立った人種主義と、群集暗示の魔術的な力に翻弄され、過去の我々と同じ過ちを繰り返そうとしている。\nこれから我々アメルーン一族には、確実に暗い未来が訪れるだろう。");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("閉じる");
                         imageButton8.setOnClickListener(new View.OnClickListener() {
