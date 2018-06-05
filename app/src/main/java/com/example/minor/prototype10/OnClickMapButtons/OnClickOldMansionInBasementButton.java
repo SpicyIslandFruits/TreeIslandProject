@@ -20,7 +20,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
         audioPlay(mediaPlayer, bgmId);
         mainText.setText("地下室の中です。文章未定");
         //日記、卵についての資料、悪魔についての研究資料、嵐についての研究資料
-        imageButton1Text.setText("資料1");
+        imageButton1Text.setText("研究資料1");
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +51,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 }, 800);
             }
         });
-        imageButton2Text.setText("資料2");
+        imageButton2Text.setText("社会学の本");
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,38 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                     @Override
                     public void run() {
                         //人工島に人類が移住し、魔族が弱体化したため、最初は対等に暮らしていたが、過去の恨みと力量の差から、今度は魔族が差別されるようになる話
-                        mainText.setText("我々とバルト族の関係は、ますます悪化している。\nバルト族は、際立った人種主義と、群集暗示の魔術的な力に翻弄され、過去の我々と同じ過ちを繰り返そうとしている。\nこれから我々アメルーン一族には、確実に暗い未来が訪れるだろう。");
+                        mainText.setText("我々とバルト族の関係は、ますます悪化している。\nバルト族は際立った人種主義と、群集暗示の魔術的な力に翻弄され、過去の我々と同じ過ちを繰り返そうとしている。\nこれから我々アメルーン一族には、確実に暗い未来が訪れるだろう。");
+                        imageButton8.setEnabled(true);
+                        imageButton8Text.setText("閉じる");
+                        imageButton8.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
+                                stopAllButtons();
+                                mainText.setText("");
+                                new android.os.Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        createMap();
+                                    }
+                                }, 1000);
+                            }
+                        });
+                    }
+                }, 800);
+            }
+        });
+        imageButton3Text.setText("日記");
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
+                stopAllButtons();
+                mainText.setText("");
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("パトローナムが破られた。跡形も残っていなかった。私には、見たものすべてを物語る勇気がない。あれは現実に存在してはいけなかった。すべて作り話であればよかった。やつがここに辿り着くのも時間の問題だろう。このままでは間に合わない、せめて家族だけでも救うことができたら...");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("閉じる");
                         imageButton8.setOnClickListener(new View.OnClickListener() {

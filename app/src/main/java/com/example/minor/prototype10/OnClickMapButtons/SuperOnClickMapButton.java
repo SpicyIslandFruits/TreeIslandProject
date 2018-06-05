@@ -30,7 +30,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected PlayerInfo playerInfo;
     public static SharedPreferences sharedPreferences;
     protected static AppCompatActivity mMain;
-    protected static TextView mainText, bleedingText, poisonText;
+    protected static TextView mainText;
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;
     protected static TextView imageButton1Text, imageButton2Text, imageButton3Text, imageButton4Text, imageButton5Text, imageButton6Text, imageButton7Text, imageButton8Text;
     protected int position;

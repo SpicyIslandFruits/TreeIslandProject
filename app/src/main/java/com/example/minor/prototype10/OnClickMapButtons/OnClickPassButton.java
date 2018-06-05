@@ -67,7 +67,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         changeBaseEnemyLevel(0);
         changeAdditionalEnemyLevel(0);
         int textNum;
-        textNum = (int)(Math.random()*13 + 1);
+        textNum = (int)(Math.random()*12 + 1);
         switch (textNum){
             case 1:
                 mainText.setText("どこへ行こう...。");
@@ -104,9 +104,6 @@ public class OnClickPassButton extends SuperOnClickMapButton {
                 break;
             case 12:
                 mainText.setText("外は危険だが、街の中はもっと危険だ");
-                break;
-            case 13:
-                mainText.setText("世界を体現する樹...本当にそうなのか？ 確かに大きいが...");
                 break;
         }
     }
