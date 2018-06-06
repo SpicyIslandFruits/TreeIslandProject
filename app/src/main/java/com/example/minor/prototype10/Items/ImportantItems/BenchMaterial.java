@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBenchButton;
 
 /**
  * ベンチの材料はレベル30あたりで手に入り、修理すると幽霊の笑い声が聞こえます。
@@ -37,6 +38,8 @@ public class BenchMaterial extends SuperItem{
                 toast.show();
                 editor.putInt("oldMansionGardenBenchState", 2);
                 editor.apply();
+                OnClickBenchButton onClickBenchButton = new OnClickBenchButton();
+                onClickBenchButton.createMap();
             } catch (Exception e) {
                 realm.cancelTransaction();
             }
