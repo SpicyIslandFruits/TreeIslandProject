@@ -103,7 +103,7 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
                 imageButton8.setOnClickListener(onClickGardenButton);
                 imageButton8Text.setText("戻る");
-                mainText.setText("");
+                mainText.setText("お前はブランコを揺らしながら考えた。\n父はどうなったのだろう、きっと無事では済まない...\nだがお前は自分の身の上のことで精いっぱいなのだ。");
             }
         }
     }
