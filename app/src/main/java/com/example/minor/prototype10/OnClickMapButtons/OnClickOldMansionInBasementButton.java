@@ -93,7 +93,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("パトローナムが破られた。跡形も残っていなかった。私には、見たものすべてを物語る勇気がない。あれは現実に存在してはいけなかった。すべて作り話であればよかった。やつがここに辿り着くのも時間の問題だろう。このままでは間に合わない、せめて家族だけでも救うことができたら...");
+                        mainText.setText("パトローナムが破られた。跡形も残っていなかった。私には、見たものすべてを物語る勇気がない。すべて作り話のはずだったのだ。やつがここに辿り着くのも時間の問題だろう。このままでは間に合わない、せめて家族だけでも救うことができたら...");
                         imageButton8.setEnabled(true);
                         imageButton8Text.setText("閉じる");
                         imageButton8.setOnClickListener(new View.OnClickListener() {
