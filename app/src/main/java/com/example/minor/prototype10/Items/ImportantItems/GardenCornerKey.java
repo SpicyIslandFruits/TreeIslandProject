@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
 
 public class GardenCornerKey extends SuperItem {
     private static final String name = "地下室の鍵";
@@ -31,6 +32,8 @@ public class GardenCornerKey extends SuperItem {
                 editor.apply();
                 Toast toast = Toast.makeText(MainActivity.context, "鍵を使った。", Toast.LENGTH_SHORT);
                 toast.show();
+                OnClickGardenCornerButton onClickGardenCornerButton = new OnClickGardenCornerButton();
+                onClickGardenCornerButton.createMap();
             } catch (Exception e) {
                 realm.cancelTransaction();
             }

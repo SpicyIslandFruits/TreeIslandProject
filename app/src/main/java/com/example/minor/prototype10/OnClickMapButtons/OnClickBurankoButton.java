@@ -10,7 +10,13 @@ public class OnClickBurankoButton extends SuperOnClickMapButton {
         position = 23;
         savePosition();
         resetAllButtons();
-        mainText.setText("文章未定");
+        if (sharedPreferences.getInt("oldMansionGardenBurankoState", 0) == 0) {
+            mainText.setText("錆びれたブランコが置かれている。");
+        }else if (sharedPreferences.getInt("oldMansionGardenBurankoState",0) == 1){
+            mainText.setText("持ち手がちぎれてしまっている。");
+        }else if (sharedPreferences.getInt("oldMansionGardenBurankoState",0) == 2){
+            mainText.setText("自分で修理したからか、既製品よりも愛着がわいてくる。");
+        }
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickBurankoNisuwaruButton onClickBurankoNisuwaruButton = new OnClickBurankoNisuwaruButton();
         imageButton1.setOnClickListener(onClickBurankoNisuwaruButton);

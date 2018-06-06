@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoButton;
 
 /**
  * ブランコの材料はレベル70あたりで手に入り、修理すると幽霊の笑い声が聞こえます。
@@ -36,6 +37,8 @@ public class BurankoMaterial extends SuperItem{
                 editor.apply();
                 Toast toast = Toast.makeText(MainActivity.context, "ブランコが治った。", Toast.LENGTH_SHORT);
                 toast.show();
+                OnClickBurankoButton onClickBurankoButton = new OnClickBurankoButton();
+                onClickBurankoButton.createMap();
             } catch (Exception e) {
                 realm.cancelTransaction();
             }

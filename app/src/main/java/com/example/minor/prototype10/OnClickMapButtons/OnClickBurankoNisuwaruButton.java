@@ -40,7 +40,7 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
             OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
             imageButton8.setOnClickListener(onClickGardenButton);
             imageButton8Text.setText("諦める");
-            mainText.setText("持ち手がちぎれてしまっている。\nこのままでは座れない...。");
+            mainText.setText("このままでは座れない...。");
         }else if(sharedPreferences.getInt("oldMansionGardenBurankoState", 0) == 2){
             if(sharedPreferences.getInt("oldMansionGardenBenchState", 0) == 2 && !sharedPreferences.getBoolean("BBBothRepairedEvtDoneFlag", false)) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -103,7 +103,7 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
                 imageButton8.setOnClickListener(onClickGardenButton);
                 imageButton8Text.setText("戻る");
-                mainText.setText("ブランコに座った\n文章未定");
+                mainText.setText("");
             }
         }
     }

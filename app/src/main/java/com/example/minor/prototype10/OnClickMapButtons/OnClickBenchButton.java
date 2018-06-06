@@ -10,7 +10,14 @@ public class OnClickBenchButton extends SuperOnClickMapButton {
         position = 21;
         savePosition();
         resetAllButtons();
-        mainText.setText("文章未定");
+        //ベンチの状態にあわせて文章を買えます
+        if (sharedPreferences.getInt("oldMansionGardenBenchState", 0) == 0) {
+            mainText.setText("今にも壊れそうなベンチがぽつんと置かれている。");
+        }else if (sharedPreferences.getInt("oldMansionGardenBenchState",0) == 1){
+            mainText.setText("座るところが抜けて骨組みがむき出しになっている。");
+        }else if (sharedPreferences.getInt("oldMansionGardenBenchState",0) == 2){
+            mainText.setText("自分で修理したからか、既製品よりも愛着がわいてくる。");
+        }
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickBenchNisuwaruButton onClickBenchNisuwaruButton = new OnClickBenchNisuwaruButton();
         imageButton1.setOnClickListener(onClickBenchNisuwaruButton);

@@ -41,7 +41,7 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
             OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
             imageButton8.setOnClickListener(onClickGardenButton);
             imageButton8Text.setText("諦める");
-            mainText.setText("座るところが抜けて骨組みがむき出しになっている。\nこのままでは座れない...。");
+            mainText.setText("このままでは座れない...。");
         //修理済みのベンチに座ろうとした場合
         }else if(sharedPreferences.getInt("oldMansionGardenBenchState", 0) == 2){
             //ベンチとブランコの両方が修理済みの場合
@@ -53,7 +53,7 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
                 int bgmId = 2;
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
                 audioPlay(mediaPlayer, bgmId);
-                mainText.setText("お前はベンチに座った。\nこれで修理は終わった。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nなかなか大変だった...");
+                mainText.setText("お前はベンチに座った。\nこれで修理は終わった。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nなかなか大変なだった...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -106,7 +106,7 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
                 OnClickGardenButton onClickGardenButton = new OnClickGardenButton();
                 imageButton8.setOnClickListener(onClickGardenButton);
                 imageButton8Text.setText("戻る");
-                mainText.setText("ベンチに座った\n文章未定");
+                mainText.setText("お前はベンチに座り、目をつぶった...\nどうしてこんな仕打ちを受けなければならないのか、これから何を信じて生きればいいのか...\n後に残されたのは命をものともしない無常な世の中だけだ。\n絶望と虚しさが溢れ、お前はうなだれた。");
             }
         }
     }
