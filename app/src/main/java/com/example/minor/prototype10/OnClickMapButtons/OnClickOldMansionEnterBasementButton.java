@@ -16,7 +16,7 @@ public class OnClickOldMansionEnterBasementButton extends SuperOnClickMapButton 
         mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);
         audioPlay(mediaPlayer, bgmId);
         MainActivity.soundPool.play(MainActivity.doorOpenSound, 1.0f, 1.0f, 1, 0, 1);
-        mainText.setText("ここは地下室への階段です。文章未定");
+        mainText.setText("隠し階段が現れた...\n地下室があるようだ。");
         //音声を変更します。扉が開く音にします。BGMを変更します。ホラー素材にあった600hz音にします。
         OnClickOldMansionInBasementButton onClickOldMansionInBasementButton = new OnClickOldMansionInBasementButton();
         imageButton1.setOnClickListener(onClickOldMansionInBasementButton);

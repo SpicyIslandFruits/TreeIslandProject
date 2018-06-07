@@ -18,9 +18,9 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
         int bgmId = 5;
         mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
         audioPlay(mediaPlayer, bgmId);
-        mainText.setText("地下室の中です。文章未定");
+        mainText.setText("重要そうな資料がある。");
         //日記、卵についての資料、悪魔についての研究資料、嵐についての研究資料
-        imageButton1Text.setText("研究資料1");
+        imageButton1Text.setText("研究資料");
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

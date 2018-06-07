@@ -86,13 +86,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 }
             });
             imageButton2Text.setText("浴室");
-            imageButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setBack();
-                }
-            });
-            imageButton3Text.setText("台所");
             //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
 
             imageButton4.setOnClickListener(new View.OnClickListener() {

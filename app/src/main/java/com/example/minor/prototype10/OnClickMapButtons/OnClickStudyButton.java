@@ -45,7 +45,7 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
             }, 2000);
         }else{
             MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-            mainText.setText("書斎の文章は未定です。");
+            mainText.setText("古い本の匂いがする。");
             OnClickStudyTableButton onClickStudyTableButton = new OnClickStudyTableButton();
             imageButton1.setOnClickListener(onClickStudyTableButton);
             imageButton1Text.setText("机");
