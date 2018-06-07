@@ -18,7 +18,9 @@ import com.example.minor.prototype10.MakeArmorRealmObject;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.AmuletName;
+import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
+import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
@@ -122,6 +124,30 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             toast.show();
         }
     }
+
+    protected void obtainRecoveryItem(String recoveryItemName, int percent){
+        if(Math.random()*100 < percent) {
+            realm.beginTransaction();
+            RecoveryItemName recoveryItemNameInstance = realm.createObject(RecoveryItemName.class);
+            recoveryItemNameInstance.setItemName(recoveryItemName);
+            realm.commitTransaction();
+            Toast toast = Toast.makeText(MainActivity.context, "回復アイテムを取得した！", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    protected void obtainImportantItem(String importantItemName, int percent){
+        if(Math.random()*100 < percent) {
+            realm.beginTransaction();
+            ImportantItemName importantItemNameInstance = realm.createObject(ImportantItemName.class);
+            importantItemNameInstance.setItemName(importantItemName);
+            realm.commitTransaction();
+            Toast toast = Toast.makeText(MainActivity.context, "貴重品を取得した！", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+
 
     protected void stopAllButtons(){
         imageButton1.setEnabled(false);
@@ -242,7 +268,6 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             case 5:
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
                 break;
-
         }
     }
 }

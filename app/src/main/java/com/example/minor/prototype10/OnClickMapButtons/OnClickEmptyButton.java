@@ -11,13 +11,12 @@ import com.example.minor.prototype10.MainActivity;
  * mainText.setTextを変える
  * map遷移時のsoundを。
  * onClickの中身は三段階（stopAllButtons,createMap,1秒後にstartAllButtons)
- * obtainItem,obtainArmorを追加
  * OnClickMapButton onClickMapButton = new OnClickMapButton();
  * imageButton.setOnClickListener(onClickMapButton);
  * imageButtonText.setText("");
  * をやる
  * makeDataにswitchを追加
- * encounter, obtainWeapon, changeBaseEnemyLevel, changeAdditionalEnemyLevel
+ * encounter, obtainWeapon, changeBaseEnemyLevel, changeAdditionalEnemyLevel, obtainArmor, obtainAmulet, obtainImportantItem, obtainRecoveryItem
  * マップの階層が深くなる時はbaseEnemyLevelを編集してください
  * 敵とのエンカウントをさせたい場合はencounterメソッドを実行してください、エンカウントする敵のidと確率を引数に入れてください
  * changeBaseEnemyLevelをするときはsavePositionの後に実行してください
