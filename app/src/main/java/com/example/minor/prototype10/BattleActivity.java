@@ -144,7 +144,8 @@ public class BattleActivity extends AppCompatActivity {
                         realm.commitTransaction();
                         battleText.setText("自分のHPは" + String.valueOf(hp) + "敵のHPは" + String.valueOf(enemyHp));
                         enableButtons(true);
-                        psp = tempAllStatus[2] = Math.min(sp , tempAllStatus[2] + sp/2 );
+                        psp = tempAllStatus[2] = Math.min(sp, tempAllStatus[2] + sp/2 );
+                        spBar.setMax(tempAllStatus[12]);
                         cancelSelectedSkills();
                         turnCount++;
                     }
@@ -403,6 +404,7 @@ public class BattleActivity extends AppCompatActivity {
         maxMp = playerInfo.getFmaxMP();
         tempAllStatus[0] = hp = playerInfo.getHP();
         tempAllStatus[1] = mp = playerInfo.getMP();
+        //主人公の現在のsp、スキルを選択した瞬間に変わる
         tempAllStatus[2] = sp = playerInfo.getfSP();
         tempAllStatus[3] = atk = playerInfo.getATK();
         tempAllStatus[4] = df = playerInfo.getDF();
@@ -413,7 +415,10 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        tempAllStatus[12] = psp = playerInfo.getfSP();
+        //プレイヤーの最大spはtempAllStatus[12]である
+        tempAllStatus[12] = playerInfo.getfSP();
+        //pspはターン開始時のsp、キャンセルボタンを押した際にspをpspに戻す
+        psp = playerInfo.getfSP();
         tempAllStatus[13] = playerLevel = playerInfo.getPlayerLevel();
         tempAllStatus[14] = weaponAtk = playerInfo.getfATK();
         tempAllStatus[15] = armorDf = playerInfo.getfDF();
@@ -421,6 +426,7 @@ public class BattleActivity extends AppCompatActivity {
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
+        //spの最大値はここで一度変更されているだけの為、スキルで最大spに対して操作を行うとバーの挙動がおかしくなる。
         spBar.setMax(sp);
         enemyHpBar.setMax(enemyHp);
         hpBar.setProgress(0);
@@ -454,7 +460,7 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[13] = playerLevel;
         tempAllStatus[14] = weaponAtk;
         tempAllStatus[15] = armorDf;
-        onProgressChanged(sp-psp, spBar);
+        onProgressChanged(tempAllStatus[12]-psp, spBar);
         onProgressChanged(maxMp-mp, mpBar);
     }
 

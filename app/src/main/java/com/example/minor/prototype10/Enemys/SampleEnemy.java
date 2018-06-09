@@ -7,6 +7,7 @@ package com.example.minor.prototype10.Enemys;
  * 後で要素を追加するときは先にSuperEnemyにメソッドを追加してください
  * 敵の基礎ステータスは攻守HPすべて120ですSpの基準値は100です
  * hp,atk,dfについては絶対にcalculateメソッドを使ってからreturnしてください
+ * mpに対する操作不可
  * 必ずidも書いておいてください後からどのidがどの敵だったかを確認できます
  * ダメージの入るスキルの実装の際はnewBreakNum = calculateBreakNum(breakNum)を必ず書く
  * enemySkillsは後々マップに情報屋を追加するときにgetする

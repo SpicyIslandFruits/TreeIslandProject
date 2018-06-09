@@ -43,8 +43,7 @@ public class SampleEnemy3 extends SuperEnemy {
     @Override
     protected void skill1(int[] allStatus) {
         beginTransaction();
-        newPlayerHp = playerHp - calculateDamage();
-        newBreakNum = calculateBreakNum(breakNum);
+        newPlayerMaxSp = (int)(playerMaxSp*0.8);
         commitTransaction(30);
     }
 
