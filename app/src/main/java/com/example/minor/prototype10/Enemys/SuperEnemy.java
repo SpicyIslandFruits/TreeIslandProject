@@ -168,7 +168,7 @@ abstract public class SuperEnemy {
         }
         return num;
     }
-    void chooseSkills(int n){
+    protected void chooseSkills(int n){
         switch(n){
             case 0:
                 skill1(allStatus);

@@ -76,7 +76,7 @@ OnClickBedButton extends SuperOnClickMapButton {
                             @Override
                             public void onClick(View v) {
                                 createMap();
-                                mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n\n時間が経っていない...。\n\n何度も目を疑ったが、お前は現実を受け入れるしかなかった。");
+                                mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n時間が経っていない...。\n何度も目を疑ったが、お前は現実を受け入れるしかなかった。");
                                 startAllButtons();
                             }
                         });

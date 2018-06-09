@@ -12,7 +12,7 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
         position = 12;
         savePosition();
         resetAllButtons();
-        mainText.setText("屋上は寒い...。");
+        mainText.setText("寒い...。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1Text.setText("夜空を見上げる");
@@ -43,7 +43,7 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
                 });
                 imageButton1Text.setText("");
                 imageButton7Text.setText("");
-                mainText.setText("お前は空を見上げた・・・。\n余分な明かりがないせいか、空気が汚れていないせいか、星の多さに驚かされる。\n人々の営みとは無縁のように輝く星々は、とても超越的であった。");
+                mainText.setText("お前は空を見上げた・・・。\n余分な明かりがないせいか、空気が汚れていないせいか、星の多さに驚かされる。\n人々の営みとは無縁のように輝く星々はとても壮大だった。");
             }
         });
 

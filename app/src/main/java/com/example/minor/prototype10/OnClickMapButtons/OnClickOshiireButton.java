@@ -68,7 +68,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
                             @Override
                             public void onClick(View v) {
                                 createMap();
-                                mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n\n真っ暗だ...。\n\n何度も目を疑ったが、しばらくしてここが押入れの中だと気付いた。");
+                                mainText.setText("目覚めると傷が癒えていた。\n周囲を見渡して、お前はあることに気付く。\n真っ暗だ...。\n何度も目を疑ったが、しばらくしてここが押入れの中だと気付いた。");
                                 startAllButtons();
                             }
                         });
