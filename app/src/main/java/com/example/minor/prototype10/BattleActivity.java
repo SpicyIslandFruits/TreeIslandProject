@@ -258,7 +258,7 @@ public class BattleActivity extends AppCompatActivity {
         onProgressChanged(enemyHp, enemyHpBar);
         onProgressChanged(maxMp-mp, mpBar);
         if(hp<=0 ||enemyHp<=0){
-            //一時的にここでセットしていますが、実際にはリザルトアクティビティでセットします
+            experience();
             realm.beginTransaction();
             playerInfo.setBattleFlag(false);
             realm.commitTransaction();
@@ -295,9 +295,7 @@ public class BattleActivity extends AppCompatActivity {
         onProgressChanged(enemyHp, enemyHpBar);
         onProgressChanged(maxMp-mp, mpBar);
         if(hp<=0 ||enemyHp<=0){
-            //たぶん経験値処理などで長くなるのでメソッドを追加してそこにまとめます
-            //レベルは戦闘後にのみあがるようにしメソッド内でレベルが上がった場合のステータス処理をすべて書きます
-            //レベルはポケモン方式で上がります
+            experience();
             realm.beginTransaction();
             playerInfo.setBattleFlag(false);
             realm.commitTransaction();
@@ -395,6 +393,21 @@ public class BattleActivity extends AppCompatActivity {
         }
         spBar.setProgress(sp - tempAllStatus[2]);
         mpBar.setProgress(maxMp - tempAllStatus[1]);
+    }
+    private void experience(){
+        realm.beginTransaction();
+        playerInfo.setExperiencePointSum(playerInfo.getExperiencePointSum() + Math.max(1, 30 + 3 * ((playerInfo.getBaseEnemyLevel() + playerInfo.getAdditionalEnemyLevel()) - playerLevel)));
+        realm.commitTransaction();
+        if(playerInfo.getExperiencePointSum()>=100){
+            realm.beginTransaction();
+            playerInfo.setPlayerLevel(playerInfo.getPlayerLevel()+1);
+            playerInfo.setExperiencePointSum(0);
+            realm.commitTransaction();
+            makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
+            Toast toast = Toast.makeText(this, "レベルアップ！", Toast.LENGTH_SHORT);
+            toast.show();
+            //音声出す
+        }
     }
 
     //Atkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
