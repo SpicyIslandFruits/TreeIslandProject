@@ -19,9 +19,9 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("お前は庭に出た...。\n小さなブランコが置いてある、家族で住んでいたのだろうか。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
-        int bgmId = 0;
+        String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
 
         //街で木材を買ってきて修理すると使えるようになる。データはsharedPreferenceに保存
         OnClickBenchButton onClickBenchButton = new OnClickBenchButton();

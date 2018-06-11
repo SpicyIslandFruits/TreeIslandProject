@@ -15,9 +15,9 @@ public class OnClickBBBothRepairedEvtButton extends SuperOnClickMapButton {
         resetAllButtons();
         mainText.setText("気のせいではない...確かに誰かがいたのだ。\n探そう。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
-        int bgmId = 3;
+        String bgmName = "oldMansionEventSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_event_sound);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         //イベントマップにつなげます、テキスト以外の部分はほとんど通常マップのコピペ。
         OnClickEvtBenchButton onClickEvtBenchButton = new OnClickEvtBenchButton();
         imageButton1.setOnClickListener(onClickEvtBenchButton);

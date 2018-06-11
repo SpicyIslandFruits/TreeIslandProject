@@ -1,6 +1,5 @@
 package com.example.minor.prototype10.Models;
 
-import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -45,9 +44,17 @@ public class PlayerInfo extends RealmObject {
     private boolean enemyPoisonFlag;
     private boolean playerAutoHealingFlag;
     private boolean playerAutoAbsorbingFlag;
-    private int nowPlayingBgm;
     private boolean playerSuicideFlag;
     private int idoMoneyCount;
+    private String nowPlayingBgmName;
+
+    public String getNowPlayingBgmName() {
+        return nowPlayingBgmName;
+    }
+
+    public void setNowPlayingBgmName(String nowPlayingBgmName) {
+        this.nowPlayingBgmName = nowPlayingBgmName;
+    }
 
     public int getIdoMoneyCount() {
         return idoMoneyCount;
@@ -327,14 +334,6 @@ public class PlayerInfo extends RealmObject {
 
     public void setPlayerAutoAbsorbingFlag(boolean playerAutoAbsorbingFlag) {
         this.playerAutoAbsorbingFlag = playerAutoAbsorbingFlag;
-    }
-
-    public int getNowPlayingBgm() {
-        return nowPlayingBgm;
-    }
-
-    public void setNowPlayingBgm(int nowPlayingBgm) {
-        this.nowPlayingBgm = nowPlayingBgm;
     }
 
     public boolean isPlayerSuicideFlag() {

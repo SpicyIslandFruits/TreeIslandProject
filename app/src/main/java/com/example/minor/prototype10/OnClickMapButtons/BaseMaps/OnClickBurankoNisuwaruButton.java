@@ -48,9 +48,9 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 editor.putBoolean("BBBothRepairedEvtDoneFlag", true);
                 editor.apply();
 
-                int bgmId = 2;
+                String bgmName = "nightSound";
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
-                audioPlay(mediaPlayer, bgmId);
+                audioPlay(mediaPlayer, bgmName);
                 mainText.setText("お前はブランコに座った。\nこれで修理は終わった。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nなかなか大変だった...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,9 +75,9 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
                 editor.putBoolean("BBEitherOneRepairedEvtDoneFlag", true);
                 editor.apply();
 
-                int bgmId = 2;
+                String bgmName = "nightSound";
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
-                audioPlay(mediaPlayer, bgmId);
+                audioPlay(mediaPlayer, bgmName);
                 mainText.setText("お前はブランコに座った。\n以外に大変な作業だった。\n庭はとても静かで風が心地いい、\nブランコに揺られているうちにお前は眠くなってきて...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override

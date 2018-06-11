@@ -14,9 +14,9 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
         position = 20;
         savePosition();
         resetAllButtons();
-        int bgmId = 0;
+        String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         if(sharedPreferences.getInt("oldMansionGardenCornerSandRemoved", 0) == 0) {
             mainText.setText("土が不自然に盛り上がっている...");

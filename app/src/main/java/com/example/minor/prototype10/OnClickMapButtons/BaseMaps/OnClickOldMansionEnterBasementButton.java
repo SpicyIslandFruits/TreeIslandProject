@@ -13,9 +13,9 @@ public class OnClickOldMansionEnterBasementButton extends SuperOnClickMapButton 
         position = 40;
         savePosition();
         resetAllButtons();
-        int bgmId = 4;
+        String bgmName = "noise";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         MainActivity.soundPool.play(MainActivity.doorOpenSound, 1.0f, 1.0f, 1, 0, 1);
         mainText.setText("隠し階段が現れた...\n地下室があるようだ。");
         //音声を変更します。扉が開く音にします。BGMを変更します。ホラー素材にあった600hz音にします。

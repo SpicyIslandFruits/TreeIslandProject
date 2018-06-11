@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setSP(180);
             playerInfo.setfSP(180);
             playerInfo.setLUK(10);
+            playerInfo.setNowPlayingBgmName("oldMansionBgm");
             //fLukはデフォで1/12*100程度の値をセット
             playerInfo.setfLUK(10);
             //状態異常のセット

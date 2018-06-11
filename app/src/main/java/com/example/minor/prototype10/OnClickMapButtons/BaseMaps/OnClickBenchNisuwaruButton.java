@@ -51,9 +51,9 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
                 editor.putBoolean("BBBothRepairedEvtDoneFlag", true);
                 editor.apply();
 
-                int bgmId = 2;
+                String bgmName = "nightSound";
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
-                audioPlay(mediaPlayer, bgmId);
+                audioPlay(mediaPlayer, bgmName);
                 mainText.setText("お前はベンチに座った。\nこれで修理は終わった。\n自分の住んでいる家がボロボロなのは気にくわないのだ。\nなかなか大変なだった...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -79,9 +79,9 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
                 editor.putBoolean("BBEitherOneRepairedEvtDoneFlag", true);
                 editor.apply();
 
-                int bgmId = 2;
+                String bgmName = "nightSound";
                 mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
-                audioPlay(mediaPlayer, bgmId);
+                audioPlay(mediaPlayer, bgmName);
                 mainText.setText("お前はベンチに座った。\n以外に大変な作業だった。\n庭はとても静かで風が心地いい、このままひと眠りしよう...");
                 imageButton8.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -14,9 +14,9 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         startAllButtons();
-        int bgmId = 5;
+        String bgmName = "basementSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         mainText.setText("重要そうな資料がある。");
         //日記、卵についての資料、悪魔についての研究資料、嵐についての研究資料
         imageButton1Text.setText("研究資料");
@@ -124,9 +124,9 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         stopAllButtons();
-        int bgmId = 4;
+        String bgmName = "noise";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         MainActivity.soundPool.play(MainActivity.walkGymnasiumSound, 5.0f, 5.0f, 1, 0, 0.8f);
         new android.os.Handler().postDelayed(new Runnable() {
             @Override

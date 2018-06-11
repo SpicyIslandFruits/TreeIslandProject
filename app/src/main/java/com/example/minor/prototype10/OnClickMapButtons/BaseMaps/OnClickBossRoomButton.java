@@ -24,9 +24,9 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
 
-        int bgmId = 1;
+        String bgmName = "sampleBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.sample_bgm);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.Toast;
 
@@ -9,6 +10,7 @@ import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickBossRoomB
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickOldMansionButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
+import com.example.minor.prototype10.R;
 
 import io.realm.RealmResults;
 
@@ -27,6 +29,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
             Toast toast = Toast.makeText(MainActivity.context, "お守りや補助効果が消滅した", Toast.LENGTH_SHORT);
             toast.show();
         }
+
         realm.beginTransaction();
         playerInfo.setfLUK(playerInfo.getLUK());
         playerInfo.setfSP(playerInfo.getSP());

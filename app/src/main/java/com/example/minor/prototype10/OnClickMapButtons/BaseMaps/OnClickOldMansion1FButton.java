@@ -14,9 +14,9 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         resetAllButtons();
         position = 8;
         savePosition();
-        int bgmId = 0;
+        String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
         imageButton1.setOnClickListener(onClickOldMansion2FButton);
         imageButton1Text.setText("2階へ上がる");

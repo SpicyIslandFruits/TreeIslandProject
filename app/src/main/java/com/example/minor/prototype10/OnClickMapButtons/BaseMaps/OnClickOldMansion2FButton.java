@@ -14,9 +14,9 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         position = 11;
         savePosition();
         resetAllButtons();
-        int bgmId = 0;
+        String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
-        audioPlay(mediaPlayer, bgmId);
+        audioPlay(mediaPlayer, bgmName);
         if(!MainActivity.mediaPlayer.isPlaying()){
             MainActivity.mediaPlayer.start();
         }

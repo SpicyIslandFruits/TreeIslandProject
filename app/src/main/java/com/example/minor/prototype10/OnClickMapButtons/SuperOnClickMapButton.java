@@ -220,10 +220,10 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         mMain.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
-    protected void audioPlay(MediaPlayer mediaPlayer, int bgmId) {
-        if(playerInfo.getNowPlayingBgm() != bgmId) {
+    protected void audioPlay(MediaPlayer mediaPlayer, String bgmName) {
+        if(!playerInfo.getNowPlayingBgmName().equals(bgmName)) {
             realm.beginTransaction();
-            playerInfo.setNowPlayingBgm(bgmId);
+            playerInfo.setNowPlayingBgmName(bgmName);
             realm.commitTransaction();
             audioStop();
             MainActivity.mediaPlayer = mediaPlayer;
@@ -233,7 +233,6 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
-            mediaPlayer = null;
         }
     }
 
@@ -248,24 +247,24 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected void makeBgm(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
-        int bgmId = playerInfo.getNowPlayingBgm();
-        switch (bgmId){
-            case 0:
+        String bgmName = playerInfo.getNowPlayingBgmName();
+        switch (bgmName){
+            case "oldMansionBgm":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
                 break;
-            case 1:
+            case "sampleBgm":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.sample_bgm);
                 break;
-            case 2:
+            case "nightSound":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.night_sound);
                 break;
-            case 3:
+            case "oldMansionEventSound":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_event_sound);
                 break;
-            case 4:
+            case "noise":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);
                 break;
-            case 5:
+            case "basementSound":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
                 break;
         }
