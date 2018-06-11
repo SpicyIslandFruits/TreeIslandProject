@@ -1,11 +1,13 @@
 package com.example.minor.prototype10.OnClickMapButtons.TownMaps;
 
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
+import com.example.minor.prototype10.R;
 
 public class OnClickEnterTown1FButton extends SuperOnClickMapButton {
     @Override
@@ -14,18 +16,18 @@ public class OnClickEnterTown1FButton extends SuperOnClickMapButton {
         savePosition();
         resetAllButtons();
         mainText.setText("【街の門】\n街の第一層へ入る門に着きました。文章未定");
-        audioStop();
-        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
+
         OnClickTown1FStreetAButton onClickTown1FStreetAButton = new OnClickTown1FStreetAButton();
         imageButton1.setOnClickListener(onClickTown1FStreetAButton);
         imageButton1Text.setText("入る");
+        //見直しの可能性あり
         final OnClickPassButton onClickPassButton = new OnClickPassButton();
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetAllButtons();
                 mainText.setText("");
-                audioStop();
+
                 MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);
 
                 new android.os.Handler().postDelayed(new Runnable() {

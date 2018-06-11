@@ -38,8 +38,9 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
             public void onClick(View v) {
                 resetAllButtons();
                 mainText.setText("");
-                MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);
                 audioStop();
+                MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);
+
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

@@ -241,10 +241,12 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     }
 
     protected void audioStop() {
-        MainActivity.mediaPlayer.stop();
-        MainActivity.mediaPlayer.reset();
-        MainActivity.mediaPlayer.release();
-        MainActivity.mediaPlayer = null;
+        if(MainActivity.mediaPlayer != null) {
+            MainActivity.mediaPlayer.stop();
+            MainActivity.mediaPlayer.reset();
+            MainActivity.mediaPlayer.release();
+            MainActivity.mediaPlayer = null;
+        }
     }
 
     //BGMを追加したときはここにswitch文を追加する。場所が場所なので忘れやすい、、、

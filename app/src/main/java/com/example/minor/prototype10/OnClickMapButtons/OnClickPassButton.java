@@ -77,9 +77,13 @@ public class OnClickPassButton extends SuperOnClickMapButton {
             public void onClick(View v) {
                 resetAllButtons();
                 mainText.setText("");
-
                 MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);
-
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainActivity.soundPool.play(MainActivity.chapelBellSound, 1.0f, 1.0f, 1, 0, 1);
+                    }
+                }, 6000);
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
