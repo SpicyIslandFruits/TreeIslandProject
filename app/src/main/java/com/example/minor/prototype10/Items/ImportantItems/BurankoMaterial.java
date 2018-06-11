@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickBurankoButton;
+import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickBurankoButton;
 
 /**
  * ブランコの材料はレベル70あたりで手に入り、修理すると幽霊の笑い声が聞こえます。

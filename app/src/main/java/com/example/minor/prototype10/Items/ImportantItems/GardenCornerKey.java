@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.OnClickMapButtons.OnClickGardenCornerButton;
+import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickGardenCornerButton;
 
 public class GardenCornerKey extends SuperItem {
     private static final String name = "地下室の鍵";

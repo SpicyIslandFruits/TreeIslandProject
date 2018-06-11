@@ -396,18 +396,20 @@ public class BattleActivity extends AppCompatActivity {
     }
     private void experience(){
         realm.beginTransaction();
-        playerInfo.setExperiencePointSum(playerInfo.getExperiencePointSum() + Math.max(1, 30 + 3 * ((playerInfo.getBaseEnemyLevel() + playerInfo.getAdditionalEnemyLevel()) - playerLevel)));
+        playerInfo.setExperiencePointSum(playerInfo.getExperiencePointSum() + Math.max(1, 20 + ((playerInfo.getBaseEnemyLevel() + playerInfo.getAdditionalEnemyLevel()) - playerLevel)));
         realm.commitTransaction();
+        //positionが10000以下の場合にはこの式を使います。
         if(playerInfo.getExperiencePointSum()>=100){
             realm.beginTransaction();
             playerInfo.setPlayerLevel(playerInfo.getPlayerLevel()+1);
             playerInfo.setExperiencePointSum(0);
             realm.commitTransaction();
             makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
+            //レベルアップ時の処理は豪華にしたいので後で考えます。
             Toast toast = Toast.makeText(this, "レベルアップ！", Toast.LENGTH_SHORT);
             toast.show();
-            //音声出す
         }
+        //positionが10000以上の場合は街なので経験値がほとんど入らないようにします。
     }
 
     //Atkを受け取り武器の攻撃力は戦闘処理の時に別で加算される

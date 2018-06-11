@@ -47,13 +47,13 @@ public class StatusFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        moneyValue = (TextView) view.findViewById(R.id.money_value);
-        hpValue = (TextView) view.findViewById(R.id.hp_value);
-        mpValue = (TextView) view.findViewById(R.id.mp_value);
-        spValue = (TextView) view.findViewById(R.id.sp_value);
-        atkValue = (TextView) view.findViewById(R.id.atk_value);
-        dfValue = (TextView) view.findViewById(R.id.df_value);
-        lukValue = (TextView) view.findViewById(R.id.luk_value);
+        moneyValue = view.findViewById(R.id.money_value);
+        hpValue = view.findViewById(R.id.hp_value);
+        mpValue = view.findViewById(R.id.mp_value);
+        spValue = view.findViewById(R.id.sp_value);
+        atkValue = view.findViewById(R.id.atk_value);
+        dfValue = view.findViewById(R.id.df_value);
+        lukValue = view.findViewById(R.id.luk_value);
         moneyValue.setText(String.valueOf(money) + "ゴールド");
         hpValue.setText(String.valueOf(HP) + "/" + String.valueOf(maxHP));
         mpValue.setText(String.valueOf(MP) + "/" + String.valueOf(maxMP));

@@ -5,6 +5,10 @@ import android.widget.Toast;
 
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.Models.AmuletName;
+import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickBossRoomButton;
+import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
+import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickOldMansionButton;
+import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 import io.realm.RealmResults;
 
