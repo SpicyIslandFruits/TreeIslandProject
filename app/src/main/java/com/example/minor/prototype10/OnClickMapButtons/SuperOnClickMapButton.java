@@ -25,6 +25,7 @@ import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
 
+import static android.content.Context.MEDIA_PROJECTION_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
@@ -225,7 +226,9 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             realm.beginTransaction();
             playerInfo.setNowPlayingBgmName(bgmName);
             realm.commitTransaction();
-            audioStop();
+            if(MainActivity.mediaPlayer != null) {
+                audioStop();
+            }
             MainActivity.mediaPlayer = mediaPlayer;
             audioSetup();
             MainActivity.mediaPlayer.start();
@@ -233,6 +236,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
+            mediaPlayer = null;
         }
     }
 
@@ -266,6 +270,12 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
                 break;
             case "basementSound":
                 MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
+                break;
+            case "passSound":
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.pass_sound);
+                break;
+            case "town1FSound":
+                MainActivity.mediaPlayer = MediaPlayer.create(mMain, R.raw.town1f_sound);
                 break;
         }
     }

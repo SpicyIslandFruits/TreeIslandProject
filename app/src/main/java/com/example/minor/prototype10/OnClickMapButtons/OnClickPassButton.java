@@ -10,6 +10,7 @@ import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickBossRoomB
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickOldMansionButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickEnterTown1FButton;
 import com.example.minor.prototype10.R;
 
 import io.realm.RealmResults;
@@ -24,6 +25,9 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         savePosition();
+        String bgmName = "passSound";
+        mediaPlayer = MediaPlayer.create(mMain, R.raw.pass_sound);
+        audioPlay(mediaPlayer, bgmName);
 
         if(playerInfo.getLUK() != playerInfo.getfLUK() || playerInfo.getSP() != playerInfo.getfSP() || playerInfo.getMaxMP() != playerInfo.getFmaxMP()){
             Toast toast = Toast.makeText(MainActivity.context, "お守りや補助効果が消滅した", Toast.LENGTH_SHORT);
@@ -67,9 +71,24 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         imageButton7.setOnClickListener(onClickOldMansionButton);
         imageButton7Text.setText("古びた屋敷");
 
-        OnClickEmptyButton onClickEmptyButton8 = new OnClickEmptyButton();
-        imageButton8.setOnClickListener(onClickEmptyButton8);
-        imageButton8Text.setText("街の門");
+        final OnClickEnterTown1FButton onClickEnterTown1FButton = new OnClickEnterTown1FButton();
+        imageButton8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetAllButtons();
+                mainText.setText("");
+
+                MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);
+
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onClickEnterTown1FButton.createMap();
+                    }
+                }, 6300);
+            }
+        });
+        imageButton8Text.setText("街に行く");
 
         changeBaseEnemyLevel(0);
         changeAdditionalEnemyLevel(0);

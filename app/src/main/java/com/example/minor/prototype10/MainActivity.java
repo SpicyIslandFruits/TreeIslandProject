@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity{
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
     public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
     public static int warauSound, walletSound, stoneWaterDropSound, yuureiMituketaSound, glassBreakSound, horrorPianoSound, birdsFlySound, doorOpenSound;
-    public static int walkGymnasiumSound;
+    public static int walkGymnasiumSound, walkTussockSound;
     public static MediaPlayer mediaPlayer;
     private ImportantItemName importantItemName;
     private RecoveryItemName recoveryItemName;
@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity{
         birdsFlySound = soundPool.load(this, R.raw.birds_fly_sound, 1);
         doorOpenSound = soundPool.load(this, R.raw.door_open_sound, 1);
         walkGymnasiumSound = soundPool.load(this, R.raw.walk_gymnasium, 1);
+        walkTussockSound = soundPool.load(this, R.raw.walk_tussock, 1);
+
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {

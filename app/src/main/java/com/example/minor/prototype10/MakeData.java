@@ -65,6 +65,7 @@ import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickTownButto
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickWarehouseButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickEnterTown1FButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetAButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
@@ -229,6 +230,9 @@ public class MakeData {
                 break;
             case 10001:
                 onClickMapButton = new OnClickEnterTown1FButton();
+                break;
+            case 10002:
+                onClickMapButton = new OnClickTown1FStreetAButton();
                 break;
         }
         return onClickMapButton;
