@@ -40,7 +40,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 OnClickEvtMansion2FButton onClickEvtMansion2FButton = new OnClickEvtMansion2FButton();
                 imageButton1.setOnClickListener(onClickEvtMansion2FButton);
                 imageButton2Text.setText("浴室");
-                imageButton3Text.setText("台所");
                 imageButton4Text.setText("倉庫");
                 imageButton7Text.setText("裏口");
                 imageButton8Text.setText("出る");
@@ -88,7 +87,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
             });
             imageButton2Text.setText("浴室");
             //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
-
             imageButton4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,13 +118,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 }
             });
             imageButton2Text.setText("浴室");
-            imageButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setBack();
-                }
-            });
-            imageButton3Text.setText("台所");
             //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
             OnClickEvtWarehouseButton onClickEvtWarehouseButton = new OnClickEvtWarehouseButton();
             imageButton4.setOnClickListener(onClickEvtWarehouseButton);
@@ -153,15 +144,7 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 }
             });
             imageButton2Text.setText("浴室");
-            imageButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setBack();
-                }
-            });
-            imageButton3Text.setText("台所");
             //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
-
             imageButton4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

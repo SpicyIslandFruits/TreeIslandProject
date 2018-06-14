@@ -37,6 +37,37 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
                 mainText.setText("");
                 audioStop();
                 MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);
+                mainText.setText("・");
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("・・");
+                    }
+                }, 1100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("・・・");
+                    }
+                }, 2100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("・・・・");
+                    }
+                }, 3100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("・・・・・");
+                    }
+                }, 4100);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainText.setText("・・・・・・");
+                    }
+                }, 5100);
 
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
