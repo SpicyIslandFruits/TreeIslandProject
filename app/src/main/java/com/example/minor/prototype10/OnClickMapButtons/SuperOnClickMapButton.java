@@ -37,7 +37,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected static ImageButton imageButton1, imageButton2, imageButton3, imageButton4, imageButton5, imageButton6, imageButton7, imageButton8;
     protected static TextView imageButton1Text, imageButton2Text, imageButton3Text, imageButton4Text, imageButton5Text, imageButton6Text, imageButton7Text, imageButton8Text;
     protected int position;
-    protected AbnormalStates abnormalStates;
+    private AbnormalStates abnormalStates;
     protected MediaPlayer mediaPlayer;
 
     public void setDefaultInstances(AppCompatActivity main) {
@@ -216,7 +216,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     abstract public void createMap();
     abstract public void onClick(View v);
 
-    protected void audioSetup(){
+    private void audioSetup(){
         MainActivity.mediaPlayer.setLooping(true);
         mMain.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
@@ -250,7 +250,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     }
 
     //BGMを追加したときはここにswitch文を追加する。場所が場所なので忘れやすい、、、
-    protected void makeBgm(){
+    private void makeBgm(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         String bgmName = playerInfo.getNowPlayingBgmName();
@@ -281,6 +281,4 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
                 break;
         }
     }
-
-
 }

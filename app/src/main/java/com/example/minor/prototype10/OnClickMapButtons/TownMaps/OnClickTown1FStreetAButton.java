@@ -2,7 +2,6 @@ package com.example.minor.prototype10.OnClickMapButtons.TownMaps;
 
 import android.media.MediaPlayer;
 import android.view.View;
-
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
@@ -15,22 +14,20 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
         position = 10002;
         savePosition();
         resetAllButtons();
-        mainText.setText("ここは街の第一層のA通りです。文章未定");
+        mainText.setText("【街第一層A通り】\n文章未定");
         String bgmName = "town1FSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.town1f_sound);
         audioPlay(mediaPlayer, bgmName);
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
-        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-        imageButton1.setOnClickListener(onClickEmptyButton);
-        imageButton1Text.setText("A-1通り");
-        OnClickEmptyButton onClickEmptyButton1 = new OnClickEmptyButton();
-        imageButton2.setOnClickListener(onClickEmptyButton1);
-        imageButton2Text.setText("A-3通り");
-        OnClickEmptyButton onClickEmptyButton2 = new OnClickEmptyButton();
-        imageButton3.setOnClickListener(onClickEmptyButton2);
-        imageButton3Text.setText("B通り");
-        OnClickEmptyButton onClickEmptyButton3 = new OnClickEmptyButton();
-        imageButton4.setOnClickListener(onClickEmptyButton3);
+        changeBaseEnemyLevel(10);
+        OnClickTown1FStreetA_1Button onClickTown1FStreetA_1Button = new OnClickTown1FStreetA_1Button();
+        imageButton1.setOnClickListener(onClickTown1FStreetA_1Button);
+        imageButton1Text.setText("A_1通り");
+        OnClickTown1FStreetA_2Button onClickTown1FStreetA_2Button = new OnClickTown1FStreetA_2Button();
+        imageButton2.setOnClickListener(onClickTown1FStreetA_2Button);
+        imageButton2Text.setText("A_2通り");
+        OnClickTown1FObservatoryMapButton onClickTown1FObservatoryMapButton = new OnClickTown1FObservatoryMapButton();
+        imageButton4.setOnClickListener(onClickTown1FObservatoryMapButton);
         imageButton4Text.setText("展望台");
         final OnClickPassButton onClickPassButton = new OnClickPassButton();
         imageButton8.setOnClickListener(new View.OnClickListener() {
