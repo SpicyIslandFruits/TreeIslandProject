@@ -1,6 +1,8 @@
 package com.example.minor.prototype10;
 
 import android.app.Application;
+import android.arch.lifecycle.ProcessLifecycleOwner;
+import android.support.annotation.NonNull;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -15,6 +17,7 @@ public class MyApplication extends Application {
         Realm.init(this);
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(realmConfiguration);
-
+        AppLifecycleObserver appLifecycleObserver = new AppLifecycleObserver();
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(appLifecycleObserver);
     }
 }
