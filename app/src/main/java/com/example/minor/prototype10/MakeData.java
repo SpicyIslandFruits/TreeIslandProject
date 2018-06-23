@@ -76,6 +76,13 @@ import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStr
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetC_3Button;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetC_4Button;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetDButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetEButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetE_1Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetE_2Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetFButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetF_1Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetF_2Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetGButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
@@ -271,8 +278,29 @@ public class MakeData {
             case 10011:
                 onClickMapButton = new OnClickTown1FStreetC_3Button();
                 break;
-            case 100112:
+            case 10012:
                 onClickMapButton = new OnClickTown1FStreetC_4Button();
+                break;
+            case 10013:
+                onClickMapButton = new OnClickTown1FStreetEButton();
+                break;
+            case 10014:
+                onClickMapButton = new OnClickTown1FStreetFButton();
+                break;
+            case 10015:
+                onClickMapButton = new OnClickTown1FStreetE_1Button();
+                break;
+            case 10016:
+                onClickMapButton = new OnClickTown1FStreetE_2Button();
+                break;
+            case 10017:
+                onClickMapButton = new OnClickTown1FStreetF_1Button();
+                break;
+            case 10018:
+                onClickMapButton = new OnClickTown1FStreetF_2Button();
+                break;
+            case 10019:
+                onClickMapButton = new OnClickTown1FStreetGButton();
                 break;
         }
         return onClickMapButton;
