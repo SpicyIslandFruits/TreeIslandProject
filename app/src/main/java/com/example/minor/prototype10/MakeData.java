@@ -83,6 +83,11 @@ import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStr
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetF_1Button;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetF_2Button;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetGButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetG_1Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetG_2Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetG_3Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetHButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetIButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
@@ -301,6 +306,21 @@ public class MakeData {
                 break;
             case 10019:
                 onClickMapButton = new OnClickTown1FStreetGButton();
+                break;
+            case 10020:
+                onClickMapButton = new OnClickTown1FStreetHButton();
+                break;
+            case 10021:
+                onClickMapButton = new OnClickTown1FStreetG_1Button();
+                break;
+            case 10022:
+                onClickMapButton = new OnClickTown1FStreetG_2Button();
+                break;
+            case 10023:
+                onClickMapButton = new OnClickTown1FStreetG_3Button();
+                break;
+            case 10024:
+                onClickMapButton = new OnClickTown1FStreetIButton();
                 break;
         }
         return onClickMapButton;
