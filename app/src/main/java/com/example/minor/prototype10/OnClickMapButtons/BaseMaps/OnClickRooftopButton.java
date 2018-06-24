@@ -11,7 +11,7 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
         position = 12;
         savePosition();
         resetAllButtons();
-        mainText.setText("寒い...。");
+        mainText.setText("屋上は寒い...。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1Text.setText("夜空を見上げる");

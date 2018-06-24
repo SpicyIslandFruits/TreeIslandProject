@@ -9,9 +9,4 @@ public class AppLifecycleObserver implements LifecycleObserver {
     public void onAppPause() {
         MainActivity.mediaPlayer.pause();
     }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void onAppResume() {
-        MainActivity.mediaPlayer.start();
-    }
 }

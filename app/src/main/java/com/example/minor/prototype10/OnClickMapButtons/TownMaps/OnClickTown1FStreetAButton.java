@@ -19,7 +19,7 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
         mediaPlayer = MediaPlayer.create(mMain, R.raw.town1f_sound);
         audioPlay(mediaPlayer, bgmName);
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
-        changeBaseEnemyLevel(10);
+        changeBaseEnemyLevel(50);
         OnClickTown1FStreetA_1Button onClickTown1FStreetA_1Button = new OnClickTown1FStreetA_1Button();
         imageButton1.setOnClickListener(onClickTown1FStreetA_1Button);
         imageButton1Text.setText("A_1通り");

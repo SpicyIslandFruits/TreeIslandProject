@@ -64,6 +64,7 @@ public class BattleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+        MainActivity.mediaPlayer.pause();
         int[] colors = {
                 ContextCompat.getColor(this, R.color.color_0),
                 ContextCompat.getColor(this, R.color.color_10),
