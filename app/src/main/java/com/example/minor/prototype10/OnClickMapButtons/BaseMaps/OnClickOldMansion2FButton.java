@@ -27,7 +27,11 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
             editor.putBoolean("oldMansionGhostRunAwayFlag", false);
             editor.apply();
         }else {
-            mainText.setText("お前は2階へと上がっていった...。\n部屋には最小限の家具しかなく、広く、静かで、がらんとしている。\n古い家具や、置き去りにされた敷物の醸し出す匂いは、どこか懐かしい感じがした。");
+            //元の文章
+            //お前は2階へと上がっていった...。
+            //部屋は最小限の家具しかなく、広く、静かで、がらんとしている。
+            //古い家具や、置き去りにされた敷物の醸し出す匂いは、どこか懐かしい感じがした。
+            mainText.setText("お前は2階へと上がっていった...。\n部屋は、広く、静かで、がらんとしている。");
         }
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickRooftopButton onClickRooftopButton = new OnClickRooftopButton();

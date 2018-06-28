@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
-    public static  int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
+    public static int oldMansionOshiireSound, oldMansionNightSkySound, waterDropSound, moneyDropSound, oldWoodenDoorSound, burstSound, woodBrokenSound;
     public static int warauSound, walletSound, stoneWaterDropSound, yuureiMituketaSound, glassBreakSound, horrorPianoSound, birdsFlySound, doorOpenSound;
     public static int walkGymnasiumSound, walkTussockSound, chapelBellSound;
     public static MediaPlayer mediaPlayer;

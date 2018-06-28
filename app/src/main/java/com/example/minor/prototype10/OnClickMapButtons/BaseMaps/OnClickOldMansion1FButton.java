@@ -32,7 +32,9 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         OnClickPassButton onClickPassButton = new OnClickPassButton();
         imageButton8.setOnClickListener(onClickPassButton);
         imageButton8Text.setText("出る");
-        mainText.setText("お前は屋敷の中へと入っていった…。\n薄暗い部屋の中、壁の汚れた模様が不気味な雰囲気を醸し出している。\nとても陰気な雰囲気だ、しかし不思議とお前の心は安らいだ。");
+        //消す前の文章
+        //薄暗い部屋の中、壁の汚れた模様が不気味な雰囲気を醸し出している。
+        mainText.setText("お前は屋敷の中へと入っていった…。\nとても陰気な雰囲気だ、しかし不思議とお前の心は安らいだ。");
     }
 
     @Override
