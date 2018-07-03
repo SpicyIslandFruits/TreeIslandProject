@@ -9,7 +9,7 @@ public class OnClickTown1FStreetE_1Button extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 10015;
-        savePosition();
+        onInit();
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         mainText.setText("【街第一層E_1通り】\n文章未定");

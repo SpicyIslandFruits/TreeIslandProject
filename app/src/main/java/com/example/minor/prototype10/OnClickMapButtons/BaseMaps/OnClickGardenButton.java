@@ -15,7 +15,7 @@ public class OnClickGardenButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 19;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("お前は庭に出た...。\n小さなブランコが置いてある、家族で住んでいたのだろうか。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);

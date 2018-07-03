@@ -1,19 +1,16 @@
 package com.example.minor.prototype10.OnClickMapButtons.TownMaps;
 
-import android.media.MediaPlayer;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
-import com.example.minor.prototype10.R;
 
 public class OnClickEnterTown1FButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 10001;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("【街の門】\n街の第一層へ入る門に着きました。文章未定");
 

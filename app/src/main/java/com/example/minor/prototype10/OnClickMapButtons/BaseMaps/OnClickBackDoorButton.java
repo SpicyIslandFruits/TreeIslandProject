@@ -13,7 +13,7 @@ public class OnClickBackDoorButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 18;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("ここから庭に出られるようだ。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

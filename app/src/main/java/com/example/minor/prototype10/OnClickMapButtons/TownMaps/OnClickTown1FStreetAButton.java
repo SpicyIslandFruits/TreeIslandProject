@@ -3,7 +3,6 @@ package com.example.minor.prototype10.OnClickMapButtons.TownMaps;
 import android.media.MediaPlayer;
 import android.view.View;
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
@@ -12,7 +11,7 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 10002;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("【街第一層A通り】\n文章未定");
         String bgmName = "town1FSound";

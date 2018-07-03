@@ -9,7 +9,7 @@ public class OnClickBenchButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 21;
-        savePosition();
+        onInit();
         resetAllButtons();
         //ベンチの状態にあわせて文章を買えます
         if (sharedPreferences.getInt("oldMansionGardenBenchState", 0) == 0) {

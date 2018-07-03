@@ -9,7 +9,6 @@ import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickBossRoomButton;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickOldMansionButton;
-import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickEnterTown1FButton;
 import com.example.minor.prototype10.R;
 
@@ -24,7 +23,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
-        savePosition();
+        onInit();
         String bgmName = "passSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.pass_sound);
         audioPlay(mediaPlayer, bgmName);
@@ -157,7 +156,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
                 mainText.setText("もうすぐ日が沈む。");
                 break;
             case 10:
-                mainText.setText("ユグドラシルがはっきりと見える...この世界を体現する樹だ。");
+                mainText.setText("ユグドラシルがはっきりと見える...\nこの世界を体現する樹だ。");
                 break;
             case 11:
                 mainText.setText("人々はユグドラシルの下で暮らしている。");

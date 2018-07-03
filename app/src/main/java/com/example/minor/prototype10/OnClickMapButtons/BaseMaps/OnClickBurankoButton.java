@@ -9,7 +9,7 @@ public class OnClickBurankoButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 23;
-        savePosition();
+        onInit();
         resetAllButtons();
         if (sharedPreferences.getInt("oldMansionGardenBurankoState", 0) == 0) {
             mainText.setText("錆びれたブランコが置かれている。");

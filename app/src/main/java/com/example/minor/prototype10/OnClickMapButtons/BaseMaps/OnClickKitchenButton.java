@@ -9,7 +9,7 @@ public class OnClickKitchenButton  extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 9;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("台所は未実装です。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

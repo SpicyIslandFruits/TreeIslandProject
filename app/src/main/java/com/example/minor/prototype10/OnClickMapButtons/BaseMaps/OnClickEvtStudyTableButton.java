@@ -9,7 +9,7 @@ public class OnClickEvtStudyTableButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 42;
-        savePosition();
+        onInit();
         resetAllButtons();
         stopAllButtons();
         OnClickEvtStudyButton onClickEvtStudyButton = new OnClickEvtStudyButton();

@@ -28,7 +28,7 @@ public class OnClickEmptyButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 7;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("ここは空のマップです。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);

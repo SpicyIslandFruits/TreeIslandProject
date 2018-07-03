@@ -28,6 +28,6 @@ public class OnClickTownButton extends SuperOnClickMapButton {
         imageButton2.setOnClickListener(onClickInnButton);
         mainText.setText("ここは街です");
         position = 1;
-        savePosition();
+        onInit();
     }
 }

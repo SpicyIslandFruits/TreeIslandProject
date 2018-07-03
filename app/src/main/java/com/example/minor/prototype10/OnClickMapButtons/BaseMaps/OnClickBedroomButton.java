@@ -9,7 +9,7 @@ public class OnClickBedroomButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 13;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("窓には重々しいカーテンがおろされ、室内に明かりはついていない。\nカーテンの隙間から光がもれていたが、かえって暗闇を際立たせていた。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

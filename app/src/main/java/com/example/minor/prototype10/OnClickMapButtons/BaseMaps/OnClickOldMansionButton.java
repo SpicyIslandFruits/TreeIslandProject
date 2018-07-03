@@ -12,7 +12,7 @@ public class OnClickOldMansionButton extends SuperOnClickMapButton {
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 6;
-        savePosition();
+        onInit();
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton1.setOnClickListener(onClickOldMansion1FButton);
         imageButton1Text.setText("中に入る");

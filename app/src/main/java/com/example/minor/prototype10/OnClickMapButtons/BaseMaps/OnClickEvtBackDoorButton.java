@@ -9,7 +9,7 @@ public class OnClickEvtBackDoorButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 35;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("もう一度庭を確認しよう...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

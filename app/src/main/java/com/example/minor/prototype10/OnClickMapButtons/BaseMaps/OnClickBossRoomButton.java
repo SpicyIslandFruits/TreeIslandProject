@@ -24,7 +24,7 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton {
         mainText.setText("ここはボス部屋です");
         position = 3;
         changeBaseEnemyLevel(50);
-        savePosition();
+        onInit();
         resetAllButtons();
 
         String bgmName = "sampleBgm";

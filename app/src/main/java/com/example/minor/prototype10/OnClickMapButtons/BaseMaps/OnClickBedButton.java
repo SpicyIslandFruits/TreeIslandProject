@@ -10,7 +10,7 @@ OnClickBedButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 17;
-        savePosition();
+        onInit();
         resetAllButtons();
         if(playerInfo.isPlayerSuicideFlag()){
             realm.beginTransaction();

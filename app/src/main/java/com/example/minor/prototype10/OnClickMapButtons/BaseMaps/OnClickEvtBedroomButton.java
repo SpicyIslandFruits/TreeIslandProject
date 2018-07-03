@@ -9,7 +9,7 @@ public class OnClickEvtBedroomButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 43;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("ここにいるのだろうか...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

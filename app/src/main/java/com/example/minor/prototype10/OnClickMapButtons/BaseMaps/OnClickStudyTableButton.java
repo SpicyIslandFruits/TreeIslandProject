@@ -9,7 +9,7 @@ public class OnClickStudyTableButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 41;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("とても古めかしいデザインだ。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

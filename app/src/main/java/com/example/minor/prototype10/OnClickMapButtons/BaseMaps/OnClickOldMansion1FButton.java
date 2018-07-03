@@ -13,7 +13,7 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         resetAllButtons();
         position = 8;
-        savePosition();
+        onInit();
         String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
         audioPlay(mediaPlayer, bgmName);

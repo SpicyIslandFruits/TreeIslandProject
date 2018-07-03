@@ -47,6 +47,6 @@ public class OnClickInnButton extends SuperOnClickMapButton {
         });
         mainText.setText("ここは宿です");
         position = 0;
-        savePosition();
+        onInit();
     }
 }

@@ -9,7 +9,7 @@ public class OnClickOshiireButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 16;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("お前は押入れの中に入った。\nとても落ち着く...。\nたまには押入れで眠ってみるのもいいかもしれない。");
         MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);

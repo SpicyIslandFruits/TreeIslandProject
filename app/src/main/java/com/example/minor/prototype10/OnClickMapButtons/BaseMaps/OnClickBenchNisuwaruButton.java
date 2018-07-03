@@ -12,7 +12,7 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 22;
-        savePosition();
+        onInit();
         resetAllButtons();
 
         //初めてベンチに座る場合

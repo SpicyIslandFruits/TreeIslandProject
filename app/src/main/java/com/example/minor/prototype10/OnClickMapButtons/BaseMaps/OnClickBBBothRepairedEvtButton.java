@@ -11,7 +11,7 @@ public class OnClickBBBothRepairedEvtButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 27;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("気のせいではない...確かに誰かがいたのだ。\n探そう。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);

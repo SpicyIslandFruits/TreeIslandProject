@@ -9,7 +9,7 @@ public class OnClickEvtBurankoNisuwaruButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 31;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("誰も現れなかった...");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);

@@ -14,6 +14,7 @@ public class PlayerInfo extends RealmObject {
     private int playerLevel;
     private int experiencePointSum;
     private int position;
+    private int formerPosition;
     private int money;
     private int maxHP;
     private int fmaxHP;
@@ -306,6 +307,14 @@ public class PlayerInfo extends RealmObject {
 
     public boolean isBleedingFlag() {
         return bleedingFlag;
+    }
+
+    public int getFormerPosition() {
+        return formerPosition;
+    }
+
+    public void setFormerPosition(int formerPosition) {
+        this.formerPosition = formerPosition;
     }
 
     public void setBleedingFlag(boolean bleedingFlag) {

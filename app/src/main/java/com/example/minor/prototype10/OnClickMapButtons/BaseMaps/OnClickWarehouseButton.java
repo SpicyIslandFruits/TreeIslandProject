@@ -10,7 +10,7 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 14;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("倉庫は薄暗く、様々なものが散らばっている。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

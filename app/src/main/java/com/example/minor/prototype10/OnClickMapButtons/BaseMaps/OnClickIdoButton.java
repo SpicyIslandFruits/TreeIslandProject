@@ -9,7 +9,7 @@ public class OnClickIdoButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 25;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("井戸の中に何かあるかもしれない...。\n\n\nなどと思って入ろうとしたものはまさかいないだろう。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);

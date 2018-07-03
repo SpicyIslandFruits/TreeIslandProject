@@ -73,7 +73,7 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         resetAllButtons();
         position = 33;
-        savePosition();
+        onInit();
 
         if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 0) {
             OnClickEvtMansion2FButton onClickEvtMansion2FButton = new OnClickEvtMansion2FButton();

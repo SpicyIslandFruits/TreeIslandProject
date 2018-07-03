@@ -9,7 +9,7 @@ public class OnClickTown1FStreetGButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 10019;
-        savePosition();
+        onInit();
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         mainText.setText("【街第一層G通り】\n文章未定");
@@ -38,13 +38,13 @@ public class OnClickTown1FStreetGButton extends SuperOnClickMapButton {
         imageButton2.setOnClickListener(new OnClickTown1FStreetG_1Button());
         imageButton2Text.setText("G_1通り");
 
-        imageButton8.setOnClickListener(new View.OnClickListener() {
+        imageButton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainText.setText("商店街は未実装です。入り口になっていて、入るとランダムに店が幾つか生成されます。");
             }
         });
-        imageButton8Text.setText("商店街");
+        imageButton7Text.setText("商店街");
     }
 
     @Override

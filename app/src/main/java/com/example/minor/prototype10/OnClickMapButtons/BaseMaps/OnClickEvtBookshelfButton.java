@@ -11,7 +11,7 @@ public class OnClickEvtBookshelfButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 38;
-        savePosition();
+        onInit();
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.oldMansionOshiireSound, 1.0f, 1.0f, 1, 0, 1);
         stopAllButtons();

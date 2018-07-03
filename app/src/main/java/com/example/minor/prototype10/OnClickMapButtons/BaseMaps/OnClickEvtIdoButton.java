@@ -10,7 +10,7 @@ public class OnClickEvtIdoButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 32;
-        savePosition();
+        onInit();
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 0) {

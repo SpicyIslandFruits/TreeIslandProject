@@ -70,7 +70,7 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 35;
-        savePosition();
+        onInit();
         resetAllButtons();
         MainActivity.mediaPlayer.start();
         mainText.setText("二階にいるのだろうか...");

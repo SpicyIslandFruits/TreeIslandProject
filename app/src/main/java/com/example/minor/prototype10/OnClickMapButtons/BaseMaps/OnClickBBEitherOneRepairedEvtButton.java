@@ -8,7 +8,7 @@ public class OnClickBBEitherOneRepairedEvtButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 27;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("確かに人の気配がしたが...");
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();

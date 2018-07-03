@@ -3,14 +3,13 @@ package com.example.minor.prototype10.OnClickMapButtons.TownMaps;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 public class OnClickTown1FStreetCButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 10007;
-        savePosition();
+        onInit();
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         mainText.setText("【街第一層C通り】\n文章未定");

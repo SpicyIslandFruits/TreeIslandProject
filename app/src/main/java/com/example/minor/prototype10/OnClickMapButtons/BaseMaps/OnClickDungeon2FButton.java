@@ -11,7 +11,7 @@ public class OnClickDungeon2FButton extends SuperOnClickMapButton {
         resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 4;
-        savePosition();
+        onInit();
 
         OnClickBossRoomButton onClickBossRoomButton = new OnClickBossRoomButton();
         imageButton1.setOnClickListener(onClickBossRoomButton);

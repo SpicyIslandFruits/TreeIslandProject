@@ -12,7 +12,7 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 24;
-        savePosition();
+        onInit();
         resetAllButtons();
 
         //初めてブランコに座る場合

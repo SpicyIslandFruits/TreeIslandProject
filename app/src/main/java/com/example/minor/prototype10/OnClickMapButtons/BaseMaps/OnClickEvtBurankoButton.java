@@ -9,7 +9,7 @@ public class OnClickEvtBurankoButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 30;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("もう一度座ればまた現れるだろうか...");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);

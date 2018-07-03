@@ -11,7 +11,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 45;
-        savePosition();
+        onInit();
         resetAllButtons();
         startAllButtons();
         String bgmName = "basementSound";
@@ -185,7 +185,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
     @Override
     public void onClick(View v) {
         position = 45;
-        savePosition();
+        onInit();
         resetAllButtons();
         stopAllButtons();
         String bgmName = "noise";

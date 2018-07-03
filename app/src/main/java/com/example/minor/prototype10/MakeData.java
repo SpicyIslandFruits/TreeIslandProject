@@ -323,6 +323,7 @@ public class MakeData {
                 onClickMapButton = new OnClickTown1FStreetIButton();
                 break;
         }
+
         return onClickMapButton;
     }
 

@@ -12,7 +12,7 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 11;
-        savePosition();
+        onInit();
         resetAllButtons();
         String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);

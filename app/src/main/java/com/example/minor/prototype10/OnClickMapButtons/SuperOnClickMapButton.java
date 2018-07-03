@@ -25,7 +25,6 @@ import com.example.minor.prototype10.R;
 
 import io.realm.Realm;
 
-import static android.content.Context.MEDIA_PROJECTION_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
 abstract public class SuperOnClickMapButton implements View.OnClickListener{
@@ -89,6 +88,28 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
 
         mainText.setText("");
     }
+
+    /*protected void resetAllButtons(){
+        imageButton1.setOnClickListener(null);
+        imageButton2.setOnClickListener(null);
+        imageButton3.setOnClickListener(null);
+        imageButton4.setOnClickListener(null);
+        imageButton5.setOnClickListener(null);
+        imageButton6.setOnClickListener(null);
+        imageButton7.setOnClickListener(null);
+        imageButton8.setOnClickListener(null);
+
+        imageButton1Text.setText("");
+        imageButton2Text.setText("");
+        imageButton3Text.setText("");
+        imageButton4Text.setText("");
+        imageButton5Text.setText("");
+        imageButton6Text.setText("");
+        imageButton7Text.setText("");
+        imageButton8Text.setText("");
+
+        mainText.setText("");
+    }*/
 
     protected void obtainWeapon(String weaponName, int percent){
         MakeWeaponRealmObject makeWeaponRealmObject = new MakeWeaponRealmObject();
@@ -181,14 +202,25 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     }
 
     //マップのクラスでは必ずこのメソッドを呼んでください
-    protected void savePosition(){
+    //positionが10003以上の時はimageButton8を戻るボタンにします。
+    protected void onInit(){
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
         abnormalStates = new AbnormalStates();
         abnormalStates.abnormalEffect(realm, playerInfo);
+
         realm.beginTransaction();
+        playerInfo.setFormerPosition(playerInfo.getPosition());
         playerInfo.setPosition(position);
         realm.commitTransaction();
+
+        if(position >= 10003){
+            MakeData makeData = new MakeData();
+            SuperOnClickMapButton formerMap = makeData.makeMapFromPosition(playerInfo.getFormerPosition());
+            imageButton8.setOnClickListener(formerMap);
+            imageButton8Text.setText("戻る");
+        }
+
         realm.close();
     }
 

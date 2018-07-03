@@ -9,7 +9,7 @@ public class OnClickEvtStudyButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 37;
-        savePosition();
+        onInit();
         resetAllButtons();
         //鍵を取得します、その後、窓が開いていることに気付き外を見ると、幽霊らしき影が飛び去って行くのが見えます。
         mainText.setText("ここに隠れているのだろうか...");

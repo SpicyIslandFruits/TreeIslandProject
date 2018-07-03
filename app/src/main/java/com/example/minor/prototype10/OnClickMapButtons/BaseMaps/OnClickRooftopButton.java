@@ -9,7 +9,7 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         position = 12;
-        savePosition();
+        onInit();
         resetAllButtons();
         mainText.setText("屋上は寒い...。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
