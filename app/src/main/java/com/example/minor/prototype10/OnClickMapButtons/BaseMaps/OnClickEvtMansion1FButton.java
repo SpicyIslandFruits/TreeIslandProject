@@ -86,7 +86,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 }
             });
             imageButton2Text.setText("浴室");
-            //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
             imageButton4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -118,7 +117,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 }
             });
             imageButton2Text.setText("浴室");
-            //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
             OnClickEvtWarehouseButton onClickEvtWarehouseButton = new OnClickEvtWarehouseButton();
             imageButton4.setOnClickListener(onClickEvtWarehouseButton);
             imageButton4Text.setText("倉庫");
@@ -144,7 +142,6 @@ public class OnClickEvtMansion1FButton extends SuperOnClickMapButton {
                 }
             });
             imageButton2Text.setText("浴室");
-            //入っても何も起こらず、誰もいないと思いきや、倉庫を出ようとするときに、いきなりアイテムを落としながら飛び出してくるその後書斎の仕掛けを動かしてドロンする。
             imageButton4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
