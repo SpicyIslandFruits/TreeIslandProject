@@ -54,8 +54,8 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
                     imageButton1Text.setText("爆破する");
                     //地下室を作ります。街で素材を買ってブランコとベンチを修理すると幽霊が現れるのでそいつの指示に従うと鍵が手に入ります。
                     if(sharedPreferences.getBoolean("oldMansionBasementOpenFlag", false)){
-                        OnClickEmptyButton onClickEmptyButton = new OnClickEmptyButton();
-                        imageButton7.setOnClickListener(onClickEmptyButton);
+                        OnClickOldMansionEnterBasementButton onClickOldMansionEnterBasementButton = new OnClickOldMansionEnterBasementButton();
+                        imageButton7.setOnClickListener(onClickOldMansionEnterBasementButton);
                         imageButton7Text.setText("扉を開く");
                     }else{
                         imageButton7Text.setText("扉を開く");
