@@ -71,7 +71,6 @@ public class OnClickEvtMansion2FButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 35;
         onInit();
-        resetAllButtons();
         MainActivity.mediaPlayer.start();
         mainText.setText("二階にいるのだろうか...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);

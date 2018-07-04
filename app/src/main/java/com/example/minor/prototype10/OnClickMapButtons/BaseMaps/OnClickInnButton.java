@@ -7,19 +7,10 @@ import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 //ダンジョンのコメントを参照
 public class OnClickInnButton extends SuperOnClickMapButton {
-    @Override
-    public void onClick(View v) {
-        stopAllButtons();
-        createMap();
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startAllButtons();
-            }
-        }, 1000);
-    }
     public void createMap(){
-        resetAllButtons();
+        mainText.setText("ここは宿です");
+        position = 0;
+        onInit();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickTownButton onClickTownButton = new OnClickTownButton();
         imageButton1.setOnClickListener(onClickTownButton);
@@ -45,8 +36,18 @@ public class OnClickInnButton extends SuperOnClickMapButton {
                 }, 6100);
             }
         });
-        mainText.setText("ここは宿です");
-        position = 0;
-        onInit();
     }
+
+    @Override
+    public void onClick(View v) {
+        stopAllButtons();
+        createMap();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startAllButtons();
+            }
+        }, 1000);
+    }
+
 }

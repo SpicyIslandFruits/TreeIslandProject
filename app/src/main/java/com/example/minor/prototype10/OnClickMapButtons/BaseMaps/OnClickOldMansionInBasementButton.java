@@ -12,7 +12,6 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 45;
         onInit();
-        resetAllButtons();
         startAllButtons();
         String bgmName = "basementSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.basement_sound);
@@ -29,7 +28,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("我々アメルーン一族とバルト族の間に子供が生まれることはない。\n(正確には、生まれてくるのは人ではない。見たものにしか分からない忌まわしいものだ。)");
+                        mainText.setText("我々アメルーン一族とバルト族の間に子供が生まれることはない。\n(稀に異形の生き物が生まれてくることがある。これをサリドマイドと呼ぶ。)");
                         imageButton1.setEnabled(true);
                         imageButton1Text.setText("次のページ");
                         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +81,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("我々とバルト族の関係は、ますます悪化している。\nバルト族は、際立った人種主義と群集暗示の魔術的な力に翻弄されている。");
+                        mainText.setText("我々とバルト族の関係は、ますます悪化している。\nバルト族は、際立った人種主義と群集心理に翻弄されている。");
                         imageButton1.setEnabled(true);
                         imageButton1Text.setText("次のページ");
                         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +134,7 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mainText.setText("パトローナムが破られた。跡形も残っていなかった。私には、見たものすべてを物語る勇気がない。すべて作り話のはずだったのに......。");
+                        mainText.setText("パトローナムが破られた。跡形も残っていなかった。私には、見たものすべてを物語る勇気がない......");
                         imageButton1.setEnabled(true);
                         imageButton1Text.setText("次のページ");
                         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +185,6 @@ public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
     public void onClick(View v) {
         position = 45;
         onInit();
-        resetAllButtons();
         stopAllButtons();
         String bgmName = "noise";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);

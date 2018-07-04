@@ -9,7 +9,6 @@ import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 public class OnClickOldMansionButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
-        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 6;
         onInit();

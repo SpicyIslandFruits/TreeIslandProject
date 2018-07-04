@@ -12,7 +12,6 @@ public class OnClickBBBothRepairedEvtButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 27;
         onInit();
-        resetAllButtons();
         mainText.setText("気のせいではない...確かに誰かがいたのだ。\n探そう。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         String bgmName = "oldMansionEventSound";

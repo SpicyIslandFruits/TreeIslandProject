@@ -10,7 +10,6 @@ public class OnClickBenchButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 21;
         onInit();
-        resetAllButtons();
         //ベンチの状態にあわせて文章を買えます
         if (sharedPreferences.getInt("oldMansionGardenBenchState", 0) == 0) {
             mainText.setText("今にも壊れそうなベンチがぽつんと置かれている。");

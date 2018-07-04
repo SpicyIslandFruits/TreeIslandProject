@@ -10,7 +10,6 @@ public class OnClickEvtBenchNisuwaruButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 29;
         onInit();
-        resetAllButtons();
         mainText.setText("誰も現れなかった...");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();

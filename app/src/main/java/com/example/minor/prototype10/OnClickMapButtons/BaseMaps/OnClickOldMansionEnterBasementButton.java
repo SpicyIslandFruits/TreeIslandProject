@@ -12,7 +12,6 @@ public class OnClickOldMansionEnterBasementButton extends SuperOnClickMapButton 
     public void createMap() {
         position = 40;
         onInit();
-        resetAllButtons();
         String bgmName = "noise";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.noise);
         audioPlay(mediaPlayer, bgmName);

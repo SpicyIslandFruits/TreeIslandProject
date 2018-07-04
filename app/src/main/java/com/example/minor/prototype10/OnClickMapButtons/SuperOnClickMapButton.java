@@ -67,7 +67,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         MainActivity.mediaPlayer.start();
     }
 
-    protected void resetAllButtons(){
+    protected void resetAllButton(){
         imageButton1.setOnClickListener(null);
         imageButton2.setOnClickListener(null);
         imageButton3.setOnClickListener(null);
@@ -192,7 +192,9 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         playerInfo.setPosition(position);
         realm.commitTransaction();
 
-        if(position >= 10003){
+        resetAllButton();
+
+        if(position >= 10003 && position != playerInfo.getFormerPosition()){
             MakeData makeData = new MakeData();
             SuperOnClickMapButton formerMap = makeData.makeMapFromPosition(playerInfo.getFormerPosition());
             imageButton8.setOnClickListener(formerMap);

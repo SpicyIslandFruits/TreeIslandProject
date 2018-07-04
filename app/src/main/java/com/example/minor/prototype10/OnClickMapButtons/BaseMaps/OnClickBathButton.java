@@ -9,7 +9,6 @@ public class OnClickBathButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 10;
         onInit();
-        resetAllButtons();
         mainText.setText("浴室には大きめの窓がついており、とても開放的だ。\n窓の外では杉林が夜の闇に沈んでいる...。\nあたりには生き物の気配はなく、死んだような静寂だけが広がっていた。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1.setOnClickListener(new View.OnClickListener() {

@@ -10,7 +10,6 @@ public class OnClickBurankoButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 23;
         onInit();
-        resetAllButtons();
         if (sharedPreferences.getInt("oldMansionGardenBurankoState", 0) == 0) {
             mainText.setText("錆びれたブランコが置かれている。");
         }else if (sharedPreferences.getInt("oldMansionGardenBurankoState",0) == 1){

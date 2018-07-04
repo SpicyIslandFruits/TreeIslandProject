@@ -9,23 +9,11 @@ import com.example.minor.prototype10.R;
 
 //ダンジョンのコメント参照
 public class OnClickBossRoomButton extends SuperOnClickMapButton {
-    @Override
-    public void onClick(View v) {
-        stopAllButtons();
-        createMap();
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startAllButtons();
-            }
-        }, 1000);
-    }
     public void createMap(){
         mainText.setText("ここはボス部屋です");
         position = 3;
         changeBaseEnemyLevel(50);
         onInit();
-        resetAllButtons();
 
         String bgmName = "sampleBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.sample_bgm);
@@ -47,4 +35,17 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton {
         imageButton8.setOnClickListener(onClickEmptyButton);
         imageButton8Text.setText("峠に戻る");
     }
+
+    @Override
+    public void onClick(View v) {
+        stopAllButtons();
+        createMap();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startAllButtons();
+            }
+        }, 1000);
+    }
+
 }

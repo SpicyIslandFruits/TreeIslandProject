@@ -11,7 +11,6 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 15;
         onInit();
-        resetAllButtons();
         if(sharedPreferences.getBoolean("oldMansionGardenCornerKeyFoundFlag", false)) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("oldMansionGardenCornerKeyFoundFlag", false);

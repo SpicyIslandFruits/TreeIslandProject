@@ -20,10 +20,9 @@ import io.realm.RealmResults;
 public class OnClickPassButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
-        resetAllButtons();
-        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 5;
         onInit();
+        MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         String bgmName = "passSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.pass_sound);
         audioPlay(mediaPlayer, bgmName);
@@ -74,7 +73,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetAllButtons();
+                resetAllButton();
                 mainText.setText("・");
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override

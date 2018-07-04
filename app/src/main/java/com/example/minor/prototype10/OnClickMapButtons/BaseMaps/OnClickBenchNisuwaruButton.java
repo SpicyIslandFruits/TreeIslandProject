@@ -13,7 +13,6 @@ public class OnClickBenchNisuwaruButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 22;
         onInit();
-        resetAllButtons();
 
         //初めてベンチに座る場合
         if(sharedPreferences.getInt("oldMansionGardenBenchState", 0) == 0) {

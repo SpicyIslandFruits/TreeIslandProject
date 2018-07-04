@@ -11,7 +11,6 @@ public class OnClickEvtWarehouseButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 36;
         onInit();
-        resetAllButtons();
         mainText.setText("ここに隠れているのだろうか...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1Text.setText("探す");

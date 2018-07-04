@@ -14,7 +14,6 @@ public class OnClickBackDoorButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 18;
         onInit();
-        resetAllButtons();
         mainText.setText("ここから庭に出られるようだ。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickGardenButton onClickGardenButton = new OnClickGardenButton();

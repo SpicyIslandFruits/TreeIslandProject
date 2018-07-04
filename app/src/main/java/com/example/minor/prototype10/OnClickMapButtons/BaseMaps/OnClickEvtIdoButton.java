@@ -11,7 +11,6 @@ public class OnClickEvtIdoButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 32;
         onInit();
-        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         if(sharedPreferences.getInt("oldMansionGhostPosition", 0) == 0) {
             mainText.setText("井戸の中に隠れているかもしれない...");

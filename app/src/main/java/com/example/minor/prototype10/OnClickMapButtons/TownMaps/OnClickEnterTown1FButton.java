@@ -11,7 +11,6 @@ public class OnClickEnterTown1FButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 10001;
         onInit();
-        resetAllButtons();
         mainText.setText("【街の門】\n街の第一層へ入る門に着きました。文章未定");
 
         OnClickTown1FStreetAButton onClickTown1FStreetAButton = new OnClickTown1FStreetAButton();
@@ -22,7 +21,7 @@ public class OnClickEnterTown1FButton extends SuperOnClickMapButton {
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetAllButtons();
+                resetAllButton();
                 mainText.setText("・");
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override

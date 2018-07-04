@@ -19,19 +19,7 @@ import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
  * changeBaseEnemyLevelとobtainWeaponまたはencounterを同じマップでどちらも実行するときはchangeBaseEnemyLevelの後に実行してください
  */
 public class OnClickDungeonButton extends SuperOnClickMapButton {
-    @Override
-    public void onClick(View v) {
-        stopAllButtons();
-        createMap();
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startAllButtons();
-            }
-        }, 1000);
-    }
     public void createMap(){
-        resetAllButtons();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         position = 2;
         onInit();
@@ -44,4 +32,17 @@ public class OnClickDungeonButton extends SuperOnClickMapButton {
         encounter(0, 10);
         obtainAmulet("SampleAmulet", 100);
     }
+
+    @Override
+    public void onClick(View v) {
+        stopAllButtons();
+        createMap();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startAllButtons();
+            }
+        }, 1000);
+    }
+
 }

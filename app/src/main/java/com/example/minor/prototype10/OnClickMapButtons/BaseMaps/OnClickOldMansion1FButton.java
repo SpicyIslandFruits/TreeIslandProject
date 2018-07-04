@@ -11,7 +11,6 @@ public class OnClickOldMansion1FButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-        resetAllButtons();
         position = 8;
         onInit();
         String bgmName = "oldMansionBgm";

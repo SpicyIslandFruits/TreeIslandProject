@@ -10,7 +10,6 @@ public class OnClickMoneyThrowButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 34;
         onInit();
-        resetAllButtons();
         mainText.setText("何を思ったのか、お前は無性にお金を投げ込みたくなったのだ。\n\n\n幾ら投げ込もうか...");
         MainActivity.soundPool.play(MainActivity.walletSound, 1.0f, 1.0f, 1, 0, 1);
         //投げ込んだ金額を足し算して、幽霊のイベントの際に1.1倍にして返す。

@@ -10,7 +10,6 @@ public class OnClickEvtStudyTableButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 42;
         onInit();
-        resetAllButtons();
         stopAllButtons();
         OnClickEvtStudyButton onClickEvtStudyButton = new OnClickEvtStudyButton();
         imageButton8.setOnClickListener(onClickEvtStudyButton);

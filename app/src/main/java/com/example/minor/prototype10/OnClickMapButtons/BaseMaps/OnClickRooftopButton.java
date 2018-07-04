@@ -10,7 +10,6 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 12;
         onInit();
-        resetAllButtons();
         mainText.setText("屋上は寒い...。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
@@ -49,7 +48,7 @@ public class OnClickRooftopButton extends SuperOnClickMapButton {
         imageButton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetAllButtons();
+                resetAllButton();
                 MainActivity.mediaPlayer.pause();
                 MainActivity.soundPool.play(MainActivity.oldMansionSleepSound, 1.0f, 1.0f, 1, 0, 1);
                 //ゲームオーバー画面に遷移する予定です。ラスボスが主人公を助ける場面です。

@@ -10,7 +10,6 @@ public class OnClickEvtBackDoorButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 35;
         onInit();
-        resetAllButtons();
         mainText.setText("もう一度庭を確認しよう...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickBBBothRepairedEvtButton onClickBBBothRepairedEvtButton = new OnClickBBBothRepairedEvtButton();

@@ -13,7 +13,6 @@ public class OnClickGardenCornerButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 20;
         onInit();
-        resetAllButtons();
         String bgmName = "oldMansionBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.old_mansion_bgm);
         audioPlay(mediaPlayer, bgmName);

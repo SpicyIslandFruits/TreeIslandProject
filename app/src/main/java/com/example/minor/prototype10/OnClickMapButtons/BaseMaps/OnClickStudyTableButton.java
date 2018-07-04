@@ -10,7 +10,6 @@ public class OnClickStudyTableButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 41;
         onInit();
-        resetAllButtons();
         mainText.setText("とても古めかしいデザインだ。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1.setOnClickListener(new View.OnClickListener() {

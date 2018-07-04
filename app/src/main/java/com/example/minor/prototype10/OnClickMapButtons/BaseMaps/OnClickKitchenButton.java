@@ -10,7 +10,6 @@ public class OnClickKitchenButton  extends SuperOnClickMapButton {
     public void createMap() {
         position = 9;
         onInit();
-        resetAllButtons();
         mainText.setText("台所は未実装です。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();

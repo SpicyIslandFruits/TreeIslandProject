@@ -10,7 +10,6 @@ public class OnClickBookshelfButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 39;
         onInit();
-        resetAllButtons();
         mainText.setText("古そうな書物が並んでいる...");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
         imageButton1Text.setText("創世記");

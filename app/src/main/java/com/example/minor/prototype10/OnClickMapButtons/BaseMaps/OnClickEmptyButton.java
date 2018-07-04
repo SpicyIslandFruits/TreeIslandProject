@@ -29,7 +29,6 @@ public class OnClickEmptyButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 7;
         onInit();
-        resetAllButtons();
         mainText.setText("ここは空のマップです。");
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
         OnClickPassButton onClickPassButton = new OnClickPassButton();

@@ -12,7 +12,6 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 10002;
         onInit();
-        resetAllButtons();
         mainText.setText("【街第一層A通り】\n文章未定");
         String bgmName = "town1FSound";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.town1f_sound);
@@ -32,7 +31,7 @@ public class OnClickTown1FStreetAButton extends SuperOnClickMapButton {
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetAllButtons();
+                resetAllButton();
                 mainText.setText("");
                 audioStop();
                 MainActivity.soundPool.play(MainActivity.walkTussockSound, 1.0f, 1.0f, 1, 0, 1);

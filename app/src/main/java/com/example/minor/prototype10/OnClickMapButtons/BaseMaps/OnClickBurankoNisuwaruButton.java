@@ -13,7 +13,6 @@ public class OnClickBurankoNisuwaruButton extends SuperOnClickMapButton {
     public void createMap() {
         position = 24;
         onInit();
-        resetAllButtons();
 
         //初めてブランコに座る場合
         if(sharedPreferences.getInt("oldMansionGardenBurankoState", 0) == 0) {
