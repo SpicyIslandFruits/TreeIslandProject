@@ -1,10 +1,14 @@
 package com.example.minor.prototype10.OnClickMapButtons.BaseMaps;
 
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
+import com.example.minor.prototype10.R;
+import com.example.minor.prototype10.WareHouseFragments.WareHouseWeaponFragment;
 
 public class OnClickWarehouseButton extends SuperOnClickMapButton {
     @Override
@@ -13,9 +17,22 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
         onInit();
         mainText.setText("倉庫は薄暗く、様々なものが散らばっている。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
+
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = mMain.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                WareHouseWeaponFragment wareHouseWeaponFragment = new WareHouseWeaponFragment();
+                fragmentTransaction.replace(R.id.warehouse_item_fragment, wareHouseWeaponFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
         OnClickOldMansion1FButton onClickOldMansion1FButton = new OnClickOldMansion1FButton();
         imageButton8.setOnClickListener(onClickOldMansion1FButton);
         imageButton8Text.setText("戻る");
+
         if(sharedPreferences.getBoolean("ghostDroppedMoneyFlag", false)){
             //幽霊の落とした貯金箱を拾います。中には自分が今まで井戸に投げ込んだ金額*1.2が入っています。
             mainText.setText("何かが散らばっている。");

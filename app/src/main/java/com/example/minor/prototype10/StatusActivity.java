@@ -24,7 +24,7 @@ public class StatusActivity extends AppCompatActivity {
     private ImageButton backButton;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private Fragment statusFragment, equipmentFragment, skillFragment, itemFragment;
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,29 +71,29 @@ public class StatusActivity extends AppCompatActivity {
         if (view == statusButton){
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            statusFragment = new StatusFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, statusFragment);
+            fragment = new StatusFragment();
+            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
             fragmentTransaction.commit();
         }
         if (view == equipmentButton){
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            equipmentFragment = new EquipmentFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, equipmentFragment);
+            fragment = new EquipmentFragment();
+            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
             fragmentTransaction.commit();
         }
         if(view == skillButton){
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            skillFragment = new SkillFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, skillFragment);
+            fragment = new SkillFragment();
+            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
             fragmentTransaction.commit();
         }
         if(view == itemButton){
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            itemFragment = new ItemFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, itemFragment);
+            fragment = new ItemFragment();
+            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
             fragmentTransaction.commit();
         }
     }
