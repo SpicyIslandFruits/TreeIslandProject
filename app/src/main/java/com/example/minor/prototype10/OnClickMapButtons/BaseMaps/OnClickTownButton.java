@@ -1,7 +1,6 @@
 package com.example.minor.prototype10.OnClickMapButtons.BaseMaps;
 
 import android.view.View;
-
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
@@ -16,7 +15,6 @@ public class OnClickTownButton extends SuperOnClickMapButton {
         OnClickInnButton onClickInnButton = new OnClickInnButton();
         imageButton2.setOnClickListener(onClickInnButton);
         mainText.setText("ここは街です");
-
     }
 
     @Override

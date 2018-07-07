@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected int position;
     private AbnormalStates abnormalStates;
     protected MediaPlayer mediaPlayer;
+    public static ImageView backgroundImage;
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
@@ -60,6 +62,9 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
         imageButton6Text = main.findViewById(R.id.image_button6_text);
         imageButton7Text = main.findViewById(R.id.image_button7_text);
         imageButton8Text = main.findViewById(R.id.image_button8_text);
+
+        backgroundImage = main.findViewById(R.id.background_image);
+        backgroundImage.setImageAlpha(0);
 
         makeBgm();
         MainActivity.mediaPlayer.setLooping(true);

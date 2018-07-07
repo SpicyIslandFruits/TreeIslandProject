@@ -21,8 +21,9 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                backgroundImage.setImageAlpha(180);
                 FragmentManager fragmentManager = mMain.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 WareHouseWeaponFragment wareHouseWeaponFragment = new WareHouseWeaponFragment();
                 fragmentTransaction.replace(R.id.warehouse_item_fragment, wareHouseWeaponFragment);
                 fragmentTransaction.commit();
