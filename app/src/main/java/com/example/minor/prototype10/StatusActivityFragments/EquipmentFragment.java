@@ -22,6 +22,7 @@ import com.example.minor.prototype10.WeaponAdapter;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -32,7 +33,7 @@ import io.realm.RealmResults;
 
 public class EquipmentFragment extends Fragment {
     private Realm realm;
-    private RealmResults<WeaponName> weaponNames;
+    private RealmList<WeaponName> weaponNames;
     private RealmResults<ArmorName> armorNames;
     private WeaponName weaponNameInstance;
     private ArmorName armorNameInstance;
@@ -58,6 +59,7 @@ public class EquipmentFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
         makeData = new MakeData();
         weaponList = view.findViewById(R.id.weapon_list);
         armorList = view.findViewById(R.id.armor_list);
@@ -73,7 +75,7 @@ public class EquipmentFragment extends Fragment {
         armorSkill1 = view.findViewById(R.id.armor_skill1);
         armorSkill2 = view.findViewById(R.id.armor_skill2);
         armorSkill3 = view.findViewById(R.id.armor_skill3);
-        weaponNames = realm.where(WeaponName.class).findAll();
+        weaponNames = playerInfo.getEquippedWeapons();
         armorNames = realm.where(ArmorName.class).findAll();
         weaponAdapter = new WeaponAdapter(weaponNames);
         armorAdapter = new ArmorAdapter(armorNames);
@@ -81,7 +83,6 @@ public class EquipmentFragment extends Fragment {
         armorList.setAdapter(armorAdapter);
 
         //これと同じことを防具の場合にも行う
-        playerInfo = realm.where(PlayerInfo.class).findFirst();
         weaponName = playerInfo.getWeaponName();
         weapon = makeData.makeWeaponFromName(weaponName);
         weaponNameInstance = realm.where(WeaponName.class).equalTo("weaponName", weaponName).findFirst();

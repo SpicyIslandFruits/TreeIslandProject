@@ -12,8 +12,8 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton {
     public void createMap(){
         mainText.setText("ここはボス部屋です");
         position = 3;
-        changeBaseEnemyLevel(50);
         onInit();
+        changeBaseEnemyLevel(50);
 
         String bgmName = "sampleBgm";
         mediaPlayer = MediaPlayer.create(mMain, R.raw.sample_bgm);
@@ -23,7 +23,7 @@ public class OnClickBossRoomButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id = 0;
+                int id = 1;
                 encounter(id, 100);
             }
         });

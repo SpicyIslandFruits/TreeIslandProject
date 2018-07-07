@@ -97,21 +97,19 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected void obtainWeapon(String weaponName, int percent){
         MakeWeaponRealmObject makeWeaponRealmObject = new MakeWeaponRealmObject();
         if(Math.random()*100 < percent) {
-            if (makeWeaponRealmObject.createNewWeapon(weaponName)) {
-                Toast toast = Toast.makeText(MainActivity.context, "武器を取得した！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
+            makeWeaponRealmObject.createNewWeapon(weaponName);
+            Toast toast = Toast.makeText(MainActivity.context, "武器を取得した！", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
     protected void obtainArmor(String armorName, int percent){
         MakeArmorRealmObject makeArmorRealmObject = new MakeArmorRealmObject();
         if(Math.random()*100 < percent){
-            if(makeArmorRealmObject.createNewArmor(armorName)){
-                //取得した防具の名前を表示した方がいいかもしれない。
-                Toast toast = Toast.makeText(MainActivity.context, "防具を取得した！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
+            makeArmorRealmObject.createNewArmor(armorName);
+            //取得した防具の名前を表示した方がいいかもしれない。
+            Toast toast = Toast.makeText(MainActivity.context, "防具を取得した！", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 

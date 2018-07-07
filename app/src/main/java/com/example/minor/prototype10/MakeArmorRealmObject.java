@@ -19,8 +19,7 @@ public class MakeArmorRealmObject {
     private ArmorName armorName;
 
     //同じ名前の武器がある場合それを捨てる処理を書く
-    public boolean createNewArmor(String armorName){
-        boolean newArmorFlag;
+    public void createNewArmor(String armorName){
         realm = Realm.getDefaultInstance();
         makeData = new MakeData();
         superArmor = makeData.makeArmorFromName(armorName);
@@ -32,9 +31,7 @@ public class MakeArmorRealmObject {
         this.armorName.setArmorLevel(armorLevel);
         playerInfo.setArmorName(armorName);
         realm.commitTransaction();
-        newArmorFlag = true;
         realm.close();
-        return newArmorFlag;
     }
 
     //かける10となっているところは後で修正する可能性あり、これは特定の階層と次の階層のbaseEnemyLevelの差である

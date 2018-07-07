@@ -18,9 +18,7 @@ public class MakeWeaponRealmObject {
     private int weaponLevel;
     private WeaponName weaponName;
 
-    //現在は問答無用で強い方の武器を作成しているが、実際は確認ダイヤログを出す
-    public boolean createNewWeapon(String weaponName){
-        boolean newWeaponFlag;
+    public void createNewWeapon(String weaponName){
         realm = Realm.getDefaultInstance();
         makeData = new MakeData();
         superWeapon = makeData.makeWeaponFromName(weaponName);
@@ -31,10 +29,9 @@ public class MakeWeaponRealmObject {
         this.weaponName.setWeaponAtk(newWeaponAtk);
         this.weaponName.setWeaponLevel(weaponLevel);
         playerInfo.setWeaponName(weaponName);
+        playerInfo.getEquippedWeapons().add(this.weaponName);
         realm.commitTransaction();
-        newWeaponFlag = true;
         realm.close();
-        return newWeaponFlag;
     }
 
     //かける10となっているところは後で修正する可能性あり、これは特定の階層と次の階層のbaseEnemyLevelの差である

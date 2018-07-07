@@ -33,6 +33,8 @@ public class PlayerInfo extends RealmObject {
     private int fLUK;
     private String weaponName;
     private String armorName;
+    private RealmList<WeaponName> warehouseWeapons;
+    private RealmList<WeaponName> equippedWeapons;
     private int playerSkill1;
     private int playerSkill2;
     private int playerSkill3;
@@ -49,6 +51,22 @@ public class PlayerInfo extends RealmObject {
     private boolean playerSuicideFlag;
     private int idoMoneyCount;
     private String nowPlayingBgmName;
+
+    public RealmList<WeaponName> getWarehouseWeapons() {
+        return warehouseWeapons;
+    }
+
+    public void setWarehouseWeapons(RealmList<WeaponName> warehouseWeapons) {
+        this.warehouseWeapons = warehouseWeapons;
+    }
+
+    public RealmList<WeaponName> getEquippedWeapons() {
+        return equippedWeapons;
+    }
+
+    public void setEquippedWeapons(RealmList<WeaponName> equippedWeapons) {
+        this.equippedWeapons = equippedWeapons;
+    }
 
     public String getNowPlayingBgmName() {
         return nowPlayingBgmName;
