@@ -18,6 +18,7 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
         mainText.setText("倉庫は薄暗く、様々なものが散らばっている。");
         MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
 
+        imageButton1Text.setText("武器の整理"); //追加
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

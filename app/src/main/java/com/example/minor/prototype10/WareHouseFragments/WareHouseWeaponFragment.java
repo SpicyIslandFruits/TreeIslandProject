@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponName;
@@ -24,6 +25,7 @@ public class WareHouseWeaponFragment extends Fragment {
     private RealmList<WeaponName> playerWeaponNames, warehouseWeaponNames;
     private Realm realm;
     private PlayerInfo playerInfo;
+    private TextView textViewBox, textViewEquipment;
 
     @Nullable
     @Override
@@ -69,8 +71,12 @@ public class WareHouseWeaponFragment extends Fragment {
                 playerWeaponNames.add((WeaponName) parent.getItemAtPosition(position));
                 warehouseWeaponNames.remove(parent.getItemAtPosition(position));
                 realm.commitTransaction();
-
             }
         });
+
+        textViewBox = view.findViewById(R.id.text_warehouse_box);
+        textViewEquipment = view.findViewById(R.id.text_warehouse_equipment);
+        textViewBox.setText("倉庫");
+        textViewEquipment.setText("装備品");
     }
 }
