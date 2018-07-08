@@ -1,9 +1,11 @@
 package com.example.minor.prototype10.OnClickMapButtons.BaseMaps;
 
+import android.animation.ValueAnimator;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
@@ -22,7 +24,16 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backgroundImage.setImageAlpha(180);
+                ValueAnimator animator = ValueAnimator.ofInt(0,180);
+                animator.setDuration(250);
+                animator.setInterpolator(new DecelerateInterpolator());
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        backgroundImage.setImageAlpha((Integer) valueAnimator.getAnimatedValue());
+                    }
+                });
+                animator.start();
                 FragmentManager fragmentManager = mMain.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 WareHouseWeaponFragment wareHouseWeaponFragment = new WareHouseWeaponFragment();

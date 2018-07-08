@@ -7,6 +7,9 @@ import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
 
+/**
+ * Todo: BGMが小さすぎるので後で音量を変えます。
+ */
 public class OnClickOldMansionInBasementButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {

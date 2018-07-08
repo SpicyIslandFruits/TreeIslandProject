@@ -31,13 +31,24 @@ public class OnClickStudyButton extends SuperOnClickMapButton {
             new android.os.Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mainText.setText("窓の外で、黒い影がものすごい速さで飛び去って行くのが見えた...");
-                    OnClickStudyTableButton onClickStudyTableButton = new OnClickStudyTableButton();
-                    imageButton1.setOnClickListener(onClickStudyTableButton);
+                    mainText.setText("窓の外で、黒い影がものすごい速さで飛び去って行くのが見えた。");
+
+                    imageButton1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mainText.setText("もうここにはいないだろう。");
+                        }
+                    });
                     imageButton1Text.setText("机");
-                    OnClickBookshelfButton onClickBookshelfButton = new OnClickBookshelfButton();
-                    imageButton2.setOnClickListener(onClickBookshelfButton);
+
+                    imageButton2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mainText.setText("もうここにはいないだろう。");
+                        }
+                    });
                     imageButton2Text.setText("書棚");
+
                     OnClickOldMansion2FButton onClickOldMansion2FButton = new OnClickOldMansion2FButton();
                     imageButton8.setOnClickListener(onClickOldMansion2FButton);
                     imageButton8Text.setText("戻る");

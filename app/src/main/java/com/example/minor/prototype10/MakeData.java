@@ -88,6 +88,12 @@ import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStr
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetG_3Button;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetHButton;
 import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetIButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetJButton;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetJ_1Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetJ_2Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetJ_3Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetJ_4Button;
+import com.example.minor.prototype10.OnClickMapButtons.TownMaps.OnClickTown1FStreetKButton;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
@@ -322,6 +328,25 @@ public class MakeData {
             case 10024:
                 onClickMapButton = new OnClickTown1FStreetIButton();
                 break;
+            case 10025:
+                onClickMapButton = new OnClickTown1FStreetJButton();
+                break;
+            case 10026:
+                onClickMapButton = new OnClickTown1FStreetJ_1Button();
+                break;
+            case 10027:
+                onClickMapButton = new OnClickTown1FStreetJ_2Button();
+                break;
+            case 10028:
+                onClickMapButton = new OnClickTown1FStreetJ_3Button();
+                break;
+            case 10029:
+                onClickMapButton = new OnClickTown1FStreetJ_4Button();
+                break;
+            case 10030:
+                onClickMapButton = new OnClickTown1FStreetKButton();
+                break;
+                //break忘れるな
         }
 
         return onClickMapButton;

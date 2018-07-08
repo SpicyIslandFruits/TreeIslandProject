@@ -25,7 +25,7 @@ public class MakeWeaponRealmObject {
         newWeaponAtk = calculateAtk(superWeapon.getAtk());
         realm.beginTransaction();
         this.weaponName = realm.createObject(WeaponName.class);
-        this.weaponName.setWeaponName(weaponName);
+        this.weaponName.setWeaponName(superWeapon.getName());
         this.weaponName.setWeaponAtk(newWeaponAtk);
         this.weaponName.setWeaponLevel(weaponLevel);
         playerInfo.setWeaponName(weaponName);

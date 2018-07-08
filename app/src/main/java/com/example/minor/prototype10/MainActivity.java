@@ -219,7 +219,6 @@ public class MainActivity extends AppCompatActivity{
             //防具装備時にFmaxHPを直接変更する
             //メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
             realm.commitTransaction();
-            //防具もこれと同様にしてください
             makeWeaponRealmObject.createNewWeapon("SampleWeapon");
             makeWeaponRealmObject.createNewWeapon("SampleWeapon2");
             makeArmorRealmObject.createNewArmor("SampleArmor");

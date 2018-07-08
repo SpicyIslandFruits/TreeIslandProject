@@ -201,7 +201,7 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             MakeData makeData = new MakeData();
             SuperOnClickMapButton formerMap = makeData.makeMapFromPosition(playerInfo.getFormerPosition());
             imageButton8.setOnClickListener(formerMap);
-            imageButton8Text.setText("戻る");
+            imageButton8Text.setText("一つ前に戻る");
         }
 
         realm.close();

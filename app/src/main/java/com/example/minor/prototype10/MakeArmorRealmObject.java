@@ -26,7 +26,7 @@ public class MakeArmorRealmObject {
         newArmorDf = calculateDf(superArmor.getDf());
         realm.beginTransaction();
         this.armorName = realm.createObject(ArmorName.class);
-        this.armorName.setArmorName(armorName);
+        this.armorName.setArmorName(superArmor.getName());
         this.armorName.setArmorDf(newArmorDf);
         this.armorName.setArmorLevel(armorLevel);
         playerInfo.setArmorName(armorName);

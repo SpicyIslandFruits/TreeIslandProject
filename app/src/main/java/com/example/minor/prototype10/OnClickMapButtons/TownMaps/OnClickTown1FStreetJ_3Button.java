@@ -5,35 +5,27 @@ import android.view.View;
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
-public class OnClickTown1FStreetHButton extends SuperOnClickMapButton {
+public class OnClickTown1FStreetJ_3Button extends SuperOnClickMapButton {
     @Override
     public void createMap() {
-        position = 10020;
+        position = 10028;
         onInit();
         MainActivity.soundPool.play(MainActivity.walkingSound, 1.0f, 1.0f, 1, 0, 1);
-        mainText.setText("【街第一層H通り】\n文章未定");
+        mainText.setText("【街第一層J_3通り】\n文章未定");
 
-        imageButton1.setOnClickListener(new View.OnClickListener() {
+        imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainText.setText("なんかのマップと接続します。");
             }
         });
-        imageButton1Text.setText("未定");
+        imageButton2Text.setText("未定");
 
-        imageButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainText.setText("なんかのマップと接続します。");
-            }
-        });
-        imageButton3Text.setText("未定");
+        imageButton3.setOnClickListener(new OnClickTown1FStreetJ_4Button());
+        imageButton3Text.setText("J_4通り");
 
-        imageButton5.setOnClickListener(new OnClickTown1FStreetIButton());
-        imageButton5Text.setText("I通り");
-
-        imageButton6.setOnClickListener(new OnClickTown1FStreetGButton());
-        imageButton6Text.setText("G通り");
+        imageButton4.setOnClickListener(new OnClickTown1FStreetJ_1Button());
+        imageButton4Text.setText("J_1通り");
     }
 
     @Override

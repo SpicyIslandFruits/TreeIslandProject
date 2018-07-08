@@ -25,7 +25,7 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
         if(sharedPreferences.getBoolean("oldMansionGhostRunAwayFlag", false)){
             //此処の音声を変えて、イベントが終わったことが分かり易いようにする。
             MainActivity.soundPool.play(MainActivity.oldMansionWalkingSound, 1.0f, 1.0f, 1, 0, 1);
-            mainText.setText("あれは何だったのだろうか...\n既に飛び去って行ってしまった今、お前に確認するすべはない......。");
+            mainText.setText("あれは何だったのだろうか......\n既に飛び去って行ってしまった今、お前に確認するすべはない。");
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("oldMansionGhostRunAwayFlag", false);
             editor.apply();
@@ -45,7 +45,7 @@ public class OnClickOldMansion2FButton extends SuperOnClickMapButton {
                     imageButton8.setOnClickListener(onClickOldMansion1FButton);
                     imageButton8Text.setText("1階に降りる");
                 }
-            }, 1000);
+            }, 3000);
         }else {
             //元の文章
             //お前は2階へと上がっていった...。
