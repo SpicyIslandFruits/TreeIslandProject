@@ -5,6 +5,8 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:backgroundTint="@android:color/background_dark"
     tools:context=".MainActivity">
 
     <!-- Todo: 絵を真ん中に置けるようにレイアウトを調整する -->
@@ -267,12 +269,8 @@
         android:id="@+id/main_image_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline69"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:srcCompat="@android:color/background_dark" />
@@ -282,11 +280,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/guideline69"
-        app:layout_constraintEnd_toStartOf="@+id/guideline67"
-        app:layout_constraintStart_toStartOf="@+id/guideline68"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:srcCompat="@android:color/background_light" />
 
