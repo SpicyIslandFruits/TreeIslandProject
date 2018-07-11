@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -39,12 +40,16 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     protected int position;
     private AbnormalStates abnormalStates;
     protected MediaPlayer mediaPlayer;
-    public static ImageView backgroundImage;
+    public static ImageView mainImage, backgroundImage;
+    protected static ConstraintLayout mainLayout;
 
     public void setDefaultInstances(AppCompatActivity main) {
         mMain = main;
         sharedPreferences = mMain.getSharedPreferences("MapInfo", MODE_PRIVATE);
         mainText = main.findViewById(R.id.main_text);
+        mainImage = main.findViewById(R.id.main_image);
+        mainLayout = main.findViewById(R.id.main_layout);
+
         imageButton1 = main.findViewById(R.id.imageButton1);
         imageButton2 = main.findViewById(R.id.imageButton2);
         imageButton3 = main.findViewById(R.id.imageButton3);
