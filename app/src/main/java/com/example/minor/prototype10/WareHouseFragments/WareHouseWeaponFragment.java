@@ -81,6 +81,8 @@ public class WareHouseWeaponFragment extends Fragment {
                         warehouseWeaponNames.add(weaponName);
                         playerWeaponNames.remove(weaponName);
                         realm.commitTransaction();
+
+                        exchangeButton.setOnClickListener(null);
                     }
                 });
 
@@ -112,6 +114,11 @@ public class WareHouseWeaponFragment extends Fragment {
                         playerWeaponNames.add(weaponName);
                         warehouseWeaponNames.remove(weaponName);
                         realm.commitTransaction();
+
+                        /**
+                         * これがないと連打でアイテムが増殖してしまう。
+                         */
+                        exchangeButton.setOnClickListener(null);
                     }
                 });
             }
