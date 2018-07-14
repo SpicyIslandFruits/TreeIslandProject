@@ -7,8 +7,6 @@
     android:background="@android:color/black"
     tools:context=".MainActivity">
 
-    <!-- Todo: 絵を真ん中に置けるようにレイアウトを調整する -->
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="0dp"
@@ -576,27 +574,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/main_image_frame"
+            android:id="@+id/main_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline69"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            app:srcCompat="@android:color/holo_orange_light" />
-
-        <ImageView
-            android:id="@+id/main_image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/guideline69"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"

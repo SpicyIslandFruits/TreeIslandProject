@@ -27,7 +27,7 @@ public class OnClickPassButton extends SuperOnClickMapButton {
         mediaPlayer = MediaPlayer.create(mMain, R.raw.pass_sound);
         audioPlay(mediaPlayer, bgmName);
 
-        mainImage.setImageResource(R.drawable.pass);
+        fadeAndChangeMainImageResource(R.drawable.pass);
 
         if(playerInfo.getLUK() != playerInfo.getfLUK() || playerInfo.getSP() != playerInfo.getfSP() || playerInfo.getMaxMP() != playerInfo.getFmaxMP()){
             Toast toast = Toast.makeText(MainActivity.context, "お守りや補助効果が消滅した", Toast.LENGTH_SHORT);

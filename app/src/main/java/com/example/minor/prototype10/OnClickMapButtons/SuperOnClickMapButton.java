@@ -1,5 +1,6 @@
 package com.example.minor.prototype10.OnClickMapButtons;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -7,6 +8,7 @@ import android.media.MediaPlayer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -267,6 +269,33 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
             MainActivity.mediaPlayer.release();
             MainActivity.mediaPlayer = null;
         }
+    }
+
+    public void fadeAndChangeMainImageResource(int resourceId){
+        ValueAnimator animator;
+        animator = ValueAnimator.ofInt(255,0);
+        animator.setDuration(500);
+        animator.setInterpolator(new DecelerateInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                mainImage.setImageAlpha((Integer) valueAnimator.getAnimatedValue());
+            }
+        });
+        animator.start();
+
+        mainImage.setImageResource(resourceId);
+
+        animator = ValueAnimator.ofInt(0,255);
+        animator.setDuration(500);
+        animator.setInterpolator(new DecelerateInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                mainImage.setImageAlpha((Integer) valueAnimator.getAnimatedValue());
+            }
+        });
+        animator.start();
     }
 
     //BGMを追加したときはここにswitch文を追加する。場所が場所なので忘れやすい、、、
