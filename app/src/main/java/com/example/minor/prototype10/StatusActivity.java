@@ -65,35 +65,36 @@ public class StatusActivity extends AppCompatActivity {
                 ChangeFragment(view);
             }
         });
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragment = new StatusFragment();
+        fragmentTransaction.replace(R.id.player_info_fragment, fragment);
+        fragmentTransaction.commit();
     }
 
     private void ChangeFragment(View view){
         if (view == statusButton){
-            fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new StatusFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
+            fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
         if (view == equipmentButton){
-            fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new EquipmentFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
+            fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
         if(view == skillButton){
-            fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new SkillFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
+            fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
         if(view == itemButton){
-            fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new ItemFragment();
-            fragmentTransaction.replace(R.id.fragment_player_info, fragment);
+            fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
     }
