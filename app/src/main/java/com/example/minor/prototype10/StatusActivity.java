@@ -79,18 +79,21 @@ public class StatusActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
+
         if (view == equipmentButton){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new EquipmentFragment();
             fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
+
         if(view == skillButton){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new SkillFragment();
             fragmentTransaction.replace(R.id.player_info_fragment, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
+
         if(view == itemButton){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragment = new ItemFragment();

@@ -10,6 +10,7 @@ import android.view.animation.DecelerateInterpolator;
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
+import com.example.minor.prototype10.WareHouseFragments.WareHouseArmorFragment;
 import com.example.minor.prototype10.WareHouseFragments.WareHouseWeaponFragment;
 
 public class OnClickWarehouseButton extends SuperOnClickMapButton {
@@ -38,6 +39,28 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 WareHouseWeaponFragment wareHouseWeaponFragment = new WareHouseWeaponFragment();
                 fragmentTransaction.replace(R.id.warehouse_item_fragment, wareHouseWeaponFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        imageButton2Text.setText("防具の整理"); //追加
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ValueAnimator animator = ValueAnimator.ofInt(0,180);
+                animator.setDuration(250);
+                animator.setInterpolator(new DecelerateInterpolator());
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        backgroundImage.setImageAlpha((Integer) valueAnimator.getAnimatedValue());
+                    }
+                });
+                animator.start();
+                FragmentManager fragmentManager = mMain.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                WareHouseArmorFragment wareHouseArmorFragment = new WareHouseArmorFragment();
+                fragmentTransaction.replace(R.id.warehouse_item_fragment, wareHouseArmorFragment);
                 fragmentTransaction.commit();
             }
         });

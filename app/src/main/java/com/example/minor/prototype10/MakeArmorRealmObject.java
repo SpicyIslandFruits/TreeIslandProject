@@ -30,6 +30,7 @@ public class MakeArmorRealmObject {
         this.armorName.setArmorDf(newArmorDf);
         this.armorName.setArmorLevel(armorLevel);
         playerInfo.setArmorName(armorName);
+        playerInfo.getEquippedArmors().add(this.armorName);
         realm.commitTransaction();
         realm.close();
     }

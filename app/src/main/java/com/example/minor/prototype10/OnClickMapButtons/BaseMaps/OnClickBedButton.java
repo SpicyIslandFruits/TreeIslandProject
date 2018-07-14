@@ -19,6 +19,7 @@ OnClickBedButton extends SuperOnClickMapButton {
         }else {
             mainText.setText("お前は小さな白木のベッドに横たわった。\nなぜだろう、ここは不思議と安心できるのだ。\n瞳を閉じると布団の柔らかい感触が包み込んでくる。");
         }
+
         MainActivity.soundPool.play(MainActivity.oldMansionBedSound, 1.0f, 1.0f, 1, 0, 1);
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +47,7 @@ OnClickBedButton extends SuperOnClickMapButton {
                         mainText.setText("その夜お前は奇妙な夢を見た...。\nおまえは何かの存在を恐れていた。\nこの世界に存在する生命がそれを知ることは許されることではなかった。");
                         break;
                     case 5:
-                        mainText.setText("お前には母親がいない。\n6際のころ突然育児を父親に押し付け、家を出ていった。\n毎日泣いて、毎日探しまわった。いつか帰ってくるだろうと待っていた。\nそんなことを思い出すうちに睡魔が襲ってきて、お前は眠りについた。");
+                        mainText.setText("お前には母親がいない。\n6歳のころ突然育児を父親に押し付け、家を出ていった。\n毎日探し回ったが見つからなかった。\nそんなことを思い出すうちに睡魔が襲ってきて、お前は眠りについた。");
                         break;
                     case 6:
                         mainText.setText("家主はどんな人だったのだろう...。どうしてこんなところに住もうと思ったのだろう...。\nそんなことを考えているうちに夢うつつが本物の眠りへと変わり、お前を包み込んでいった。");

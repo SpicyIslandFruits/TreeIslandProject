@@ -395,26 +395,43 @@ public class BattleActivity extends AppCompatActivity {
         spBar.setProgress(sp - tempAllStatus[2]);
         mpBar.setProgress(maxMp - tempAllStatus[1]);
     }
+
     private void experience(){
-        realm.beginTransaction();
-        playerInfo.setExperiencePointSum(playerInfo.getExperiencePointSum() + Math.max(1, 20 + ((playerInfo.getBaseEnemyLevel() + playerInfo.getAdditionalEnemyLevel()) - playerLevel)));
-        realm.commitTransaction();
-        //positionが10000以下の場合にはこの式を使います。
+        /**
+         * レベル差が高い相手を倒すと経験値が多い
+         * Todo: ゲームのプレイ時間に合わせて此処を調整します。
+         * 街では経験値が入りにくくするので分けます。
+         * Todo: 街の中での経験値処理を作る。
+         */
+        if(playerInfo.getPosition() < 10000) {
+            realm.beginTransaction();
+            playerInfo.setExperiencePointSum(playerInfo.getExperiencePointSum() + Math.max(1, 20 + ((playerInfo.getBaseEnemyLevel() + playerInfo.getAdditionalEnemyLevel()) - playerLevel)));
+            realm.commitTransaction();
+        }else {
+            realm.beginTransaction();
+            realm.commitTransaction();
+        }
+
+        /**
+         * 経験値の合計が100を超えるとレベルアップ
+         * Todo: レベルアップ時の処理。
+         * 音声や画面がホワイトアウトするなどのエフェクト。
+         */
         if(playerInfo.getExperiencePointSum()>=100){
             realm.beginTransaction();
             playerInfo.setPlayerLevel(playerInfo.getPlayerLevel()+1);
             playerInfo.setExperiencePointSum(0);
             realm.commitTransaction();
             makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
-            //レベルアップ時の処理は豪華にしたいので後で考えます。
             Toast toast = Toast.makeText(this, "レベルアップ！", Toast.LENGTH_SHORT);
             toast.show();
         }
-        //positionが10000以上の場合は街なので経験値がほとんど入らないようにします。
     }
 
-    //Atkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
-    //fAtkは装備中の武器のステータスです
+    /**
+     * Atkを受け取り武器の攻撃力は戦闘処理の時に別で加算される
+     * playerInfo.getfATKによって得られるのが武器のATK
+     */
     private void inputAllStatus(){
         maxHp = playerInfo.getFmaxHP();
         maxMp = playerInfo.getFmaxMP();
@@ -431,7 +448,9 @@ public class BattleActivity extends AppCompatActivity {
         tempAllStatus[9] = enemyDf = enemy.getDf();
         tempAllStatus[10] = enemyLuk = enemy.getLuk();
         tempAllStatus[11] = breakNum = 50;
-        //プレイヤーの最大spはtempAllStatus[12]である
+        /**
+         * プレイヤーの最大spはtempAllStatus[12]
+         */
         tempAllStatus[12] = playerInfo.getfSP();
         //pspはターン開始時のsp、キャンセルボタンを押した際にspをpspに戻す
         psp = playerInfo.getfSP();
@@ -442,7 +461,9 @@ public class BattleActivity extends AppCompatActivity {
         breakGage.setData(breakNum, "%", gradation, 10, true);
         hpBar.setMax(maxHp);
         mpBar.setMax(maxMp);
-        //spの最大値はここで一度変更されているだけの為、スキルで最大spに対して操作を行うとバーの挙動がおかしくなる。
+        /**
+         * spの最大値はここで一度変更されているだけの為、スキルで最大spに対して操作を行うとバーの挙動がおかしくなる。
+         */
         spBar.setMax(sp);
         enemyHpBar.setMax(enemyHp);
         hpBar.setProgress(0);

@@ -34,7 +34,7 @@ import io.realm.RealmResults;
 public class EquipmentFragment extends Fragment {
     private Realm realm;
     private RealmList<WeaponName> weaponNames;
-    private RealmResults<ArmorName> armorNames;
+    private RealmList<ArmorName> armorNames;
     private WeaponName weaponNameInstance;
     private ArmorName armorNameInstance;
     private MakeData makeData;
@@ -76,7 +76,7 @@ public class EquipmentFragment extends Fragment {
         armorSkill2 = view.findViewById(R.id.armor_skill2);
         armorSkill3 = view.findViewById(R.id.armor_skill3);
         weaponNames = playerInfo.getEquippedWeapons();
-        armorNames = realm.where(ArmorName.class).findAll();
+        armorNames = playerInfo.getEquippedArmors();
         weaponAdapter = new WeaponAdapter(weaponNames);
         armorAdapter = new ArmorAdapter(armorNames);
         weaponList.setAdapter(weaponAdapter);

@@ -6,6 +6,11 @@ import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
+/**
+ * Todo: 街の名前の作成
+ * Todo: イベントマップ(通り以外のマップ)の作成
+ * Todo: 通りの名前の作成、単純に～通り、とするだけではなく、～公園や～広場など分かり易い名前にする
+ */
 public class OnClickEnterTown1FButton extends SuperOnClickMapButton {
     @Override
     public void createMap() {
