@@ -4,6 +4,7 @@ import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
+import com.example.minor.prototype10.Models.OtherItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
 
@@ -15,6 +16,7 @@ public class MakeItemRealmObject {
     private RecoveryItemName recoveryItemName;
     private AmuletName amuletName;
     private ImportantItemName importantItemName;
+    private OtherItemName otherItemName;
     private MakeData makeData;
     private SuperItem superItem;
 
@@ -32,6 +34,23 @@ public class MakeItemRealmObject {
         this.recoveryItemName = realm.createObject(RecoveryItemName.class);
         this.recoveryItemName.setItemName(superItem.getName());
         playerInfo.getEquippedRecoveryItems().add(this.recoveryItemName);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    /**
+     * TODO: 最後の倉庫の作成時に実装します。
+     */
+    public void createNewOtherItem(String otherItemName){
+        realm = Realm.getDefaultInstance();
+        makeData = new MakeData();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
+        superItem = makeData.makeItemFromName(otherItemName);
+
+        realm.beginTransaction();
+        this.otherItemName = realm.createObject(OtherItemName.class);
+        this.otherItemName.setOtherItemName(superItem.getName());
+        playerInfo.getEquippedOtherItems().add(this.otherItemName);
         realm.commitTransaction();
         realm.close();
     }
@@ -60,12 +79,5 @@ public class MakeItemRealmObject {
         this.importantItemName.setItemName(superItem.getName());
         realm.commitTransaction();
         realm.close();
-    }
-
-    /**
-     * TODO: 最後の倉庫の作成時に実装します。
-     */
-    public void createNewOtherItem(){
-
     }
 }

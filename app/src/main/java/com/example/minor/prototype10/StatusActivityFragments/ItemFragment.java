@@ -14,10 +14,12 @@ import android.widget.TextView;
 
 import com.example.minor.prototype10.Adapters.AmuletAdapter;
 import com.example.minor.prototype10.Adapters.ImportantItemAdapter;
+import com.example.minor.prototype10.Adapters.OtherItemAdapter;
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
+import com.example.minor.prototype10.Models.OtherItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
@@ -34,21 +36,24 @@ import io.realm.RealmResults;
 public class ItemFragment extends Fragment {
     private Realm realm;
     private MakeData makeData;
-    private ListView recoveryItemList, amuletList, importantItemList, rawMaterialsList;
+    private ListView recoveryItemList, amuletList, importantItemList, otherItemList;
     //後三つ追加します。
-    private TextView selectedImportantItemText, selectedRecoveryItemText, selectedAmuletText, selectedRawMaterialText;
+    private TextView selectedImportantItemText, selectedRecoveryItemText, selectedAmuletText, selectedOtherItemText;
     private RealmResults<ImportantItemName> importantItemNames;
     private RealmList<RecoveryItemName> recoveryItemNames;
     private RealmResults<AmuletName> amuletNames;
+    private RealmList<OtherItemName> otherItemNames;
     private ImportantItemName importantItemNameInstance;
     private RecoveryItemName recoveryItemNameInstance;
     private AmuletName amuletNameInstance;
-    private String importantItemName, recoveryItemName, amuletName;
+    private OtherItemName otherItemNameInstance;
+    private String importantItemName, recoveryItemName, amuletName, otherItemName;
     private ImageButton useRecoveryItemButton, useImportantItemButton;
     private SuperItem item;
     private ImportantItemAdapter importantItemAdapter;
     private RecoveryItemAdapter recoveryItemAdapter;
     private AmuletAdapter amuletAdapter;
+    private OtherItemAdapter otherItemAdapter;
     private PlayerInfo playerInfo;
 
     @Nullable
@@ -67,18 +72,25 @@ public class ItemFragment extends Fragment {
         recoveryItemList = view.findViewById(R.id.recovery_item_list);
         amuletList = view.findViewById(R.id.amulet_list);
         importantItemList = view.findViewById(R.id.important_item_list);
-        rawMaterialsList = view.findViewById(R.id.raw_materials_list);
-        //四つ分やる
+        otherItemList = view.findViewById(R.id.other_items_list);
+        /**
+         * リストビューの取得。
+         */
         selectedImportantItemText = view.findViewById(R.id.selected_important_item);
         selectedRecoveryItemText = view.findViewById(R.id.selected_recovery_item);
         selectedAmuletText = view.findViewById(R.id.selected_amulet);
-        selectedRawMaterialText = view.findViewById(R.id.selected_raw_material);
+        selectedOtherItemText = view.findViewById(R.id.selected_other_item);
 
-        //回復薬の分もやる
+        /**
+         * 回復と大切なものについては使用するのでボタンがいる。
+         */
         useImportantItemButton = view.findViewById(R.id.use_important_item_button);
         useRecoveryItemButton = view.findViewById(R.id.use_recovery_item_button);
 
-        //四つのリストビューの分やる。
+        /**
+         * リストビューにアダプターをセット。
+         * 回復とその他のアイテムについては倉庫で処理できるようにplayerInfoにaddしているのでそれを取得します。
+         */
         //大切なもののリスト
         importantItemNames = realm.where(ImportantItemName.class).findAll();
         importantItemAdapter = new ImportantItemAdapter(importantItemNames);
@@ -87,6 +99,10 @@ public class ItemFragment extends Fragment {
         recoveryItemNames = playerInfo.getEquippedRecoveryItems();
         recoveryItemAdapter = new RecoveryItemAdapter(recoveryItemNames);
         recoveryItemList.setAdapter(recoveryItemAdapter);
+        //その他のアイテムのリスト
+        otherItemNames = playerInfo.getEquippedOtherItems();
+        otherItemAdapter = new OtherItemAdapter(otherItemNames);
+        otherItemList.setAdapter(otherItemAdapter);
         //装飾品のリスト
         amuletNames = realm.where(AmuletName.class).findAll();
         amuletAdapter = new AmuletAdapter(amuletNames);
@@ -133,6 +149,16 @@ public class ItemFragment extends Fragment {
                 amuletName = amuletNameInstance.getAmuletName();
                 item = makeData.makeItemFromName(amuletName);
                 selectedAmuletText.setText(item.getName() + "\n" + item.getInformation());
+            }
+        });
+
+        otherItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                otherItemNameInstance = (OtherItemName) parent.getItemAtPosition(position);
+                otherItemName = otherItemNameInstance.getOtherItemName();
+                item = makeData.makeItemFromName(otherItemName);
+                selectedOtherItemText.setText(item.getName() + "\n" + item.getInformation());
             }
         });
     }

@@ -226,6 +226,8 @@ public class MainActivity extends AppCompatActivity{
             makeItemRealmObject.createNewRecoveryItem("MP回復薬小");
             makeItemRealmObject.createNewRecoveryItem("解毒薬");
             makeItemRealmObject.createNewRecoveryItem("包帯");
+            makeItemRealmObject.createNewOtherItem("SampleOtherItem");
+            makeItemRealmObject.createNewOtherItem("SampleOtherItem2");
         }catch (Exception e){
             realm.cancelTransaction();
         }

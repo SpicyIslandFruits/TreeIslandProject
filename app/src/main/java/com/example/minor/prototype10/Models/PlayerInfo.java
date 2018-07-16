@@ -39,6 +39,8 @@ public class PlayerInfo extends RealmObject {
     private RealmList<ArmorName> equippedArmors;
     private RealmList<RecoveryItemName> equippedRecoveryItems;
     private RealmList<RecoveryItemName> warehouseRecoveryItems;
+    private RealmList<OtherItemName> equippedOtherItems;
+    private RealmList<OtherItemName> warehouseOtherItems;
     private int playerSkill1;
     private int playerSkill2;
     private int playerSkill3;
@@ -55,6 +57,22 @@ public class PlayerInfo extends RealmObject {
     private boolean playerSuicideFlag;
     private int idoMoneyCount;
     private String nowPlayingBgmName;
+
+    public RealmList<OtherItemName> getEquippedOtherItems() {
+        return equippedOtherItems;
+    }
+
+    public void setEquippedOtherItems(RealmList<OtherItemName> equippedOtherItems) {
+        this.equippedOtherItems = equippedOtherItems;
+    }
+
+    public RealmList<OtherItemName> getWarehouseOtherItems() {
+        return warehouseOtherItems;
+    }
+
+    public void setWarehouseOtherItems(RealmList<OtherItemName> warehouseOtherItems) {
+        this.warehouseOtherItems = warehouseOtherItems;
+    }
 
     public RealmList<RecoveryItemName> getEquippedRecoveryItems() {
         return equippedRecoveryItems;

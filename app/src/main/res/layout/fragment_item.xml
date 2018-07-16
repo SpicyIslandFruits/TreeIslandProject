@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/raw_materials_background_image"
+            android:id="@+id/other_items_background_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -124,7 +124,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline58" />
 
         <ListView
-            android:id="@+id/raw_materials_list"
+            android:id="@+id/other_items_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
@@ -193,7 +193,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/raw_materials_image"
+            android:id="@+id/other_items_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
@@ -324,7 +324,7 @@
             app:layout_constraintTop_toTopOf="@+id/amulet_background_image" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/selected_raw_material"
+            android:id="@+id/selected_other_item"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -334,8 +334,8 @@
             android:text="SelectedItem"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline58"
-            app:layout_constraintEnd_toEndOf="@+id/raw_materials_background_image"
+            app:layout_constraintEnd_toEndOf="@+id/other_items_background_image"
             app:layout_constraintStart_toStartOf="@+id/guideline59"
-            app:layout_constraintTop_toTopOf="@+id/raw_materials_background_image" />
+            app:layout_constraintTop_toTopOf="@+id/other_items_background_image" />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

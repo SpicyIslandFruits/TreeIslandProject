@@ -11,6 +11,7 @@ import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
 import com.example.minor.prototype10.WareHouseFragments.WarehouseArmorFragment;
+import com.example.minor.prototype10.WareHouseFragments.WarehouseOtherItemFragment;
 import com.example.minor.prototype10.WareHouseFragments.WarehouseRecoveryItemFragment;
 import com.example.minor.prototype10.WareHouseFragments.WarehouseWeaponFragment;
 
@@ -84,6 +85,28 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 WarehouseRecoveryItemFragment warehouseRecoveryItemFragment = new WarehouseRecoveryItemFragment();
                 fragmentTransaction.replace(R.id.warehouse_item_fragment, warehouseRecoveryItemFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        imageButton4Text.setText("その他の整理");
+        imageButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ValueAnimator animator = ValueAnimator.ofInt(0,180);
+                animator.setDuration(250);
+                animator.setInterpolator(new DecelerateInterpolator());
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        backgroundImage.setImageAlpha((Integer) valueAnimator.getAnimatedValue());
+                    }
+                });
+                animator.start();
+                FragmentManager fragmentManager = mMain.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                WarehouseOtherItemFragment warehouseOtherItemFragment = new WarehouseOtherItemFragment();
+                fragmentTransaction.replace(R.id.warehouse_item_fragment, warehouseOtherItemFragment);
                 fragmentTransaction.commit();
             }
         });

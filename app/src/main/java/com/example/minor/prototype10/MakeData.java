@@ -11,6 +11,8 @@ import com.example.minor.prototype10.Items.Amulets.SampleAmulet;
 import com.example.minor.prototype10.Items.ImportantItems.BenchMaterial;
 import com.example.minor.prototype10.Items.ImportantItems.BurankoMaterial;
 import com.example.minor.prototype10.Items.ImportantItems.GardenCornerKey;
+import com.example.minor.prototype10.Items.OtherItems.SampleOtherItem;
+import com.example.minor.prototype10.Items.OtherItems.SampleOtherItem2;
 import com.example.minor.prototype10.Items.RecoveryItems.Bandage;
 import com.example.minor.prototype10.Items.RecoveryItems.HpAnalepticumSmall;
 import com.example.minor.prototype10.Items.RecoveryItems.MpAnalepticumSmall;
@@ -459,6 +461,12 @@ public class MakeData {
                 break;
             case "地下室の鍵":
                 item = new GardenCornerKey();
+                break;
+            case "SampleOtherItem":
+                item = new SampleOtherItem();
+                break;
+            case "SampleOtherItem2":
+                item = new SampleOtherItem2();
                 break;
         }
         return item;
