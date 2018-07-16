@@ -1,4 +1,4 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.Activities;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -17,10 +17,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.minor.prototype10.AbnormalStates;
 import com.example.minor.prototype10.Enemys.SuperEnemy;
+import com.example.minor.prototype10.GaugeView;
+import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.PlayerSkill.SampleSkill2;
 import com.example.minor.prototype10.PlayerSkill.SuperSkill;
+import com.example.minor.prototype10.R;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
 
 import io.realm.OrderedCollectionChangeSet;

@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
 import com.example.minor.prototype10.WareHouseFragments.WarehouseArmorFragment;

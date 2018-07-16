@@ -1,4 +1,4 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,22 +6,25 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.minor.prototype10.RealmObjectMakers.MakeArmorRealmObject;
+import com.example.minor.prototype10.MakeData;
+import com.example.minor.prototype10.RealmObjectMakers.MakeItemRealmObject;
+import com.example.minor.prototype10.RealmObjectMakers.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.Models.WeaponName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
+import com.example.minor.prototype10.R;
 
 import io.realm.OrderedCollectionChangeSet;
 import io.realm.OrderedRealmCollectionChangeListener;
@@ -199,13 +202,6 @@ public class MainActivity extends AppCompatActivity{
             playerInfo.setHP(playerInfo.getMaxHP());
             playerInfo.setFmaxHP(playerInfo.getMaxHP());
             /**
-             * テストの為初期アイテムを作っています。最終的に消します。
-             */
-            importantItemName = realm.createObject(ImportantItemName.class);
-            importantItemName.setItemName("ベンチの材料");
-            importantItemName = realm.createObject(ImportantItemName.class);
-            importantItemName.setItemName("ブランコの材料");
-            /**
              * 防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
              * 防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
              * 防具のスキルはすべてパッシブなので装備時にRealmの値を変更する
@@ -214,6 +210,11 @@ public class MainActivity extends AppCompatActivity{
              * メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
              */
             realm.commitTransaction();
+            /**
+             * テストの為初期アイテムを作っています。最終的に消します。
+             */
+            makeItemRealmObject.createNewImportantItem("ベンチの材料");
+            makeItemRealmObject.createNewImportantItem("ブランコの材料");
             makeWeaponRealmObject.createNewWeapon("SampleWeapon");
             makeWeaponRealmObject.createNewWeapon("SampleWeapon2");
             makeArmorRealmObject.createNewArmor("SampleArmor");

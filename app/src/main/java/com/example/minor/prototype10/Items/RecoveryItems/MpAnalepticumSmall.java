@@ -3,7 +3,7 @@ package com.example.minor.prototype10.Items.RecoveryItems;
 import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 
 public class MpAnalepticumSmall extends SuperItem{
     private static final String name = "MP回復薬小";

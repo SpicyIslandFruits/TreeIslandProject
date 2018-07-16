@@ -2,7 +2,7 @@ package com.example.minor.prototype10.OnClickMapButtons.BaseMaps;
 
 import android.media.MediaPlayer;
 import android.view.View;
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.OnClickPassButton;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;

@@ -1,5 +1,6 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.RealmObjectMakers;
 
+import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.ArmorName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Armors.SuperArmor;

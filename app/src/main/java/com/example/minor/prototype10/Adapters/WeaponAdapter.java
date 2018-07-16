@@ -1,4 +1,4 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.Adapters;
 
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -6,20 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.Models.ArmorName;
+import com.example.minor.prototype10.Models.WeaponName;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmBaseAdapter;
 
 /**
- * 武器アダプターを参考にして編集
+ * ここを編集する必要はないです
  */
-public class ArmorAdapter extends RealmBaseAdapter<ArmorName> {
+public class WeaponAdapter extends RealmBaseAdapter<WeaponName> {
     private static class ViewHolder{
-        TextView armorName;
+        TextView weaponName;
     }
 
-    public ArmorAdapter(@Nullable OrderedRealmCollection<ArmorName> data) {
+    public WeaponAdapter(@Nullable OrderedRealmCollection<WeaponName> data) {
         super(data);
     }
 
@@ -30,15 +30,15 @@ public class ArmorAdapter extends RealmBaseAdapter<ArmorName> {
         if(convertView == null){
             convertView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.armorName = convertView.findViewById(android.R.id.text1);
+            viewHolder.weaponName = convertView.findViewById(android.R.id.text1);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        ArmorName armorName = adapterData.get(position);
-        viewHolder.armorName.setText(armorName.getArmorName());
-        viewHolder.armorName.setMaxLines(1);
+        WeaponName weaponName = adapterData.get(position);
+        viewHolder.weaponName.setText(weaponName.getWeaponName());
+        viewHolder.weaponName.setMaxLines(1);
         return convertView;
     }
 }

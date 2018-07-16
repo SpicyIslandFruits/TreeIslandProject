@@ -12,8 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.AmuletAdapter;
-import com.example.minor.prototype10.ImportantItemAdapter;
+import com.example.minor.prototype10.Adapters.AmuletAdapter;
+import com.example.minor.prototype10.Adapters.ImportantItemAdapter;
 import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.AmuletName;
@@ -21,7 +21,7 @@ import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.RecoveryItemAdapter;
+import com.example.minor.prototype10.Adapters.RecoveryItemAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmList;

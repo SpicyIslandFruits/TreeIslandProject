@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StatusActivity"
+            android:name=".Activities.StatusActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".BattleActivity"
+            android:name=".Activities.BattleActivity"
             android:screenOrientation="landscape"></activity>
     </application>
 

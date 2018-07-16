@@ -1,4 +1,4 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.Activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.minor.prototype10.R;
 import com.example.minor.prototype10.StatusActivityFragments.EquipmentFragment;
 import com.example.minor.prototype10.StatusActivityFragments.ItemFragment;
 import com.example.minor.prototype10.StatusActivityFragments.SkillFragment;

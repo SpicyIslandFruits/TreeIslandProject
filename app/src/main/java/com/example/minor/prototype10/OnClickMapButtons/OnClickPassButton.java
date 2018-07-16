@@ -4,7 +4,7 @@ import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickBossRoomButton;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickEmptyButton;

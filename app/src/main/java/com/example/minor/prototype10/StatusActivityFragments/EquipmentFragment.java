@@ -11,19 +11,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.minor.prototype10.ArmorAdapter;
+import com.example.minor.prototype10.Adapters.ArmorAdapter;
 import com.example.minor.prototype10.Armors.SuperArmor;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.ArmorName;
 import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.WeaponName;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.WeaponAdapter;
+import com.example.minor.prototype10.Adapters.WeaponAdapter;
 import com.example.minor.prototype10.Weapons.SuperWeapon;
 
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 /**
  * view.findViewById書く

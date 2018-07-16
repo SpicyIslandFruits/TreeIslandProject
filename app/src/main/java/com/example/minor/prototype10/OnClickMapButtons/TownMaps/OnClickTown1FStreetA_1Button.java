@@ -1,7 +1,7 @@
 package com.example.minor.prototype10.OnClickMapButtons.TownMaps;
 
 import android.view.View;
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 public class OnClickTown1FStreetA_1Button extends SuperOnClickMapButton {

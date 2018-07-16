@@ -1,6 +1,7 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.RealmObjectMakers;
 
 import com.example.minor.prototype10.Items.SuperItem;
+import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;

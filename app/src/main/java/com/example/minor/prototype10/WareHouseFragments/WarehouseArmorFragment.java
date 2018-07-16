@@ -19,7 +19,7 @@ import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.ArmorName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.ArmorAdapter;
+import com.example.minor.prototype10.Adapters.ArmorAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmList;

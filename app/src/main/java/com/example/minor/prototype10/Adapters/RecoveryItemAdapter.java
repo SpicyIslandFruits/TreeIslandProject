@@ -1,4 +1,4 @@
-package com.example.minor.prototype10;
+package com.example.minor.prototype10.Adapters;
 
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;

@@ -3,7 +3,7 @@ package com.example.minor.prototype10.Items.ImportantItems;
 import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.BaseMaps.OnClickGardenCornerButton;
 
 public class GardenCornerKey extends SuperItem {

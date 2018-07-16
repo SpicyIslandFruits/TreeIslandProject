@@ -15,12 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.minor.prototype10.AbnormalStates;
-import com.example.minor.prototype10.BattleActivity;
+import com.example.minor.prototype10.Activities.BattleActivity;
 import com.example.minor.prototype10.Items.SuperItem;
-import com.example.minor.prototype10.MainActivity;
-import com.example.minor.prototype10.MakeArmorRealmObject;
+import com.example.minor.prototype10.Activities.MainActivity;
+import com.example.minor.prototype10.RealmObjectMakers.MakeArmorRealmObject;
 import com.example.minor.prototype10.MakeData;
-import com.example.minor.prototype10.MakeWeaponRealmObject;
+import com.example.minor.prototype10.RealmObjectMakers.MakeItemRealmObject;
+import com.example.minor.prototype10.RealmObjectMakers.MakeWeaponRealmObject;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.Models.PlayerInfo;
@@ -123,10 +124,8 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
     //ここに装飾品のスキルを実行する処理を書く。
     protected void obtainAmulet(String amuletName, int percent){
         if(Math.random()*100 < percent) {
-            realm.beginTransaction();
-            AmuletName amuletNameInstance = realm.createObject(AmuletName.class);
-            amuletNameInstance.setAmuletName(amuletName);
-            realm.commitTransaction();
+            MakeItemRealmObject makeItemRealmObject = new MakeItemRealmObject();
+            makeItemRealmObject.createNewAmulet(amuletName);
             MakeData makeData = new MakeData();
             SuperItem superItem = makeData.makeItemFromName(amuletName);
             superItem.putOnAmulet();
@@ -137,10 +136,8 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
 
     protected void obtainRecoveryItem(String recoveryItemName, int percent){
         if(Math.random()*100 < percent) {
-            realm.beginTransaction();
-            RecoveryItemName recoveryItemNameInstance = realm.createObject(RecoveryItemName.class);
-            recoveryItemNameInstance.setItemName(recoveryItemName);
-            realm.commitTransaction();
+            MakeItemRealmObject makeItemRealmObject = new MakeItemRealmObject();
+            makeItemRealmObject.createNewRecoveryItem(recoveryItemName);
             Toast toast = Toast.makeText(MainActivity.context, "回復アイテムを取得した！", Toast.LENGTH_SHORT);
             toast.show();
         }
@@ -148,16 +145,18 @@ abstract public class SuperOnClickMapButton implements View.OnClickListener{
 
     protected void obtainImportantItem(String importantItemName, int percent){
         if(Math.random()*100 < percent) {
-            realm.beginTransaction();
-            ImportantItemName importantItemNameInstance = realm.createObject(ImportantItemName.class);
-            importantItemNameInstance.setItemName(importantItemName);
-            realm.commitTransaction();
+            MakeItemRealmObject makeItemRealmObject = new MakeItemRealmObject();
+            makeItemRealmObject.createNewImportantItem(importantItemName);
             Toast toast = Toast.makeText(MainActivity.context, "貴重品を取得した！", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
-
+    protected void  obtainOtherItem(String OtherItemName, int percent){
+        if(Math.random()*100 < percent){
+            // TODO: 2018/07/16 その他のアイテムの実装が終わったらここを実装する。
+        }
+    }
 
     protected void stopAllButtons(){
         imageButton1.setEnabled(false);

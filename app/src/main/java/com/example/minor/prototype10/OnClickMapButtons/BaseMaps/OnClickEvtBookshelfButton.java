@@ -3,7 +3,7 @@ package com.example.minor.prototype10.OnClickMapButtons.BaseMaps;
 import android.content.SharedPreferences;
 import android.view.View;
 
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.Models.ImportantItemName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
@@ -33,10 +33,7 @@ public class OnClickEvtBookshelfButton extends SuperOnClickMapButton {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("oldMansionGardenCornerKeyFoundFlag", true);
                         editor.apply();
-                        realm.beginTransaction();
-                        ImportantItemName importantItemName = realm.createObject(ImportantItemName.class);
-                        importantItemName.setItemName("地下室の鍵");
-                        realm.commitTransaction();
+                        obtainImportantItem("地下室の鍵", 100);
                         mainText.setText("これは...\n\nおそらく地下室の鍵だ。\nどうしてこんなところにあるのだろう...");
                         new android.os.Handler().postDelayed(new Runnable() {
                             @Override

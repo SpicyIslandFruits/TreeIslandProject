@@ -2,7 +2,7 @@ package com.example.minor.prototype10.OnClickMapButtons.BaseMaps;
 
 import android.view.View;
 
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 
 public class OnClickEvtStudyTableButton extends SuperOnClickMapButton {

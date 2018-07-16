@@ -3,7 +3,7 @@ package com.example.minor.prototype10.Items.RecoveryItems;
 import android.widget.Toast;
 
 import com.example.minor.prototype10.Items.SuperItem;
-import com.example.minor.prototype10.MainActivity;
+import com.example.minor.prototype10.Activities.MainActivity;
 
 /**
  * 回復薬の入手方法は
