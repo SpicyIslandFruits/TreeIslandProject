@@ -92,7 +92,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_skill3"
+            android:id="@+id/armor_skill3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -109,7 +109,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_name"
+            android:id="@+id/armor_name"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
@@ -160,20 +160,20 @@
             app:layout_constraintGuide_percent="0.85" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_df"
+            android:id="@+id/armor_df"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Armordf"
+            android:text="ArmorDf"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline27" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_skill1"
+            android:id="@+id/armor_skill1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -190,7 +190,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_skill2"
+            android:id="@+id/armor_skill2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"

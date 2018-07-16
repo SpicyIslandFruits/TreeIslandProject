@@ -99,8 +99,8 @@ public class WarehouseRecoveryItemFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         /**
-                         * 選択されたアイテムをプレイヤーの持っている武器リストに追加
-                         * 選択されたアイテムを倉庫内の武器リストから削除
+                         * 選択されたアイテムをプレイヤーの持っているリストに追加
+                         * 選択されたアイテムを倉庫内のリストから削除
                          */
                         realm.beginTransaction();
                         playerRecoveryItemNames.add(RecoveryItemName);
