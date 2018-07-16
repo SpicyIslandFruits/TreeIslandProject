@@ -16,10 +16,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.Models.ArmorName;
+import com.example.minor.prototype10.Models.WeaponName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.ArmorAdapter;
+import com.example.minor.prototype10.WeaponAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -28,10 +28,10 @@ import io.realm.RealmList;
  * Todo: 装備中の武具は表示しない、または移動できないようにする。
  * Todo: 武器、アイテム、素材についても同様に作る。
  */
-public class WareHouseArmorFragment extends Fragment {
-    private ListView playerArmorList, warehouseArmorList;
-    private ArmorAdapter playerArmorAdapter, warehouseArmorAdapter;
-    private RealmList<ArmorName> playerArmorNames, warehouseArmorNames;
+public class WarehouseWeaponFragment extends Fragment {
+    private ListView playerWeaponList, warehouseWeaponList;
+    private WeaponAdapter playerWeaponAdapter, warehouseWeaponAdapter;
+    private RealmList<WeaponName> playerWeaponNames, warehouseWeaponNames;
     private Realm realm;
     private PlayerInfo playerInfo;
     private TextView textViewBox, textViewEquipment;
@@ -43,7 +43,7 @@ public class WareHouseArmorFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
-        return inflater.inflate(R.layout.fragment_ware_house_armor, container, false);
+        return inflater.inflate(R.layout.fragment_warehouse_weapon, container, false);
     }
 
     @Override
@@ -65,21 +65,21 @@ public class WareHouseArmorFragment extends Fragment {
             }
         });
 
-        playerArmorList = view.findViewById(R.id.warehouse_Armor_player);
-        playerArmorNames = playerInfo.getEquippedArmors();
-        playerArmorAdapter = new ArmorAdapter(playerArmorNames);
-        playerArmorList.setAdapter(playerArmorAdapter);
-        playerArmorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        playerWeaponList = view.findViewById(R.id.warehouse_weapon_player);
+        playerWeaponNames = playerInfo.getEquippedWeapons();
+        playerWeaponAdapter = new WeaponAdapter(playerWeaponNames);
+        playerWeaponList.setAdapter(playerWeaponAdapter);
+        playerWeaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final ArmorName armorName = (ArmorName) parent.getItemAtPosition(position);;
+                final WeaponName weaponName = (WeaponName) parent.getItemAtPosition(position);;
 
                 exchangeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         realm.beginTransaction();
-                        warehouseArmorNames.add(armorName);
-                        playerArmorNames.remove(armorName);
+                        warehouseWeaponNames.add(weaponName);
+                        playerWeaponNames.remove(weaponName);
                         realm.commitTransaction();
 
                         exchangeButton.setOnClickListener(null);
@@ -89,18 +89,18 @@ public class WareHouseArmorFragment extends Fragment {
             }
         });
 
-        warehouseArmorList = view.findViewById(R.id.warehouse_Armor_box);
-        warehouseArmorNames = playerInfo.getWarehouseArmors();
-        warehouseArmorAdapter = new ArmorAdapter(warehouseArmorNames);
-        warehouseArmorList.setAdapter(warehouseArmorAdapter);
+        warehouseWeaponList = view.findViewById(R.id.warehouse_weapon_box);
+        warehouseWeaponNames = playerInfo.getWarehouseWeapons();
+        warehouseWeaponAdapter = new WeaponAdapter(warehouseWeaponNames);
+        warehouseWeaponList.setAdapter(warehouseWeaponAdapter);
 
         //倉庫内のアイテムを押されたときの処理を登録しています。
-        warehouseArmorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        warehouseWeaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //選択されたアイテムを変数に格納
-                final ArmorName armorName = (ArmorName) parent.getItemAtPosition(position);
+                final WeaponName weaponName = (WeaponName) parent.getItemAtPosition(position);
 
                 //交換ボタンが押されたときの処理。
                 exchangeButton.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +111,8 @@ public class WareHouseArmorFragment extends Fragment {
                          * 選択されたアイテムを倉庫内の武器リストから削除
                          */
                         realm.beginTransaction();
-                        playerArmorNames.add(armorName);
-                        warehouseArmorNames.remove(armorName);
+                        playerWeaponNames.add(weaponName);
+                        warehouseWeaponNames.remove(weaponName);
                         realm.commitTransaction();
 
                         /**

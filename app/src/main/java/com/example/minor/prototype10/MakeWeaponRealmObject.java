@@ -19,10 +19,17 @@ public class MakeWeaponRealmObject {
     private WeaponName weaponName;
 
     public void createNewWeapon(String weaponName){
+        /**
+         * weaponの攻撃力を生成するためにmakeDataクラスを使用しています。
+         * weaponNameには名前のほかに武器レベルと武器の攻撃力が保存されています。
+         * playerInfoの主人公が現在所持している武器リストにaddしています。
+         * TODO: 気が向いたらアイテム名が存在しなかった場合の処理を書きます。バグ対策。
+         */
         realm = Realm.getDefaultInstance();
         makeData = new MakeData();
         superWeapon = makeData.makeWeaponFromName(weaponName);
         newWeaponAtk = calculateAtk(superWeapon.getAtk());
+
         realm.beginTransaction();
         this.weaponName = realm.createObject(WeaponName.class);
         this.weaponName.setWeaponName(superWeapon.getName());

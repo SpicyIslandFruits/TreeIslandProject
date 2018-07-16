@@ -18,13 +18,19 @@ import com.example.minor.prototype10.Items.SuperItem;
 import com.example.minor.prototype10.MakeData;
 import com.example.minor.prototype10.Models.AmuletName;
 import com.example.minor.prototype10.Models.ImportantItemName;
+import com.example.minor.prototype10.Models.PlayerInfo;
 import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.R;
 import com.example.minor.prototype10.RecoveryItemAdapter;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
+/**
+ * TODO: これからrealm.where(~.class).findAllをplayerInfo.getEquipped~に変えていきます。
+ * OtherItemについてやる
+ */
 public class ItemFragment extends Fragment {
     private Realm realm;
     private MakeData makeData;
@@ -32,7 +38,7 @@ public class ItemFragment extends Fragment {
     //後三つ追加します。
     private TextView selectedImportantItemText, selectedRecoveryItemText, selectedAmuletText, selectedRawMaterialText;
     private RealmResults<ImportantItemName> importantItemNames;
-    private RealmResults<RecoveryItemName> recoveryItemNames;
+    private RealmList<RecoveryItemName> recoveryItemNames;
     private RealmResults<AmuletName> amuletNames;
     private ImportantItemName importantItemNameInstance;
     private RecoveryItemName recoveryItemNameInstance;
@@ -43,12 +49,14 @@ public class ItemFragment extends Fragment {
     private ImportantItemAdapter importantItemAdapter;
     private RecoveryItemAdapter recoveryItemAdapter;
     private AmuletAdapter amuletAdapter;
+    private PlayerInfo playerInfo;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         realm = Realm.getDefaultInstance();
+        playerInfo = realm.where(PlayerInfo.class).findFirst();
         return inflater.inflate(R.layout.fragment_item, container, false);
     }
 
@@ -76,7 +84,7 @@ public class ItemFragment extends Fragment {
         importantItemAdapter = new ImportantItemAdapter(importantItemNames);
         importantItemList.setAdapter(importantItemAdapter);
         //回復アイテムのリスト
-        recoveryItemNames = realm.where(RecoveryItemName.class).findAll();
+        recoveryItemNames = playerInfo.getEquippedRecoveryItems();
         recoveryItemAdapter = new RecoveryItemAdapter(recoveryItemNames);
         recoveryItemList.setAdapter(recoveryItemAdapter);
         //装飾品のリスト

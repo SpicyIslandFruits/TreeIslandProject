@@ -16,24 +16,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.minor.prototype10.Models.PlayerInfo;
-import com.example.minor.prototype10.Models.WeaponName;
+import com.example.minor.prototype10.Models.RecoveryItemName;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.WeaponAdapter;
+import com.example.minor.prototype10.RecoveryItemAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmList;
 
-/**
- * Todo: 装備中の武具は表示しない、または移動できないようにする。
- * Todo: 武器、アイテム、素材についても同様に作る。
- */
-public class WareHouseWeaponFragment extends Fragment {
-    private ListView playerWeaponList, warehouseWeaponList;
-    private WeaponAdapter playerWeaponAdapter, warehouseWeaponAdapter;
-    private RealmList<WeaponName> playerWeaponNames, warehouseWeaponNames;
-    private Realm realm;
-    private PlayerInfo playerInfo;
+public class WarehouseRecoveryItemFragment extends Fragment {
+    private ListView playerRecoveryItemList, warehouseRecoveryItemList;
+    private RecoveryItemAdapter playerRecoveryItemAdapter, warehouseRecoveryItemAdapter;
+    private RealmList<RecoveryItemName> playerRecoveryItemNames, warehouseRecoveryItemNames;
+    PlayerInfo playerInfo;
+    Realm realm;
     private TextView textViewBox, textViewEquipment;
     private ImageButton exchangeButton, decisionButton;
 
@@ -43,21 +39,17 @@ public class WareHouseWeaponFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         realm = Realm.getDefaultInstance();
         playerInfo = realm.where(PlayerInfo.class).findFirst();
-        return inflater.inflate(R.layout.fragment_ware_house_weapon, container, false);
+        return inflater.inflate(R.layout.fragment_warehouse_recovery_item, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        // TODO: 2018/07/16 RecoveryItemの取得処理を変更する
         exchangeButton = view.findViewById(R.id.exchange_button);
         decisionButton = view.findViewById(R.id.decision_button);
         textViewBox = view.findViewById(R.id.text_warehouse_box);
         textViewEquipment = view.findViewById(R.id.text_warehouse_equipment);
-
-        textViewBox.setText("倉庫");
-        textViewEquipment.setText("持ち物");
-
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,21 +57,21 @@ public class WareHouseWeaponFragment extends Fragment {
             }
         });
 
-        playerWeaponList = view.findViewById(R.id.warehouse_weapon_player);
-        playerWeaponNames = playerInfo.getEquippedWeapons();
-        playerWeaponAdapter = new WeaponAdapter(playerWeaponNames);
-        playerWeaponList.setAdapter(playerWeaponAdapter);
-        playerWeaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        playerRecoveryItemList = view.findViewById(R.id.warehouse_recovery_item_player);
+        playerRecoveryItemNames = playerInfo.getEquippedRecoveryItems();
+        playerRecoveryItemAdapter = new RecoveryItemAdapter(playerRecoveryItemNames);
+        playerRecoveryItemList.setAdapter(playerRecoveryItemAdapter);
+        playerRecoveryItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final WeaponName weaponName = (WeaponName) parent.getItemAtPosition(position);;
+                final RecoveryItemName RecoveryItemName = (RecoveryItemName) parent.getItemAtPosition(position);;
 
                 exchangeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         realm.beginTransaction();
-                        warehouseWeaponNames.add(weaponName);
-                        playerWeaponNames.remove(weaponName);
+                        warehouseRecoveryItemNames.add(RecoveryItemName);
+                        playerRecoveryItemNames.remove(RecoveryItemName);
                         realm.commitTransaction();
 
                         exchangeButton.setOnClickListener(null);
@@ -89,18 +81,18 @@ public class WareHouseWeaponFragment extends Fragment {
             }
         });
 
-        warehouseWeaponList = view.findViewById(R.id.warehouse_weapon_box);
-        warehouseWeaponNames = playerInfo.getWarehouseWeapons();
-        warehouseWeaponAdapter = new WeaponAdapter(warehouseWeaponNames);
-        warehouseWeaponList.setAdapter(warehouseWeaponAdapter);
+        warehouseRecoveryItemList = view.findViewById(R.id.warehouse_recovery_item_box);
+        warehouseRecoveryItemNames = playerInfo.getWarehouseRecoveryItems();
+        warehouseRecoveryItemAdapter = new RecoveryItemAdapter(warehouseRecoveryItemNames);
+        warehouseRecoveryItemList.setAdapter(warehouseRecoveryItemAdapter);
 
         //倉庫内のアイテムを押されたときの処理を登録しています。
-        warehouseWeaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        warehouseRecoveryItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //選択されたアイテムを変数に格納
-                final WeaponName weaponName = (WeaponName) parent.getItemAtPosition(position);
+                final RecoveryItemName RecoveryItemName = (RecoveryItemName) parent.getItemAtPosition(position);
 
                 //交換ボタンが押されたときの処理。
                 exchangeButton.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +103,8 @@ public class WareHouseWeaponFragment extends Fragment {
                          * 選択されたアイテムを倉庫内の武器リストから削除
                          */
                         realm.beginTransaction();
-                        playerWeaponNames.add(weaponName);
-                        warehouseWeaponNames.remove(weaponName);
+                        playerRecoveryItemNames.add(RecoveryItemName);
+                        warehouseRecoveryItemNames.remove(RecoveryItemName);
                         realm.commitTransaction();
 
                         /**

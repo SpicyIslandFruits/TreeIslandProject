@@ -10,8 +10,9 @@ import android.view.animation.DecelerateInterpolator;
 import com.example.minor.prototype10.MainActivity;
 import com.example.minor.prototype10.OnClickMapButtons.SuperOnClickMapButton;
 import com.example.minor.prototype10.R;
-import com.example.minor.prototype10.WareHouseFragments.WareHouseArmorFragment;
-import com.example.minor.prototype10.WareHouseFragments.WareHouseWeaponFragment;
+import com.example.minor.prototype10.WareHouseFragments.WarehouseArmorFragment;
+import com.example.minor.prototype10.WareHouseFragments.WarehouseRecoveryItemFragment;
+import com.example.minor.prototype10.WareHouseFragments.WarehouseWeaponFragment;
 
 public class OnClickWarehouseButton extends SuperOnClickMapButton {
     @Override
@@ -37,8 +38,8 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
                 animator.start();
                 FragmentManager fragmentManager = mMain.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                WareHouseWeaponFragment wareHouseWeaponFragment = new WareHouseWeaponFragment();
-                fragmentTransaction.replace(R.id.warehouse_item_fragment, wareHouseWeaponFragment);
+                WarehouseWeaponFragment warehouseWeaponFragment = new WarehouseWeaponFragment();
+                fragmentTransaction.replace(R.id.warehouse_item_fragment, warehouseWeaponFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -59,8 +60,30 @@ public class OnClickWarehouseButton extends SuperOnClickMapButton {
                 animator.start();
                 FragmentManager fragmentManager = mMain.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                WareHouseArmorFragment wareHouseArmorFragment = new WareHouseArmorFragment();
-                fragmentTransaction.replace(R.id.warehouse_item_fragment, wareHouseArmorFragment);
+                WarehouseArmorFragment warehouseArmorFragment = new WarehouseArmorFragment();
+                fragmentTransaction.replace(R.id.warehouse_item_fragment, warehouseArmorFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        imageButton3Text.setText("回復薬の整理");
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ValueAnimator animator = ValueAnimator.ofInt(0,180);
+                animator.setDuration(250);
+                animator.setInterpolator(new DecelerateInterpolator());
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        backgroundImage.setImageAlpha((Integer) valueAnimator.getAnimatedValue());
+                    }
+                });
+                animator.start();
+                FragmentManager fragmentManager = mMain.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                WarehouseRecoveryItemFragment warehouseRecoveryItemFragment = new WarehouseRecoveryItemFragment();
+                fragmentTransaction.replace(R.id.warehouse_item_fragment, warehouseRecoveryItemFragment);
                 fragmentTransaction.commit();
             }
         });

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".WareHouseFragments.WareHouseWeaponFragment">
+    tools:context=".WareHouseFragments.WarehouseRecoveryItemFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -91,38 +91,6 @@
             app:layout_constraintTop_toTopOf="@+id/guideline21"
             app:layout_constraintVertical_bias="0.0" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/weapon_skill3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="WeaponSkill3"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline33"
-            app:layout_constraintEnd_toStartOf="@+id/guideline24"
-            app:layout_constraintStart_toStartOf="@+id/guideline23"
-            app:layout_constraintTop_toTopOf="@+id/guideline20" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/weapon_name"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:gravity="center"
-            android:text="WeaponName"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline27"
-            app:layout_constraintEnd_toEndOf="@+id/warehouse_equipment_status"
-            app:layout_constraintStart_toStartOf="@+id/guideline37"
-            app:layout_constraintTop_toTopOf="@+id/guideline21" />
-
         <android.support.constraint.Guideline
             android:id="@+id/guideline27"
             android:layout_width="wrap_content"
@@ -160,68 +128,6 @@
             app:layout_constraintGuide_percent="0.85" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/weapon_atk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="WeaponATK"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline29"
-            app:layout_constraintStart_toStartOf="@+id/guideline23"
-            app:layout_constraintTop_toTopOf="@+id/guideline27" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/weapon_skill1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="WeaponSkill1"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline31"
-            app:layout_constraintEnd_toStartOf="@+id/guideline24"
-            app:layout_constraintStart_toStartOf="@+id/guideline23"
-            app:layout_constraintTop_toTopOf="@+id/guideline29" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/weapon_skill2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="WeaponSkill2"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline20"
-            app:layout_constraintEnd_toStartOf="@+id/guideline24"
-            app:layout_constraintStart_toStartOf="@+id/guideline23"
-            app:layout_constraintTop_toTopOf="@+id/guideline31" />
-
-        <ImageView
-            android:id="@+id/weapon_image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toTopOf="@+id/guideline27"
-            app:layout_constraintDimensionRatio="h,1:1"
-            app:layout_constraintEnd_toStartOf="@+id/guideline37"
-            app:layout_constraintStart_toStartOf="@+id/guideline23"
-            app:layout_constraintTop_toTopOf="@+id/guideline21" />
-
-        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/text_warehouse_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -231,7 +137,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:maxLines="1"
-            android:text="EquipedWeapon"
+            android:text="倉庫"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
@@ -265,7 +171,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:maxLines="1"
-            android:text="EquipedArmor"
+            android:text="持ち物"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
@@ -289,7 +195,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
         <ListView
-            android:id="@+id/warehouse_weapon_box"
+            android:id="@+id/warehouse_recovery_item_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
@@ -302,7 +208,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
         <ListView
-            android:id="@+id/warehouse_weapon_player"
+            android:id="@+id/warehouse_recovery_item_player"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"

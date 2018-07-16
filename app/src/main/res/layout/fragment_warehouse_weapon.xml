@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".WareHouseFragments.WareHouseArmorFragment">
+    tools:context=".WareHouseFragments.WarehouseWeaponFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -92,7 +92,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_skill3"
+            android:id="@+id/weapon_skill3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -101,7 +101,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center_vertical"
             android:maxLines="2"
-            android:text="ArmorSkill3"
+            android:text="WeaponSkill3"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline33"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
@@ -109,13 +109,13 @@
             app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_name"
+            android:id="@+id/weapon_name"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:gravity="center"
-            android:text="ArmorName"
+            android:text="WeaponName"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline27"
@@ -160,20 +160,20 @@
             app:layout_constraintGuide_percent="0.85" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_df"
+            android:id="@+id/weapon_atk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Armordf"
+            android:text="WeaponATK"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline27" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_skill1"
+            android:id="@+id/weapon_skill1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -182,7 +182,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center_vertical"
             android:maxLines="2"
-            android:text="ArmorSkill1"
+            android:text="WeaponSkill1"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline31"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
@@ -190,7 +190,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/Armor_skill2"
+            android:id="@+id/weapon_skill2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -199,7 +199,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center_vertical"
             android:maxLines="2"
-            android:text="ArmorSkill2"
+            android:text="WeaponSkill2"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline20"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
@@ -207,7 +207,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
         <ImageView
-            android:id="@+id/Armor_image"
+            android:id="@+id/weapon_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -231,7 +231,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:maxLines="1"
-            android:text="EquipedArmor"
+            android:text="倉庫"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
@@ -241,7 +241,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
         <ImageView
-            android:id="@+id/equiped_Armor_image"
+            android:id="@+id/equiped_weapon_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
@@ -265,7 +265,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:maxLines="1"
-            android:text="EquipedArmor"
+            android:text="持ち物"
             android:textAppearance="@style/TextAppearance.AppCompat"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
@@ -289,7 +289,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
         <ListView
-            android:id="@+id/warehouse_Armor_box"
+            android:id="@+id/warehouse_weapon_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
@@ -302,7 +302,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
         <ListView
-            android:id="@+id/warehouse_Armor_player"
+            android:id="@+id/warehouse_weapon_player"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"

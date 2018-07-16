@@ -399,7 +399,10 @@ public class MakeData {
         return enemy;
     }
 
-    //武器を追加した場合はここに書く
+    /**
+     * 武器を追加した場合はここに書く
+     * 現在のままだとweaponNameがないときにエラーが出る。
+     */
     public SuperWeapon makeWeaponFromName(String weaponName){
         SuperWeapon weapon = new SampleWeapon();
         switch (weaponName){

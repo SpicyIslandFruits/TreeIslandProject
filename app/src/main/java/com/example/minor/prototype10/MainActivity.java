@@ -6,6 +6,7 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity{
     private ProgressBar mainHpBar, mainMpBar;
     private MakeWeaponRealmObject makeWeaponRealmObject;
     private MakeArmorRealmObject makeArmorRealmObject;
+    private MakeItemRealmObject makeItemRealmObject;
     private TextView bleedingText, poisonText;
     public static SoundPool soundPool;
     public static int walkingSound, oldMansionWalkingSound, cureSound, battleStartSound, oldMansionShowerSound, oldMansionSleepSound, oldMansionBedSound;
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity{
         makeData = new MakeData();
         makeWeaponRealmObject = new MakeWeaponRealmObject();
         makeArmorRealmObject = new MakeArmorRealmObject();
+        makeItemRealmObject = new MakeItemRealmObject();
         AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();
         soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).setMaxStreams(1).build();
         //soundPoolのロードは非同期処理なのでここで行う、ロードに時間がかかる為ロードしてすぐに再生してはいけない
@@ -189,40 +192,39 @@ public class MainActivity extends AppCompatActivity{
             makeData.makePlayerStatusFromLevel(playerInfo.getPlayerLevel());
             //防具の処理を後々見直します
             realm.beginTransaction();
-            //防具のステータスは考慮していません、防具の基礎ステータスも120前後、武器と同様にarmorDfとarmorLevelに保存し、装備時にfDfに保存、battleActivityで受け取ります
-            //adapterのsetTextも変える
+            /**
+             * 防具のステータスは考慮していません、防具の基礎ステータスも120前後、武器と同様にarmorDfとarmorLevelに保存し、装備時にfDfに保存、battleActivityで受け取ります
+             * adapterのsetTextも変える
+             */
             playerInfo.setHP(playerInfo.getMaxHP());
             playerInfo.setFmaxHP(playerInfo.getMaxHP());
-            //makeItemRealmObjectというクラスを作り、そこで行います。
+            /**
+             * テストの為初期アイテムを作っています。最終的に消します。
+             */
             importantItemName = realm.createObject(ImportantItemName.class);
             importantItemName.setItemName("ベンチの材料");
             importantItemName = realm.createObject(ImportantItemName.class);
             importantItemName.setItemName("ブランコの材料");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("HP回復薬小");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("HP回復薬小");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("HP回復薬小");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("MP回復薬小");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("MP回復薬小");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("解毒薬");
-            recoveryItemName = realm.createObject(RecoveryItemName.class);
-            recoveryItemName.setItemName("包帯");
-            //防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
-            //防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
-            //防具のスキルはすべてパッシブなので装備時にRealmの値を変更する
-            //hpの増減は防具のステータスによるものではなく、防具のパッシブスキルによるものとし
-            //防具装備時にFmaxHPを直接変更する
-            //メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
+            /**
+             * 防具の中身の実装がまだの為、一時的に主人公の防御力を防具の防御力に代入しているが、実際は武器の時と同様にmakeArmorRealmObjectで生成した数値を代入する
+             * 防具のDfをマップレベルから生成しfDfに設定する処理とスキルの実装方法が今後の課題
+             * 防具のスキルはすべてパッシブなので装備時にRealmの値を変更する
+             * hpの増減は防具のステータスによるものではなく、防具のパッシブスキルによるものとし
+             * 防具装備時にFmaxHPを直接変更する
+             * メソッドを防具クラスに定義し、処理はEquipmentFragmentのsetOnClickListener内で実行する
+             */
             realm.commitTransaction();
             makeWeaponRealmObject.createNewWeapon("SampleWeapon");
             makeWeaponRealmObject.createNewWeapon("SampleWeapon2");
             makeArmorRealmObject.createNewArmor("SampleArmor");
             makeArmorRealmObject.createNewArmor("SampleArmor2");
+            makeItemRealmObject.createNewRecoveryItem("HP回復薬小");
+            makeItemRealmObject.createNewRecoveryItem("HP回復薬小");
+            makeItemRealmObject.createNewRecoveryItem("HP回復薬小");
+            makeItemRealmObject.createNewRecoveryItem("MP回復薬小");
+            makeItemRealmObject.createNewRecoveryItem("MP回復薬小");
+            makeItemRealmObject.createNewRecoveryItem("解毒薬");
+            makeItemRealmObject.createNewRecoveryItem("包帯");
         }catch (Exception e){
             realm.cancelTransaction();
         }
